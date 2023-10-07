@@ -53,11 +53,11 @@ const App: React.FC = () => {
     <>
       <Navbar titulo={"Inicio"} />
       <body className="bg-bgT20 cover overflow-y-scroll h-[94vh]">
-        <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto mt-6 py-8 px-4 rounded-lg border-gray-500 border flex shadow-lg">
-          <section className="bg-gray-300 flex-col p-3 w-[45%] rounded-lg  bg-opacity-80 shadow-lg h-fit">
+        <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto mt-6 py-8 px-4 rounded-lg border-gray-500 border flex shadow-lg gap-4 mobile:flex-wrap">
+          <section className="bg-gray-300 flex-col p-3 rounded-lg  bg-opacity-80 shadow-lg h-fit desktop:w-[50%]">
             <h1 className="text-center text-2xl mb-2">{race}</h1>
             <div className="flex">
-              <img src={raceImage} className="w-[50%]" alt="Personagem" />
+              <img src={raceImage} className="w-[50%] h-fit" alt="Personagem" />
               <p className="text-sm my-auto">{raceDescription}</p>
             </div>
             <h2 className="text-center text-xl my-2">{atribute.join(" | ")}</h2>
