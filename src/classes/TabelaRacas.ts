@@ -9,7 +9,7 @@ export const TabelaRacas: Raca[] = [
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "Versátil",
+        nome: "Versátil.",
         descricao:
           " Você se torna treinado em duas perícias a sua escolha (não precisam ser da sua classe). Você pode trocar uma dessas perícias por um poder geral a sua escolha.",
         fonte: "Raça",
@@ -177,7 +177,8 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Minotauro",
-    descricao: "Povo guerreiro, orgulhoso e poderoso, criadores de uma civilização avançada, com a missão sagrada de proteger e governar os fracos ou assim se enxergavam. Em seus tempos áureos, tomaram grande parte de Arton. Hoje, após a morte de sua divindade e a decadência de seu Império, os minotauros lutam para recuperar a glória perdida ou encontrar um novo papel no mundo.",
+    descricao:
+      "Povo guerreiro, orgulhoso e poderoso, criadores de uma civilização avançada, com a missão sagrada de proteger e governar os fracos ou assim se enxergavam. Em seus tempos áureos, tomaram grande parte de Arton. Hoje, após a morte de sua divindade e a decadência de seu Império, os minotauros lutam para recuperar a glória perdida ou encontrar um novo papel no mundo.",
     atributos: ["Força +2", "Constituição +1", "Sabedoria -1"],
     imagem: "./img/personagem.png",
     poderes: [
@@ -213,7 +214,8 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Qareen",
-    descricao: "Descendentes de poderosos gênios, os qareen são otimistas, generosos e prestativos, sempre ansiosos por ajudar. Consideram-se abençoados pela Deusa da Magia, exibindo como evidência a marca de Wynna em seus corpos. Sua magia é mais poderosa quando usada para realizar desejos de outros.",
+    descricao:
+      "Descendentes de poderosos gênios, os qareen são otimistas, generosos e prestativos, sempre ansiosos por ajudar. Consideram-se abençoados pela Deusa da Magia, exibindo como evidência a marca de Wynna em seus corpos. Sua magia é mais poderosa quando usada para realizar desejos de outros.",
     atributos: ["Carisma +2", "Inteligência +1", "Sabedoria –1"],
     imagem: "./img/personagem.png",
     poderes: [
@@ -242,31 +244,36 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Golem",
-    descricao: "Os seres mencionados são construtos criados por mortais, animados por espíritos elementais aprisionados em corpos de pedra e metal através de magia. Alguns se limitam a papéis de trabalhadores e soldados, mas outros mostram inteligência e personalidade, podendo conjurar magias. A dúvida persiste se possuem alma e se encontrarão os deuses após a morte.",
+    descricao:
+      "Os seres mencionados são construtos criados por mortais, animados por espíritos elementais aprisionados em corpos de pedra e metal através de magia. Alguns se limitam a papéis de trabalhadores e soldados, mas outros mostram inteligência e personalidade, podendo conjurar magias. A dúvida persiste se possuem alma e se encontrarão os deuses após a morte.",
     atributos: ["Força +2", "Constituição +1", "Carisma –1"],
     imagem: "./img/personagem.png",
     poderes: [
       {
         nome: "Chassi.",
-        descricao: "Seu corpo artificial é resistente, mas rígido. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe +2 na Defesa, mas possui penalidade de armadura –2. Você leva um dia para vestir ou remover uma armadura (pois precisa acoplar as peças dela a seu chassi). Por ser acoplada, sua armadura não conta no limite de itens que você pode usar (mas você continua só podendo usar uma armadura).",
+        descricao:
+          "Seu corpo artificial é resistente, mas rígido. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe +2 na Defesa, mas possui penalidade de armadura –2. Você leva um dia para vestir ou remover uma armadura (pois precisa acoplar as peças dela a seu chassi). Por ser acoplada, sua armadura não conta no limite de itens que você pode usar (mas você continua só podendo usar uma armadura).",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Criatura Artificial.",
-        descricao: "Você é uma criatura do tipo construto. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir, mas não se beneficia de cura mundana e de itens da categoria alimentação. Você precisa ficar inerte por oito horas por dia para recarregar sua fonte de energia. Se fizer isso, recupera PV e PM por descanso em condições normais (golens não são afetados por condições boas ou ruins de descanso). Por fim, a perícia Cura não funciona em você, mas Ofício (artesão) pode ser usada no lugar dela.",
+        descricao:
+          "Você é uma criatura do tipo construto. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir, mas não se beneficia de cura mundana e de itens da categoria alimentação. Você precisa ficar inerte por oito horas por dia para recarregar sua fonte de energia. Se fizer isso, recupera PV e PM por descanso em condições normais (golens não são afetados por condições boas ou ruins de descanso). Por fim, a perícia Cura não funciona em você, mas Ofício (artesão) pode ser usada no lugar dela.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Propósito de Criação.",
-        descricao: "Você foi construído “pronto” para um propósito específico e não teve uma infância. Você não tem direito a escolher uma origem, mas recebe um poder geral a sua escolha.",
+        descricao:
+          "Você foi construído “pronto” para um propósito específico e não teve uma infância. Você não tem direito a escolher uma origem, mas recebe um poder geral a sua escolha.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Fonte Elemental.",
-        descricao: "Você possui um espírito elemental preso em seu corpo. Escolha entre água (frio), ar (eletricidade), fogo (fogo) e terra (ácido). Você é imune a dano desse tipo. Se fosse sofrer dano mágico desse tipo, em vez disso cura PV em quantidade igual à metade do dano. Por exemplo, se um golem com espírito elemental do fogo é atingido por uma Bola de Fogo que causa 30 pontos de dano, em vez de sofrer esse dano, ele recupera 15 PV.",
+        descricao:
+          "Você possui um espírito elemental preso em seu corpo. Escolha entre água (frio), ar (eletricidade), fogo (fogo) e terra (ácido). Você é imune a dano desse tipo. Se fosse sofrer dano mágico desse tipo, em vez disso cura PV em quantidade igual à metade do dano. Por exemplo, se um golem com espírito elemental do fogo é atingido por uma Bola de Fogo que causa 30 pontos de dano, em vez de sofrer esse dano, ele recupera 15 PV.",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -274,25 +281,29 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Hynne",
-    descricao: "Os hynne, também chamados de halflings ou 'pequeninos', preferem conforto e boa comida. Quando aventuram-se, usam charme e agilidade para enganar inimigos. Agora vivem nas Repúblicas Livres de Sambúrdia, dedicando-se à agricultura e ao comércio, muitos alcançando posições de destaque.",
+    descricao:
+      "Os hynne, também chamados de halflings ou 'pequeninos', preferem conforto e boa comida. Quando aventuram-se, usam charme e agilidade para enganar inimigos. Agora vivem nas Repúblicas Livres de Sambúrdia, dedicando-se à agricultura e ao comércio, muitos alcançando posições de destaque.",
     atributos: ["Destreza +2", "Carisma +1", "Força –1"],
     imagem: "./img/personagem.png",
     poderes: [
       {
         nome: "Arremessador.",
-        descricao: "Quando faz um ataque à distância com uma funda ou uma arma de arremesso, seu dano aumenta em um passo.",
+        descricao:
+          "Quando faz um ataque à distância com uma funda ou uma arma de arremesso, seu dano aumenta em um passo.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Pequeno e Rechonchudo.",
-        descricao: "Seu tamanho é Pequeno (veja a página 106) e seu deslocamento é 6m. Você recebe +2 em Enganação e pode usar Destreza como atributo-chave de Atletismo (em vez de Força).",
+        descricao:
+          "Seu tamanho é Pequeno (veja a página 106) e seu deslocamento é 6m. Você recebe +2 em Enganação e pode usar Destreza como atributo-chave de Atletismo (em vez de Força).",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Sorte Salvadora.",
-        descricao: "Quando faz um teste de resistência, você pode gastar 1 PM para rolar este teste novamente.",
+        descricao:
+          "Quando faz um teste de resistência, você pode gastar 1 PM para rolar este teste novamente.",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -300,31 +311,36 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Kliren",
-    descricao: "Os kliren são uma mistura de humanos e gnomos, combinando inteligência e curiosidade. São engenhosos e criativos com dispositivos mecânicos, mas sua impulsividade pode impedir seu pleno potencial. A existência dos gnomos em Arton está relacionada ao envolvimento criminoso de seu deus Tilliann na criação da Tormenta.",
+    descricao:
+      "Os kliren são uma mistura de humanos e gnomos, combinando inteligência e curiosidade. São engenhosos e criativos com dispositivos mecânicos, mas sua impulsividade pode impedir seu pleno potencial. A existência dos gnomos em Arton está relacionada ao envolvimento criminoso de seu deus Tilliann na criação da Tormenta.",
     atributos: ["Inteligência +2", "Carisma +1", "Força –1"],
     imagem: "./img/personagem.png",
     poderes: [
       {
         nome: "Híbrido.",
-        descricao: "Sua natureza multifacetada fez com que você aprendesse conhecimentos variados. Você se torna treinado em uma perícia a sua escolha (não precisa ser da sua classe).",
+        descricao:
+          "Sua natureza multifacetada fez com que você aprendesse conhecimentos variados. Você se torna treinado em uma perícia a sua escolha (não precisa ser da sua classe).",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Engenhosidade.",
-        descricao: "Quando faz um teste de perícia, você pode gastar 2 PM para somar sua Inteligência no teste. Você não pode usar esta habilidade em testes de ataque. Caso receba esta habilidade novamente, seu custo é reduzido em –1 PM.",
+        descricao:
+          "Quando faz um teste de perícia, você pode gastar 2 PM para somar sua Inteligência no teste. Você não pode usar esta habilidade em testes de ataque. Caso receba esta habilidade novamente, seu custo é reduzido em –1 PM.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Ossos Frágeis.",
-        descricao: "Você sofre 1 ponto de dano adicional por dado de dano de impacto. Por exemplo, se for atingido por uma clava (dano 1d6), sofre 1d6+1 pontos de dano. Se cair de 3m de altura (dano 2d6), sofre 2d6+2 pontos de dano.",
+        descricao:
+          "Você sofre 1 ponto de dano adicional por dado de dano de impacto. Por exemplo, se for atingido por uma clava (dano 1d6), sofre 1d6+1 pontos de dano. Se cair de 3m de altura (dano 2d6), sofre 2d6+2 pontos de dano.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Vanguardista.",
-        descricao: "Você recebe proficiência em armas de fogo e +2 em Ofício (um qualquer, a sua escolha).",
+        descricao:
+          "Você recebe proficiência em armas de fogo e +2 em Ofício (um qualquer, a sua escolha).",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -332,25 +348,28 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Medusa",
-    descricao: "Desc.",
+    descricao: "As medusas, conhecidas por transformar vítimas em pedra com seus olhares, são antigas e poderosas. No entanto, as jovens medusas buscam aventuras no Reinado, até mesmo fazendo amigos e integrando equipes de heróis. Elas podem se disfarçar como mulheres humanas para esconderem suas cabeças de serpente, sendo excepcionalmente bem vistas pelos anões.",
     atributos: ["Destreza +2", "Carisma +1"],
     imagem: "./img/personagem.png",
     poderes: [
       {
         nome: "Cria de Megalokk.",
-        descricao: "Você é uma criatura do tipo monstro e recebe visão no escuro.",
+        descricao:
+          "Você é uma criatura do tipo monstro e recebe visão no escuro.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Natureza Venenosa.",
-        descricao: "Você recebe resistência a veneno +5 e pode gastar uma ação de movimento e 1 PM para envenenar uma arma que esteja usando. A arma causa perda de 1d12 pontos de vida. O veneno dura até você acertar um ataque ou até o fim da cena (o que acontecer primeiro).",
+        descricao:
+          "Você recebe resistência a veneno +5 e pode gastar uma ação de movimento e 1 PM para envenenar uma arma que esteja usando. A arma causa perda de 1d12 pontos de vida. O veneno dura até você acertar um ataque ou até o fim da cena (o que acontecer primeiro).",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Olhar Atordoante.",
-        descricao: "Você pode gastar uma ação de movimento e 1 PM para forçar uma criatura em alcance curto a fazer um teste de Fortitude (CD Car). Se a criatura falhar, fica atordoada por uma rodada (apenas uma vez por cena).",
+        descricao:
+          "Você pode gastar uma ação de movimento e 1 PM para forçar uma criatura em alcance curto a fazer um teste de Fortitude (CD Car). Se a criatura falhar, fica atordoada por uma rodada (apenas uma vez por cena).",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -358,19 +377,38 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Osteon",
-    descricao: "Desc.",
-    atributos: ["Atributo1 +2", "Atributo2 +1", "Atributo3 -1"],
+    descricao:
+      "Os osteon, antes temidos esqueletos vingativos, agora exibem inteligência e consciência semelhantes às raças vivas. Podem assumir diferentes profissões e devoções, sendo seu surgimento atribuído à queda de Ragnar ou à ascensão de Ferren Asloth como um lich poderoso, transformando Aslothia em um reino necromante.",
+    atributos: [
+      "+1 em Três Atributos Diferentes (exceto Constituição)",
+      "Constituição –1",
+    ],
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Armadura Óssea.",
+        descricao: "Você recebe redução de corte, frio e perfuração 5.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Memória Póstuma.",
+        descricao:
+          "Você se torna treinado em uma perícia (não precisa ser da sua classe) ou recebe um poder geral a sua escolha. Como alternativa, você pode ser um osteon de outra raça humanoide que não humano. Neste caso, você ganha uma habilidade dessa raça a sua escolha. Se a raça era de tamanho diferente de Médio, você também possui sua categoria de tamanho.",
+        fonte: "Raça",
+        pre_requisito: "",
+      },
+      {
+        nome: "Natureza Esquelética.",
+        descricao:
+          "Você é uma criatura do tipo morto-vivo. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos, de trevas e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir. Por fim, efeitos mágicos de cura de luz causam dano a você e você não se beneficia de itens da categoria alimentação, mas dano de trevas recupera seus PV.",
+        fonte: "Raça",
+        pre_requisito: "",
+      },
+      {
+        nome: "Preço da Não Vida.",
+        descricao:
+          "Você precisa passar oito horas sob a luz de estrelas ou no subterrâneo. Se izer isso, recupera PV e PM por descanso em condições normais (osteon não são afetados por condições boas ou ruins de descanso). Caso contrário, sofre os efeitos de fome.",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -378,19 +416,29 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Sereia/Tritão",
-    descricao: "Desc.",
-    atributos: ["Atributo1 +2", "Atributo2 +1", "Atributo3 -1"],
+    descricao:
+      "Os sereias (femininas) e tritões (masculinos) têm forma híbrida, com torso humanoide e corpo de peixe, capazes de assumir forma bípede para andar em terra firme, o que fazem com maior frequência. Suas perspectivas sobre os humanos variam, alguns as veem com receio ou desprezo, enquanto outros enxergam Arton como um mundo misterioso, exótico e cheio de aventuras.",
+    atributos: ["+1 em Três Atributos Diferentes."],
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Canção dos Mares.",
+        descricao:
+          "Você pode lançar duas das magias a seguir: Amedrontar, Comando, Despedaçar, Enfeitiçar, Hipnotismo ou Sono (atributo-chave Carisma). Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Mestre do Tridente.",
+        descricao:
+          "Para você, o tridente é uma arma simples. Além disso, você recebe +2 em rolagens de dano com azagaias, lanças e tridentes.",
+        fonte: "Raça",
+        pre_requisito: "",
+      },
+      {
+        nome: "Transformação Anfíbia.",
+        descricao:
+          "Você pode respirar debaixo d’água e possui uma cauda que fornece deslocamento de natação 12m. Quando fora d’água, sua cauda desaparece e dá lugar a pernas (deslocamento 9m). Se permanecer mais de um dia sem contato com água, você não recupera PM com descanso até voltar para a água (ou, pelo menos, tomar um bom banho!).",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -398,19 +446,29 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Sílfide",
-    descricao: "Desc.",
-    atributos: ["Atributo1 +2", "Atributo2 +1", "Atributo3 -1"],
+    descricao:
+      "As sílfides são fadas com asas delicadas e olhos grandes, conhecidas por sua curiosidade e travessuras. Apesar de sua natureza brincalhona, podem ser subestimadas em situações sérias. Gostam de usar magias e ilusões para pregar peças, tornando sua presença questionável em grupos de aventureiros.",
+    atributos: ["Carisma +2", "Destreza +1", "Força –2"],
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Asas de Borboleta.",
+        descricao:
+          "Seu tamanho é Minúsculo. Você pode pairar a 1 5m do chão com deslocamento 9m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Você pode gastar 1 PM por rodada para voar com deslocamento de 12m.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Espírito da Natureza.",
+        descricao:
+          "Você é uma criatura do tipo espírito, recebe visão na penumbra e pode falar com animais livremente.",
+        fonte: "Raça",
+        pre_requisito: "",
+      },
+      {
+        nome: "Magia das Fadas.",
+        descricao:
+          "Você pode lançar duas das magias a seguir (atributo-chave Carisma): Criar Ilusão, Enfeitiçar, Luz (como uma magia arcana) e Sono. Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -418,19 +476,21 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Suraggel (Aggelus)",
-    descricao: "Desc.",
-    atributos: ["Atributo1 +2", "Atributo2 +1", "Atributo3 -1"],
+    descricao: "Os aggelus, conhecidos como suraggel quando combinam traços angelicais e demoníacos, são descendentes de seres extraplanares divinos. Representam as forças opostas da luz e das trevas, refletindo a ligação com a luz e a bondade quando orientados para seu lado celestial. Sua natureza geralmente reflete a ascendência divina, mas podem surpreender ao assumir papéis inesperados, como aggelus ladinos ou paladinos.",
+    atributos: ["Sabedoria +2", "Carisma +1"],
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Herança Divina.",
+        descricao:
+          "Você é uma criatura do tipo espírito e recebe visão no escuro.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Luz Sagrada.",
+        descricao:
+          "Você recebe +2 em Diplomacia e Intuição. Além disso, pode lançar Luz (como uma magia divina; atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -438,19 +498,21 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Suraggel (Sulfure)",
-    descricao: "Desc.",
-    atributos: ["Atributo1 +2", "Atributo2 +1", "Atributo3 -1"],
+    descricao: "Os sulfure também são conhecidos como suraggel quando combinam traços angelicais e demoníacos, descendentes dos mesmos seres extraplanares divinos. Representam as forças opostas da luz e das trevas, mostrando sua ligação com a escuridão e o caos quando orientados para o lado abissal. Apesar dessa natureza abissal, alguns sulfure podem surpreender ao assumir papéis distintos, como sulfure paladinos ou outras classes surpreendentes.",
+    atributos: ["Destreza +2", "Inteligência +1"],
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Herança Divina.",
+        descricao:
+          "Você é uma criatura do tipo espírito e recebe visão no escuro.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Sombras Profanas.",
+        descricao:
+          "Você recebe +2 em Enganação e Furtividade. Além disso, pode lançar Escuridão (como uma magia divina; atributo-chave Inteligência). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
         fonte: "Raça",
         pre_requisito: "",
       },
@@ -458,26 +520,34 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Trog",
-    descricao: "Desc.",
-    atributos: ["Atributo1 +2", "Atributo2 +1", "Atributo3 -1"],
+    descricao: "Os trogloditas, homens-lagarto subterrâneos, desprezam outros seres, especialmente os que dominam a forja de aço. Atacam assentamentos humanos, emboscam em estradas e hostilizam exploradores. Alguns trogloditas, no entanto, desviam-se da crueldade, tornando-se druidas, clérigos ou aventureiros inesperados aceitos por colegas desajustados.",
+    atributos: ["Constituição +2", "Força +1", "Inteligência –1."],
     imagem: "./img/personagem.png",
     poderes: [
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Mau Cheiro.",
+        descricao: "Você pode gastar uma ação padrão e 2 PM para expelir um gás fétido. Todas as criaturas (exceto trogs) em alcance curto devem passar em um teste de Fortitude contra veneno (CD Con) ou ficarão enjoadas durante 1d6 rodadas. Uma criatura que passe no teste de resistência fica imune a esta habilidade por um dia.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
-        nome: "NomePoder.",
-        descricao: "DescPoder.",
+        nome: "Mordida.",
+        descricao: "Você possui uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
+        fonte: "Raça",
+        pre_requisito: "",
+      },
+      {
+        nome: "Reptiliano.",
+        descricao: "Você é uma criatura do tipo monstro e recebe visão no escuro, +1 na Defesa e, se estiver sem armadura ou roupas pesadas, +5 em Furtividade.",
+        fonte: "Raça",
+        pre_requisito: "",
+      },
+      {
+        nome: "Sangue Frio.",
+        descricao: "Você sofre 1 ponto de dano adicional por dado de dano de frio.",
         fonte: "Raça",
         pre_requisito: "",
       },
     ],
   },
 ];
-
-/*
-
-*/
