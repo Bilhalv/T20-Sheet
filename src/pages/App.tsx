@@ -54,86 +54,104 @@ const App: React.FC = () => {
       <Navbar titulo={"Inicio"} />
       <body className="bg-bgT20 cover overflow-y-scroll h-[94vh]">
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 bordershadow-lg">
-          <h1 className="text-3xl text-center text-red-800">T20 CHARACTER CREATOR</h1>
+          <h1 className="text-3xl text-center text-red-800">
+            T20 CHARACTER CREATOR
+          </h1>
           <h1 className="text-xl text-center mb-4">Raça</h1>
-          <div className="flex mobile:flex-warp gap-4">
-          <section className="bg-gray-300 flex-col p-3 rounded-lg  bg-opacity-80 shadow-lg h-fit desktop:w-[50%]">
-            <h1 className="text-center text-2xl mb-2">{race}</h1>
-            <div className="flex">
-              <img src={raceImage} className="w-[50%] h-fit" alt="Personagem" />
-              <p className="text-sm my-auto">{raceDescription}</p>
-            </div>
-            <h2 className="text-center text-xl my-2">{atribute.join(" | ")}</h2>
-            <ul>
-              {racePowers.map((power) => (
-                <li className="text-sm my-2">
-                  <i>
-                    <b className="font-bold">{power.nome}</b> {power.descricao}{" "}
-                    <i className="text-gray-700">{power.pre_requisito}</i>
-                  </i>
-                </li>
-              ))}
-            </ul>
-            <button className="my-2 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3">
-              Confirmar
-            </button>
-          </section>
-          <section className="grid-cols-3 grid gap-5 mx-auto h-fit">
-            <RaceButton
-              raceName="Humano"
-              onClick={() => handleClick("Humano")}
-            />
-            <RaceButton raceName="Anão" onClick={() => handleClick("Anão")} />
-            <RaceButton
-              raceName="Dahllan"
-              onClick={() => handleClick("Dahllan")}
-            />
-            <RaceButton raceName="Elfo" onClick={() => handleClick("Elfo")} />
-            <RaceButton
-              raceName="Goblin"
-              onClick={() => handleClick("Goblin")}
-            />
-            <RaceButton raceName="Lefou" onClick={() => handleClick("Lefou")} />
-            <RaceButton
-              raceName="Minotauro"
-              onClick={() => handleClick("Minotauro")}
-            />
-            <RaceButton
-              raceName="Qareen"
-              onClick={() => handleClick("Qareen")}
-            />
-            <RaceButton raceName="Golem" onClick={() => handleClick("Golem")} />
-            <RaceButton raceName="Hynne" onClick={() => handleClick("Hynne")} />
-            <RaceButton
-              raceName="Kliren"
-              onClick={() => handleClick("Kliren")}
-            />
-            <RaceButton
-              raceName="Medusa"
-              onClick={() => handleClick("Medusa")}
-            />
-            <RaceButton
-              raceName="Osteon"
-              onClick={() => handleClick("Osteon")}
-            />
-            <RaceButton
-              raceName="Sereia/Tritão"
-              onClick={() => handleClick("Sereia/Tritão")}
-            />
-            <RaceButton
-              raceName="Sílfide"
-              onClick={() => handleClick("Sílfide")}
-            />
-            <RaceButton
-              raceName="Suraggel (Aggelus)"
-              onClick={() => handleClick("Suraggel (Aggelus)")}
-            />
-            <RaceButton
-              raceName="Suraggel (Sulfure)"
-              onClick={() => handleClick("Suraggel (Sulfure)")}
-            />
-            <RaceButton raceName="Trog" onClick={() => handleClick("Trog")} />
-          </section>
+          <div className="flex desktop:flex-row flex-col gap-4 w-full">
+            <section className="bg-gray-300 flex-col p-3 rounded-lg  bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
+              <h1 className="text-center text-2xl mb-2">{race}</h1>
+              <div className="flex">
+                <img
+                  src={raceImage}
+                  className="w-[50%] h-fit"
+                  alt="Personagem"
+                />
+                <p className="text-sm my-auto">{raceDescription}</p>
+              </div>
+              <h2 className="text-center text-xl my-2">
+                {atribute.join(" | ")}
+              </h2>
+              <ul>
+                {racePowers.map((power) => (
+                  <li className="text-sm my-2">
+                    <i>
+                      <b className="font-bold">{power.nome}</b>{" "}
+                      {power.descricao}{" "}
+                      <i className="text-gray-700">{power.pre_requisito}</i>
+                    </i>
+                  </li>
+                ))}
+              </ul>
+              <button className="my-2 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3">
+                Confirmar
+              </button>
+            </section>
+            <section className="grid-cols-3 grid gap-5 mx-auto h-fit">
+              <RaceButton
+                raceName="Humano"
+                onClick={() => handleClick("Humano")}
+              />
+              <RaceButton raceName="Anão" onClick={() => handleClick("Anão")} />
+              <RaceButton
+                raceName="Dahllan"
+                onClick={() => handleClick("Dahllan")}
+              />
+              <RaceButton raceName="Elfo" onClick={() => handleClick("Elfo")} />
+              <RaceButton
+                raceName="Goblin"
+                onClick={() => handleClick("Goblin")}
+              />
+              <RaceButton
+                raceName="Lefou"
+                onClick={() => handleClick("Lefou")}
+              />
+              <RaceButton
+                raceName="Minotauro"
+                onClick={() => handleClick("Minotauro")}
+              />
+              <RaceButton
+                raceName="Qareen"
+                onClick={() => handleClick("Qareen")}
+              />
+              <RaceButton
+                raceName="Golem"
+                onClick={() => handleClick("Golem")}
+              />
+              <RaceButton
+                raceName="Hynne"
+                onClick={() => handleClick("Hynne")}
+              />
+              <RaceButton
+                raceName="Kliren"
+                onClick={() => handleClick("Kliren")}
+              />
+              <RaceButton
+                raceName="Medusa"
+                onClick={() => handleClick("Medusa")}
+              />
+              <RaceButton
+                raceName="Osteon"
+                onClick={() => handleClick("Osteon")}
+              />
+              <RaceButton
+                raceName="Sereia/Tritão"
+                onClick={() => handleClick("Sereia/Tritão")}
+              />
+              <RaceButton
+                raceName="Sílfide"
+                onClick={() => handleClick("Sílfide")}
+              />
+              <RaceButton
+                raceName="Suraggel (Aggelus)"
+                onClick={() => handleClick("Suraggel (Aggelus)")}
+              />
+              <RaceButton
+                raceName="Suraggel (Sulfure)"
+                onClick={() => handleClick("Suraggel (Sulfure)")}
+              />
+              <RaceButton raceName="Trog" onClick={() => handleClick("Trog")} />
+            </section>
           </div>
         </article>
       </body>
