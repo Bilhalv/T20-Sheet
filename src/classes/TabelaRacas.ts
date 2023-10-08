@@ -348,7 +348,8 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Medusa",
-    descricao: "As medusas, conhecidas por transformar vítimas em pedra com seus olhares, são antigas e poderosas. No entanto, as jovens medusas buscam aventuras no Reinado, até mesmo fazendo amigos e integrando equipes de heróis. Elas podem se disfarçar como mulheres humanas para esconderem suas cabeças de serpente, sendo excepcionalmente bem vistas pelos anões.",
+    descricao:
+      "As medusas, conhecidas por transformar vítimas em pedra com seus olhares, são antigas e poderosas. No entanto, as jovens medusas buscam aventuras no Reinado, até mesmo fazendo amigos e integrando equipes de heróis. Elas podem se disfarçar como mulheres humanas para esconderem suas cabeças de serpente, sendo excepcionalmente bem vistas pelos anões.",
     atributos: ["Destreza +2", "Carisma +1"],
     imagem: "./img/personagem.png",
     poderes: [
@@ -476,7 +477,8 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Suraggel (Aggelus)",
-    descricao: "Os aggelus, conhecidos como suraggel quando combinam traços angelicais e demoníacos, são descendentes de seres extraplanares divinos. Representam as forças opostas da luz e das trevas, refletindo a ligação com a luz e a bondade quando orientados para seu lado celestial. Sua natureza geralmente reflete a ascendência divina, mas podem surpreender ao assumir papéis inesperados, como aggelus ladinos ou paladinos.",
+    descricao:
+      "Os aggelus, conhecidos como suraggel quando combinam traços angelicais e demoníacos, são descendentes de seres extraplanares divinos. Representam as forças opostas da luz e das trevas, refletindo a ligação com a luz e a bondade quando orientados para seu lado celestial. Sua natureza geralmente reflete a ascendência divina, mas podem surpreender ao assumir papéis inesperados, como aggelus ladinos ou paladinos.",
     atributos: ["Sabedoria +2", "Carisma +1"],
     imagem: "./img/personagem.png",
     poderes: [
@@ -498,7 +500,8 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Suraggel (Sulfure)",
-    descricao: "Os sulfure também são conhecidos como suraggel quando combinam traços angelicais e demoníacos, descendentes dos mesmos seres extraplanares divinos. Representam as forças opostas da luz e das trevas, mostrando sua ligação com a escuridão e o caos quando orientados para o lado abissal. Apesar dessa natureza abissal, alguns sulfure podem surpreender ao assumir papéis distintos, como sulfure paladinos ou outras classes surpreendentes.",
+    descricao:
+      "Os sulfure também são conhecidos como suraggel quando combinam traços angelicais e demoníacos, descendentes dos mesmos seres extraplanares divinos. Representam as forças opostas da luz e das trevas, mostrando sua ligação com a escuridão e o caos quando orientados para o lado abissal. Apesar dessa natureza abissal, alguns sulfure podem surpreender ao assumir papéis distintos, como sulfure paladinos ou outras classes surpreendentes.",
     atributos: ["Destreza +2", "Inteligência +1"],
     imagem: "./img/personagem.png",
     poderes: [
@@ -520,31 +523,36 @@ export const TabelaRacas: Raca[] = [
   },
   {
     nome: "Trog",
-    descricao: "Os trogloditas, homens-lagarto subterrâneos, desprezam outros seres, especialmente os que dominam a forja de aço. Atacam assentamentos humanos, emboscam em estradas e hostilizam exploradores. Alguns trogloditas, no entanto, desviam-se da crueldade, tornando-se druidas, clérigos ou aventureiros inesperados aceitos por colegas desajustados.",
+    descricao:
+      "Os trogloditas, homens-lagarto subterrâneos, desprezam outros seres, especialmente os que dominam a forja de aço. Atacam assentamentos humanos, emboscam em estradas e hostilizam exploradores. Alguns trogloditas, no entanto, desviam-se da crueldade, tornando-se druidas, clérigos ou aventureiros inesperados aceitos por colegas desajustados.",
     atributos: ["Constituição +2", "Força +1", "Inteligência –1."],
     imagem: "./img/personagem.png",
     poderes: [
       {
         nome: "Mau Cheiro.",
-        descricao: "Você pode gastar uma ação padrão e 2 PM para expelir um gás fétido. Todas as criaturas (exceto trogs) em alcance curto devem passar em um teste de Fortitude contra veneno (CD Con) ou ficarão enjoadas durante 1d6 rodadas. Uma criatura que passe no teste de resistência fica imune a esta habilidade por um dia.",
+        descricao:
+          "Você pode gastar uma ação padrão e 2 PM para expelir um gás fétido. Todas as criaturas (exceto trogs) em alcance curto devem passar em um teste de Fortitude contra veneno (CD Con) ou ficarão enjoadas durante 1d6 rodadas. Uma criatura que passe no teste de resistência fica imune a esta habilidade por um dia.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Mordida.",
-        descricao: "Você possui uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
+        descricao:
+          "Você possui uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Reptiliano.",
-        descricao: "Você é uma criatura do tipo monstro e recebe visão no escuro, +1 na Defesa e, se estiver sem armadura ou roupas pesadas, +5 em Furtividade.",
+        descricao:
+          "Você é uma criatura do tipo monstro e recebe visão no escuro, +1 na Defesa e, se estiver sem armadura ou roupas pesadas, +5 em Furtividade.",
         fonte: "Raça",
         pre_requisito: "",
       },
       {
         nome: "Sangue Frio.",
-        descricao: "Você sofre 1 ponto de dano adicional por dado de dano de frio.",
+        descricao:
+          "Você sofre 1 ponto de dano adicional por dado de dano de frio.",
         fonte: "Raça",
         pre_requisito: "",
       },
