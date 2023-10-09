@@ -29,8 +29,6 @@ const Racas: React.FC = () => {
       nome: "Versátil",
       descricao:
         " Você se torna treinado em duas perícias a sua escolha (não precisam ser da sua classe). Você pode trocar uma dessas perícias por um poder geral a sua escolha.",
-      fonte: "Raça",
-      pre_requisito: "",
     },
   ]);
   const [atribute, setAtribute] = useState(["+1 em três atributos diferentes"]);
@@ -42,8 +40,8 @@ const Racas: React.FC = () => {
     const selectedRace = TabelaRacas.find((race) => race.nome === raceName);
     if (selectedRace) {
       setRaceDescription(selectedRace.descricao);
-      setRacePowers(selectedRace.poderes);
       setAtribute(selectedRace.atributos);
+      setRacePowers(selectedRace.poderes);
       setRaceImage(selectedRace.imagem);
     }
   };
@@ -64,7 +62,6 @@ const Racas: React.FC = () => {
               <li key={index} className="text-sm my-2">
                 <i>
                   <b className="font-bold">{power.nome}</b> {power.descricao}{" "}
-                  <i className="text-gray-700">{power.pre_requisito}</i>
                 </i>
               </li>
             ))}

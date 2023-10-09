@@ -42,7 +42,6 @@ const Classes: React.FC = () => {
     const selectedRace = TabelaRacas.find((race) => race.nome === raceName);
     if (selectedRace) {
       setRaceDescription(selectedRace.descricao);
-      setRacePowers(selectedRace.poderes);
       setAtribute(selectedRace.atributos);
       setRaceImage(selectedRace.imagem);
     }

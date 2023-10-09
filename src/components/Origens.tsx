@@ -40,7 +40,6 @@ const Origens: React.FC = () => {
     const selectedRace = TabelaRacas.find((race) => race.nome === raceName);
     if (selectedRace) {
       setRaceDescription(selectedRace.descricao);
-      setRacePowers(selectedRace.poderes);
       setAtribute(selectedRace.atributos);
       setRaceImage(selectedRace.imagem);
     }
@@ -62,7 +61,6 @@ const Origens: React.FC = () => {
               <li key={index} className="text-sm my-2">
                 <i>
                   <b className="font-bold">{power.nome}</b> {power.descricao}{" "}
-                  <i className="text-gray-700">{power.pre_requisito}</i>
                 </i>
               </li>
             ))}

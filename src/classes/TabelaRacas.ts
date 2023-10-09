@@ -12,8 +12,6 @@ export const TabelaRacas: Raca[] = [
         nome: "Versátil.",
         descricao:
           " Você se torna treinado em duas perícias a sua escolha (não precisam ser da sua classe). Você pode trocar uma dessas perícias por um poder geral a sua escolha.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -28,29 +26,21 @@ export const TabelaRacas: Raca[] = [
         nome: "Conhecimento das Rochas.",
         descricao:
           "Você recebe visão no escuro e +2 em testes de Percepção e Sobrevivência realizados no subterrâneo.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Devagar e Sempre.",
         descricao:
           "Seu deslocamento é 6m (em vez de 9m). Porém, seu deslocamento não é reduzido por uso de armadura ou excesso de carga.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Duro como Pedra.",
         descricao:
           "Você recebe +3 pontos de vida no 1º nível e +1 por nível seguinte.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Tradição de Heredrimm.",
         descricao:
           "Você é perito nas armas tradicionais anãs, seja por ter treinado com elas, seja por usá-las como ferramentas de ofício. Para você, todos os machados, martelos, marretas e picaretas são armas simples. Você recebe +2 em ataques com essas armas.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -65,22 +55,16 @@ export const TabelaRacas: Raca[] = [
         nome: "Amiga das Plantas.",
         descricao:
           "Você pode lançar a magia Controlar Plantas (atributo-chave Sabedoria). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Armadura de Allihanna.",
         descricao:
           "Você pode gastar uma ação de movimento e 1 PM para transformar sua pele em casca de árvore, recebendo +2 na Defesa até o fim da cena.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Empatia Selvagem.",
         descricao:
           "Você pode se comunicar com animais por meio de linguagem corporal e vocalizações. Você pode usar Adestramento para mudar atitude e persuasão com animais (veja Diplomacia, na página 118). Caso receba esta habilidade novamente, recebe +2 em Adestramento.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -94,21 +78,15 @@ export const TabelaRacas: Raca[] = [
       {
         nome: "Graça de Glórienn.",
         descricao: "Seu deslocamento é 12m (em vez de 9m).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Sangue Mágico.",
         descricao: "Você recebe +1 ponto de mana por nível.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Sentidos Élficos.",
         descricao:
           "Você recebe visão na penumbra e +2 em Misticismo e Percepção.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -123,29 +101,21 @@ export const TabelaRacas: Raca[] = [
         nome: "Engenhoso.",
         descricao:
           "Você não sofre penalidades em testes de perícia por não usar ferramentas. Se usar a ferramenta necessária, recebe +2 no teste de perícia.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Espelunqueiro.",
         descricao:
           "Você recebe visão no escuro e deslocamento de escalada igual ao seu deslocamento terrestre.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Peste Esguia.",
         descricao:
           "Seu tamanho é Pequeno (veja a página 106), mas seu deslocamento se mantém 9m. Apesar de pequenos, goblins são rápidos.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Rato das Ruas.",
         descricao:
           "Você recebe +2 em Fortitude e sua recuperação de PV e PM nunca é inferior ao seu nível.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -163,15 +133,11 @@ export const TabelaRacas: Raca[] = [
         nome: "Cria da Tormenta.",
         descricao:
           "Você é uma criatura do tipo monstro e recebe +5 em testes de resistência contra efeitos causados por lefeu e pela Tormenta.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Deformidade.",
         descricao:
           "Todo lefou possui defeitos físicos que, embora desagradáveis, conferem certas vantagens. Você recebe +2 em duas perícias a sua escolha. Cada um desses bônus conta como um poder da Tormenta (exceto para perda de Crisma). Você pode trocar um desses bônus por um poder da Tormenta a sua escolha (ele também não conta para perda de Carisma).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -186,29 +152,21 @@ export const TabelaRacas: Raca[] = [
         nome: "Chifres.",
         descricao:
           "Você possui uma arma natural de chifres (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com os chifres.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Couro Rígido.",
         descricao:
           "Sua pele é dura como a de um touro. Você recebe +1 na Defesa.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Faro.",
         descricao:
           "Você tem olfato apurado. Contra inimigos em alcance curto que não possa ver, você não fica desprevenido e camuflagem total lhe causa apenas 20% de chance de falha.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Medo de Altura.",
         descricao:
           "Se estiver adjacente a uma queda de 3m ou mais de altura (como um buraco ou penhasco), você fica abalado.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -223,22 +181,16 @@ export const TabelaRacas: Raca[] = [
         nome: "Desejos.",
         descricao:
           "Se lançar uma magia que alguém tenha pedido desde seu último turno, o custo da magia diminui em –1 PM. Fazer um desejo ao qareen é uma ação livre.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Resistência Elemental.",
         descricao:
           "Conforme sua ascendência, você recebe redução 10 a um tipo de dano. Escolha uma: frio (qareen da água), eletricidade (do ar), fogo (do fogo), ácido (da terra), luz (da luz) ou trevas (qareen das trevas).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Tatuagem Mística.",
         descricao:
           "Você pode lançar uma magia de 1º círculo a sua escolha (atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -253,29 +205,21 @@ export const TabelaRacas: Raca[] = [
         nome: "Chassi.",
         descricao:
           "Seu corpo artificial é resistente, mas rígido. Seu deslocamento é 6m, mas não é reduzido por uso de armadura ou excesso de carga. Você recebe +2 na Defesa, mas possui penalidade de armadura –2. Você leva um dia para vestir ou remover uma armadura (pois precisa acoplar as peças dela a seu chassi). Por ser acoplada, sua armadura não conta no limite de itens que você pode usar (mas você continua só podendo usar uma armadura).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Criatura Artificial.",
         descricao:
           "Você é uma criatura do tipo construto. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir, mas não se beneficia de cura mundana e de itens da categoria alimentação. Você precisa ficar inerte por oito horas por dia para recarregar sua fonte de energia. Se fizer isso, recupera PV e PM por descanso em condições normais (golens não são afetados por condições boas ou ruins de descanso). Por fim, a perícia Cura não funciona em você, mas Ofício (artesão) pode ser usada no lugar dela.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Propósito de Criação.",
         descricao:
           "Você foi construído “pronto” para um propósito específico e não teve uma infância. Você não tem direito a escolher uma origem, mas recebe um poder geral a sua escolha.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Fonte Elemental.",
         descricao:
           "Você possui um espírito elemental preso em seu corpo. Escolha entre água (frio), ar (eletricidade), fogo (fogo) e terra (ácido). Você é imune a dano desse tipo. Se fosse sofrer dano mágico desse tipo, em vez disso cura PV em quantidade igual à metade do dano. Por exemplo, se um golem com espírito elemental do fogo é atingido por uma Bola de Fogo que causa 30 pontos de dano, em vez de sofrer esse dano, ele recupera 15 PV.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -290,22 +234,16 @@ export const TabelaRacas: Raca[] = [
         nome: "Arremessador.",
         descricao:
           "Quando faz um ataque à distância com uma funda ou uma arma de arremesso, seu dano aumenta em um passo.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Pequeno e Rechonchudo.",
         descricao:
           "Seu tamanho é Pequeno (veja a página 106) e seu deslocamento é 6m. Você recebe +2 em Enganação e pode usar Destreza como atributo-chave de Atletismo (em vez de Força).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Sorte Salvadora.",
         descricao:
           "Quando faz um teste de resistência, você pode gastar 1 PM para rolar este teste novamente.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -320,29 +258,21 @@ export const TabelaRacas: Raca[] = [
         nome: "Híbrido.",
         descricao:
           "Sua natureza multifacetada fez com que você aprendesse conhecimentos variados. Você se torna treinado em uma perícia a sua escolha (não precisa ser da sua classe).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Engenhosidade.",
         descricao:
           "Quando faz um teste de perícia, você pode gastar 2 PM para somar sua Inteligência no teste. Você não pode usar esta habilidade em testes de ataque. Caso receba esta habilidade novamente, seu custo é reduzido em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Ossos Frágeis.",
         descricao:
           "Você sofre 1 ponto de dano adicional por dado de dano de impacto. Por exemplo, se for atingido por uma clava (dano 1d6), sofre 1d6+1 pontos de dano. Se cair de 3m de altura (dano 2d6), sofre 2d6+2 pontos de dano.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Vanguardista.",
         descricao:
           "Você recebe proficiência em armas de fogo e +2 em Ofício (um qualquer, a sua escolha).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -357,22 +287,16 @@ export const TabelaRacas: Raca[] = [
         nome: "Cria de Megalokk.",
         descricao:
           "Você é uma criatura do tipo monstro e recebe visão no escuro.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Natureza Venenosa.",
         descricao:
           "Você recebe resistência a veneno +5 e pode gastar uma ação de movimento e 1 PM para envenenar uma arma que esteja usando. A arma causa perda de 1d12 pontos de vida. O veneno dura até você acertar um ataque ou até o fim da cena (o que acontecer primeiro).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Olhar Atordoante.",
         descricao:
           "Você pode gastar uma ação de movimento e 1 PM para forçar uma criatura em alcance curto a fazer um teste de Fortitude (CD Car). Se a criatura falhar, fica atordoada por uma rodada (apenas uma vez por cena).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -389,29 +313,21 @@ export const TabelaRacas: Raca[] = [
       {
         nome: "Armadura Óssea.",
         descricao: "Você recebe redução de corte, frio e perfuração 5.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Memória Póstuma.",
         descricao:
           "Você se torna treinado em uma perícia (não precisa ser da sua classe) ou recebe um poder geral a sua escolha. Como alternativa, você pode ser um osteon de outra raça humanoide que não humano. Neste caso, você ganha uma habilidade dessa raça a sua escolha. Se a raça era de tamanho diferente de Médio, você também possui sua categoria de tamanho.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Natureza Esquelética.",
         descricao:
           "Você é uma criatura do tipo morto-vivo. Recebe visão no escuro e imunidade a efeitos de cansaço, metabólicos, de trevas e de veneno. Além disso, não precisa respirar, alimentar-se ou dormir. Por fim, efeitos mágicos de cura de luz causam dano a você e você não se beneficia de itens da categoria alimentação, mas dano de trevas recupera seus PV.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Preço da Não Vida.",
         descricao:
           "Você precisa passar oito horas sob a luz de estrelas ou no subterrâneo. Se izer isso, recupera PV e PM por descanso em condições normais (osteon não são afetados por condições boas ou ruins de descanso). Caso contrário, sofre os efeitos de fome.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -426,22 +342,16 @@ export const TabelaRacas: Raca[] = [
         nome: "Canção dos Mares.",
         descricao:
           "Você pode lançar duas das magias a seguir: Amedrontar, Comando, Despedaçar, Enfeitiçar, Hipnotismo ou Sono (atributo-chave Carisma). Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Mestre do Tridente.",
         descricao:
           "Para você, o tridente é uma arma simples. Além disso, você recebe +2 em rolagens de dano com azagaias, lanças e tridentes.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Transformação Anfíbia.",
         descricao:
           "Você pode respirar debaixo d’água e possui uma cauda que fornece deslocamento de natação 12m. Quando fora d’água, sua cauda desaparece e dá lugar a pernas (deslocamento 9m). Se permanecer mais de um dia sem contato com água, você não recupera PM com descanso até voltar para a água (ou, pelo menos, tomar um bom banho!).",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -456,22 +366,16 @@ export const TabelaRacas: Raca[] = [
         nome: "Asas de Borboleta.",
         descricao:
           "Seu tamanho é Minúsculo. Você pode pairar a 1 5m do chão com deslocamento 9m. Isso permite que você ignore terreno difícil e o torna imune a dano por queda (a menos que esteja inconsciente). Você pode gastar 1 PM por rodada para voar com deslocamento de 12m.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Espírito da Natureza.",
         descricao:
           "Você é uma criatura do tipo espírito, recebe visão na penumbra e pode falar com animais livremente.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Magia das Fadas.",
         descricao:
           "Você pode lançar duas das magias a seguir (atributo-chave Carisma): Criar Ilusão, Enfeitiçar, Luz (como uma magia arcana) e Sono. Caso aprenda novamente uma dessas magias, seu custo diminui em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -486,15 +390,11 @@ export const TabelaRacas: Raca[] = [
         nome: "Herança Divina.",
         descricao:
           "Você é uma criatura do tipo espírito e recebe visão no escuro.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Luz Sagrada.",
         descricao:
           "Você recebe +2 em Diplomacia e Intuição. Além disso, pode lançar Luz (como uma magia divina; atributo-chave Carisma). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -509,15 +409,11 @@ export const TabelaRacas: Raca[] = [
         nome: "Herança Divina.",
         descricao:
           "Você é uma criatura do tipo espírito e recebe visão no escuro.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Sombras Profanas.",
         descricao:
           "Você recebe +2 em Enganação e Furtividade. Além disso, pode lançar Escuridão (como uma magia divina; atributo-chave Inteligência). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
@@ -532,29 +428,21 @@ export const TabelaRacas: Raca[] = [
         nome: "Mau Cheiro.",
         descricao:
           "Você pode gastar uma ação padrão e 2 PM para expelir um gás fétido. Todas as criaturas (exceto trogs) em alcance curto devem passar em um teste de Fortitude contra veneno (CD Con) ou ficarão enjoadas durante 1d6 rodadas. Uma criatura que passe no teste de resistência fica imune a esta habilidade por um dia.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Mordida.",
         descricao:
           "Você possui uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Reptiliano.",
         descricao:
           "Você é uma criatura do tipo monstro e recebe visão no escuro, +1 na Defesa e, se estiver sem armadura ou roupas pesadas, +5 em Furtividade.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
       {
         nome: "Sangue Frio.",
         descricao:
           "Você sofre 1 ponto de dano adicional por dado de dano de frio.",
-        fonte: "Raça",
-        pre_requisito: "",
       },
     ],
   },
