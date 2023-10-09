@@ -17,6 +17,8 @@ const RaceButton: React.FC<RaceButtonProps> = ({ raceName, onClick }) => {
   );
 };
 
+const racas = ["Humano", "Anão", "Dahllan", "Elfo", "Goblin", "Lefou", "Minotauro", "Qareen", "Golem", "Hynne", "Kliren", "Medusa", "Osteon", "Sereia/Tritão", "Sílfide", "Suraggel (Aggelus)", "Suraggel (Sulfure)", "Trog"]
+
 const Racas: React.FC = () => {
   const [race, setRace] = useState("Humano");
   const [raceDescription, setRaceDescription] = useState(
@@ -49,8 +51,8 @@ const Racas: React.FC = () => {
   return (
     <>
       <h1 className="text-xl text-center mb-4">Raça</h1>
-      <div className="flex flex-col md:flex-row gap-4 w-full">
-        <section className="bg-gray-300 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit md:w-[50%] w-full">
+      <div className="flex flex-col desktop:flex-row gap-4 w-full">
+        <section className="bg-gray-300 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
           <h1 className="text-center text-2xl mb-2">{race}</h1>
           <div className="flex">
             <img src={raceImage} className="w-[50%] h-fit" alt="Personagem" />
@@ -72,42 +74,9 @@ const Racas: React.FC = () => {
           </button>
         </section>
         <section className="grid grid-cols-3 gap-5 mx-auto h-fit">
-          <RaceButton raceName="Humano" onClick={() => handleClick("Humano")} />
-          <RaceButton raceName="Anão" onClick={() => handleClick("Anão")} />
-          <RaceButton
-            raceName="Dahllan"
-            onClick={() => handleClick("Dahllan")}
-          />
-          <RaceButton raceName="Elfo" onClick={() => handleClick("Elfo")} />
-          <RaceButton raceName="Goblin" onClick={() => handleClick("Goblin")} />
-          <RaceButton raceName="Lefou" onClick={() => handleClick("Lefou")} />
-          <RaceButton
-            raceName="Minotauro"
-            onClick={() => handleClick("Minotauro")}
-          />
-          <RaceButton raceName="Qareen" onClick={() => handleClick("Qareen")} />
-          <RaceButton raceName="Golem" onClick={() => handleClick("Golem")} />
-          <RaceButton raceName="Hynne" onClick={() => handleClick("Hynne")} />
-          <RaceButton raceName="Kliren" onClick={() => handleClick("Kliren")} />
-          <RaceButton raceName="Medusa" onClick={() => handleClick("Medusa")} />
-          <RaceButton raceName="Osteon" onClick={() => handleClick("Osteon")} />
-          <RaceButton
-            raceName="Sereia/Tritão"
-            onClick={() => handleClick("Sereia/Tritão")}
-          />
-          <RaceButton
-            raceName="Sílfide"
-            onClick={() => handleClick("Sílfide")}
-          />
-          <RaceButton
-            raceName="Suraggel (Aggelus)"
-            onClick={() => handleClick("Suraggel (Aggelus)")}
-          />
-          <RaceButton
-            raceName="Suraggel (Sulfure)"
-            onClick={() => handleClick("Suraggel (Sulfure)")}
-          />
-          <RaceButton raceName="Trog" onClick={() => handleClick("Trog")} />
+          {racas.map((raca) => (
+            <RaceButton raceName={raca} onClick={() => handleClick(raca)}/>
+          ))}
         </section>
       </div>
     </>
