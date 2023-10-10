@@ -1,8 +1,15 @@
+import { Poder } from "./Poder";
+
+export class Beneficios{
+  pericias: string[] = [];
+  poderes: string[] = [];
+}
+
 export class Origem {
   nome: string = "";
   descricao: string = "";
-  constructor(nome: string, descricao: string) {
-    this.nome = nome;
-    this.descricao = descricao;
-  }
+  itens: string[] = [];
+  beneficios: Beneficios = new Beneficios();
+  imagem: string = "";
+  poder: Poder = new Poder();
 }

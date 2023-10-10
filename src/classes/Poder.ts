@@ -26,3 +26,10 @@ export enum RequisitoPoder {
   magia = "magia",
   devoto = "devoto",
 }
+
+export class Poder {
+  nome: string = "";
+  descricao: string = "";
+  tipo: TipoPoder = TipoPoder.combate;
+  requisitos: RequisitoPoder[] = [];
+}

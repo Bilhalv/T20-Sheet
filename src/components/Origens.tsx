@@ -1,37 +1,46 @@
 import { Select } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { TabelaOrigens } from "../classes/TabelaOrigens";
 
 const Origens: React.FC = () => {
-  const [origem, setOrigem] = useState("Acólito");
-  const [origemDesc, setOrigemDesc] = useState(
-    "Neste mundo agraciado com tantos deuses e igrejas, muitos ingressam cedo em alguma ordem religiosa o que, dependendo de quem é seu deus padroeiro, pode ser motivo de admiração ou repulsa. Talvez você tenha ouvido o chamado da fé, seguiu a tradição espiritual de sua família, ou apenas foi abandonado quando pequeno às portas de um templo ou mosteiro. Tenha ou não se tornado um devoto, suas lembranças são carregadas de orações, evangelhos e outros ensinamentos."
+  const [origem, setOrigem] = useState(TabelaOrigens[0].nome);
+  const [origemDesc, setOrigemDesc] = useState(TabelaOrigens[0].descricao
   );
-  const [origemItens, setOrigemItens] = useState([
-    "Símbolo sagrado",
-    "traje de sacerdote",
-  ]);
-  const [origemBeneficios, setOrigemBeneficios] = useState({
-    pericias: ["Cura", "Religião", "Vontade"],
-    poderes: ["Medicina", "Membro da Igreja", "Vontade de Ferro"],
-  });
-  const [origemImage, setOrigemImage] = useState("./img/personagem.png");
-  const [origemPoder, setOrigemPoder] = useState({
-    nome: "Membro da Igreja",
-    desc: "Você consegue hospedagem confortável e informação em qualquer templo de sua divindade, para você e seus aliados.",
-  });
+  const [origemItens, setOrigemItens] = useState(TabelaOrigens[0].itens);
+  const [origemBeneficios, setOrigemBeneficios] = useState(TabelaOrigens[0].beneficios);
+  const [origemImage, setOrigemImage] = useState(TabelaOrigens[0].imagem);
+  const [origemPoder, setOrigemPoder] = useState(TabelaOrigens[0].poder);
+  console.log(origemPoder);
+  
   return (
     <>
       <h1 className="text-xl text-center mb-4">Origem</h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg h-fit">
-        <section className="flex">
-          <div className="w-[50%]">
+        <section className="flex flex-col desktop:flex-row gap-2">
+          <div className="desktop:w-[50%]">
             <Select placeholder="Escolha Sua Origem">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
+              {TabelaOrigens.map((origem) => (
+                <option
+                  key={origem.nome}
+                  value={origem.nome}
+                  onClick={() => {
+                    
+                    setOrigem(origem.nome);
+                    console.log("Selected Origin: ",origem.nome);
+                    setOrigemDesc(origem.descricao);
+                    setOrigemItens(origem.itens);
+                    setOrigemBeneficios(origem.beneficios);
+                    setOrigemImage(origem.imagem);
+                    setOrigemPoder(origem.poder);
+                  }}
+                >
+                  {origem.nome}
+                </option>
+              ))}
             </Select>
             <img src={origemImage} />
           </div>
-          <div>
+          <div className="desktop:w-[50%]">
             <p className="text-sm my-auto">&nbsp;&nbsp;{origemDesc}</p>
             <ul className="mt-2">
               <li>
@@ -43,10 +52,10 @@ const Origens: React.FC = () => {
               </li>
             </ul>
             <h3 className="mt-2 font-bold">{origemPoder.nome}</h3>
-            <p>{origemPoder.desc}</p>
+            <p>{origemPoder.descricao}</p>
           </div>
         </section>
-        <button className="my-2 text-red-800 bg-white hover:bg-gray-300 px-5 rounded w-fit transition-all ease-in-out shadow-lg">
+        <button className="my-2 text-red-800 bg-white hover:bg-gray-300 px-5 rounded w-full transition-all ease-in-out shadow-lg">
           Confirmar
         </button>
       </section>

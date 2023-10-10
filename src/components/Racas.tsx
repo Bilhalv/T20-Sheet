@@ -20,19 +20,11 @@ const RaceButton: React.FC<RaceButtonProps> = ({ raceName, onClick }) => {
 const racas = ["Humano", "Anão", "Dahllan", "Elfo", "Goblin", "Lefou", "Minotauro", "Qareen", "Golem", "Hynne", "Kliren", "Medusa", "Osteon", "Sereia/Tritão", "Sílfide", "Suraggel (Aggelus)", "Suraggel (Sulfure)", "Trog"]
 
 const Racas: React.FC = () => {
-  const [race, setRace] = useState("Humano");
-  const [raceDescription, setRaceDescription] = useState(
-    "Os humanos em Arton são a maioria e são vistos como os escolhidos dos deuses, governando o mundo. Eles são diversos, adaptáveis e estão presentes em todo o continente, desde os vales férteis do Reinado até o árido Deserto da Perdição. São conhecidos por sua ambição e espírito explorador."
-  );
-  const [racePowers, setRacePowers] = useState([
-    {
-      nome: "Versátil",
-      descricao:
-        " Você se torna treinado em duas perícias a sua escolha (não precisam ser da sua classe). Você pode trocar uma dessas perícias por um poder geral a sua escolha.",
-    },
-  ]);
-  const [atribute, setAtribute] = useState(["+1 em três atributos diferentes"]);
-  const [raceImage, setRaceImage] = useState("./img/personagem.png");
+  const [race, setRace] = useState(TabelaRacas[0].nome);
+  const [raceDescription, setRaceDescription] = useState(TabelaRacas[0].descricao);
+  const [racePowers, setRacePowers] = useState(TabelaRacas[0].poderes);
+  const [atribute, setAtribute] = useState(TabelaRacas[0].atributos);
+  const [raceImage, setRaceImage] = useState(TabelaRacas[0].imagem);
 
   const handleClick = (raceName: string) => {
     console.log(`Selected race: ${raceName}`);
