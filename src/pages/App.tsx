@@ -25,25 +25,25 @@ const App: React.FC = () => {
               className="bg-red-950 text-white hover:text-black hover:bg-red-800 focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
               onClick={() => setCurentPage("Inicio")}
             >
-              0 - Inicio
+              0
             </button>
             <button
               className="bg-red-950 text-white hover:text-black hover:bg-red-800   focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
               onClick={() => setCurentPage("Origens")}
             >
-              1 - Origem
+              1
             </button>
             <button
               className="bg-red-950 text-white hover:text-black hover:bg-red-800   focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
               onClick={() => setCurentPage("Racas")}
             >
-              2 - Raca
+              2
             </button>
             <button
               className="bg-red-950 text-white hover:text-black hover:bg-red-800   focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
               onClick={() => setCurentPage("Classes")}
             >
-              3 - Classe
+              3
             </button>
           </div>
         </article>

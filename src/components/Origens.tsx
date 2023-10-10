@@ -11,6 +11,11 @@ const Origens: React.FC = () => {
       setOrigem(selectedOrigem);
     }
   }
+
+  const handleSelect = () => {
+    console.log(`Origem Selecionada: ${origem.nome}`);
+    localStorage.setItem("origem", origem.nome);
+  };
   return (
     <>
       <h1 className="text-xl text-center mb-4">Origem</h1>
@@ -45,7 +50,7 @@ const Origens: React.FC = () => {
             <p>{origem.poder.descricao}</p>
           </div>
         </section>
-        <button className="my-2 text-red-800 bg-white hover:bg-gray-300 px-5 rounded w-full transition-all ease-in-out shadow-lg">
+        <button onClick={handleSelect} className="my-2 text-red-800 bg-white hover:bg-gray-300 px-5 rounded w-full transition-all ease-in-out shadow-lg">
           Confirmar
         </button>
       </section>

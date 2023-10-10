@@ -11,6 +11,7 @@ export enum TipoPoder {
   magia = "magia",
   concedidos = "concedidos",
   tormenta = "tormenta",
+  classe = "classe",
 }
 
 export enum RequisitoPoder {
@@ -21,7 +22,6 @@ export enum RequisitoPoder {
   poder_tormenta = "poder_tormenta",
   proficiencia = "proficiencia",
   nivel = "nivel",
-  classe = "classe",
   tipo_arcanista = "tipo_arcanista",
   magia = "magia",
   devoto = "devoto",
