@@ -10,7 +10,6 @@ const Origens: React.FC = () => {
   const [origemBeneficios, setOrigemBeneficios] = useState(TabelaOrigens[0].beneficios);
   const [origemImage, setOrigemImage] = useState(TabelaOrigens[0].imagem);
   const [origemPoder, setOrigemPoder] = useState(TabelaOrigens[0].poder);
-  console.log(origemPoder);
   
   return (
     <>
@@ -21,7 +20,6 @@ const Origens: React.FC = () => {
             <Select placeholder="Escolha Sua Origem">
               {TabelaOrigens.map((origem) => (
                 <option
-                  key={origem.nome}
                   value={origem.nome}
                   onClick={() => {
                     
@@ -38,16 +36,17 @@ const Origens: React.FC = () => {
                 </option>
               ))}
             </Select>
-            <img src={origemImage} />
+            <img className="mx-auto" src={origemImage} />
           </div>
           <div className="desktop:w-[50%]">
+            <h1 className="text-center text-2xl mb-2">{origem}</h1>
             <p className="text-sm my-auto">&nbsp;&nbsp;{origemDesc}</p>
             <ul className="mt-2">
               <li>
                 <b>Itens.</b> {origemItens.join(", ")}
               </li>
               <li>
-                <b>Benefícios.</b> {origemBeneficios.pericias.join(", ")};
+                <b>Benefícios.</b> {origemBeneficios.pericias.join(", ")}
                 (perícias) e {origemBeneficios.poderes.join(", ")} (poderes).
               </li>
             </ul>
