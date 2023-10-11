@@ -1,5 +1,5 @@
-import { Arma } from "./Arma";
-import { Item } from "./Item";
+import { Arma } from "../Arma";
+import { Item } from "../Item";
 
 export const tabelaArmas: Arma[] = [
   // Armas Simples

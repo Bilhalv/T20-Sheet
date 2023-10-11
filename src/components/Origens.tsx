@@ -1,6 +1,6 @@
 import { Select } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { TabelaOrigens } from "../classes/TabelaOrigens";
+import { TabelaOrigens } from "../classes/Tabelas/Origens";
 
 const Origens: React.FC = () => {
   const [origem, setOrigem] = useState(TabelaOrigens[0]);

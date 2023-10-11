@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaRacas } from "../classes/TabelaRacas";
+import { TabelaRacas } from "../classes/Tabelas/Racas";
 
 interface RaceButtonProps {
   raceName: string;

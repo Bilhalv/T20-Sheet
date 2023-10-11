@@ -1,5 +1,5 @@
-import { Origem } from "./Origem";
-import { TipoPoder } from "./Poder";
+import { Origem } from "../Origem";
+import { TipoPoder } from "../Poder";
 
 /*  | 'Acólito'
   | 'Amigo dos Animais'

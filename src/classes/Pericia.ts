@@ -1,8 +1,9 @@
+import { Atributo } from './Atributo';
+
 export class Origem {
   nome: string = "";
   descricao: string = "";
-  constructor(nome: string, descricao: string) {
-    this.nome = nome;
-    this.descricao = descricao;
-  }
+  atributo: Atributo = Atributo.sabedoria;
+  somentetreinada: boolean = false;
+  penalidadearmadura: boolean = false;
 }
