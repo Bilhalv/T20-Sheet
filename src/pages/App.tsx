@@ -7,7 +7,7 @@ import Origens from "../components/Origens";
 
 const App: React.FC = () => {
   const [curentPage, setCurentPage] = useState("Inicio");
-
+  const paginas = ["Inicio", "Origens", "Racas", "Classes"];
   return (
     <>
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen pb-2 w-full">
@@ -21,30 +21,15 @@ const App: React.FC = () => {
           {curentPage === "Racas" && <Racas />}
           {curentPage === "Classes" && <Classes />}
           <div className="flex justify-around gap-5 mt-5 transition-all ease-in-out">
-            <button
-              className="bg-red-950 text-white hover:text-black hover:bg-red-800 focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
-              onClick={() => setCurentPage("Inicio")}
-            >
-              0
-            </button>
-            <button
-              className="bg-red-950 text-white hover:text-black hover:bg-red-800   focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
-              onClick={() => setCurentPage("Origens")}
-            >
-              1
-            </button>
-            <button
-              className="bg-red-950 text-white hover:text-black hover:bg-red-800   focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
-              onClick={() => setCurentPage("Racas")}
-            >
-              2
-            </button>
-            <button
-              className="bg-red-950 text-white hover:text-black hover:bg-red-800   focus:bg-red-500 px-2 rounded-full w-fit transition-all ease-in-out shadow-lg"
-              onClick={() => setCurentPage("Classes")}
-            >
-              3
-            </button>
+            {paginas.map((pagina) => (
+              <button
+                key={pagina}
+                onClick={() => setCurentPage(pagina)}
+                className="text-white bg-red-800 hover:bg-gray-300 px-2 rounded-full transition-all ease-in-out shadow-lg"
+              >
+                {paginas.indexOf(pagina)}
+              </button>
+            ))}
           </div>
         </article>
       </body>
