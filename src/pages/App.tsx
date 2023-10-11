@@ -6,8 +6,8 @@ import Classes from "../components/Classes";
 import Origens from "../components/Origens";
 
 const App: React.FC = () => {
-  const [curentPage, setCurentPage] = useState("Inicio");
   const paginas = ["Inicio", "Origens", "Racas", "Classes"];
+  const [pagina, setPagina] = useState("Inicio");
   return (
     <>
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen pb-2 w-full">
@@ -16,15 +16,15 @@ const App: React.FC = () => {
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
           </h1>
-          {curentPage === "Inicio" && <Inicio />}
-          {curentPage === "Origens" && <Origens />}
-          {curentPage === "Racas" && <Racas />}
-          {curentPage === "Classes" && <Classes />}
+          {pagina === "Inicio" && <Inicio />}
+          {pagina === "Origens" && <Origens />}
+          {pagina === "Racas" && <Racas />}
+          {pagina === "Classes" && <Classes />}
           <div className="flex justify-around gap-5 mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (
               <button
                 key={pagina}
-                onClick={() => setCurentPage(pagina)}
+                onClick={() => setPagina(pagina)}
                 className="text-white bg-red-800 hover:bg-gray-300 px-2 rounded-full transition-all ease-in-out shadow-lg"
               >
                 {paginas.indexOf(pagina)}
