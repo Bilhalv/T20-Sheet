@@ -1,7 +1,8 @@
 import { Origem } from "../Origem";
 import { TipoPoder } from "../Poder";
 
-/*  | 'Acólito'
+/*
+  | 'Acólito'
   | 'Amigo dos Animais'
   | 'Amnésico'
   | 'Aristocrata'
@@ -35,7 +36,8 @@ import { TipoPoder } from "../Poder";
   | 'Selvagem'
   | 'Soldado'
   | 'Taverneiro'
-  | 'Trabalhador';*/
+  | 'Trabalhador'
+*/
 
   export const TabelaOrigens: Origem[] = [
     {
