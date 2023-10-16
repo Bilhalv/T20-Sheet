@@ -1,8 +1,7 @@
 import { Arma } from "../Arma";
 import { Item } from "../Item";
 
-export const tabelaArmas: Arma[] = [
-  // Armas Simples
+export const TabelasArmasSimles: Arma[] = [
   // Corpo a Corpo — Leves
   {
     nome: "Adaga",
@@ -164,6 +163,10 @@ export const tabelaArmas: Arma[] = [
     descricao:
       "Uma arma antiga e comum, este arco é usado primariamente como ferramenta de caça, embora seja usado como arma de guerra por milícias, bandidos e exércitos menos equipados. Pode ser usado montado.",
   },
+]
+
+export const tabelaArmas: Arma[] = [
+  // Armas Simples
   // Armas Marciais
   // Corpo a Corpo — Leves
   {
