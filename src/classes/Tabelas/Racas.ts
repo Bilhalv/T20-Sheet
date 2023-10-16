@@ -6,7 +6,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os humanos em Arton são a maioria e são vistos como os escolhidos dos deuses, governando o mundo. Eles são diversos, adaptáveis e estão presentes em todo o continente, desde os vales férteis do Reinado até o árido Deserto da Perdição. São conhecidos por sua ambição e espírito explorador.",
     atributos: ["+1 em três atributos diferentes"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/humano.png",
     poderes: [
       {
         nome: "Versátil.",
@@ -20,7 +20,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os anões são um povo resiliente e trabalhador, conhecido por suas habilidades em mineração, metalurgia e devoção à família e tradição. Valorizam muito suas longas e orgulhosas barbas, além de apreciarem forja e cerveja.",
     atributos: ["Constituição +2", "Sabedoria +1", "Destreza -1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/anao.png",
     poderes: [
       {
         nome: "Conhecimento das Rochas.",
@@ -49,7 +49,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Parte humanas, parte fadas, as dahllan são uma raça de mulheres com a seiva de árvores correndo nas veias. Falam com os animais, controlam as plantas mas também são ferozes em batalha, retorcendo madeira para formar armaduras.",
     atributos: ["Sabedoria +2", "Destreza +1", "Inteligência -1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/dahllan.png",
     poderes: [
       {
         nome: "Amiga das Plantas.",
@@ -73,7 +73,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os elfos são habilidosos em magia e combate, possuindo beleza e elegância. Tinham potencial para dominar Arton, mas a arrogância herdada de sua deusa impediu isso. Com a queda de Glórienn, os elfos se tornaram independentes, vendo a falta de uma divindade como liberdade, embora seja vista de maneiras distintas por seu povo.",
     atributos: ["Inteligência +2", "Destreza +1", "Constituição -1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/elfo.png",
     poderes: [
       {
         nome: "Graça de Glórienn.",
@@ -95,7 +95,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os goblins encontraram seu espaço no Reinado, presentes em grandes cidades, vivendo em diferentes condições e assumindo carreiras improváveis como espiões, aeronautas e engenheiros. Sua falta de vergonha, orgulho e bom senso os torna capazes de soluções únicas, superando situações onde anões e elfos falham.",
     atributos: ["Destreza +2", "Inteligência +1", "Carisma -1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/goblin.png",
     poderes: [
       {
         nome: "Engenhoso.",
@@ -199,7 +199,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os seres mencionados são construtos criados por mortais, animados por espíritos elementais aprisionados em corpos de pedra e metal através de magia. Alguns se limitam a papéis de trabalhadores e soldados, mas outros mostram inteligência e personalidade, podendo conjurar magias. A dúvida persiste se possuem alma e se encontrarão os deuses após a morte.",
     atributos: ["Força +2", "Constituição +1", "Carisma –1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/golem.png",
     poderes: [
       {
         nome: "Chassi.",
@@ -228,7 +228,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os hynne, também chamados de halflings ou 'pequeninos', preferem conforto e boa comida. Quando aventuram-se, usam charme e agilidade para enganar inimigos. Agora vivem nas Repúblicas Livres de Sambúrdia, dedicando-se à agricultura e ao comércio, muitos alcançando posições de destaque.",
     atributos: ["Destreza +2", "Carisma +1", "Força –1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/hynne.png",
     poderes: [
       {
         nome: "Arremessador.",
@@ -403,7 +403,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os sulfure também são conhecidos como suraggel quando combinam traços angelicais e demoníacos, descendentes dos mesmos seres extraplanares divinos. Representam as forças opostas da luz e das trevas, mostrando sua ligação com a escuridão e o caos quando orientados para o lado abissal. Apesar dessa natureza abissal, alguns sulfure podem surpreender ao assumir papéis distintos, como sulfure paladinos ou outras classes surpreendentes.",
     atributos: ["Destreza +2", "Inteligência +1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/sulfure.png",
     poderes: [
       {
         nome: "Herança Divina.",
@@ -422,7 +422,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os trogloditas, homens-lagarto subterrâneos, desprezam outros seres, especialmente os que dominam a forja de aço. Atacam assentamentos humanos, emboscam em estradas e hostilizam exploradores. Alguns trogloditas, no entanto, desviam-se da crueldade, tornando-se druidas, clérigos ou aventureiros inesperados aceitos por colegas desajustados.",
     atributos: ["Constituição +2", "Força +1", "Inteligência –1."],
-    imagem: "./img/personagem.png",
+    imagem: "./img/racas/trog.png",
     poderes: [
       {
         nome: "Mau Cheiro.",
