@@ -36,7 +36,7 @@ const Racas: React.FC = () => {
     <>
       <h1 className="text-xl text-center mb-4">Raça</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
-        <section className="bg-gray-300 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
+        <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
           <h1 className="text-center text-2xl mb-2">{race.nome}</h1>
           <div className="flex">
             <img src={race.imagem} className="w-[50%] h-fit" alt="Personagem" />
@@ -58,7 +58,7 @@ const Racas: React.FC = () => {
             Confirmar
           </button>
         </section>
-        <section className="grid grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out">
+        <section className="grid order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out">
           {TabelaRacas.map((raca) => (
             <RaceButton
               key={raca.nome}
