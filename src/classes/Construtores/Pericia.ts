@@ -1,6 +1,6 @@
 import { Atributo } from './Atributo';
 
-export class Origem {
+export class Pericia {
   nome: string = "";
   descricao: string = "";
   atributo: Atributo = Atributo.sabedoria;

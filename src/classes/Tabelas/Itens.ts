@@ -1,5 +1,5 @@
-import { Arma } from "../Arma";
-import { Item } from "../Item";
+import { Arma } from "../Construtores/Arma";
+import { Item } from "../Construtores/Item";
 
 export const TabelasArmasSimles: Arma[] = [
   // Corpo a Corpo — Leves

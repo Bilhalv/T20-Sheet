@@ -1,4 +1,4 @@
-import { Poder, RequisitoPoder, TipoPoder } from "../Poder";
+import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
 
 export const TabelaPoderesCombate: Poder[] = [
     {

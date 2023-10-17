@@ -1,5 +1,6 @@
-import { Poder, TipoPoder } from "../Poder";
+import { Poder, TipoPoder } from "../Construtores/Poder";
 import { Classe } from "./Classe";
+import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
 export const poderesArcanista: Poder[] = [
   {
@@ -25,7 +26,7 @@ export const arcanista: Classe = {
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,
-  pericias: ["misticismo", "vontade"],
+  pericias: [TabelaPericiasEnum.Arcanismo],
   periciasescolha: [
     "conhecimento",
     "diplomacia",

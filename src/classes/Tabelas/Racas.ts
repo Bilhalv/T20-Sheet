@@ -1,4 +1,4 @@
-import { Raca } from "../Raca";
+import { Raca } from "../Construtores/Raca";
 
 export const TabelaRacas: Raca[] = [
   {

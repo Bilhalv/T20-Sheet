@@ -1,4 +1,5 @@
-import { Poder } from "../Poder";
+import { Poder } from "../Construtores/Poder";
+import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
 export class Classe {
   nome: string = "";
@@ -8,7 +9,7 @@ export class Classe {
   manapnivel: number = 0;
   periciasescolha: string[] = [];
   periciasescolhanum: number = 0;
-  pericias: string[] = [];
+  pericias: TabelaPericiasEnum[] = [];
   proficiencias: string[] = [];
   poderesunicos: Poder[] = [];
   habilidades: string[] = [];
