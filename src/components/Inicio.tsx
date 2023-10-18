@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { next } from "./../classes/Util/next"
 
 export default function Inicio() {
   const [nome, setNome] = useState("");
@@ -9,6 +10,7 @@ export default function Inicio() {
     console.log(nome, lvl);
     localStorage.setItem("nome", nome);
     localStorage.setItem("lvl", lvl.toString());
+    next("Origens");
   }
 
   return (
@@ -23,6 +25,7 @@ export default function Inicio() {
             <input
               value={nome}
               onChange={(event) => setNome(event.target.value)}
+              placeholder= {localStorage.getItem("nome") ?? ""}
               className="text-center text-red-800 rounded-lg focus:bg-slate-300 hover:bg-gray-300 w-full desktop:w-[25%] transition-all ease-in-out"
               type="text"
             />
@@ -34,6 +37,7 @@ export default function Inicio() {
             <input
               value={lvl}
               onChange={(event) => setLvl(parseInt(event.target.value))}
+              placeholder={localStorage.getItem("lvl") ?? ""}
               className="text-center text-red-800 rounded-lg focus:bg-slate-300 hover:bg-gray-300 w-full desktop:w-[25%] transition-all ease-in-out"
               type="number"
               max={5}

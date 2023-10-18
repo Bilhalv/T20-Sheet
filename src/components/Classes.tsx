@@ -34,7 +34,7 @@ const Classes: React.FC = () => {
 
   return (
     <>
-      <h1 className="text-xl text-center mb-4">Raça</h1>
+      <h1 className="text-xl text-center mb-4">Classes</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
           <h1 className="text-center text-2xl mb-2">{race.nome}</h1>

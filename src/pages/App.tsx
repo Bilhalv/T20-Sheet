@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Racas from "../components/Racas";
 import Inicio from "../components/Inicio";
@@ -7,7 +7,9 @@ import Origens from "../components/Origens";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes"];
-  const [pagina, setPagina] = useState("Inicio");
+  let pag = localStorage.getItem("pagina");
+  const [pagina, setPagina] = useState(pag ?? "Inicio");
+
   return (
     <>
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen pb-2 w-full">
@@ -24,7 +26,10 @@ const App: React.FC = () => {
             {paginas.map((pagina) => (
               <button
                 key={pagina}
-                onClick={() => setPagina(pagina)}
+                onClick={() => {
+                  localStorage.setItem("pagina", pagina);
+                  window.location.reload();
+                }}
                 className="text-white bg-red-800 hover:bg-gray-300 px-2 rounded-full transition-all ease-in-out shadow-lg"
               >
                 {paginas.indexOf(pagina)}

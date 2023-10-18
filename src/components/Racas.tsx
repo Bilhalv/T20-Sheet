@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TabelaRacas } from "../classes/Tabelas/Racas";
+import { next } from "../classes/Util/next";
 
 interface RaceButtonProps {
   raceName: string;
@@ -30,6 +31,7 @@ const Racas: React.FC = () => {
   const handleSelect = () => {
     console.log(`Raça Selecionada: ${race.nome}`);
     localStorage.setItem("raca", race.nome);
+    next("Classes");
   };
 
   return (

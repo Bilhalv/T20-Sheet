@@ -1,6 +1,7 @@
 import { Select } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { TabelaOrigens } from "../classes/Tabelas/Origens";
+import { next } from "../classes/Util/next";
 
 const Origens: React.FC = () => {
   const [origem, setOrigem] = useState(TabelaOrigens[0]);
@@ -15,6 +16,7 @@ const Origens: React.FC = () => {
   const handleSelect = () => {
     console.log(`Origem Selecionada: ${origem.nome}`);
     localStorage.setItem("origem", origem.nome);
+    next("Racas");
   };
   return (
     <>

@@ -56,4 +56,20 @@ import { TipoPoder } from "../Construtores/Poder";
         requisitos: []
       }
     },
+    {
+      nome: 'Amigo dos Animais',
+      descricao: 'Você pode ter sido cavalariço no estábulo de um castelo, criador de gado em uma fazenda, ginete de Namalkah ou mesmo tratador em um zoológico ou circo — em Arton, existem espetáculos circenses com animais em jaulas, que talvez você tenha desejado libertar. Ou então nada disso: desde criança você tem facilidade em lidar com animais, sempre conversou com eles, sentiu ser capaz de compreendê-los. Em certos lugares ou tribos, alguma montaria especial seria destinada a você.',
+      itens: ['Cão de guarda', 'Cavalo', 'Pônei'],
+      beneficios: {
+        pericias: ['Cavalgar', 'Adestramento'],
+        poderes: ['Animal de Estimação', 'Aptidão Animal', 'Ligação Animal']
+      },
+      imagem: "./img/personagem.png",
+      poder: {
+        nome: 'Amigo Especial',
+        descricao: 'Você recebe +5 em testes de Adestramento com animais. Além disso, possui um animal de estimação que o auxilia e o acompanha em suas aventuras. Em termos de jogo, é um parceiro que fornece +2 em uma perícia a sua escolha (exceto Luta ou Pontaria e aprovada pelo mestre) e não conta em seu limite de parceiros.',
+        tipo: TipoPoder.destino,
+        requisitos: []
+      }
+    }
 ]
