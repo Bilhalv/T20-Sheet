@@ -26,7 +26,7 @@ export const arcanista: Classe = {
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,
-  pericias: [TabelaPericiasEnum.Arcanismo],
+  pericias: [TabelaPericiasEnum.Atuação],
   periciasescolha: [
     "conhecimento",
     "diplomacia",
