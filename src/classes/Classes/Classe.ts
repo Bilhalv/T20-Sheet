@@ -7,10 +7,12 @@ export class Classe {
   vidainicial: number = 0;
   vidapnivel: number = 0;
   manapnivel: number = 0;
-  periciasescolha: string[] = [];
+  periciasescolha: TabelaPericiasEnum[] = [];
   periciasescolhanum: number = 0;
   pericias: TabelaPericiasEnum[] = [];
   proficiencias: string[] = [];
   poderesunicos: Poder[] = [];
   habilidades: string[] = [];
+  conjurador: boolean = false;
+  imagem: string = "./img/personagem.png";
 }

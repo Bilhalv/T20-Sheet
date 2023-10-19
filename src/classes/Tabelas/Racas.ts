@@ -127,7 +127,7 @@ export const TabelaRacas: Raca[] = [
       "+1 em Três Atributos Diferentes (exceto Carisma)",
       "Carisma -1",
     ],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Cria da Tormenta.",
@@ -146,7 +146,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Povo guerreiro, orgulhoso e poderoso, criadores de uma civilização avançada, com a missão sagrada de proteger e governar os fracos ou assim se enxergavam. Em seus tempos áureos, tomaram grande parte de Arton. Hoje, após a morte de sua divindade e a decadência de seu Império, os minotauros lutam para recuperar a glória perdida ou encontrar um novo papel no mundo.",
     atributos: ["Força +2", "Constituição +1", "Sabedoria -1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Chifres.",
@@ -175,7 +175,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Descendentes de poderosos gênios, os qareen são otimistas, generosos e prestativos, sempre ansiosos por ajudar. Consideram-se abençoados pela Deusa da Magia, exibindo como evidência a marca de Wynna em seus corpos. Sua magia é mais poderosa quando usada para realizar desejos de outros.",
     atributos: ["Carisma +2", "Inteligência +1", "Sabedoria –1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Desejos.",
@@ -252,7 +252,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os kliren são uma mistura de humanos e gnomos, combinando inteligência e curiosidade. São engenhosos e criativos com dispositivos mecânicos, mas sua impulsividade pode impedir seu pleno potencial. A existência dos gnomos em Arton está relacionada ao envolvimento criminoso de seu deus Tilliann na criação da Tormenta.",
     atributos: ["Inteligência +2", "Carisma +1", "Força –1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Híbrido.",
@@ -281,7 +281,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "As medusas, conhecidas por transformar vítimas em pedra com seus olhares, são antigas e poderosas. No entanto, as jovens medusas buscam aventuras no Reinado, até mesmo fazendo amigos e integrando equipes de heróis. Elas podem se disfarçar como mulheres humanas para esconderem suas cabeças de serpente, sendo excepcionalmente bem vistas pelos anões.",
     atributos: ["Destreza +2", "Carisma +1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Cria de Megalokk.",
@@ -308,7 +308,7 @@ export const TabelaRacas: Raca[] = [
       "+1 em Três Atributos Diferentes (exceto Constituição)",
       "Constituição –1",
     ],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Armadura Óssea.",
@@ -336,7 +336,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os sereias (femininas) e tritões (masculinos) têm forma híbrida, com torso humanoide e corpo de peixe, capazes de assumir forma bípede para andar em terra firme, o que fazem com maior frequência. Suas perspectivas sobre os humanos variam, alguns as veem com receio ou desprezo, enquanto outros enxergam Arton como um mundo misterioso, exótico e cheio de aventuras.",
     atributos: ["+1 em Três Atributos Diferentes."],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Canção dos Mares.",
@@ -360,7 +360,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "As sílfides são fadas com asas delicadas e olhos grandes, conhecidas por sua curiosidade e travessuras. Apesar de sua natureza brincalhona, podem ser subestimadas em situações sérias. Gostam de usar magias e ilusões para pregar peças, tornando sua presença questionável em grupos de aventureiros.",
     atributos: ["Carisma +2", "Destreza +1", "Força –2"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Asas de Borboleta.",
@@ -384,7 +384,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os aggelus, conhecidos como suraggel quando combinam traços angelicais e demoníacos, são descendentes de seres extraplanares divinos. Representam as forças opostas da luz e das trevas, refletindo a ligação com a luz e a bondade quando orientados para seu lado celestial. Sua natureza geralmente reflete a ascendência divina, mas podem surpreender ao assumir papéis inesperados, como aggelus ladinos ou paladinos.",
     atributos: ["Sabedoria +2", "Carisma +1"],
-    imagem: "./img/personagem.png",
+    imagem: "./img/templates/Race.png",
     poderes: [
       {
         nome: "Herança Divina.",
