@@ -447,5 +447,3 @@ export const TabelaRacas: Raca[] = [
     ],
   },
 ];
-
-// teste
