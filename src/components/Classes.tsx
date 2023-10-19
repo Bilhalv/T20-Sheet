@@ -11,6 +11,12 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  Box,
+  AccordionIcon,
+  AccordionPanel,
 } from "@chakra-ui/react";
 
 interface ClassButtonProps {
@@ -109,7 +115,24 @@ const Classes: React.FC = () => {
               </div>
               <h1 className="text-center font-bold">Habilidades</h1>
               <div>
-                <p className="italic">{selectedClass.habilidades.join(", ")}</p>
+                <Accordion allowToggle>
+                  {selectedClass.habilidades.map((habilidade) => (
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton>
+                          <Box as="span" flex="1" textAlign="left" _firstLetter={{ textTransform: "uppercase" }}>
+                            {habilidade}
+                          </Box>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel className="italic" pb={4}>
+                        {habilidade} é uma habilidade da classe {selectedClass.nome}
+                      </AccordionPanel>
+                    </AccordionItem>
+                  ))  
+                  }
+                </Accordion>
               </div>
             </ModalBody>
 
