@@ -34,7 +34,7 @@ const Origens: React.FC = () => {
                 </option>
               ))}
             </Select>
-            <img className="mx-auto" src={origem.imagem} alt={origem.nome} />
+            <img className="mx-auto w-[15%]" src={origem.imagem} alt={origem.nome} />
           </div>
           <div className="desktop:w-[50%]">
             <h1 className="text-center text-2xl mb-2">{origem.nome}</h1>
