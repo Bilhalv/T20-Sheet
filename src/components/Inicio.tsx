@@ -30,7 +30,7 @@ export default function Inicio() {
               type="text"
             />
           </div>
-          <div className="flex justify-between desktop:flex-row flex-col">
+          <div className="flex desktop:mt-2 justify-between desktop:flex-row flex-col">
             <h1 className="text-3xl text-center text-black">
               Escolha seu nivel (max 5):
             </h1>

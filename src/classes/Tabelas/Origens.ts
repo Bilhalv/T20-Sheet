@@ -48,7 +48,7 @@ import { TipoPoder } from "../Construtores/Poder";
         pericias: ['Cura', 'Religião', 'Vontade'],
         poderes: ['Medicina', 'Membro da Igreja', 'Vontade de Ferro']
       },
-      imagem: "./img/personagem.png",
+      imagem: "./img/templates/Class.png",
       poder: {
         nome: 'Membro da Igreja',
         descricao: 'Você consegue hospedagem confortável e informação em qualquer templo de sua divindade, para você e seus aliados.',
@@ -64,7 +64,7 @@ import { TipoPoder } from "../Construtores/Poder";
         pericias: ['Cavalgar', 'Adestramento'],
         poderes: ['Animal de Estimação', 'Aptidão Animal', 'Ligação Animal']
       },
-      imagem: "./img/personagem.png",
+      imagem: "./img/templates/Class.png",
       poder: {
         nome: 'Amigo Especial',
         descricao: 'Você recebe +5 em testes de Adestramento com animais. Além disso, possui um animal de estimação que o auxilia e o acompanha em suas aventuras. Em termos de jogo, é um parceiro que fornece +2 em uma perícia a sua escolha (exceto Luta ou Pontaria e aprovada pelo mestre) e não conta em seu limite de parceiros.',

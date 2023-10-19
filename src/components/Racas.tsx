@@ -56,7 +56,7 @@ const Racas: React.FC = () => {
               </li>
             ))}
           </ul>
-          <button onClick={handleSelect} className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3">
+          <button onClick={handleSelect} className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded mx-auto w-[50%] transition-all ease-in-out shadow-lg mt-3">
             Confirmar
           </button>
         </section>

@@ -59,16 +59,16 @@ const Classes: React.FC = () => {
           <p className="text-center text-lg w-[75%] mx-auto">
             {selectedClass.descricao}
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 mx-auto w-full justify-around">
             <button
               onClick={handleSelect}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-[25%] transition-all ease-in-out shadow-lg py-1 mt-3"
             >
               Confirmar
             </button>
             <button
               onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-[25%] transition-all ease-in-out shadow-lg py-1 mt-3"
             >
               Ver Mais
             </button>
