@@ -18,17 +18,17 @@ const App: React.FC = () => {
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
           </h1>
-          {pagina === "Inicio" && <Inicio />}
-          {pagina === "Origens" && <Origens />}
-          {pagina === "Racas" && <Racas />}
-          {pagina === "Classes" && <Classes />}
+          {pagina === "Inicio" && <Inicio next="Origens" setPagina={setPagina} />}
+          {pagina === "Origens" && <Origens next="Racas" setPagina={setPagina}/>}
+          {pagina === "Racas" && <Racas next="Classes" setPagina={setPagina}/>}
+          {pagina === "Classes" && <Classes next="Classes" setPagina={setPagina}/>}
           <div className="flex justify-around gap-5 mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (
               <button
                 key={pagina}
                 onClick={() => {
                   localStorage.setItem("pagina", pagina);
-                  window.location.reload();
+                  setPagina(pagina);
                 }}
                 className="text-white bg-red-800 hover:bg-gray-300 px-2 rounded-full transition-all ease-in-out shadow-lg"
               >

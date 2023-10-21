@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { next } from "./../classes/Util/next"
 
-export default function Inicio() {
+interface InicioProps {
+  setPagina: (pagina: string) => void;
+  next: string;
+}
+
+export default function Inicio({ setPagina, next }: InicioProps) {
   const [nome, setNome] = useState("");
   const [lvl, setLvl] = useState(0);
 
@@ -10,7 +14,7 @@ export default function Inicio() {
     console.log(nome, lvl);
     localStorage.setItem("nome", nome);
     localStorage.setItem("lvl", lvl.toString());
-    next("Origens");
+    setPagina(next);
   }
 
   return (

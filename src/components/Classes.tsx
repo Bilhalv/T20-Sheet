@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TabelaClasses } from "../classes/Tabelas/Classes";
-import { next } from "../classes/Util/next";
 import {
   Modal,
   ModalOverlay,
@@ -35,7 +34,12 @@ const RaceButton: React.FC<ClassButtonProps> = ({ className, onClick }) => {
   );
 };
 
-const Classes: React.FC = () => {
+interface ClassesProps {
+  setPagina: (pagina: string) => void;
+  next: string;
+}
+
+const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
   const [selectedClass, setSelectedClass] = useState(TabelaClasses[0]);
@@ -52,7 +56,7 @@ const Classes: React.FC = () => {
   const handleSelect = () => {
     console.log(`Classe Selecionada: ${selectedClass.nome}`);
     localStorage.setItem("classe", selectedClass.nome);
-    next("Classes");
+    setPagina(next);
   };
 
   return (

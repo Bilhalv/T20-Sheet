@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TabelaRacas } from "../classes/Tabelas/Racas";
-import { next } from "../classes/Util/next";
 
 interface RaceButtonProps {
   raceName: string;
@@ -18,7 +17,13 @@ const RaceButton: React.FC<RaceButtonProps> = ({ raceName, onClick }) => {
   );
 };
 
-const Racas: React.FC = () => {
+
+interface RacasProps {
+  setPagina: (pagina: string) => void;
+  next: string;
+}
+
+const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
   const [race, setRace] = useState(TabelaRacas[0]);
 
   const handleClick = (raceName: string) => {
@@ -31,7 +36,7 @@ const Racas: React.FC = () => {
   const handleSelect = () => {
     console.log(`Raça Selecionada: ${race.nome}`);
     localStorage.setItem("raca", race.nome);
-    next("Classes");
+    setPagina(next);
   };
 
   return (
