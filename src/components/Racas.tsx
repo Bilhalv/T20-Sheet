@@ -79,8 +79,8 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
             </Select>
           </div>
           <h1 className="text-center text-2xl mb-2">{race.nome}</h1>
-          <div className="flex">
-            <img src={race.imagem} className="w-1/2 h-fit" alt="Personagem" />
+          <div className="flex desktop:flex-row flex-col">
+            <img src={race.imagem} className="desktop:w-1/2  h-fit" alt="Personagem" />
             <p className="text-sm my-auto">{race.descricao}</p>
           </div>
           <h2 className="text-center text-xl my-2">
