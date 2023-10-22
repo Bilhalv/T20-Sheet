@@ -71,17 +71,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                 alt={origem.nome}
               />
               <p className="text-sm my-auto">&nbsp;&nbsp;{origem.descricao}</p>
-              <ul className="mt-2">
-                <li>
-                  <b>Itens.</b> {origem.itens.join(", ")}
-                </li>
-                <li>
-                  <b>Benefícios.</b> {origem.beneficios.pericias.join(", ")}
-                  (perícias) e {origem.beneficios.poderes.join(", ")} (poderes).
-                </li>
-              </ul>
-              <h3 className="mt-2 font-bold">{origem.poder.nome}</h3>
-              <p>{origem.poder.descricao}</p>
             </div>
           </section>
           <div className="flex gap-2 mx-auto w-full justify-around">
