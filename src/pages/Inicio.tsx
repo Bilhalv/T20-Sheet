@@ -12,7 +12,7 @@ const Inicio: React.FC = () => {
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
           </h1>
-          <article className="flex justify-center mt-5 gap-5 transition-all ease-in-out">
+          <article className="flex-col justify-center mt-5 gap-5 transition-all ease-in-out desktop:flex-row">
             <Link to="/criar">
               <button
                 className="bg-gray-50 bg-opacity-50 p-5 text-red-950 font-bold rounded-lg hover:bg-opacity-70 transition-all ease-in-out flex gap-1"
