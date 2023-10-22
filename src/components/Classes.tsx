@@ -16,6 +16,7 @@ import {
   Box,
   AccordionIcon,
   AccordionPanel,
+  Select,
 } from "@chakra-ui/react";
 
 interface ClassButtonProps {
@@ -40,9 +41,15 @@ interface ClassesProps {
 }
 
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
+  const selecteClass = TabelaClasses.find(
+    (classe) => classe.nome === localStorage.getItem("classe")
+  );
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
-  const [selectedClass, setSelectedClass] = useState(TabelaClasses[0]);
+  const [selectedClass, setSelectedClass] = useState(
+    selecteClass ?? TabelaClasses[0]
+  );
 
   const handleClick = (className: string) => {
     const selectedClass = TabelaClasses.find(
@@ -64,6 +71,15 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       <h1 className="text-xl text-center mb-4">Classes</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
+          <div className="desktop:hidden">
+            <Select>
+              {TabelaClasses.map((classe) => (
+                <option key={classe.nome} value={classe.nome}>
+                  {classe.nome}
+                </option>
+              ))}
+            </Select>
+          </div>
           <h1 className="text-center text-2xl">{selectedClass.nome}</h1>
           <img src={selectedClass.imagem} className="w-[50%] h-fit mx-auto" />
           <p className="text-center text-lg w-[75%] mx-auto">
@@ -72,19 +88,19 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           <div className="flex gap-2 mx-auto w-full justify-around">
             <button
               onClick={handleSelect}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-[25%] transition-all ease-in-out shadow-lg py-1 mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
             >
               Confirmar
             </button>
             <button
               onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-[25%] transition-all ease-in-out shadow-lg py-1 mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
             >
               Ver Mais
             </button>
           </div>
         </section>
-        <section className="grid order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out">
+        <section className="desktop:grid hidden order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out">
           {TabelaClasses.map((classe) => (
             <RaceButton
               key={classe.nome}
@@ -124,23 +140,31 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                     <AccordionItem>
                       <h2>
                         <AccordionButton>
-                          <Box as="span" flex="1" textAlign="left" _firstLetter={{ textTransform: "uppercase" }}>
+                          <Box
+                            as="span"
+                            flex="1"
+                            textAlign="left"
+                            _firstLetter={{ textTransform: "uppercase" }}
+                          >
                             {habilidade}
                           </Box>
                           <AccordionIcon />
                         </AccordionButton>
                       </h2>
                       <AccordionPanel className="italic" pb={4}>
-                        {habilidade} é uma habilidade da classe {selectedClass.nome}
+                        {habilidade} é uma habilidade da classe{" "}
+                        {selectedClass.nome}
                       </AccordionPanel>
                     </AccordionItem>
-                  ))  
-                  }
+                  ))}
                 </Accordion>
               </div>
             </ModalBody>
 
             <ModalFooter>
+              <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
+                Confirmar
+              </Button>
               <Button colorScheme="red" mx={"auto"} onClick={onClose}>
                 Fechar
               </Button>
