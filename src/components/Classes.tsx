@@ -41,19 +41,17 @@ interface ClassesProps {
 }
 
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const finalRef = React.useRef(null);
   const selecteClass = TabelaClasses.find(
     (classe) => classe.nome === localStorage.getItem("classe")
   );
+  const [selectedClass, setSelectedClass] = useState(selecteClass ?? TabelaClasses[0]);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const finalRef = React.useRef(null);
-  const [selectedClass, setSelectedClass] = useState(
-    selecteClass ?? TabelaClasses[0]
-  );
 
-  const handleClick = (className: string) => {
+  const handleClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedClass = TabelaClasses.find(
-      (classe) => classe.nome === className
+      (classe) => classe.nome === event.target.value
     );
     if (selectedClass) {
       setSelectedClass(selectedClass);
@@ -72,7 +70,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
           <div className="desktop:hidden">
-            <Select>
+            <Select placeholder="Escolha sua Classe" onChange={handleClick} >
               {TabelaClasses.map((classe) => (
                 <option key={classe.nome} value={classe.nome}>
                   {classe.nome}
@@ -105,7 +103,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             <RaceButton
               key={classe.nome}
               className={classe.nome}
-              onClick={() => handleClick(classe.nome)}
+              onClick={() =>
+                handleClick({
+                  target: { value: classe.nome },
+                } as React.ChangeEvent<HTMLSelectElement>)
+              }
             />
           ))}
         </section>
