@@ -28,7 +28,7 @@ const RaceButton: React.FC<ClassButtonProps> = ({ className, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white"
+      className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white w-6"
     >
       {className}
     </button>
