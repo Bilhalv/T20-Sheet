@@ -28,7 +28,7 @@ const RaceButton: React.FC<ClassButtonProps> = ({ className, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white"
+      className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white w-40"
     >
       {className}
     </button>
@@ -100,7 +100,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out w-2/5 hidden desktop:grid">
+        <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out w-2/5 hidden desktop:flex flex-wrap justify-center ">
           {TabelaClasses.map((classe) => (
             <RaceButton
               key={classe.nome}
