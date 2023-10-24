@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< Updated upstream
-=======
-import { next } from "./../classes/Util/next";
->>>>>>> Stashed changes
-
 interface InicioProps {
   setPagina: (pagina: string) => void;
   next: string;
