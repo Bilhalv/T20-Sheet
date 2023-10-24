@@ -124,11 +124,11 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             <p>{origem.poder.descricao}</p>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
-              Confirmar
-            </Button>
             <Button colorScheme="red" mx={"auto"} onClick={onClose}>
               Fechar
+            </Button>
+            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
+              Confirmar
             </Button>
           </ModalFooter>
         </ModalContent>

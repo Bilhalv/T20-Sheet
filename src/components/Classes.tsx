@@ -100,7 +100,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="desktop:grid hidden order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out">
+        <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
           {TabelaClasses.map((classe) => (
             <RaceButton
               key={classe.nome}
@@ -162,11 +162,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
-                Confirmar
-              </Button>
               <Button colorScheme="red" mx={"auto"} onClick={onClose}>
                 Fechar
+              </Button>
+              <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
+                Confirmar
               </Button>
             </ModalFooter>
             <ModalCloseButton />

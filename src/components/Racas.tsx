@@ -146,11 +146,11 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
-              Confirmar
-            </Button>
             <Button colorScheme="red" mx={"auto"} onClick={onClose}>
               Fechar
+            </Button>
+            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
+              Confirmar
             </Button>
           </ModalFooter>
           <ModalCloseButton />
