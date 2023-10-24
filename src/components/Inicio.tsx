@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+<<<<<<< Updated upstream
+=======
+import { next } from "./../classes/Util/next";
+>>>>>>> Stashed changes
 
 interface InicioProps {
   setPagina: (pagina: string) => void;
@@ -29,7 +33,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
             <input
               value={nome}
               onChange={(event) => setNome(event.target.value)}
-              placeholder= {localStorage.getItem("nome") ?? ""}
+              placeholder={localStorage.getItem("nome") ?? ""}
               className="text-center text-red-800 rounded-lg focus:bg-slate-300 hover:bg-gray-300 w-full desktop:w-[25%] transition-all ease-in-out"
               type="text"
             />
@@ -38,15 +42,18 @@ export default function Inicio({ setPagina, next }: InicioProps) {
             <h1 className="text-3xl text-center text-black">
               Escolha seu nivel (max 5):
             </h1>
-            <input
+            <select
               value={lvl}
               onChange={(event) => setLvl(parseInt(event.target.value))}
-              placeholder={localStorage.getItem("lvl") ?? ""}
               className="text-center text-red-800 rounded-lg focus:bg-slate-300 hover:bg-gray-300 w-full desktop:w-[25%] transition-all ease-in-out"
-              type="number"
-              max={5}
-              min={1}
-            />
+            >
+              <option value={""}>Insira seu nivel</option>
+              {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
+                <option value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
           </div>
           <button
             type="submit"
