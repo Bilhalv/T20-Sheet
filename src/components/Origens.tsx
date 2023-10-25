@@ -68,10 +68,10 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
               </Select>
             </div>
             <div>
-              <h1 className="text-center text-2xl mb-2">{origem.nome}</h1>
-              <div className="flex desktop:flex-row gap-2 flex-col">
+              <h1 className="text-center text-2xl">{origem.nome}</h1>
+              <div className="flex desktop:flex-row flex-col">
                 <img
-                  className="mx-auto w-1/6"
+                  className="desktop:mx-0 mx-auto w-1/6"
                   src={origem.imagem}
                   alt={origem.nome}
                   title={origem.nome}
@@ -80,7 +80,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                   &nbsp;&nbsp;{descricao1}
                 </p>
               </div>
-              <p className="text-sm my-auto text-justify font-serif mt-2">
+              <p className="text-sm my-auto text-justify font-serif">
                 &nbsp;&nbsp;{descricao2.join(".")}{" "}
               </p>
             </div>
