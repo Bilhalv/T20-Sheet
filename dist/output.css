@@ -649,6 +649,10 @@ video {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
 .hidden {
   display: none;
 }
@@ -671,20 +675,20 @@ video {
   width: 50%;
 }
 
+.w-1\/6 {
+  width: 16.666667%;
+}
+
+.w-2\/5 {
+  width: 40%;
+}
+
 .w-3\/4 {
   width: 75%;
 }
 
-.w-36 {
-  width: 9rem;
-}
-
-.w-6 {
-  width: 1.5rem;
-}
-
-.w-\[15\%\] {
-  width: 15%;
+.w-40 {
+  width: 10rem;
 }
 
 .w-\[50\%\] {
@@ -699,17 +703,28 @@ video {
   width: 100%;
 }
 
-.columns-5 {
-  -webkit-columns: 5;
-          columns: 5;
+.grid-flow-row {
+  grid-auto-flow: row;
 }
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-rows-7 {
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+}
+
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .justify-center {
@@ -864,6 +879,14 @@ video {
   text-align: center;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
+.font-\[\'tormenta\'\] {
+  font-family: 'tormenta';
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -947,6 +970,12 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@font-face {
+  font-family: 'tormenta';
+
+  src: url('./Tormenta.ttf');
+}
+
 .hover\:bg-\[\#05000d\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(5 0 13 / var(--tw-bg-opacity));
@@ -995,8 +1024,8 @@ video {
     margin-top: 0.5rem;
   }
 
-  .desktop\:block {
-    display: block;
+  .desktop\:flex {
+    display: flex;
   }
 
   .desktop\:grid {
@@ -1021,5 +1050,23 @@ video {
 
   .desktop\:flex-row {
     flex-direction: row;
+  }
+}
+
+@media (min-width: 1700px) {
+  .laptop\:block {
+    display: block;
+  }
+
+  .laptop\:hidden {
+    display: none;
+  }
+
+  .laptop\:w-1\/2 {
+    width: 50%;
+  }
+
+  .laptop\:w-3\/4 {
+    width: 75%;
   }
 }

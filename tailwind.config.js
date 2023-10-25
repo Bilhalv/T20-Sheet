@@ -15,6 +15,9 @@ module.exports = {
         bgT20: "url('/public/img/bgT20.jpg')",
       },
     },
+    fontFamily: {
+      tormenta: ["tormenta","sans-serif" ]
+    }
   },
   plugins: [],
 };
