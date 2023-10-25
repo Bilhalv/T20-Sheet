@@ -45,5 +45,5 @@ export const inventor: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesInventor,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/inventor.png",
 };

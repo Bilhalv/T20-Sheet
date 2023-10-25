@@ -72,14 +72,23 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           <div className="desktop:hidden">
             <Select placeholder="Escolha sua Classe" onChange={handleClick}>
               {TabelaClasses.map((classe) => (
-                <option selected={classe.nome == selectedClass.nome} key={classe.nome} value={classe.nome}>
+                <option
+                  selected={classe.nome == selectedClass.nome}
+                  key={classe.nome}
+                  value={classe.nome}
+                >
                   {classe.nome}
                 </option>
               ))}
             </Select>
           </div>
           <h1 className="text-center text-2xl">{selectedClass.nome}</h1>
-          <img src={selectedClass.imagem} alt={selectedClass.nome} title={selectedClass.nome} className="w-[50%] h-fit mx-auto" />
+          <img
+            src={selectedClass.imagem}
+            alt={selectedClass.nome}
+            title={selectedClass.nome}
+            className="w-[50%] h-fit mx-auto"
+          />
           <p className="text-center text-lg w-[75%] mx-auto font-serif">
             {selectedClass.descricao}
           </p>

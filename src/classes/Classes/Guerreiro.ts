@@ -45,5 +45,5 @@ export const guerreiro: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesGuerreiro,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/guerreiro.png",
 };

@@ -45,5 +45,5 @@ export const barbaro: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesBarbaro,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/classes/barbaro.png",
 };

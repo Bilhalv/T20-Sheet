@@ -45,5 +45,5 @@ export const clerigo: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesClerigo,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/clerigo.png",
 };

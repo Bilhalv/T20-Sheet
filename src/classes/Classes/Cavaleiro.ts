@@ -45,5 +45,5 @@ export const cavaleiro: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesCavaleiro,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/classes/cavaleiro.png",
 };

@@ -42,8 +42,8 @@ export const paladino: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: ["caminho do arcanista" , "alta arcana"],
   poderesunicos: poderesPaladino,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/paladino.png",
 };

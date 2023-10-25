@@ -45,5 +45,5 @@ export const bucaneiro: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesBucaneiro,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/classes/bucaneiro.png",
 };

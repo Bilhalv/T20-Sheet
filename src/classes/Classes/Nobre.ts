@@ -45,5 +45,5 @@ export const nobre: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesNobre,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/nobre.png",
 };

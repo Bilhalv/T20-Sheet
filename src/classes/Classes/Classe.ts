@@ -14,5 +14,5 @@ export class Classe {
   poderesunicos: Poder[] = [];
   habilidades: string[] = [];
   conjurador: boolean = false;
-  imagem: string = "./img/personagem.png";
+  imagem: string = "./img/template/Class.png";
 }

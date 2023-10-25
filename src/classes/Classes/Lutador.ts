@@ -45,5 +45,5 @@ export const lutador: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesLutador,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/classes/lutador.png",
 };

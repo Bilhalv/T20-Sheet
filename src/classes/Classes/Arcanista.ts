@@ -45,5 +45,5 @@ export const arcanista: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesArcanista,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/arcanista.png",
 };

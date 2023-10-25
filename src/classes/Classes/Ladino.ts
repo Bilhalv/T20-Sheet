@@ -45,5 +45,5 @@ export const ladino: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesLadino,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/ladino.png",
 };

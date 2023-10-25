@@ -45,5 +45,5 @@ export const druida: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesDruida,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/classes/druida.png",
 };

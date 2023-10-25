@@ -45,5 +45,5 @@ export const cacador: Classe = {
   habilidades: ["caminho do arcanista", "alta arcana"],
   poderesunicos: poderesCacador,
   conjurador: true,
-  imagem: "./img/templates/Class.png",
+  imagem: "./img/templates/cacador.png",
 };
