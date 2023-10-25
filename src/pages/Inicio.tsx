@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Inicio: React.FC = () => {
   return (
     <>
-      <body className="bg-bgT20 bg-cover bg-bottom min-h-screen w-full">
+      <body className="bg-bgT20 bg-cover bg-bottom min-h-screen w-full font-tormenta">
       <Navbar titulo={"Inicio"} />
         <article className="bg-gray-50 bg-opacity-30 w-3/4 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">

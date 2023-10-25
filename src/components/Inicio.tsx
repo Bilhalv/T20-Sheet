@@ -29,9 +29,10 @@ export default function Inicio({ setPagina, next }: InicioProps) {
             <Input
               value={nome}
               onChange={(event) => setNome(event.target.value)}
-              placeholder={localStorage.getItem("nome") ?? ""}
+              placeholder={localStorage.getItem("nome") ?? "Insira seu nome"}
               className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
               type="text"
+              defaultValue={localStorage.getItem("nome") ?? ""}
             />
           </div>
           <div className="flex desktop:mt-2 justify-between flex-col desktop:w-1/2 mx-auto">

@@ -43,9 +43,11 @@ interface ClassesProps {
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
+  const [alt, setAlt] = useState(localStorage.getItem("alt") ?? "");
   const selecteClass = TabelaClasses.find(
     (classe) => classe.nome === localStorage.getItem("classe")
   );
+  const selectedAlt = localStorage.getItem("alt");
   const [selectedClass, setSelectedClass] = useState(
     selecteClass ?? TabelaClasses[0]
   );
@@ -61,7 +63,13 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const handleSelect = () => {
     console.log(`Classe Selecionada: ${selectedClass.nome}`);
     localStorage.setItem("classe", selectedClass.nome);
+    localStorage.setItem("alt", alt);
     setPagina(next);
+  };
+
+  const handleClickAlt = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedAlt = event.target.value;
+    setAlt(selectedAlt);
   };
 
   return (
@@ -69,19 +77,38 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       <h1 className="text-xl text-center mb-4">Classes</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
-          <div className="desktop:hidden">
-            <Select placeholder="Escolha sua Classe" onChange={handleClick}>
-              {TabelaClasses.map((classe) => (
-                <option
-                  selected={classe.nome == selectedClass.nome}
-                  key={classe.nome}
-                  value={classe.nome}
+            <div className="flex flex-row-reverse">
+              {selectedClass.nome === "Arcanista" && (
+                <Select
+                  placeholder="Escolha seu caminho"
+                  onChange={handleClickAlt}
+                  required={true}
                 >
-                  {classe.nome}
-                </option>
-              ))}
-            </Select>
-          </div>
+                  <option selected={"feiticeiro" == selectedAlt} value="feiticeiro">
+                    Feiticeiro
+                  </option>
+                  <option selected={"mago" == selectedAlt}  value="mago">
+                    Mago
+                  </option>
+                  <option selected={"bruxo" == selectedAlt}  value="bruxo">
+                    Bruxo
+                  </option>
+                </Select>
+              )}
+              <div className="desktop:hidden">
+              <Select placeholder="Escolha sua Classe" onChange={handleClick}>
+                {TabelaClasses.map((classe) => (
+                  <option
+                    selected={classe.nome == selectedClass.nome}
+                    key={classe.nome}
+                    value={classe.nome}
+                  >
+                    {classe.nome}
+                  </option>
+                ))}
+              </Select>
+              </div>
+            </div>
           <h1 className="text-center text-2xl">{selectedClass.nome}</h1>
           <img
             src={selectedClass.imagem}
