@@ -554,7 +554,7 @@ import { TipoPoder } from "../Construtores/Poder";
     } ,
     {
       nome: 'Soldado',
-      descricao: 'Deheon. Bielefeld. A Supremacia Purista. Em Arton existem vastas forças militares. Ainda jovem, você se alistou (ou foi convocado) como soldado em um grande exército. Independentemente de sua função exata dentro da máquina de guerra — infantaria, cavalaria, arqueiro, cozinheiro... —, você recebeu treinamento em combate e equipamento decente. Mas em alguma ocasião você abandonou a vida militar para se tornar aventureiro. Foi dispensado com honras, após uma grande façanha? Sobreviveu a um conflito sangrento? Desertou antes de um massacre?',
+      descricao: 'Deheon, Bielefeld, A Supremacia Purista, em Arton existem vastas forças militares. Ainda jovem, você se alistou (ou foi convocado) como soldado em um grande exército. Independentemente de sua função exata dentro da máquina de guerra — infantaria, cavalaria, arqueiro, cozinheiro... —, você recebeu treinamento em combate e equipamento decente. Mas em alguma ocasião você abandonou a vida militar para se tornar aventureiro. Foi dispensado com honras, após uma grande façanha? Sobreviveu a um conflito sangrento? Desertou antes de um massacre?',
       itens: ['Uma arma marcial', 'um uniforme militar', 'uma insígnia de seu exército'],
       beneficios: {
         pericias: ['Fortitude', 'Guerra', 'Luta', 'Pontaria'],
