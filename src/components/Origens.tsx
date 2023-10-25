@@ -15,8 +15,10 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
+  Stack,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Columns } from "lucide-react";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -30,6 +32,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     (origem) => origem.nome === localStorage.getItem("origem")
   );
   const [origem, setOrigem] = useState(selectedOrigem ?? TabelaOrigens[0]);
+  const [origemselecionada, setOrigemselecionada] = useState(selectedOrigem ?? TabelaOrigens[0]);
   let descricao2 = origem.descricao.split(".");
   let descricao1 = descricao2.shift()+ ".";
 
@@ -39,6 +42,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     );
     if (selectedOrigem) {
       setOrigem(selectedOrigem);
+      setOrigemselecionada(selectedOrigem);
       descricao2 = selectedOrigem.descricao.split(".");
       descricao1 = descricao2.shift() + ".";
     }
@@ -101,21 +105,22 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </div>
         </section>
         <section className="hidden w-1/2 laptop:block p-3">
-          <div className="grid grid-flow-row gap-1 grid-rows-7 grid-cols-5">
+          <Stack direction={"row"} wrap={"wrap"}>
             {TabelaOrigens.map((origem) => (
-              <button
+              <Button
                 key={origem.nome}
                 onClick={() =>
                   handleOrigemChange({
                     target: { value: origem.nome },
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
-                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white mb-2"
+                isActive={origem.nome === origemselecionada?.nome}
+                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-90 focus:bg-gray-600 focus:text-white mb-2"
               >
                 {origem.nome}
-              </button>
+              </Button>
             ))}
-          </div>
+          </Stack>
         </section>
       </main>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
