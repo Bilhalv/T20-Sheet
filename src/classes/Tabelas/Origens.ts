@@ -306,24 +306,296 @@ import { TipoPoder } from "../Construtores/Poder";
       },
       imagem: "./img/templates/Origem.png",
       poder: {
-        nome: '',
-        descricao: '',
+        nome: 'Água no Feijão',
+        descricao: 'Você não sofre a penalidade de -5 e não gasta matéria prima adicional para fabricar pratos para cinco pessoas.',
         tipo: TipoPoder.origem,
         requisitos: []
       }
     } ,
     {
-      nome: '',
-      descricao: '',
-      itens: [],
+      nome: 'Forasteiro',
+      descricao: 'Você veio de longe. Sua cultura nativa é quase ou totalmente desconhecida no Reinado, tornando-o uma figura exótica, de hábitos estranhos. Você pertence a uma tribo perdida nas Montanhas Sanguinárias? Nasceu em uma bela cidade de cúpulas douradas no Deserto da Perdição? Navegou em navios audazes desde os Reinos de Moreania? Talvez você até tenha chegado de outro mundo, através de algum portal mágico. Será que conseguiu ajustar-se a este Reinado, agora chamando-o de lar? Ou procura até hoje o caminho de volta para casa?',
+      itens: ['Equipamento de viagem', 'instrumento musical exótico (+1 em uma perícia de Carisma aprovada pelo mestre)', 'traje estrangeiro'],
       beneficios: {
-        pericias: [],
-        poderes: []
+        pericias: ['Cavalgar', 'Pilotagem', 'Sobrevivência'],
+        poderes: ['Cultura Exótica', 'Lobo Solitário']
       },
       imagem: "./img/templates/Origem.png",
       poder: {
-        nome: '',
-        descricao: '',
+        nome: 'Cultura Exótica',
+        descricao: 'Por sua diferente visão de mundo, você encontra soluções inesperadas. Você pode gastar 1 PM para fazer um teste de perícia somente treinada, mesmo sem ser treinado na perícia.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Gladiador',
+      descricao: 'Combates de arena são um entretenimento popular em Arton — a ponto de atrair muitos jovens praticantes. Podem ser combates até a morte ou apenas encenações elaboradas ou ainda corridas de cavalo, arquearia e outros esportes menos sangrentos. Você se envolveu nesse mundo glamoroso por ser tradição em sua família, por admirar algum gladiador renomado ou apenas por sede de fama e fortuna. Um evento traumático, uma desilusão ou o puro tédio levou você a abandonar as arenas e aplausos, usando sua experiência em torneios para viver aventuras.',
+      itens: ['Uma arma marcial ou exótica', 'um item sem valor recebido de um admirador'],
+      beneficios: {
+        pericias: ['Atuação', 'Luta'],
+        poderes: ['Atraente', 'Pão e Circo', 'Torcida', 'um poder de combate a sua escolha']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Pão e Circo',
+        descricao: 'Por seu treino em combates de exibição, você sabe “bater sem machucar”. Pode escolher causar dano não letal sem sofrer a penalidade de -5.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Guarda',
+      descricao: 'Você atuou como agente da lei em uma vila ou cidade. Nem de longe uma profissão tão glamorosa ou emocionante quanto parece; boa parte de seu trabalho resumia-se a guardar um portão, fazer rondas tediosas ou recolher bêbados em tavernas. Pelo menos você recebeu algum treino em investigação e combate. Também tem consigo alguma boa arma, que “esqueceu” de devolver quando abandonou a milícia para se tornar aventureiro.',
+      itens: ['Apito', 'insígnia da milícia', 'uma arma marcial'],
+      beneficios: {
+        pericias: ['Investigação', 'Luta', 'Percepção'],
+        poderes: ['Detetive', 'Investigador', 'um poder de combate a sua escolha']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Detetive',
+        descricao: 'Você pode gastar 1 PM para substituir testes de Percepção e Intuição por testes de Investigação até o fim da cena.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Herdeiro',
+      descricao: 'Você pertence a uma linhagem de nobres, mercadores, conjuradores, acadêmicos, assassinos, ou outra atividade tradicional em sua família — tão tradicional que, de você, não se espera outra coisa. Pode ser uma longa e antiquíssima ascendência, traçada até antes da Grande Batalha, ou você apenas é filho de uma importante personalidade. Talvez tenha nascido em alguma ordem de cavalaria em Bielefeld, ou uma influente estirpe da nobreza de Deheon, ou como filho de um célebre arquimago com planos de enviá-lo à Academia Arcana, ou até cresceu em um culto familiar secreto a um deus maligno. Graças a essa herança, recebeu treino e equipamento adequados. Mas você pretende mesmo seguir esse caminho?',
+      itens: ['Um símbolo de sua herança, como um anel de sinete ou manto cerimonial. Enquanto estiver com esse item, você pode ser reconhecido por sua descendência, o que pode ser bom... ou não!'],
+      beneficios: {
+        pericias: ['Misticismo', 'Nobreza', 'Ofício'],
+        poderes: ['Comandar', 'Herança']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Herança',
+        descricao: 'Você herdou um item de preço de até T$ 1.000. Você pode escolher este poder duas vezes, para um item de até T$ 2.000.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Herói Camponês',
+      descricao: 'Quando o povoado foi atacado por goblins, você empunhou o forcado para expulsá-los. Quando o estábulo pegou fogo, você se arriscou para salvar todos os animais. Quando todos temiam a mansão assombrada na colina, você encontrou a carta de amor perdida que trouxe descanso à alma torturada. Você era o campeão local, amado pelo povo, mas também destinado a feitos maiores. Houve comoção quando você partiu para uma vida de aventuras, mas ninguém deixou de orar por seu sucesso. Talvez você até tenha sido presenteado com alguma arma ou item há tempos guardado no povoado.',
+      itens: ['Instrumentos de ofício ou uma arma simples','traje de plebeu'],
+      beneficios: {
+        pericias: ['Adestramento', 'Ofício'],
+        poderes: ['Coração Heroico', 'Sortudo', 'Surto Heroico', 'Torcida']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Coração Heroico',
+        descricao: 'Você recebe +3 pontos de mana. Quando atinge um novo patamar (no 5º, 11º e 17º níveis), recebe +3 PM.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Marujo',
+      descricao: "Você foi tripulante em uma embarcação — um barco pesqueiro, galé pirata, caravela exploradora, trirreme dos minotauros... — no Mar Negro, no Mar do Dragão Rei ou mesmo ao longo do imenso Rio dos Deuses. Você também pode ter trabalhado em um veículo exótico, como um dirigível goblin, ou mesmo em uma embarcação mágica, como as naves vivas gog'magogue que viajam entre mundos!",
+      itens: ['T$ 2d6 (seu último salário)', 'corda'],
+      beneficios: {
+        pericias: ['Atletismo', 'Jogatina', 'Pilotagem'],
+        poderes: ['Acrobático','Passagem de Navio']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Passagem de Navio',
+        descricao: 'Você consegue transporte marítimo para você e seus aliados, sem custos, desde que todos paguem com trabalho (passar em pelo menos um teste de perícia adequado durante a viagem).',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Mateiro',
+      descricao: 'Nem todos em Arton vivem em cidades confortavelmente abastecidas por fazendeiros, mineiros ou pescadores — muitas comunidades ainda obtêm sustento através da caça. Você aprendeu cedo a abater animais selvagens para colocar comida na mesa, ou como esporte de gosto duvidoso. Se você caça com reverência a Allihanna ou apenas coleciona troféus com orgulho, a escolha é sua. De qualquer forma, para alguém habituado a flechar cervos e colocar armadilhas para coelhos, combater ogros, demônios e dragões seria apenas o passo seguinte.',
+      itens: ['Arco curto', 'barraca', 'equipamento de viagem', '20 flechas'],
+      beneficios: {
+        pericias: ['Atletismo', 'Furtividade', 'Sobrevivência'],
+        poderes: ['Lobo Solitário', 'Sentidos Aguçados', 'Vendedor de Carcaças']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Vendedor de Carcaças',
+        descricao: 'Você pode extrair recursos de criaturas em um minuto, em vez de uma hora, e recebe +5 no teste',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Membro de Guilda',
+      descricao: 'Você foi, ou ainda é, membro atuante em uma grande guilda — uma associação de artesãos, mercadores, magos, criminosos ou mesmo aventureiros. A guilda forneceu o treinamento e equipamento necessários para suas atividades, esperando que você seja útil em troca. Você se manteve fiel a seus patronos, cumprindo missões e colhendo os benefícios de pertencer a uma vasta organização? Ou deixou essa vida para trás, sendo agora desprezado ou até caçado por seus antigos mestres?',
+      itens: ['Gazua ou instrumentos de ofício'],
+      beneficios: {
+        pericias: ['Diplomacia', 'Enganação', 'Misticismo', 'Ofício'],
+        poderes: ['Foco em Perícia', 'Rede de Contatos']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Rede de Contatos',
+        descricao: 'Graças à influência de sua guilda, você pode usar Diplomacia para interrogar sem custo e em uma hora (veja Investigação).',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Mercador',
+      descricao: 'Seguindo uma tradição de família, após herdar um estabelecimento ou apenas como um jovem empregado, você atuou como comerciante — pelo menos por algum tempo. Uma tenda modesta em algum grande mercado urbano? Uma caravana mercante cruzando o Reinado? Um belo bazar na prestigiada cidade voadora de Vectora? Após alguns anos de negociações e jornadas (nem tão tranquilas quanto outros imaginam), você talvez não tenha ficado rico, mas reuniu algum equipamento e dinheiro suficientes para começar carreira como aventureiro.',
+      itens: ['Carroça', 'trobo', 'mercadorias para vender no valor de T$ 100.'],
+      beneficios: {
+        pericias: ['Diplomacia', 'Intuição', 'Ofício'],
+        poderes: ['Negociação', 'Proficiência', 'Sortudo']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Negociação',
+        descricao: 'Você pode vender itens 10% mais caro (não cumulativo com barganha).',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Minerador',
+      descricao: 'Ser aventureiro é a profissão mais perigosa de todas; ser mineiro, talvez a segunda mais perigosa. Você mergulhou nas profundezas da terra atrás de metais necessários à civilização ou riquezas em gemas preciosas. Enquanto humanos e outras raças consideram essa vida um pesadelo, quase todos os anões acreditam ser a mais feliz das carreiras. A escuridão e o sufocamento dos subterrâneos talvez tenham sido assustadores, mas trouxeram a você bens materiais valiosos, bem como informação profunda (sem trocadilhos) sobre túneis e masmorras.',
+      itens: ['Gemas preciosas no valor de T$ 100', 'picareta'],
+      beneficios: {
+        pericias: ['Atletismo', 'Fortitude', 'Ofício(minerador)'],
+        poderes: ['Ataque Poderoso','Escavador','Sentidos Aguçados']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Escavador',
+        descricao: 'Você se torna proficiente em picaretas, causa +1 de dano com elas e não é afetado por terreno difícil em masmorras e subterrâneos.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Nômade',
+      descricao: 'Até onde se lembra, você nunca pertenceu a um só lugar. Sua família viajava constantemente, como parte de alguma grande caravana comercial, peregrinação religiosa ou algum povo primitivo que nunca praticou agricultura. Ou talvez suas razões para viajar sejam bastante diferentes e pessoais — após a quase extinção de seu povo, muitos elfos temem criar raízes, enquanto a deusa Valkaria exige que seus devotos se mantenham sempre em viagem. Para você, habituado às estradas e sem laços com nenhuma terra, bastou um pequeno passo para se tornar aventureiro.',
+      itens: ['Bordão', 'equipamento de viagem'],
+      beneficios: {
+        pericias: ['Cavalgar', 'Pilotagem', 'Sobrevivência'],
+        poderes: ['Lobo Solitário', 'Mochileiro', 'Sentidos Aguçados']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Mochileiro',
+        descricao: 'Seu limite de carga aumenta em 5 espaços.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Pivete',
+      descricao: 'Você era uma criança de rua. Não conheceu seus pais, foi abandonado por eles ou fugiu para evitar maus tratos. Sem muitas escolhas na vida, aprendeu cedo a sobreviver em grandes cidades, pedindo esmolas, roubando bolsas ou cumprindo pequenas tarefas para bandidos. Tornar-se aventureiro não parecia apenas um jeito de ficar rico e famoso, mas também a única chance de uma vida melhor. Talvez você não tenha as armaduras e mantos chiques de seus companheiros, mas sabe se virar nas ruas melhor que ninguém.',
+      itens: ['Gazua', 'traje de plebeu', 'um animal urbano(como um cão, gato, rato ou pombo)'],
+      beneficios: {
+        pericias: ['Furtividade', 'Iniciativa', 'Ladinagem'],
+        poderes: ['Acrobático','Aparência Inofensiva', 'Quebra-Galho']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Quebra-galho',
+        descricao: 'Em cidades ou metrópoles, você pode comprar qualquer item mundano não superior por metade do preço normal. Esses itens não podem ser matérias-primas e não podem ser revendidos (são velhos, sujos, furtados...).',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Refugiado',
+      descricao: 'Neste mundo assolado por tantas guerras e tragédias, você acabou sobrevivendo a alguma delas. Sendo elfo, estava presente durante a sofrida queda de Lenórienn. Escapou à destruição de Tamu-ra. Teve sorte em sair do caminho de Mestre Arsenal, conseguiu esconder-se das forças puristas ou testemunhou a chegada da Flecha de Fogo e viveu para contar a história. Trauma e privações talvez tenham tornado você amargo, sombrio, embrutecido... mas também um sobrevivente tenaz, acostumado a uma vida perigosa.',
+      itens: ['Um item estrangeiro de até T$ 100'],
+      beneficios: {
+        pericias: ['Fortitude', 'Reflexos', 'Vontade'],
+        poderes: ['Estoico', 'Vontade de Ferro']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Estoico',
+        descricao: 'Sua condição de descanso é uma categoria acima do padrão pela situação (normal em condições ruins, confortável em condições normais e luxuosa em condições confortáveis ou melhores). Veja as regras de recuperação na página 106.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Seguidor',
+      descricao: 'Você não nasceu herói, mas viveu algum tempo na companhia de um. Pode ter sido escudeiro de um cavaleiro de Khalmyr, garoto de recados para um ladino, criado de um nobre... enfim, um ajudante para um aventureiro de verdade. Durante esse tempo adquiriu aprendizado valioso, testemunhou eventos incríveis, mas você não seria um seguidor para sempre. Como ocorreu a separação? Você apenas disse adeus e trilhou seu próprio caminho? Seu mestre desapareceu de forma misteriosa ou foi assassinado diante de seus olhos? Você ficou com parte de seus itens, como presente ou lembrança?',
+      itens: ['Um item recebido de seu mestre de até T$ 100'],
+      beneficios: {
+        pericias: ['Adestramento', 'Ofício'],
+        poderes: ['Antigo Mestre', 'Proficiência', 'Surto Heroico']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Antigo Mestre',
+        descricao: 'Você ainda mantém contato com o herói que costumava servir. Uma vez por aventura, ele surge para ajudá-lo por uma cena. Ele é um parceiro mestre de um tipo a sua escolha (definido ao obter este poder) que não conta em seu limite de aliados.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Selvagem',
+      descricao: 'Você nasceu em uma tribo de bárbaros incultos ou tem uma origem bem mais exótica. Perdeu-se dos pais verdadeiros em alguma região remota, sobrevivendo graças aos cuidados de um eremita, ou criado por animais, ou por pura bondade dos deuses. Você pode nem mesmo ter nascido de pais humanoides — talvez seja cria de dragões, demônios ou deuses, com poderes a serem revelados no momento certo. Será que você ainda teme a civilização, assustando-se com uma simples fogueira? Ou já aprendeu algumas coisas, graças a seus novos companheiros?',
+      itens: ['Uma arma simples', 'um pequeno animal de estimação como um pássaro ou esquilo'],
+      beneficios: {
+        pericias: ['Percepção', 'Reflexos', 'Sobrevivência'],
+        poderes: ['Lobo Solitário', 'Vida Rústica', 'Vitalidade']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Vida Rústica',
+        descricao: 'Você come coisas que fariam um avestruz vomitar (sendo imune a efeitos prejudiciais de itens ingeríveis) e também consegue descansar nos lugares mais desconfortáveis (mesmo dormindo ao relento, sua recuperação de PV e PM nunca é inferior a seu próprio nível).',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Soldado',
+      descricao: 'Deheon. Bielefeld. A Supremacia Purista. Em Arton existem vastas forças militares. Ainda jovem, você se alistou (ou foi convocado) como soldado em um grande exército. Independentemente de sua função exata dentro da máquina de guerra — infantaria, cavalaria, arqueiro, cozinheiro... —, você recebeu treinamento em combate e equipamento decente. Mas em alguma ocasião você abandonou a vida militar para se tornar aventureiro. Foi dispensado com honras, após uma grande façanha? Sobreviveu a um conflito sangrento? Desertou antes de um massacre?',
+      itens: ['Uma arma marcial', 'um uniforme militar', 'uma insígnia de seu exército'],
+      beneficios: {
+        pericias: ['Fortitude', 'Guerra', 'Luta', 'Pontaria'],
+        poderes: ['Influência Militar', 'um poder de combate a sua escolha']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Influência Militar',
+        descricao: 'Você fez amigos nas forças armadas. Onde houver acampamentos ou bases militares, você pode conseguir hospedagem e informações para você e seus aliados.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Taverneiro',
+      descricao: 'Não é incomum que heróis aposentados se tornem donos de tavernas ou estalagens, mas o contrário também pode ocorrer. Você foi dono, filho do dono ou empregado em algum lugar frequentado por aventureiros — esses tipos sempre cheios de ouro e bravatas, atiçando sua ambição. Claro, eles nem sempre mencionam os horrores, amputações e mortes! Ainda assim, parece bem melhor que a vida atrás do balcão, limpando canecas sujas. Você ouviu todas as grandes histórias, trocou socos em algumas brigas e até ganhou uma lembrança ou outra de algum herói bêbado.',
+      itens: ['Rolo de macarrão ou martelo de carne (mesmas estatísticas de uma clava)', 'uma panela', 'um avental', 'uma caneca e um pano sujo'],
+      beneficios: {
+        pericias: ['Diplomacia', 'Jogatina', 'Ofício(cozinheiro)'],
+        poderes: ['Gororoba', 'Proficiência', 'Vitalidade']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Gororoba',
+        descricao: 'Você não sofre a penalidade de –5 para fabricar um prato especial adiconal.',
+        tipo: TipoPoder.origem,
+        requisitos: []
+      }
+    } ,
+    {
+      nome: 'Trabalhador',
+      descricao: 'Nenhum glamour aqui, apenas trabalho braçal pesado. De origem humilde, sem grandes chances na vida, você trabalhou duro desde muito jovem. Transportou pedras na construção de templos e castelos, carregou sacas de grãos em fazendas, empilhou cargas em portos, puxou arado feito um animal de tração. Talvez sua vida tenha sido um pouco melhor, como servo em um palácio. Ou muito pior, arrastando ou queimando corpos em campos de batalha. Não é surpresa que a carreira como aventureiro, mesmo perigosa, tenha parecido muito mais atraente.',
+      itens: ['Uma ferramenta pesada (mesmas estatísticas de uma maça ou lança, a sua escolha)'],
+      beneficios: {
+        pericias: ['Atletismo', 'Fortitude'],
+        poderes: ['Atlético', 'Esforçado']
+      },
+      imagem: "./img/templates/Origem.png",
+      poder: {
+        nome: 'Esforçado',
+        descricao: 'Você não teme trabalho duro, nem prazos apertados. Você recebe um bônus de +2 em todos os testes de perícias estendidos (incluindo perigos complexos).',
         tipo: TipoPoder.origem,
         requisitos: []
       }
