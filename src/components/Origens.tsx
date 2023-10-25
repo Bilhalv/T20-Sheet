@@ -30,6 +30,8 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     (origem) => origem.nome === localStorage.getItem("origem")
   );
   const [origem, setOrigem] = useState(selectedOrigem ?? TabelaOrigens[0]);
+  let descricao2 = origem.descricao.split(".");
+  let descricao1 = descricao2.shift()+ ".";
 
   const handleOrigemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOrigem = TabelaOrigens.find(
@@ -37,6 +39,8 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     );
     if (selectedOrigem) {
       setOrigem(selectedOrigem);
+      descricao2 = selectedOrigem.descricao.split(".");
+      descricao1 = descricao2.shift() + ".";
     }
   };
 
@@ -51,7 +55,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
       <main className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg">
           <section className="flex flex-col gap-2">
-            <div className="desktop:hidden">
+            <div className="laptop:hidden">
               <Select
                 placeholder="Escolha Sua Origem"
                 onChange={handleOrigemChange}
@@ -65,12 +69,20 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </div>
             <div>
               <h1 className="text-center text-2xl mb-2">{origem.nome}</h1>
-              <img
-                className="mx-auto w-[15%]"
-                src={origem.imagem}
-                alt={origem.nome}
-              />
-              <p className="text-sm my-auto">&nbsp;&nbsp;{origem.descricao}</p>
+              <div className="flex desktop:flex-row flex-col">
+                <img
+                  className="mx-auto w-1/4"
+                  src={origem.imagem}
+                  alt={origem.nome}
+                />
+                <p className="text-sm text-justify laptop:w-3/4">
+                  &nbsp;&nbsp;{descricao1}
+                </p>
+              </div>
+              <p className="text-sm my-auto text-justify">
+                {" "}
+                {descricao2.join(".")}{" "}
+              </p>
             </div>
           </section>
           <div className="flex gap-2 mx-auto w-full justify-around">
@@ -88,7 +100,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="hidden desktop:block p-3">
+        <section className="hidden laptop:block p-3">
           <div className="flex-col columns-5">
             {TabelaOrigens.map((origem) => (
               <button
