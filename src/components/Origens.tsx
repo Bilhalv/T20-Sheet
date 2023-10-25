@@ -53,7 +53,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     <>
       <h1 className="text-xl text-center mb-4">Origem</h1>
       <main className="flex gap-5">
-        <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg">
+        <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow- h-fit">
           <section className="flex flex-col gap-2">
             <div className="laptop:hidden">
               <Select
@@ -69,9 +69,9 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </div>
             <div>
               <h1 className="text-center text-2xl mb-2">{origem.nome}</h1>
-              <div className="flex desktop:flex-row flex-col">
+              <div className="flex desktop:flex-row gap-2 flex-col">
                 <img
-                  className="mx-auto w-1/4"
+                  className="mx-auto w-1/6"
                   src={origem.imagem}
                   alt={origem.nome}
                 />
@@ -100,8 +100,8 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="hidden laptop:block p-3">
-          <div className="flex-col columns-5">
+        <section className="hidden w-1/2 laptop:block p-3">
+          <div className="grid grid-flow-row gap-1 grid-rows-7 grid-cols-5">
             {TabelaOrigens.map((origem) => (
               <button
                 key={origem.nome}
@@ -110,7 +110,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                     target: { value: origem.nome },
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
-                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white mb-2 w-36"
+                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white mb-2"
               >
                 {origem.nome}
               </button>

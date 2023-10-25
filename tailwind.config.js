@@ -8,6 +8,9 @@ module.exports = {
       desktop: "1366px",
     },
     extend: {
+      gridTemplateRows: {
+        '7': 'repeat(7, minmax(0, 1fr))',
+      },
       backgroundImage: {
         bgT20: "url('/public/img/bgT20.jpg')",
       },
