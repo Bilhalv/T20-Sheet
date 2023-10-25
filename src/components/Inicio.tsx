@@ -1,3 +1,4 @@
+import { Input, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
 interface InicioProps {
   setPagina: (pagina: string) => void;
@@ -25,30 +26,30 @@ export default function Inicio({ setPagina, next }: InicioProps) {
             <h1 className="text-3xl text-center text-black">
               Escolha seu nome:
             </h1>
-            <input
+            <Input
               value={nome}
               onChange={(event) => setNome(event.target.value)}
               placeholder={localStorage.getItem("nome") ?? ""}
-              className="text-center text-red-800 rounded-lg focus:bg-slate-300 hover:bg-gray-300 w-full desktop:w-[25%] transition-all ease-in-out"
+              className="text-center text-red-800 rounded-lg w-full desktop:w-[25%] transition-all ease-in-out"
               type="text"
             />
           </div>
           <div className="flex desktop:mt-2 justify-between desktop:flex-row flex-col">
             <h1 className="text-3xl text-center text-black">
-              Escolha seu nivel (max 5):
+              Escolha seu nivel:
             </h1>
-            <select
+            <Select
               value={lvl}
               onChange={(event) => setLvl(parseInt(event.target.value))}
-              className="text-center text-red-800 rounded-lg focus:bg-slate-300 hover:bg-gray-300 w-full desktop:w-[25%] transition-all ease-in-out"
+              className="text-center text-red-800 rounded-lg w-full desktop:w-[25%] transition-all ease-in-out"
+              placeholder={localStorage.getItem("lvl")?.toString() ?? "Escolha seu nivel"}
             >
-              <option value={""}>Insira seu nivel</option>
               {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
-                <option value={num}>
+                <option value={num} key={num}>
                   {num}
                 </option>
               ))}
-            </select>
+            </Select>
           </div>
           <button
             type="submit"

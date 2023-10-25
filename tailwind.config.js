@@ -16,7 +16,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      tormenta: ["tormenta","sans-serif" ]
+      tormenta: ["tormenta","sans-serif" ],
+      serif: ['ui-serif', 'Georgia'],
     }
   },
   plugins: [],

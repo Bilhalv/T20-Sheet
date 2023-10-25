@@ -46,9 +46,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const selecteClass = TabelaClasses.find(
     (classe) => classe.nome === localStorage.getItem("classe")
   );
-  const [selectedClass, setSelectedClass] = useState(selecteClass ?? TabelaClasses[0]);
-
-
+  const [selectedClass, setSelectedClass] = useState(
+    selecteClass ?? TabelaClasses[0]
+  );
   const handleClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedClass = TabelaClasses.find(
       (classe) => classe.nome === event.target.value
@@ -70,17 +70,17 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
           <div className="desktop:hidden">
-            <Select placeholder="Escolha sua Classe" onChange={handleClick} >
+            <Select placeholder="Escolha sua Classe" onChange={handleClick}>
               {TabelaClasses.map((classe) => (
-                <option key={classe.nome} value={classe.nome}>
+                <option selected={classe.nome == selectedClass.nome} key={classe.nome} value={classe.nome}>
                   {classe.nome}
                 </option>
               ))}
             </Select>
           </div>
           <h1 className="text-center text-2xl">{selectedClass.nome}</h1>
-          <img src={selectedClass.imagem} className="w-[50%] h-fit mx-auto" />
-          <p className="text-center text-lg w-[75%] mx-auto">
+          <img src={selectedClass.imagem} alt={selectedClass.nome} title={selectedClass.nome} className="w-[50%] h-fit mx-auto" />
+          <p className="text-center text-lg w-[75%] mx-auto font-serif">
             {selectedClass.descricao}
           </p>
           <div className="flex gap-2 mx-auto w-full justify-around">
@@ -113,25 +113,32 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         </section>
         <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent className="font-tormenta">
             <ModalHeader>
               Informações da classe {selectedClass.nome}
             </ModalHeader>
             <ModalBody>
               <h1 className="text-center font-bold">Pontos de Vida</h1>
-              <div className="flex justify-between">
-                <p>Inicial: {selectedClass.vidainicial} + constituição</p>
-                <p>Por Nivel: {selectedClass.vidapnivel} + constituição</p>
+              <div className="flex italic font-serif justify-between">
+                <p>
+                  <b>Inicial:</b> {selectedClass.vidainicial} + constituição
+                </p>
+                <p className="text-right">
+                  <b>Por Nivel:</b> {selectedClass.vidapnivel} + constituição
+                </p>
               </div>
               <h1 className="text-center font-bold">Pontos de Mana</h1>
-              <div className="flex">
-                <p>Por Nivel: {selectedClass.manapnivel}PM</p>
+              <div className="flex italic font-serif ">
+                <p>
+                  <b>Por Nivel:</b> {selectedClass.manapnivel}PM
+                </p>
               </div>
               <h1 className="text-center font-bold">Perícias</h1>
               <div>
-                <p className="italic">
-                  {selectedClass.pericias.join(", ")} e escolha{" "}
-                  {selectedClass.periciasescolhanum} entre{" "}
+                <p className="italic font-serif text-justify">
+                  &nbsp;&nbsp;{selectedClass.pericias.join(", ")} e{" "}
+                  <b>escolha&nbsp;{selectedClass.periciasescolhanum} entre</b>
+                  &nbsp;
                   {selectedClass.periciasescolha.join(", ")}
                 </p>
               </div>
@@ -153,9 +160,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                           <AccordionIcon />
                         </AccordionButton>
                       </h2>
-                      <AccordionPanel className="italic" pb={4}>
-                        {habilidade} é uma habilidade da classe{" "}
-                        {selectedClass.nome}
+                      <AccordionPanel
+                        className="italic font-serif text-justify"
+                        pb={4}
+                      >
+                        &nbsp;&nbsp;{habilidade}
                       </AccordionPanel>
                     </AccordionItem>
                   ))}

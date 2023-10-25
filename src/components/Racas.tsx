@@ -72,7 +72,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
               onChange={(event) => handleClick(event.target.value)}
             >
               {TabelaRacas.map((raca) => (
-                <option key={raca.nome} value={raca.nome}>
+                <option key={raca.nome} selected={raca.nome == selectedRacas?.nome} value={raca.nome}>
                   {raca.nome}
                 </option>
               ))}
@@ -80,8 +80,8 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
           </div>
           <h1 className="text-center text-2xl mb-2">{race.nome}</h1>
           <div className="flex desktop:flex-row flex-col">
-            <img src={race.imagem} className="desktop:w-1/2  h-fit" alt="Personagem" />
-            <p className="text-sm my-auto text-justify">{race.descricao}</p>
+            <img src={race.imagem} className="desktop:w-1/2  h-fit" alt={race.nome} title={race.nome} />
+            <p className="text-sm my-auto text-justify font-serif">&nbsp;&nbsp;{race.descricao}</p>
           </div>
           <h2 className="text-center text-xl my-2">
             {race.atributos.join(" | ")}
@@ -113,7 +113,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       </div>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent className="font-tormenta">
           <ModalHeader>Informações da raça {race.nome}</ModalHeader>
           <ModalBody>
             <h3 className="mt-2 font-bold">Atributos</h3>
@@ -134,8 +134,8 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
                             <AccordionIcon />
                           </AccordionButton>
                         </h2>
-                        <AccordionPanel pb={4}>
-                          <p>{power.descricao}</p>
+                        <AccordionPanel className="font-serif text-justify" pb={4}>
+                          <p>&nbsp;&nbsp;{power.descricao}</p>
                         </AccordionPanel>
                       </AccordionItem>
                     </i>

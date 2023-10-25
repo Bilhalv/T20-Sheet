@@ -61,7 +61,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                 onChange={handleOrigemChange}
               >
                 {TabelaOrigens.map((origem) => (
-                  <option key={origem.nome} value={origem.nome}>
+                  <option selected={origem.nome == ( selectedOrigem?.nome ?? "")} key={origem.nome} value={origem.nome}>
                     {origem.nome}
                   </option>
                 ))}
@@ -74,14 +74,14 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                   className="mx-auto w-1/6"
                   src={origem.imagem}
                   alt={origem.nome}
+                  title={origem.nome}
                 />
-                <p className="text-sm text-justify laptop:w-3/4">
+                <p className="text-sm text-justify laptop:w-3/4 font-serif">
                   &nbsp;&nbsp;{descricao1}
                 </p>
               </div>
-              <p className="text-sm my-auto text-justify">
-                {" "}
-                {descricao2.join(".")}{" "}
+              <p className="text-sm my-auto text-justify font-serif mt-2">
+                &nbsp;&nbsp;{descricao2.join(".")}{" "}
               </p>
             </div>
           </section>
@@ -120,20 +120,20 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
       </main>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent className="font-tormenta">
           <ModalHeader>Informações da Origem {origem.nome}</ModalHeader>
           <ModalBody>
-            <ul>
+            <ul className="text-justify">
               <li>
-                <b>Itens.</b> {origem.itens.join(", ")}
+                <b>Itens.</b><i className="font-serif italic ">&nbsp;{origem.itens.join(", ")}</i>
               </li>
               <li>
-                <b>Benefícios.</b> {origem.beneficios.pericias.join(", ")}
-                (perícias) e {origem.beneficios.poderes.join(", ")} (poderes).
+                <b>Benefícios.</b><i className="font-serif italic">&nbsp;{origem.beneficios.pericias.join(", ")}
+                (perícias) e {origem.beneficios.poderes.join(", ")} (poderes).</i>
               </li>
             </ul>
             <h3 className="mt-2 font-bold">{origem.poder.nome}</h3>
-            <p>{origem.poder.descricao}</p>
+            <p className="font-serif italic text-justify">&nbsp;&nbsp;{origem.poder.descricao}</p>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="red" mx={"auto"} onClick={onClose}>
