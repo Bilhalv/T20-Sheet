@@ -17,6 +17,8 @@ import {
   AccordionIcon,
   AccordionPanel,
   Select,
+  CheckboxGroup,
+  Checkbox,
 } from "@chakra-ui/react";
 
 interface ClassButtonProps {
@@ -77,25 +79,42 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       <h1 className="text-xl text-center mb-4">Classes</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
-            <div className="flex flex-row-reverse">
-              {selectedClass.nome === "Arcanista" && (
-                <Select
-                  placeholder="Escolha seu caminho"
-                  onChange={handleClickAlt}
-                  required={true}
+          <div className="flex flex-row-reverse">
+            {selectedClass.nome === "Arcanista" && (
+              <Select
+                placeholder="Escolha seu caminho"
+                onChange={handleClickAlt}
+                required={true}
+              >
+                <option
+                  selected={"feiticeiro" == selectedAlt}
+                  value="feiticeiro"
                 >
-                  <option selected={"feiticeiro" == selectedAlt} value="feiticeiro">
-                    Feiticeiro
-                  </option>
-                  <option selected={"mago" == selectedAlt}  value="mago">
-                    Mago
-                  </option>
-                  <option selected={"bruxo" == selectedAlt}  value="bruxo">
-                    Bruxo
-                  </option>
-                </Select>
-              )}
-              <div className="desktop:hidden">
+                  Feiticeiro
+                </option>
+                <option selected={"mago" == selectedAlt} value="mago">
+                  Mago
+                </option>
+                <option selected={"bruxo" == selectedAlt} value="bruxo">
+                  Bruxo
+                </option>
+              </Select>
+            )}
+            {selectedClass.nome === "Inventor" && (
+              <Select
+                placeholder="Escolha seu protótipo"
+                onChange={handleClickAlt}
+                required={true}
+              >
+                <option selected={"alquimicos" == selectedAlt} value="alquimicos">
+                  10 itens alquimicos
+                </option>
+                <option selected={"superior" == selectedAlt} value="superior">
+                  Um item superior
+                </option>
+              </Select>
+            )}
+            <div className="desktop:hidden w-full">
               <Select placeholder="Escolha sua Classe" onChange={handleClick}>
                 {TabelaClasses.map((classe) => (
                   <option
@@ -107,8 +126,8 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                   </option>
                 ))}
               </Select>
-              </div>
             </div>
+          </div>
           <h1 className="text-center text-2xl">{selectedClass.nome}</h1>
           <img
             src={selectedClass.imagem}

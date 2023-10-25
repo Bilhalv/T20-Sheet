@@ -32,7 +32,7 @@ const App: React.FC = () => {
                 }}
                 className="text-white bg-red-800 hover:bg-gray-300 px-2 rounded-full transition-all ease-in-out shadow-lg font-[a]"
               >
-                {paginas.indexOf(pagina)}
+                {paginas.indexOf(pagina)+1}
               </button>
             ))}
           </div>
