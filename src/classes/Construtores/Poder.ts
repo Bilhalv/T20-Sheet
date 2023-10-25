@@ -12,6 +12,7 @@ export enum TipoPoder {
   concedidos = "concedidos",
   tormenta = "tormenta",
   classe = "classe",
+  origem = "origem"
 }
 
 export enum RequisitoPoder {
