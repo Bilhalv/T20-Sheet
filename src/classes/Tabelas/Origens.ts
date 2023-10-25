@@ -1,44 +1,6 @@
 import { Origem } from "../Construtores/Origem";
 import { TipoPoder } from "../Construtores/Poder";
 
-/*
-  | 'Acólito'
-  | 'Amigo dos Animais'
-  | 'Amnésico'
-  | 'Aristocrata'
-  | 'Artesão'
-  | 'Artista'
-  | 'Assistente de Laboratório'
-  | 'Batedor'
-  | 'Capanga'
-  | 'Charlatão'
-  | 'Circense'
-  | 'Criminoso'
-  | 'Curandeiro'
-  | 'Eremita'
-  | 'Escravo'
-  | 'Estudioso'
-  | 'Fazendeiro'
-  | 'Forasteiro'
-  | 'Gladiador'
-  | 'Guarda'
-  | 'Herdeiro'
-  | 'Herói Camponês'
-  | 'Marujo'
-  | 'Mateiro'
-  | 'Membro de Guilda'
-  | 'Mercador'
-  | 'Minerador'
-  | 'Nômade'
-  | 'Pivete'
-  | 'Refugiado'
-  | 'Seguidor'
-  | 'Selvagem'
-  | 'Soldado'
-  | 'Taverneiro'
-  | 'Trabalhador'
-*/
-
   export const TabelaOrigens: Origem[] = [
     {
       nome: 'Acólito',
@@ -48,7 +10,7 @@ import { TipoPoder } from "../Construtores/Poder";
         pericias: ['Cura', 'Religião', 'Vontade'],
         poderes: ['Medicina', 'Membro da Igreja', 'Vontade de Ferro']
       },
-      imagem: "./img/templates/Origem.png",
+      imagem: "./img/origens/acolito.png",
       poder: {
         nome: 'Membro da Igreja',
         descricao: 'Você consegue hospedagem confortável e informação em qualquer templo de sua divindade, para você e seus aliados.',

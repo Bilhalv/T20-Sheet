@@ -22,7 +22,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
       <h1 className="text-xl text-center mb-4">Escolha de Nome e Nivel</h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg flex flex-col gap-2">
         <form onSubmit={HandleClick}>
-          <div className="flex justify-between desktop:flex-row flex-col">
+          <div className="flex justify-between flex-col desktop:w-1/2 mx-auto">
             <h1 className="text-3xl text-center text-black">
               Escolha seu nome:
             </h1>
@@ -30,18 +30,18 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               value={nome}
               onChange={(event) => setNome(event.target.value)}
               placeholder={localStorage.getItem("nome") ?? ""}
-              className="text-center text-red-800 rounded-lg w-full desktop:w-[25%] transition-all ease-in-out"
+              className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
               type="text"
             />
           </div>
-          <div className="flex desktop:mt-2 justify-between desktop:flex-row flex-col">
+          <div className="flex desktop:mt-2 justify-between flex-col desktop:w-1/2 mx-auto">
             <h1 className="text-3xl text-center text-black">
               Escolha seu nivel:
             </h1>
             <Select
               value={lvl}
               onChange={(event) => setLvl(parseInt(event.target.value))}
-              className="text-center text-red-800 rounded-lg w-full desktop:w-[25%] transition-all ease-in-out"
+              className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
               placeholder={localStorage.getItem("lvl")?.toString() ?? "Escolha seu nivel"}
             >
               {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
