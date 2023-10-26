@@ -18,7 +18,6 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Columns } from "lucide-react";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -32,9 +31,11 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     (origem) => origem.nome === localStorage.getItem("origem")
   );
   const [origem, setOrigem] = useState(selectedOrigem ?? TabelaOrigens[0]);
-  const [origemselecionada, setOrigemselecionada] = useState(selectedOrigem ?? TabelaOrigens[0]);
+  const [origemselecionada, setOrigemselecionada] = useState(
+    selectedOrigem ?? TabelaOrigens[0]
+  );
   let descricao2 = origem.descricao.split(".");
-  let descricao1 = descricao2.shift()+ ".";
+  let descricao1 = descricao2.shift() + ".";
 
   const handleOrigemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOrigem = TabelaOrigens.find(
@@ -65,26 +66,35 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                 onChange={handleOrigemChange}
               >
                 {TabelaOrigens.map((origem) => (
-                  <option selected={origem.nome == ( selectedOrigem?.nome ?? "")} key={origem.nome} value={origem.nome}>
+                  <option
+                    selected={origem.nome == (selectedOrigem?.nome ?? "")}
+                    key={origem.nome}
+                    value={origem.nome}
+                  >
                     {origem.nome}
                   </option>
                 ))}
               </Select>
             </div>
-            <div>
-              <h1 className="text-center text-2xl">{origem.nome}</h1>
-              <div className="flex desktop:flex-row flex-col">
+            <div className="text-center">
+              <h1 className="text-2xl">{origem.nome}</h1>
+              <div className="flex flex-col desktop:flex-row items-center">
                 <img
-                  className="desktop:mx-0 mx-auto w-1/6"
+                  className="mx-auto w-1/6 desktop:mx-0 desktop:w-1/4"
                   src={origem.imagem}
                   alt={origem.nome}
                   title={origem.nome}
                 />
-                <p className="text-sm text-justify laptop:w-3/4 font-serif">
-                  &nbsp;&nbsp;{descricao1}
-                </p>
+                <div className="ml-4">
+                  <p className="text-sm text-justify font-serif">
+                    &nbsp;&nbsp;{descricao1}
+                  </p>
+                  <p className="text-sm text-justify font-serif laptop:hidden">
+                    &nbsp;&nbsp;{descricao2.join(".")}{" "}
+                  </p>
+                </div>
               </div>
-              <p className="text-sm my-auto text-justify font-serif">
+              <p className="text-sm text-justify font-serif laptop:block hidden">
                 &nbsp;&nbsp;{descricao2.join(".")}{" "}
               </p>
             </div>
@@ -104,8 +114,8 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="hidden w-1/2 laptop:block p-3">
-          <Stack direction={"row"} wrap={"wrap"}>
+        <section className="hidden laptop:block p-3">
+          <section className="order-2 grid-cols-5 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
             {TabelaOrigens.map((origem) => (
               <Button
                 key={origem.nome}
@@ -115,12 +125,15 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
                 isActive={origem.nome === origemselecionada?.nome}
-                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-90 focus:bg-gray-600 focus:text-white mb-2"
+                width="auto"
+                whiteSpace="normal"
+                wordBreak="break-word"
+                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 focus:bg-gray-950 focus:text-white mb-2"
               >
                 {origem.nome}
               </Button>
             ))}
-          </Stack>
+          </section>
         </section>
       </main>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -130,15 +143,23 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           <ModalBody>
             <ul className="text-justify">
               <li>
-                <b>Itens.</b><i className="font-serif italic ">&nbsp;{origem.itens.join(", ")}</i>
+                <b>Itens.</b>
+                <i className="font-serif italic ">
+                  &nbsp;{origem.itens.join(", ")}
+                </i>
               </li>
               <li>
-                <b>Benefícios.</b><i className="font-serif italic">&nbsp;{origem.beneficios.pericias.join(", ")}
-                (perícias) e {origem.beneficios.poderes.join(", ")} (poderes).</i>
+                <b>Benefícios.</b>
+                <i className="font-serif italic">
+                  &nbsp;{origem.beneficios.pericias.join(", ")}
+                  (perícias) e {origem.beneficios.poderes.join(", ")} (poderes).
+                </i>
               </li>
             </ul>
             <h3 className="mt-2 font-bold">{origem.poder.nome}</h3>
-            <p className="font-serif italic text-justify">&nbsp;&nbsp;{origem.poder.descricao}</p>
+            <p className="font-serif italic text-justify">
+              &nbsp;&nbsp;{origem.poder.descricao}
+            </p>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="red" mx={"auto"} onClick={onClose}>
