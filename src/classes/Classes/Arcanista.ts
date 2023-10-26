@@ -1,4 +1,4 @@
-import { Poder, TipoPoder } from "../Construtores/Poder";
+import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
 import { Classe } from "./Classe";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
@@ -16,6 +16,13 @@ export const poderesArcanista: Poder[] = [
       "Você recebe +1 em um atributo. Você pode escolher este poder várias vezes, mas apenas uma vez por patamar para um mesmo atributo.",
     tipo: TipoPoder.classe,
     requisitos: [],
+  },
+  {
+    nome: "Caldeirão do Bruxo.",
+    descricao:
+      "Você pode criar poções, como se tivesse o poder geral Preparar Poção. Se tiver ambos, pode criar poções de até 5o círculo. Pré-requisitos: Bruxo, treinado em Ofício (alquimista).",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.tipo_arcanista, RequisitoPoder.pericia],
   },
 ];
 
@@ -42,7 +49,7 @@ export const arcanista: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: ["caminho do arcanista"],
   poderesunicos: poderesArcanista,
   conjurador: true,
   imagem: "./img/templates/arcanista.png",
