@@ -55,7 +55,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-1/2 w-full">
           <div className="desktop:hidden">
-            <Select placeholder="Escolha Sua Raça" onChange={handleRaceChange}>
+            <Select size={"xs"} placeholder="Escolha Sua Raça" onChange={handleRaceChange}>
               {TabelaRacas.map((raca) => (
                 <option
                   selected={raca.nome == (raceSelecionada?.nome ?? "")}

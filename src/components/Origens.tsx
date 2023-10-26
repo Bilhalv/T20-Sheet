@@ -124,11 +124,11 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                     target: { value: origem.nome },
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
+                isActive={origem.nome === origemselecionada?.nome}
                 _active={{
                   color: "red.900",
                   bg: "gray.300",
                 }}
-                isActive={origem.nome === origemselecionada?.nome}
                 width="auto"
                 whiteSpace="normal"
                 wordBreak="break-word"

@@ -21,22 +21,6 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 
-interface ClassButtonProps {
-  className: string;
-  onClick: () => void;
-}
-
-const RaceButton: React.FC<ClassButtonProps> = ({ className, onClick }) => {
-  return (
-    <button
-      onClick={onClick}
-      className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-90 focus:bg-gray-600 focus:text-white w-40"
-    >
-      {className}
-    </button>
-  );
-};
-
 interface ClassesProps {
   setPagina: (pagina: string) => void;
   next: string;
@@ -106,7 +90,10 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                 onChange={handleClickAlt}
                 required={true}
               >
-                <option selected={"alquimicos" == selectedAlt} value="alquimicos">
+                <option
+                  selected={"alquimicos" == selectedAlt}
+                  value="alquimicos"
+                >
                   10 itens alquimicos
                 </option>
                 <option selected={"superior" == selectedAlt} value="superior">
@@ -153,17 +140,27 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out w-2/5 hidden desktop:flex flex-wrap justify-center ">
+        <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid w-1/2">
           {TabelaClasses.map((classe) => (
-            <RaceButton
-              key={classe.nome}
-              className={classe.nome}
-              onClick={() =>
-                handleClick({
-                  target: { value: classe.nome },
-                } as React.ChangeEvent<HTMLSelectElement>)
-              }
-            />
+            <Button
+            key={classe.nome}
+            onClick={() =>
+              handleClick({
+                target: { value: classe.nome },
+              } as React.ChangeEvent<HTMLSelectElement>)
+            }
+            isActive={classe.nome === selectedClass?.nome}
+            _active={{
+              color: "red.900",
+              bg: "gray.300",
+            }}
+            width="auto"
+            whiteSpace="normal"
+            wordBreak="break-word"
+            className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
+            >
+              {classe.nome}
+            </Button>
           ))}
         </section>
         <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
