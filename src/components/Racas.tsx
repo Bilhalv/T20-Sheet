@@ -106,12 +106,15 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
                   target: { value: race.nome },
                 } as React.ChangeEvent<HTMLSelectElement>)
               }
-              //PQ ISSO NAO FUNCIONA VO SI MATA
+              _active={{
+                color: "red.900",
+                bg: "gray.300",
+              }}
               isActive={race.nome === raceSelecionada.nome}
               width="auto"
               whiteSpace="normal"
               wordBreak="break-word"
-              className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 focus:bg-gray-950 focus:text-white mb-2"
+              className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
             >
               {race.nome}
             </Button>

@@ -80,12 +80,12 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
               <h1 className="text-2xl">{origem.nome}</h1>
               <div className="flex flex-col desktop:flex-row items-center">
                 <img
-                  className="mx-auto w-1/6 desktop:mx-0 desktop:w-1/4"
+                  className="mx-auto w-1/4 laptop:w-1/6 desktop:mx-0"
                   src={origem.imagem}
                   alt={origem.nome}
                   title={origem.nome}
                 />
-                <div className="ml-4">
+                <div className="ml-4 w-full laptop:w-5/6">
                   <p className="text-sm text-justify font-serif">
                     &nbsp;&nbsp;{descricao1}
                   </p>
@@ -124,11 +124,15 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                     target: { value: origem.nome },
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
+                _active={{
+                  color: "red.900",
+                  bg: "gray.300",
+                }}
                 isActive={origem.nome === origemselecionada?.nome}
                 width="auto"
                 whiteSpace="normal"
                 wordBreak="break-word"
-                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 focus:bg-gray-950 focus:text-white mb-2"
+                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
               >
                 {origem.nome}
               </Button>
