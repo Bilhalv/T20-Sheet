@@ -157,8 +157,22 @@ export const barbaro: Classe = {
     TabelaPericiasEnum.Vontade,
   ],
   periciasescolhanum: 4,
-  proficiencias: ['Armas marciais' ,'escudos'],
-  habilidades: ["fúria", "instinto selvagem", "redução de dano"],
+  proficiencias: ['Armas marciais', 'escudos'],
+  habilidades: [
+    {
+      nome: "fúria",
+      descricao: "Você pode gastar 2 PM para invocar uma fúria selvagem. Você recebe +2 em testes de ataque e rolagens de dano corpo a corpo, mas não pode fazer nenhuma ação que exija calma e concentração (como usar a perícia Furtividade ou lançar magias). A cada cinco níveis, pode gastar +1 PM para aumentar os bônus em +1."
+    },
+    {
+      nome: "instinto selvagem",
+      descricao: "No 3o nível, você recebe +1 em rolagens de dano, Percepção e Reflexos. A cada seis níveis, esse bônus aumenta em +1."
+    },
+    {
+      nome: "redução de dano",
+      descricao: "A partir do 5o nível, gra- ças a seu vigor e força de vontade, você ignora parte de seus ferimentos. Você recebe redução de dano 2 (todo dano que sofre é reduzido em 2). A cada três níveis, sua RD aumenta em 2, até um máximo de RD 10 no 17o nível."
+    }
+  ]
+  ,
   poderesunicos: poderesBarbaro,
   conjurador: false,
   imagem: "./img/classes/barbaro.png",

@@ -28,7 +28,7 @@ export const poderesArcanista: Poder[] = [
   {
     nome: "Conhecimento Mágico.",
     descricao:
-      "Você aprende duas ma- gias de qualquer círculo que possa lançar. Você pode escolher este poder quantas vezes quiser.",
+      "Você aprende duas magias de qualquer círculo que possa lançar. Você pode escolher este poder quantas vezes quiser.",
     tipo: TipoPoder.classe,
     requisitos: [],
   },
@@ -156,7 +156,12 @@ export const arcanista: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista"],
+  habilidades: [
+    {
+      nome: "Caminho do Arcanista",
+      descricao: "A magia é um poder incrível, capaz de alterar a realidade. Esse poder tem fontes distintas e cada uma opera conforme suas próprias regras. Escolha uma das opções a seguir. Uma vez feita, essa escolha não pode ser mudada."
+    }
+  ],
   poderesunicos: poderesArcanista,
   conjurador: true,
   imagem: "./img/templates/arcanista.png",
