@@ -6,6 +6,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os humanos em Arton são a maioria e são vistos como os escolhidos dos deuses, governando o mundo. Eles são diversos, adaptáveis e estão presentes em todo o continente, desde os vales férteis do Reinado até o árido Deserto da Perdição. São conhecidos por sua ambição e espírito explorador.",
     atributos: ["+1 em três atributos diferentes"],
+    escolhaAtributo: true,
     imagem: "./img/racas/humano.png",
     poderes: [
       {
@@ -20,6 +21,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os anões são um povo resiliente e trabalhador, conhecido por suas habilidades em mineração, metalurgia e devoção à família e tradição. Valorizam muito suas longas e orgulhosas barbas, além de apreciarem forja e cerveja.",
     atributos: ["Constituição +2", "Sabedoria +1", "Destreza -1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/anao.png",
     poderes: [
       {
@@ -49,6 +51,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Parte humanas, parte fadas, as dahllan são uma raça de mulheres com a seiva de árvores correndo nas veias. Falam com os animais, controlam as plantas mas também são ferozes em batalha, retorcendo madeira para formar armaduras.",
     atributos: ["Sabedoria +2", "Destreza +1", "Inteligência -1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/dahllan.png",
     poderes: [
       {
@@ -73,6 +76,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os elfos são habilidosos em magia e combate, possuindo beleza e elegância. Tinham potencial para dominar Arton, mas a arrogância herdada de sua deusa impediu isso. Com a queda de Glórienn, os elfos se tornaram independentes, vendo a falta de uma divindade como liberdade, embora seja vista de maneiras distintas por seu povo.",
     atributos: ["Inteligência +2", "Destreza +1", "Constituição -1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/elfo.png",
     poderes: [
       {
@@ -95,6 +99,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os goblins encontraram seu espaço no Reinado, presentes em grandes cidades, vivendo em diferentes condições e assumindo carreiras improváveis como espiões, aeronautas e engenheiros. Sua falta de vergonha, orgulho e bom senso os torna capazes de soluções únicas, superando situações onde anões e elfos falham.",
     atributos: ["Destreza +2", "Inteligência +1", "Carisma -1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/goblin.png",
     poderes: [
       {
@@ -127,6 +132,7 @@ export const TabelaRacas: Raca[] = [
       "+1 em Três Atributos Diferentes (exceto Carisma)",
       "Carisma -1",
     ],
+    escolhaAtributo: true,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -146,6 +152,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Povo guerreiro, orgulhoso e poderoso, criadores de uma civilização avançada, com a missão sagrada de proteger e governar os fracos ou assim se enxergavam. Em seus tempos áureos, tomaram grande parte de Arton. Hoje, após a morte de sua divindade e a decadência de seu Império, os minotauros lutam para recuperar a glória perdida ou encontrar um novo papel no mundo.",
     atributos: ["Força +2", "Constituição +1", "Sabedoria -1"],
+    escolhaAtributo: false,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -175,6 +182,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Descendentes de poderosos gênios, os qareen são otimistas, generosos e prestativos, sempre ansiosos por ajudar. Consideram-se abençoados pela Deusa da Magia, exibindo como evidência a marca de Wynna em seus corpos. Sua magia é mais poderosa quando usada para realizar desejos de outros.",
     atributos: ["Carisma +2", "Inteligência +1", "Sabedoria –1"],
+    escolhaAtributo: false,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -199,6 +207,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os seres mencionados são construtos criados por mortais, animados por espíritos elementais aprisionados em corpos de pedra e metal através de magia. Alguns se limitam a papéis de trabalhadores e soldados, mas outros mostram inteligência e personalidade, podendo conjurar magias. A dúvida persiste se possuem alma e se encontrarão os deuses após a morte.",
     atributos: ["Força +2", "Constituição +1", "Carisma –1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/golem.png",
     poderes: [
       {
@@ -228,6 +237,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os hynne, também chamados de halflings ou 'pequeninos', preferem conforto e boa comida. Quando aventuram-se, usam charme e agilidade para enganar inimigos. Agora vivem nas Repúblicas Livres de Sambúrdia, dedicando-se à agricultura e ao comércio, muitos alcançando posições de destaque.",
     atributos: ["Destreza +2", "Carisma +1", "Força –1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/hynne.png",
     poderes: [
       {
@@ -252,6 +262,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os kliren são uma mistura de humanos e gnomos, combinando inteligência e curiosidade. São engenhosos e criativos com dispositivos mecânicos, mas sua impulsividade pode impedir seu pleno potencial. A existência dos gnomos em Arton está relacionada ao envolvimento criminoso de seu deus Tilliann na criação da Tormenta.",
     atributos: ["Inteligência +2", "Carisma +1", "Força –1"],
+    escolhaAtributo: false,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -281,6 +292,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "As medusas, conhecidas por transformar vítimas em pedra com seus olhares, são antigas e poderosas. No entanto, as jovens medusas buscam aventuras no Reinado, até mesmo fazendo amigos e integrando equipes de heróis. Elas podem se disfarçar como mulheres humanas para esconderem suas cabeças de serpente, sendo excepcionalmente bem vistas pelos anões.",
     atributos: ["Destreza +2", "Carisma +1"],
+    escolhaAtributo: false,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -308,6 +320,7 @@ export const TabelaRacas: Raca[] = [
       "+1 em Três Atributos Diferentes (exceto Constituição)",
       "Constituição –1",
     ],
+    escolhaAtributo: true,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -336,6 +349,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os sereias (femininas) e tritões (masculinos) têm forma híbrida, com torso humanoide e corpo de peixe, capazes de assumir forma bípede para andar em terra firme, o que fazem com maior frequência. Suas perspectivas sobre os humanos variam, alguns as veem com receio ou desprezo, enquanto outros enxergam Arton como um mundo misterioso, exótico e cheio de aventuras.",
     atributos: ["+1 em Três Atributos Diferentes."],
+    escolhaAtributo: true,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -360,6 +374,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "As sílfides são fadas com asas delicadas e olhos grandes, conhecidas por sua curiosidade e travessuras. Apesar de sua natureza brincalhona, podem ser subestimadas em situações sérias. Gostam de usar magias e ilusões para pregar peças, tornando sua presença questionável em grupos de aventureiros.",
     atributos: ["Carisma +2", "Destreza +1", "Força –2"],
+    escolhaAtributo: false,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -384,6 +399,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os aggelus, conhecidos como suraggel quando combinam traços angelicais e demoníacos, são descendentes de seres extraplanares divinos. Representam as forças opostas da luz e das trevas, refletindo a ligação com a luz e a bondade quando orientados para seu lado celestial. Sua natureza geralmente reflete a ascendência divina, mas podem surpreender ao assumir papéis inesperados, como aggelus ladinos ou paladinos.",
     atributos: ["Sabedoria +2", "Carisma +1"],
+    escolhaAtributo: false,
     imagem: "./img/templates/Race.png",
     poderes: [
       {
@@ -403,6 +419,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os sulfure também são conhecidos como suraggel quando combinam traços angelicais e demoníacos, descendentes dos mesmos seres extraplanares divinos. Representam as forças opostas da luz e das trevas, mostrando sua ligação com a escuridão e o caos quando orientados para o lado abissal. Apesar dessa natureza abissal, alguns sulfure podem surpreender ao assumir papéis distintos, como sulfure paladinos ou outras classes surpreendentes.",
     atributos: ["Destreza +2", "Inteligência +1"],
+    escolhaAtributo: false,
     imagem: "./img/racas/sulfure.png",
     poderes: [
       {
@@ -422,6 +439,7 @@ export const TabelaRacas: Raca[] = [
     descricao:
       "Os trogloditas, homens-lagarto subterrâneos, desprezam outros seres, especialmente os que dominam a forja de aço. Atacam assentamentos humanos, emboscam em estradas e hostilizam exploradores. Alguns trogloditas, no entanto, desviam-se da crueldade, tornando-se druidas, clérigos ou aventureiros inesperados aceitos por colegas desajustados.",
     atributos: ["Constituição +2", "Força +1", "Inteligência –1."],
+    escolhaAtributo: false,
     imagem: "./img/racas/trog.png",
     poderes: [
       {
