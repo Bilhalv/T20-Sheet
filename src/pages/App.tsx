@@ -8,7 +8,7 @@ import Origens from "../components/Origens";
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes"];
   let pag = localStorage.getItem("pagina");
-  const [pagina, setPagina] = useState(pag ?? "Inicio");
+  const [pagina, setPagina] = useState(pag ?? paginas[0]);
 
   return (
     <>

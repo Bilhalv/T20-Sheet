@@ -57,8 +57,12 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     console.log(`Classe Selecionada: ${selectedClass.nome}`);
     localStorage.setItem("classe", selectedClass.nome);
     localStorage.setItem("alt", JSON.stringify(alt));
-    if (isOpen2 === true && contador === 3) {
-      onClose2();
+    if (isOpen2 === true) {
+      if (contador >= 3){
+        onClose2();
+      }else{
+        alert("Escolha 3 escolas");
+      }
     }
     setPagina(next);
   };
@@ -198,41 +202,43 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
           <ModalOverlay />
           <ModalContent className="font-tormenta">
-            <ModalHeader>Escolha sua escola</ModalHeader>
+            <ModalHeader>Escolha sua escola {contador}</ModalHeader>
             <ModalBody>
-              <CheckboxGroup colorScheme="red">
+              <CheckboxGroup colorScheme="red" value={alt}>
+                <div className="grid grid-cols-2 gap-2 mx-auto h-fit">
                 {escolas.map((escola) => (
                   <Checkbox
                     onChange={(event) => {
-                      const newAlt = [...alt];
-                      let contadornovo = contador;
-                      if (!newAlt.includes(escola.valor)) {
-                        if (event.target.checked) {
-                          if (alt.includes("a")) {
-                            newAlt.splice(newAlt.indexOf("a"), 1);
-                          }
-                          newAlt.push(event.target.value);
-                          contadornovo =+ 1;
-                        } else {
-                          newAlt.splice(newAlt.indexOf(event.target.value), 1);
-                          contadornovo =- 1;
+                      let newAlt = [...alt];
+                      let newContador = contador;
+                      if (
+                        event &&
+                        event.target &&
+                        event.target.checked &&
+                        !alt.includes(escola.valor)
+                      ) {
+                        if (alt.includes("a")) {
+                          newAlt.splice(newAlt.indexOf("a"), 1);
                         }
-                        if (newAlt.length === 0) {
-                          newAlt.push("a");
-                        }
+                        newAlt.push(event.target.value);
+                        newContador = newContador + 1;
+                      } else if (!event.target.checked) {
+                        newAlt.splice(newAlt.indexOf(event.target.value), 1);
+                        newContador = newContador - 1;
                       }
+                      if (newAlt.length === 0) {
+                        newAlt.push("a");
+                      }
+                      setContador(newContador);
                       setAlt(newAlt);
-                      setContador(contadornovo);
                     }}
                     value={escola.valor}
-                    isChecked={alt.includes(escola.valor)}
-                    //TODO arrumar o disabled q n ta funcionando
                     isDisabled={contador >= 3 && !alt.includes(escola.valor)}
-
                   >
                     {escola.nome}
                   </Checkbox>
                 ))}
+                </div>
               </CheckboxGroup>
             </ModalBody>
             <ModalFooter>

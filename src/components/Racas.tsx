@@ -8,6 +8,7 @@ import {
   AccordionPanel,
   Button,
   Checkbox,
+  CheckboxGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -93,11 +94,15 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
   };
 
   const handleArtibutoChange = () => {
+    if (contador === 3) {
     console.log(`Raça Selecionada: ${raceSelecionada.nome}`);
     console.log(atributosSelecionados);
     localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
     localStorage.setItem("raca", raceSelecionada.nome);
     setPagina(next);
+    } else {
+      alert("Você deve escolher 3 atributos");
+    }
   };
 
   const [contador, setContador] = useState<number>(0);
@@ -188,7 +193,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
               <div className="flex flex-col gap-2">
                 {atributosSelecionados.map((atributo, index) => (
                   <div key={index}>
-                    <Checkbox isDisabled={atributo.valor < 0 || contador >= 3} onChange={
+                    <Checkbox isDisabled={atributo.valor < 0 || (contador >= 3 && !(atributosSelecionados[index].valor == 1))} onChange={
                       (event) => {
                         const newAtributos = [...atributosSelecionados];
                         const atributoIndex = newAtributos.findIndex(
