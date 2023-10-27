@@ -44,7 +44,8 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     selecteClass ?? TabelaClasses[0]
   );
   const handleClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setAlt([]);
+    setAlt(["a"]);
+    setContador(0);
     const selectedClass = TabelaClasses.find(
       (classe) => classe.nome === event.target.value
     );
@@ -110,7 +111,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                 </option>
               </Select>
             )}
-            {selectedClass.nome === "Bardo" && (
+            {(selectedClass.nome === "Bardo" || selectedClass.nome === "Druida") && (
               <Button
                 onClick={onOpen2}
                 variant={"outline"}
