@@ -45,5 +45,5 @@ export const inventor: Classe = {
   habilidades: [],
   poderesunicos: poderesInventor,
   conjurador: true,
-  imagem: "./img/templates/inventor.png",
+  imagem: "./img/classes/inventor.png",
 };

@@ -45,5 +45,5 @@ export const guerreiro: Classe = {
   habilidades: [],
   poderesunicos: poderesGuerreiro,
   conjurador: true,
-  imagem: "./img/templates/guerreiro.png",
+  imagem: "./img/classes/guerreiro.png",
 };

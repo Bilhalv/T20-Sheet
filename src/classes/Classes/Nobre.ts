@@ -45,5 +45,5 @@ export const nobre: Classe = {
   habilidades: [],
   poderesunicos: poderesNobre,
   conjurador: true,
-  imagem: "./img/templates/nobre.png",
+  imagem: "./img/classes/nobre.png",
 };

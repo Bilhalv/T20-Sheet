@@ -45,5 +45,5 @@ export const clerigo: Classe = {
   habilidades: [],
   poderesunicos: poderesClerigo,
   conjurador: true,
-  imagem: "./img/templates/clerigo.png",
+  imagem: "./img/classes/clerigo.png",
 };

@@ -45,5 +45,5 @@ export const paladino: Classe = {
   habilidades: [],
   poderesunicos: poderesPaladino,
   conjurador: true,
-  imagem: "./img/templates/paladino.png",
+  imagem: "./img/classes/paladino.png",
 };

@@ -45,5 +45,5 @@ export const cacador: Classe = {
   habilidades: [],
   poderesunicos: poderesCacador,
   conjurador: true,
-  imagem: "./img/templates/cacador.png",
+  imagem: "./img/classes/cacador.png",
 };

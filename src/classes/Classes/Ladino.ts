@@ -45,5 +45,5 @@ export const ladino: Classe = {
   habilidades: [],
   poderesunicos: poderesLadino,
   conjurador: true,
-  imagem: "./img/templates/ladino.png",
+  imagem: "./img/classes/ladino.png",
 };
