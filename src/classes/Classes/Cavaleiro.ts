@@ -42,7 +42,7 @@ export const cavaleiro: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: [],
   poderesunicos: poderesCavaleiro,
   conjurador: true,
   imagem: "./img/classes/cavaleiro.png",

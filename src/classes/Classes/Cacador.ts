@@ -42,7 +42,7 @@ export const cacador: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: [],
   poderesunicos: poderesCacador,
   conjurador: true,
   imagem: "./img/templates/cacador.png",

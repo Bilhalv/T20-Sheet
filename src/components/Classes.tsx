@@ -290,7 +290,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                             textAlign="left"
                             _firstLetter={{ textTransform: "uppercase" }}
                           >
-                            {habilidade}
+                            {habilidade.nome}
                           </Box>
                           <AccordionIcon />
                         </AccordionButton>
@@ -299,7 +299,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                         className="italic font-serif text-justify"
                         pb={4}
                       >
-                        &nbsp;&nbsp;{habilidade}
+                        &nbsp;&nbsp;{habilidade.descricao}
                       </AccordionPanel>
                     </AccordionItem>
                   ))}

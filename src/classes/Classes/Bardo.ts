@@ -69,7 +69,7 @@ export const poderesBardo: Poder[] = [
       "Você é um arquivo vivo de relatos, canções e folclore. Além de outros benefícios a critério do mestre, pode gastar 1 PM para rolar novamente um teste recém realizado de Conhecimento, Misticismo, Nobreza ou Religião para informação, identificar criaturas ou identificar itens mágicos.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.atributo],
-// int 1
+    // int 1
   },
   {
     nome: "Manipular.",
@@ -154,7 +154,16 @@ export const bardo: Classe = {
   ],
   periciasescolhanum: 6,
   proficiencias: ["armas marciais"],
-  habilidades: ["inspiração", "eclético"],
+  habilidades: [
+    {
+      nome: "inspiração",
+      descricao: "Você pode gastar uma ação padrão e 2 PM para inspirar as pessoas com sua arte. Você e todos os seus aliados em alcance curto ganham +1 em testes de perícia até o fim da cena. A cada quatro níveis, pode gastar +2 PM para aumentar o bônus em +1."
+    },
+    {
+      nome: "eclético",
+      descricao: "A partir do 2o nível, você pode gastar 1 PM para receber todos os benefícios de ser treinado em uma perícia por um teste."
+    }
+  ],
   poderesunicos: poderesBardo,
   conjurador: true,
   imagem: "./img/templates/bardo.png",

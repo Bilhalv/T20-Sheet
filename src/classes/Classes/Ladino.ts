@@ -42,7 +42,7 @@ export const ladino: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: [],
   poderesunicos: poderesLadino,
   conjurador: true,
   imagem: "./img/templates/ladino.png",

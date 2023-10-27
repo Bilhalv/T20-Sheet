@@ -1,6 +1,11 @@
 import { Poder } from "../Construtores/Poder";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
+
+class habilidade {
+  nome: string = "";
+  descricao: string = "";
+}
 export class Classe {
   nome: string = "";
   descricao: string = "";
@@ -12,7 +17,7 @@ export class Classe {
   pericias: TabelaPericiasEnum[] = [];
   proficiencias: string[] = [];
   poderesunicos: Poder[] = [];
-  habilidades: string[] = [];
+  habilidades: habilidade[] = [];
   conjurador: boolean = false;
   imagem: string = "./img/template/Class.png";
 }
