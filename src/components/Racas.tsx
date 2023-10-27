@@ -114,7 +114,6 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-1/2 w-full">
           <div className="desktop:hidden">
             <Select
-              size={"xs"}
               placeholder="Escolha Sua Raça"
               onChange={handleRaceChange}
             >

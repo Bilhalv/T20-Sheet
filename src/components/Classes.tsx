@@ -53,19 +53,29 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       setSelectedClass(selectedClass);
     }
   };
-
+  
+  const [contador, setContador] = useState(0);
   const handleSelect = () => {
-    console.log(`Classe Selecionada: ${selectedClass.nome}`);
-    localStorage.setItem("classe", selectedClass.nome);
-    localStorage.setItem("alt", JSON.stringify(alt));
-    if (isOpen2 === true) {
-      if (contador >= 3){
-        onClose2();
-      }else{
-        alert("Escolha 3 escolas");
+    if ((selectedClass.nome === "Arcanista" || selectedClass.nome === "Inventor" || selectedClass.nome === "Bardo" || selectedClass.nome === "Druida")) {
+      if (alt[0] === "a"){
+        alert("Escolha uma alternativa");
+      } else {
+          if (contador < 3 && selectedClass.nome === "Bardo" || contador < 3 && selectedClass.nome === "Druida"){
+            alert("Escolha mais "+(3-contador)+" escola"+(contador === 2 ? "" : "s"));
+            return;
+          }
+          console.log(`Classe Selecionada: ${selectedClass.nome}`);
+          localStorage.setItem("classe", selectedClass.nome);
+          localStorage.setItem("alt", JSON.stringify(alt));
+          setPagina(next);
+          onClose2();
+        
       }
+    } else{
+      console.log(`Classe Selecionada: ${selectedClass.nome}`);
+      localStorage.setItem("classe", selectedClass.nome);
+      setPagina(next);
     }
-    setPagina(next);
   };
 
   const handleClickAlt = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -73,7 +83,6 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     setAlt([selectedAlt]);
   };
 
-  const [contador, setContador] = useState(0);
   const escolas = [
     { nome: "Abjuração", valor: "abjur" },
     { nome: "Adivinhação", valor: "adiv" },
@@ -203,7 +212,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
           <ModalOverlay />
           <ModalContent className="font-tormenta">
-            <ModalHeader>Escolha sua escola {contador}</ModalHeader>
+            <ModalHeader>Escolha suas escolas</ModalHeader>
             <ModalBody>
               <CheckboxGroup colorScheme="red" value={alt}>
                 <div className="grid grid-cols-2 gap-2 mx-auto h-fit">
