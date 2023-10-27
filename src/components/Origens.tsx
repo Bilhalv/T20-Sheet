@@ -7,6 +7,8 @@ import {
   AccordionItem,
   AccordionPanel,
   Button,
+  Checkbox,
+  CheckboxGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -27,6 +29,12 @@ interface OrigensProps {
 const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
+  const {
+    isOpen: isOpen2,
+    onOpen: onOpen2,
+    onClose: onClose2,
+  } = useDisclosure();
+  const finalRef2 = React.useRef(null);
   const selectedOrigem = TabelaOrigens.find(
     (origem) => origem.nome === localStorage.getItem("origem")
   );
@@ -36,8 +44,16 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
   );
   let descricao2 = origem.descricao.split(".");
   let descricao1 = descricao2.shift() + ".";
+  const [beneficiosSelecionados, setBeneficiosSelecionados] = useState([
+    { tipo: "Perícias", beneficio: [""] },
+    { tipo: "Poderes", beneficio: [""] },
+  ]);
 
   const handleOrigemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBeneficiosSelecionados([
+      { tipo: "Perícias", beneficio: [""] },
+      { tipo: "Poderes", beneficio: [""] },
+    ]);
     const selectedOrigem = TabelaOrigens.find(
       (origem) => origem.nome === event.target.value
     );
@@ -50,8 +66,15 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
   };
 
   const handleSelect = () => {
+    onOpen2();
+  };
+
+  const [contador, setContador] = useState(0);
+
+  const handleBeneficio = () => {
     console.log(`Origem Selecionada: ${origem.nome}`);
     localStorage.setItem("origem", origem.nome);
+    localStorage.setItem("beneficios", JSON.stringify(beneficiosSelecionados));
     setPagina(next);
   };
   return (
@@ -140,6 +163,104 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </section>
         </section>
       </main>
+      <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
+        <ModalOverlay />
+        <ModalContent className="font-tormenta">
+          <ModalHeader>Benefícios da Origem {origem.nome}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <CheckboxGroup>
+              <h1 className="font-bold text-center">Perícias</h1>
+              <div className="flex flex-row justify-evenly">
+                {origem.beneficios.pericias.map((pericia) => (
+                  <Checkbox
+                    key={pericia}
+                    isChecked={beneficiosSelecionados[0].beneficio.includes(
+                      pericia
+                    )}
+                    isDisabled={
+                      contador >= 2 &&
+                      !beneficiosSelecionados[0].beneficio.includes(pericia)
+                    }
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setContador(contador + 1);
+                        setBeneficiosSelecionados((beneficios) => {
+                          const newBeneficios = [...beneficios];
+                          if (!newBeneficios[0].beneficio.includes(pericia)) {
+                            newBeneficios[0].beneficio.push(pericia);
+                          }
+                          return newBeneficios;
+                        });
+                      } else {
+                        setContador(contador - 1);
+                        setBeneficiosSelecionados((beneficios) => {
+                          const newBeneficios = [...beneficios];
+                          newBeneficios[0].beneficio =
+                            newBeneficios[0].beneficio.filter(
+                              (beneficio) => beneficio !== pericia
+                            );
+                          return newBeneficios;
+                        });
+                      }
+
+                    }}
+                  >
+                    {pericia}
+                  </Checkbox>
+                ))}
+              </div>
+              <h1 className="font-bold text-center mt-3">Poderes</h1>
+              <div className="flex flex-row justify-evenly">
+                {origem.beneficios.poderes.map((poder) => (
+                  <Checkbox
+                    key={poder}
+                    isChecked={beneficiosSelecionados[1].beneficio.includes(
+                      poder
+                    )}
+                    isDisabled={
+                      contador >= 2 &&
+                      !beneficiosSelecionados[1].beneficio.includes(poder)
+                    }
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setContador(contador + 1);
+                        setBeneficiosSelecionados((beneficios) => {
+                          const newBeneficios = [...beneficios];
+                          if (!newBeneficios[1].beneficio.includes(poder)) {
+                          newBeneficios[1].beneficio.push(poder);
+                          }
+                          return newBeneficios;
+                        });
+                      } else {
+                        setContador(contador - 1);
+                        setBeneficiosSelecionados((beneficios) => {
+                          const newBeneficios = [...beneficios];
+                          newBeneficios[1].beneficio =
+                            newBeneficios[1].beneficio.filter(
+                              (beneficio) => beneficio !== poder
+                            );
+                          return newBeneficios;
+                        });
+                      }
+                    }}
+                  >
+                    {poder}
+                  </Checkbox>
+                ))}
+              </div>
+            </CheckboxGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
+              Fechar
+            </Button>
+            <Button colorScheme="blue" mx={"auto"} onClick={handleBeneficio}>
+              Confirmar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent className="font-tormenta">
