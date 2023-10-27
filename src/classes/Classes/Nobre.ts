@@ -42,7 +42,7 @@ export const nobre: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: [],
   poderesunicos: poderesNobre,
   conjurador: true,
   imagem: "./img/templates/nobre.png",

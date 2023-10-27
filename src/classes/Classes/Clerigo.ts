@@ -42,7 +42,7 @@ export const clerigo: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: [],
   poderesunicos: poderesClerigo,
   conjurador: true,
   imagem: "./img/templates/clerigo.png",

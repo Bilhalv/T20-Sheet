@@ -42,7 +42,7 @@ export const bucaneiro: Classe = {
   ],
   periciasescolhanum: 2,
   proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  habilidades: [],
   poderesunicos: poderesBucaneiro,
   conjurador: true,
   imagem: "./img/classes/bucaneiro.png",
