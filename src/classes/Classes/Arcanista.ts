@@ -164,5 +164,5 @@ export const arcanista: Classe = {
   ],
   poderesunicos: poderesArcanista,
   conjurador: true,
-  imagem: "./img/templates/arcanista.png",
+  imagem: "./img/classes/arcanista.png",
 };
