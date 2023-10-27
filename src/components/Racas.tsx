@@ -59,6 +59,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
   };
 
   const handleSelect = () => {
+    setContador(0);
     if (raceSelecionada.escolhaAtributo == true) {
       for (let i = 0; i < atributosSelecionados.length; i++) {
         const x = atributosSelecionados[i];

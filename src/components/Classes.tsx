@@ -29,7 +29,13 @@ interface ClassesProps {
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
-  const [alt, setAlt] = useState(localStorage.getItem("alt") ?? "");
+  const {
+    isOpen: isOpen2,
+    onOpen: onOpen2,
+    onClose: onClose2,
+  } = useDisclosure();
+  const finalRef2 = React.useRef(null);
+  const [alt, setAlt] = useState<string[]>(["a"]);
   const selecteClass = TabelaClasses.find(
     (classe) => classe.nome === localStorage.getItem("classe")
   );
@@ -38,6 +44,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     selecteClass ?? TabelaClasses[0]
   );
   const handleClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setAlt([]);
     const selectedClass = TabelaClasses.find(
       (classe) => classe.nome === event.target.value
     );
@@ -49,21 +56,36 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const handleSelect = () => {
     console.log(`Classe Selecionada: ${selectedClass.nome}`);
     localStorage.setItem("classe", selectedClass.nome);
-    localStorage.setItem("alt", alt);
+    localStorage.setItem("alt", JSON.stringify(alt));
+    if (isOpen2 === true && contador === 3) {
+      onClose2();
+    }
     setPagina(next);
   };
 
   const handleClickAlt = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedAlt = event.target.value;
-    setAlt(selectedAlt);
+    setAlt([selectedAlt]);
   };
+
+  const [contador, setContador] = useState(0);
+  const escolas = [
+    { nome: "Abjuração", valor: "abjur" },
+    { nome: "Adivinhação", valor: "adiv" },
+    { nome: "Convocação", valor: "conv" },
+    { nome: "Encantamento", valor: "encan" },
+    { nome: "Evocação", valor: "evoc" },
+    { nome: "Ilusão", valor: "ilusao" },
+    { nome: "Necromancia", valor: "necro" },
+    { nome: "Transmutação", valor: "trans" },
+  ];
 
   return (
     <>
       <h1 className="text-xl text-center mb-4">Classes</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
-        <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full">
-          <div className="flex flex-row-reverse">
+        <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full ">
+          <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
             {selectedClass.nome === "Arcanista" && (
               <Select
                 placeholder="Escolha seu caminho"
@@ -84,6 +106,16 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                 </option>
               </Select>
             )}
+            {selectedClass.nome === "Bardo" && (
+              <Button
+                onClick={onOpen2}
+                variant={"outline"}
+                className="w-full"
+                _hover={{ bg: "transparent", borderColor: "gray.300" }}
+              >
+                Selecionar escolas
+              </Button>
+            )}
             {selectedClass.nome === "Inventor" && (
               <Select
                 placeholder="Escolha seu protótipo"
@@ -101,7 +133,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                 </option>
               </Select>
             )}
-            <div className="desktop:hidden w-full">
+            <div className="desktop:hidden w-full transition-all ease-in-out rounded-md">
               <Select placeholder="Escolha sua Classe" onChange={handleClick}>
                 {TabelaClasses.map((classe) => (
                   <option
@@ -143,26 +175,77 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid w-1/2">
           {TabelaClasses.map((classe) => (
             <Button
-            key={classe.nome}
-            onClick={() =>
-              handleClick({
-                target: { value: classe.nome },
-              } as React.ChangeEvent<HTMLSelectElement>)
-            }
-            isActive={classe.nome === selectedClass?.nome}
-            _active={{
-              color: "red.900",
-              bg: "gray.300",
-            }}
-            width="auto"
-            whiteSpace="normal"
-            wordBreak="break-word"
-            className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
+              key={classe.nome}
+              onClick={() =>
+                handleClick({
+                  target: { value: classe.nome },
+                } as React.ChangeEvent<HTMLSelectElement>)
+              }
+              isActive={classe.nome === selectedClass?.nome}
+              _active={{
+                color: "red.900",
+                bg: "gray.300",
+              }}
+              width="auto"
+              whiteSpace="normal"
+              wordBreak="break-word"
+              className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
             >
               {classe.nome}
             </Button>
           ))}
         </section>
+        <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
+          <ModalOverlay />
+          <ModalContent className="font-tormenta">
+            <ModalHeader>Escolha sua escola</ModalHeader>
+            <ModalBody>
+              <CheckboxGroup colorScheme="red">
+                {escolas.map((escola) => (
+                  <Checkbox
+                    onChange={(event) => {
+                      const newAlt = [...alt];
+                      let contadornovo = contador;
+                      if (!newAlt.includes(escola.valor)) {
+                        if (event.target.checked) {
+                          if (alt.includes("a")) {
+                            newAlt.splice(newAlt.indexOf("a"), 1);
+                          }
+                          newAlt.push(event.target.value);
+                          contadornovo =+ 1;
+                        } else {
+                          newAlt.splice(newAlt.indexOf(event.target.value), 1);
+                          contadornovo =- 1;
+                        }
+                        if (newAlt.length === 0) {
+                          newAlt.push("a");
+                        }
+                      }
+                      setAlt(newAlt);
+                      setContador(contadornovo);
+                    }}
+                    value={escola.valor}
+                    isChecked={alt.includes(escola.valor)}
+                    //TODO arrumar o disabled q n ta funcionando
+                    isDisabled={contador >= 3 && !alt.includes(escola.valor)}
+
+                  >
+                    {escola.nome}
+                  </Checkbox>
+                ))}
+              </CheckboxGroup>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
+                Fechar
+              </Button>
+              <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
+                Confirmar
+              </Button>
+            </ModalFooter>
+            <ModalCloseButton />
+          </ModalContent>
+        </Modal>
         <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent className="font-tormenta">
