@@ -70,13 +70,67 @@ export const poderesArcanista: Poder[] = [
     tipo: TipoPoder.classe,
     requisitos: [],
   },
-  // {
-  //   nome: "",
-  //   descricao:
-  //     "",
-  //   tipo: TipoPoder.classe,
-  //   requisitos: [],
-  // },
+  {
+    nome: "Foco Vital.",
+    descricao:
+      "Se você estiver segurando seu foco e sofrer dano que o levaria a 0 PV ou menos, você fica com 1 PV e o foco perde PV igual ao valor excedente ou até ser destruído (se o foco for destruído, você sofre o dano excedente).",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.tipo_arcanista],
+    // Bruxo
+  },
+  {
+    nome: "Fortalecimento Arcano.",
+    descricao:
+      "A CD para resistir a suas magias aumenta em +1. Se você puder lançar magias de 4o círculo, em vez disso ela aumenta em +2.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.nivel],
+    // 5o nivel
+  },
+  {
+    nome: "Magia Pungente.",
+    descricao:
+      "Quando lança uma magia, você pode pagar 1 PM para aumentar em +2 a CD para resistir a ela.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Poder Mágico.",
+    descricao:
+      "Você recebe +1 ponto de mana por nível de arcanista. Quando sobe de nível, os PM que recebe por este poder aumentam de acordo. Por exemplo, se escolher este poder no 4o nível, recebe 4 PM. Quando subir para o 5o nível, recebe +1 PM e assim por diante.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Raio Arcano.",
+    descricao:
+      "Você pode gastar uma ação padrão para causar 1d8 pontos de dano de essência num alvo em alcance curto. Esse dano aumenta em +1d8 para cada círculo de magia acima do 1o que você puder lançar. O alvo pode fazer um teste de Reflexos (CD atributo-chave) para reduzir o dano à metade. O raio arcano conta como uma magia para efeitos de habilidades e itens que beneficiem suas magias.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Raio Elemental.",
+    descricao:
+      "Quando usa Raio Arcano, você pode pagar 1 PM para que ele cause dano de ácido, eletricidade, fogo, frio ou trevas, a sua escolha. Se o alvo falhar no teste de Reflexos, sofre uma condição, de acordo com o tipo de dano (veja a descrição das condições na página 394). Ácido: vulnerável por 1 rodada. Eletricidade: ofuscado por 1 rodada. Fogo: fica em chamas. Frio: lento por 1 rodada. Trevas: não pode curar PV por 1 rodada.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.poder],
+    // raio arcano
+  },
+  {
+    nome: "Raio Poderoso.",
+    descricao:
+      "Os dados de dano do seu Raio Arcano aumentam para d12 e o alcance dele aumenta para médio.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.poder],
+    // raio arcano
+  },
+  {
+    nome: "Tinta do Mago.",
+    descricao:
+      "Você pode criar pergaminhos, como se tivesse o poder Escrever Pergaminho. Se tiver ambos, seu custo para criar pergaminhos é reduzido à metade.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.tipo_arcanista, RequisitoPoder.pericia],
+    // Mago, oficio(escriba)
+  },
 ];
 
 export const arcanista: Classe = {

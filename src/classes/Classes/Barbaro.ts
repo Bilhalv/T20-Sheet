@@ -1,12 +1,12 @@
-import { Poder, TipoPoder } from "../Construtores/Poder";
+import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
 import { Classe } from "./Classe";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
 export const poderesBarbaro: Poder[] = [
   {
-    nome: "Arcano de Batalha.",
+    nome: "Alma de Bronze.",
     descricao:
-      "Quando lança uma magia, você soma seu atributo-chave na rolagem de dano.",
+      "Quando entra em fúria, você recebe uma quantidade de pontos de vida temporários igual a seu nível + sua Força.",
     tipo: TipoPoder.classe,
     requisitos: [],
   },
@@ -17,33 +17,149 @@ export const poderesBarbaro: Poder[] = [
     tipo: TipoPoder.classe,
     requisitos: [],
   },
+  {
+    nome: "Brado Assustador.",
+    descricao:
+      "Você pode gastar uma ação de movimento e 1 PM para soltar um berro feroz. Todos os inimigos em alcance curto ficam vulneráveis até o fim da cena.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.pericia],
+    // intimitação
+  },
+  {
+    nome: "Destruidor.",
+    descricao:
+      "Quando causa dano com uma arma corpo a corpo de duas mãos, você pode rolar novamente qualquer resultado 1 ou 2 das rolagens de dano da arma.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.atributo],
+    // for 1
+  },
+  {
+    nome: "Espírito Inquebrável.",
+    descricao:
+      "Enquanto está em fúria, você não fica inconsciente por estar com 0 PV ou menos (você ainda morre se chegar em um valor negativo igual à metade de seus pontos de vida máximos).",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.poder],
+    // alma de bronze
+  },
+  {
+    nome: "Esquiva Sobrenatural.",
+    descricao:
+      "Seus instintos são tão apurados que você consegue reagir ao perigo antes que seus sentidos o percebam. Você nunca fica surpreendido.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Força Indomável.",
+    descricao:
+      "Você pode gastar 1 PM para somar seu nível em um teste de Força ou Atletismo. Você pode usar esta habilidade depois de rolar o dado, mas deve usá-la antes de o mestre dizer se você passou ou não.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Frenesi.",
+    descricao:
+      "Uma vez por rodada, se estiver em fúria e usar a ação agredir para fazer um ataque corpo a corpo ou com uma arma de arremesso, você pode gastar 2 PM para fazer um ataque adicional.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Fúria da Savana.",
+    descricao:
+      "Seu deslocamento aumenta em +3m. Quando usa Fúria, você aplica o bônus em ataque e dano também a armas de arremesso.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Fúria Raivosa.",
+    descricao:
+      "Se sua Fúria for terminar por você não ter atacado nem sido alvo de um efeito hostil, você pode pagar 1 PM para continuar em fúria nesta rodada. Se você atacar ou for atacado na rodada seguinte, sua fúria continua normalmente.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Golpe Poderoso.",
+    descricao:
+      "Ao acertar um ataque corpo a corpo ou com uma arma de arremesso, você pode gastar 1 PM para causar um dado extra de dano do mesmo tipo (por exemplo, com um montante, causa +1d6, para um dano total de 3d6; com um machado de guerra, causa +1d12, para um dano total de 2d12).",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Ímpeto.",
+    descricao:
+      "Você pode gastar 1 PM para aumentar seu deslocamento em +6m por uma rodada.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Investida Imprudente.",
+    descricao:
+      "Quando faz uma investida, você pode aumentar sua penalidade na Defesa pela investida para –5 para receber um bônus de +1d12 na rolagem de dano deste ataque.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Pele de Ferro.",
+    descricao:
+      "Você recebe +4 na Defesa, mas apenas se não estiver usando armadura pesada.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Sangue dos Inimigos.",
+    descricao:
+      "Enquanto está em fúria, quando faz um acerto crítico ou reduz um inimigo a 0 PV, você recebe um bônus cumulativo de +1 em testes de ataque e rolagens de dano, limitado pelo seu nível, até o fim da cena.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Superstição.",
+    descricao:
+      "Você odeia magia, o que faz com que seja mais resistente a ela. Você recebe resistência a magia +5.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+  {
+    nome: "Totem Espiritual.",
+    descricao:
+      "Você soma sua Sabedoria no seu total de pontos de mana. Escolha um animal totêmico (veja o quadro ao lado). Você aprende e pode lançar uma magia definida pelo animal escolhido (atributo-chave Sabedoria) e pode lançá-la mesmo em fúria.",
+    tipo: TipoPoder.classe,
+    requisitos: [RequisitoPoder.atributo, RequisitoPoder.nivel],
+    // sab 1, nivel 4
+  },
+  {
+    nome: "Vigor Primal.",
+    descricao:
+      "Você pode gastar uma ação de movimento e uma quantidade de PM limitada por sua Constituição. Para cada PM que gastar, você recupera 1d12 pontos de vida.",
+    tipo: TipoPoder.classe,
+    requisitos: [],
+  },
+
 ];
 
 export const barbaro: Classe = {
   nome: "Bárbaro",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
-  vidapnivel: 2,
-  vidainicial: 8,
-  manapnivel: 6,
-  pericias: [TabelaPericiasEnum.Misticismo, TabelaPericiasEnum.Vontade],
+    "O bárbaro é um herói primitivo, confiando menos em técnica e mais em puro frenesi de batalha.",
+  vidapnivel: 6,
+  vidainicial: 24,
+  manapnivel: 3,
+  pericias: [TabelaPericiasEnum.Fortitude, TabelaPericiasEnum.Luta],
   periciasescolha: [
-    TabelaPericiasEnum.Conhecimento,
-    TabelaPericiasEnum.Diplomacia,
-    TabelaPericiasEnum.Enganação,
-    TabelaPericiasEnum.Guerra,
+    TabelaPericiasEnum.Adestramento,
+    TabelaPericiasEnum.Atletismo,
+    TabelaPericiasEnum.Cavalgar,
     TabelaPericiasEnum.Iniciativa,
     TabelaPericiasEnum.Intimidação,
-    TabelaPericiasEnum.Intuição,
-    TabelaPericiasEnum.Investigação,
-    TabelaPericiasEnum.Nobreza,
     TabelaPericiasEnum.Ofício,
     TabelaPericiasEnum.Percepção,
+    TabelaPericiasEnum.Pontaria,
+    TabelaPericiasEnum.Sobrevivência,
+    TabelaPericiasEnum.Vontade,
   ],
-  periciasescolhanum: 2,
-  proficiencias: [],
-  habilidades: ["caminho do arcanista", "alta arcana"],
+  periciasescolhanum: 4,
+  proficiencias: ['Armas marciais' ,'escudos'],
+  habilidades: ["fúria", "instinto selvagem", "redução de dano"],
   poderesunicos: poderesBarbaro,
-  conjurador: true,
+  conjurador: false,
   imagem: "./img/classes/barbaro.png",
 };
