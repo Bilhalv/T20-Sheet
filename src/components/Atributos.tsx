@@ -1,13 +1,27 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Button,
   HStack,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Select,
+  useDisclosure,
   useNumberInput,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { TabelaAtributos } from "../classes/Tabelas/Atributos";
-import { MoveDown, MoveUp } from "lucide-react";
+import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
+import { TabelaPericias } from "../classes/Tabelas/Pericias";
 
 interface AtributosProps {
   setPagina: (pagina: string) => void;
@@ -20,6 +34,7 @@ interface HookUsageProps {
   setPontos: React.Dispatch<React.SetStateAction<number>>;
   index: number;
 }
+
 function HookUsage({
   setAtributosSelecionados,
   index,
@@ -93,7 +108,7 @@ function HookUsage({
           return newState;
         });
         setPontos((prevPontos) => prevPontos - getPointsChange(valor, 4));
-      } else if (value < -1 && valor > -1 ) {
+      } else if (value < -1 && valor > -1) {
         setValor(-1);
         setAtributosSelecionados((prevState) => {
           const newState = [...prevState];
@@ -180,7 +195,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           if (valor === 12 || valor === 13) return 1;
           if (valor === 14 || valor === 15) return 2;
           if (valor === 16 || valor === 17) return 3;
-          if (valor === 18) return 4;
+          if (valor <= 18) return 4;
           return valor;
         })
       );
@@ -190,11 +205,11 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const handleDestaque = (index: number) => setDestaque(TabelaAtributos[index]);
 
   const handleClick = () => {
-    if (pontos === 0) {
+    if (tipo === "Rolagem") {
       const atributos = atributosSelecionados.map((atributo, index) => {
         return {
           nome: atributo.nome,
-          valor: atributo.valor + atributosRaca[index].valor,
+          valor: atributo.valor + atributosRaca[index].valor + rolagem[index],
         };
       });
       alert(
@@ -205,10 +220,27 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       );
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
       setPagina(next);
-    } else if (pontos > 0) {
-      alert("Você ainda tem pontos para distribuir");
     } else {
-      alert("Você não pode ter pontos negativos");
+      if (pontos === 0) {
+        const atributos = atributosSelecionados.map((atributo, index) => {
+          return {
+            nome: atributo.nome,
+            valor: atributo.valor + atributosRaca[index].valor,
+          };
+        });
+        alert(
+          "Seus atributos finais são:\n" +
+            atributos
+              .map((atributo) => "- " + atributo.nome + ": " + atributo.valor)
+              .join("\n")
+        );
+        localStorage.setItem("atributosFinais", JSON.stringify(atributos));
+        setPagina(next);
+      } else if (pontos > 0) {
+        alert("Você ainda tem pontos para distribuir");
+      } else {
+        alert("Você não pode ter pontos negativos");
+      }
     }
   };
 
@@ -241,6 +273,8 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
     });
   };
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const finalRef = React.useRef(null);
   return (
     <>
       <Select
@@ -267,8 +301,11 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           <img src={destaque.img} className="w-1/2 rounded-2xl mx-auto" />
           <p className="text-center font-serif my-4">{destaque.descricao}</p>
           <div className="flex gap-2 mx-auto w-full justify-around">
-            <button className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3 bottom-0">
-              Ver mais
+            <button
+              onClick={onOpen}
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
+            >
+              Ver Mais
             </button>
             <button
               onClick={handleClick}
@@ -280,7 +317,8 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
         </article>
         <article className="order-2 flex flex-col flex-wrap w-2/3 h-[25rem] gap-5">
           {TabelaAtributos.map((atributo, index) => (
-            <button
+            <div
+              key={atributo.nome}
               className={`flex flex-row gap-5 bg-opacity-60 bg-white p-4 rounded-md  transition-all ease-in delay-100 hover:cursor-default ${
                 atributo.nome === destaque.nome
                   ? "text-red-900 bg-gray-400"
@@ -330,9 +368,47 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
                   </div>
                 )}
               </div>
-            </button>
+            </div>
           ))}
         </article>
+        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent className="font-tormenta">
+            <ModalHeader>Pericias do atributo {destaque.nome}</ModalHeader>
+            <ModalBody>
+              <Accordion allowToggle>
+                {destaque.pericias.map((pericia) => (
+                  <AccordionItem>
+                    {({ isExpanded }) => (
+                      <>
+                        <h2>
+                          <AccordionButton className="flex justify-between">
+                            {pericia.nome}
+                            {isExpanded ? (
+                              <MinusIcon />
+                            ) : (
+                              <PlusIcon />
+                            )}
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel className="font-serif italic text-justify">
+                          <p>&nbsp;&nbsp;{pericia.descricao}</p>
+                        </AccordionPanel>
+                      </>
+                    )}
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="red" mx={"auto"} onClick={onClose}>
+                Fechar
+              </Button>
+            </ModalFooter>
+            <ModalCloseButton />
+          </ModalContent>
+        </Modal>
       </section>
     </>
   );
