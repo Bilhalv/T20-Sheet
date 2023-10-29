@@ -32,13 +32,16 @@ function HookUsage({
       max: 4,
     });
   const [valor, setValor] = useState(0);
+
   const inc = getIncrementButtonProps({
     onClick: () => {
       if (valor < 4) {
         setValor(valor + 1);
         setAtributosSelecionados((prevState) => {
           const newState = [...prevState];
-          newState[index].valor = valor + 1;
+          if (newState[index]) {
+            newState[index].valor = valor + 1;
+          }
           return newState;
         });
         setPontos(
@@ -47,13 +50,16 @@ function HookUsage({
       }
     },
   });
+
   const dec = getDecrementButtonProps({
     onClick: () => {
       if (valor > -1) {
         setValor(valor - 1);
         setAtributosSelecionados((prevState) => {
           const newState = [...prevState];
-          newState[index].valor = valor - 1;
+          if (newState[index]) {
+            newState[index].valor = valor - 1;
+          }
           return newState;
         });
         setPontos(
@@ -62,6 +68,7 @@ function HookUsage({
       }
     },
   });
+
   const input = getInputProps({
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = Number(event.target.value);
@@ -69,7 +76,9 @@ function HookUsage({
         setValor(value);
         setAtributosSelecionados((prevState) => {
           const newState = [...prevState];
-          newState[index].valor = value;
+          if (newState[index]) {
+            newState[index].valor = value;
+          }
           return newState;
         });
         setPontos((prevPontos) => prevPontos - getPointsChange(valor, value));
