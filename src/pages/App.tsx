@@ -4,9 +4,10 @@ import Racas from "../components/Racas";
 import Inicio from "../components/Inicio";
 import Classes from "../components/Classes";
 import Origens from "../components/Origens";
+import Atributos from "../components/Atributos";
 
 const App: React.FC = () => {
-  const paginas = ["Inicio", "Origens", "Racas", "Classes"];
+  const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           {pagina === "Origens" && <Origens next="Racas" setPagina={setPagina}/>}
           {pagina === "Racas" && <Racas next="Classes" setPagina={setPagina}/>}
           {pagina === "Classes" && <Classes next="Classes" setPagina={setPagina}/>}
+          {pagina === "Atributos" && <Atributos next="Atributos" setPagina={setPagina}/>}
           <div className="flex justify-around gap-5 mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (
               <button

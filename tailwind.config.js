@@ -13,6 +13,7 @@ module.exports = {
       },
       backgroundImage: {
         bgT20: "url('/public/img/bgT20.jpg')",
+        d20: "url('/public/img/d20.png')",
       },
     },
     fontFamily: {
