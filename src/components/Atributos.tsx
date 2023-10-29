@@ -73,7 +73,7 @@ function HookUsage({
   const input = getInputProps({
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = Number(event.target.value);
-      if (value >= -1 && value <= 4) {
+      if (value !== valor && value >= -1 && value <= 4) {
         setValor(value);
         setAtributosSelecionados((prevState) => {
           const newState = [...prevState];
@@ -83,6 +83,27 @@ function HookUsage({
           return newState;
         });
         setPontos((prevPontos) => prevPontos - getPointsChange(valor, value));
+      } else if (value > 4) {
+        setValor(4);
+        setAtributosSelecionados((prevState) => {
+          const newState = [...prevState];
+          if (newState[index]) {
+            newState[index].valor = 4;
+          }
+          return newState;
+        });
+        setPontos((prevPontos) => prevPontos - getPointsChange(valor, 4));
+      } else if (value < -1 && valor > -1 ) {
+        setValor(-1);
+        setAtributosSelecionados((prevState) => {
+          const newState = [...prevState];
+          if (newState[index]) {
+            newState[index].valor = -1;
+          }
+          return newState;
+        });
+        console.log(valor, value);
+        setPontos((prevPontos) => prevPontos + 1);
       }
     },
     value: valor,
