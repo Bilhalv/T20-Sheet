@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { TabelaAtributos } from "../classes/Tabelas/Atributos";
 import { MoveDown, MoveUp } from "lucide-react";
+
 interface AtributosProps {
   setPagina: (pagina: string) => void;
   next: string;
@@ -108,6 +109,19 @@ function HookUsage({
 }
 
 export default function Atributos({ setPagina, next }: AtributosProps) {
+  if (localStorage.getItem("atributos") === null) {
+    localStorage.setItem(
+      "atributos",
+      JSON.stringify([
+        { nome: "Força", valor: 0 },
+        { nome: "Destreza", valor: 0 },
+        { nome: "Constituição", valor: 0 },
+        { nome: "Inteligência", valor: 0 },
+        { nome: "Sabedoria", valor: 0 },
+        { nome: "Carisma", valor: 0 },
+      ])
+    );
+  }
   const [atributosSelecionados, setAtributosSelecionados] = useState([
     { nome: "Força", valor: 0 },
     { nome: "Destreza", valor: 0 },
