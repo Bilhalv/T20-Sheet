@@ -1,8 +1,12 @@
 import { Poder } from "./Poder";
+import { TabelaPericiasEnum } from "../Tabelas/Pericias";
+import { TabelaPoderesEnum } from "../Tabelas/Poderes";
+
+
 
 export class Beneficios{
-  pericias: string[] = [];
-  poderes: string[] = [];
+  pericias: TabelaPericiasEnum[] = [];
+  poderes: TabelaPoderesEnum[] = [];
 }
 
 export class Origem {
