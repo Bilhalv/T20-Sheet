@@ -281,9 +281,9 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                 </i>
               </li>
             </ul>
-            <h3 className="mt-2 font-bold">{origem.poder.nome}</h3>
+            {/* <h3 className="mt-2 font-bold">{origem.poder.nome}</h3> */}
             <p className="font-serif italic text-justify">
-              &nbsp;&nbsp;{origem.poder.descricao}
+              {/* &nbsp;&nbsp;{origem.poder.descricao} */}
             </p>
           </ModalBody>
           <ModalFooter>

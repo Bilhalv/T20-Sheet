@@ -11,5 +11,4 @@ export class Origem {
   itens: string[] = [];
   beneficios: Beneficios = new Beneficios();
   imagem: string = "";
-  poder: Poder = new Poder();
 }

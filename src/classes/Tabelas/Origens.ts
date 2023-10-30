@@ -1,5 +1,6 @@
 import { Origem } from "../Construtores/Origem";
 import { TipoPoder } from "../Construtores/Poder";
+import { TabelaPoderesOrigemEnum } from "./Poderes";
 
   export const TabelaOrigens: Origem[] = [
     {
@@ -11,12 +12,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Medicina', 'Membro da Igreja', 'Vontade de Ferro']
       },
       imagem: "./img/origens/acolito.png",
-      poder: {
-        nome: 'Membro da Igreja',
-        descricao: 'Você consegue hospedagem confortável e informação em qualquer templo de sua divindade, para você e seus aliados.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     },
     {
       nome: 'Amigo dos Animais',
@@ -27,12 +22,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Animal de Estimação', 'Aptidão Animal', 'Ligação Animal']
       },
       imagem: "./img/origens/amigo.png",
-      poder: {
-        nome: 'Amigo Especial',
-        descricao: 'Você recebe +5 em testes de Adestramento com animais. Além disso, possui um animal de estimação que o auxilia e o acompanha em suas aventuras. Em termos de jogo, é um parceiro que fornece +2 em uma perícia a sua escolha (exceto Luta ou Pontaria e aprovada pelo mestre) e não conta em seu limite de parceiros.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     },
     {
       nome: 'Amnésico',
@@ -43,12 +32,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['o poder Lembranças Graduais.']
       },
       imagem: "./img/origens/amnesico.png",
-      poder: {
-        nome: 'Lembranças Graduais',
-        descricao: 'Durante suas aventuras, em determinados momentos a critério do mestre, você pode fazer um teste de Sabedoria (CD 10) para reconhecer pessoas, criaturas ou lugares que tenha encontrado antes de perder a memória.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     },
     {
       nome: 'Aristocrata',
@@ -59,12 +42,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Comandar', 'Sangue Azul']
       },
       imagem: "./img/origens/aristocrata.png",
-      poder: {
-        nome: 'Sangue Azul',
-        descricao: 'Você tem alguma influência política, suficiente para ser tratado com mais leniência pela guarda, conseguir uma audiência com o nobre local etc.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Artesão',
@@ -75,12 +52,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Frutos do Trabalho' ,"Sortudo"]
       },
       imagem: "./img/origens/artesao.png",
-      poder: {
-        nome: 'Frutos do Trabalho',
-        descricao: 'No início de cada aventura, você recebe até 5 itens gerais que possa fabricar num valor total de até T$ 50. Esse valor aumenta para T$ 100 no patamar aventureiro, T$ 300 no heroico e T$ 500 no lenda.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Artista',
@@ -91,12 +62,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Atraente', "Dom Artístico", "Sortudo", "Torcida"]
       },
       imagem: "./img/origens/artista.png",
-      poder: {
-        nome: 'Dom artístico',
-        descricao: 'Você recebe +2 em testes de Atuação, e recebe o dobro de tibares em apresentações.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Assistente de Laboratório',
@@ -107,12 +72,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Esse Cheiro...' ,"Venefício", "um poder da Tormenta a sua escolha"]
       },
       imagem: "./img/origens/assistente.png",
-      poder: {
-        nome: 'Esse Cheiro...',
-        descricao: 'Você recebe +2 em Fortitude e detecta automaticamente a presença (mas não a localização ou natureza) de itens alquímicos em alcance curto.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Batedor',
@@ -123,12 +82,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['À Prova de Tudo', 'Estilo de Disparo', 'Sentidos Aguçados']
       },
       imagem: "./img/origens/batedor.png",
-      poder: {
-        nome: 'À Prova de Tudo',
-        descricao: 'Você não sofre penalidade em deslocamento e Sobrevivência por clima ruim e por terreno difícil natural.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Capanga',
@@ -139,12 +92,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Confissão', "um poder de combate a sua escolha"]
       },
       imagem: "./img/origens/capanga.png",
-      poder: {
-        nome: 'Confissão',
-        descricao: 'Você pode usar Intimidação para interrogar sem custo e em uma hora (veja Investigação).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Charlatão',
@@ -155,12 +102,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Alpinista Social',"Aparência Inofensiva","Sortudo"]
       },
       imagem: "./img/origens/charlatao.png",
-      poder: {
-        nome: 'Alpinista Social',
-        descricao: 'Você pode substituir testes de Diplomacia por testes de Enganação.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Circense',
@@ -171,12 +112,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Acrobático',"Torcida","Truque de Mágica"]
       },
       imagem: "./img/origens/circense.png",
-      poder: {
-        nome: 'Truque de Mágica',
-        descricao: 'Você pode lançar Explosão de Chamas, Hipnotismo e Queda Suave, mas apenas com o aprimoramento Truque. Esta não é uma habilidade mágica — os efeitos provêm de prestidigitação.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Criminoso',
@@ -187,12 +122,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Punguista', 'Venefício']
       },
       imagem: "./img/origens/criminoso.png",
-      poder: {
-        nome: 'Punguista',
-        descricao: 'Você pode fazer testes de Ladinagem para sustento (como a perícia Ofício), mas em apenas um dia. Se passar, recebe o dobro do dinheiro, mas, se falhar, pode ter problemas com a lei (a critério do mestre).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Curandeiro',
@@ -203,12 +132,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Medicina','Médico de Campo', 'Venefício']
       },
       imagem: "./img/origens/curandeiro.png",
-      poder: {
-        nome: 'Médico de Campo',
-        descricao: 'Você soma sua Sabedoria aos PV restaurados por suas habilidades e itens mundanos de cura.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Eremita',
@@ -219,12 +142,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Busca Interior', 'Lobo Solitário']
       },
       imagem: "./img/origens/eremita.png",
-      poder: {
-        nome: 'Busca Interior',
-        descricao: 'Quando você e seus companheiros estão diante de um mistério, incapazes de prosseguir, você pode gastar 1 PM para meditar sozinho durante algum tempo e receber uma dica do mestre.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Escravo',
@@ -235,12 +152,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Desejo de Liberdade', 'Vitalidade']
       },
       imagem: "./img/origens/escravo.png",
-      poder: {
-        nome: 'Desejo de Liberdade',
-        descricao: 'Ninguém voltará a torná-lo um escravo! Você recebe +5 em testes contra a manobra agarrar e efeitos de movimento.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Estudioso',
@@ -251,12 +162,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Aparência Inofensiva', 'Palpite Fundamentado']
       },
       imagem: "./img/origens/estudioso.png",
-      poder: {
-        nome: 'Palpite Fundamentado',
-        descricao: 'Você pode gastar 2 PM para substituir um teste de qualquer perícia originalmente baseada em Inteligência ou Sabedoria por um teste de Conhecimento.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Fazendeiro',
@@ -267,12 +172,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Água no Feijão', 'Ginete']
       },
       imagem: "./img/origens/fazendeiro.png",
-      poder: {
-        nome: 'Água no Feijão',
-        descricao: 'Você não sofre a penalidade de -5 e não gasta matéria prima adicional para fabricar pratos para cinco pessoas.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Forasteiro',
@@ -283,12 +182,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Cultura Exótica', 'Lobo Solitário']
       },
       imagem: "./img/origens/forasteiro.png",
-      poder: {
-        nome: 'Cultura Exótica',
-        descricao: 'Por sua diferente visão de mundo, você encontra soluções inesperadas. Você pode gastar 1 PM para fazer um teste de perícia somente treinada, mesmo sem ser treinado na perícia.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Gladiador',
@@ -299,12 +192,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Atraente', 'Pão e Circo', 'Torcida', 'um poder de combate a sua escolha']
       },
       imagem: "./img/origens/gladiador.png",
-      poder: {
-        nome: 'Pão e Circo',
-        descricao: 'Por seu treino em combates de exibição, você sabe “bater sem machucar”. Pode escolher causar dano não letal sem sofrer a penalidade de -5.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Guarda',
@@ -315,12 +202,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Detetive', 'Investigador', 'um poder de combate a sua escolha']
       },
       imagem: "./img/origens/guarda.png",
-      poder: {
-        nome: 'Detetive',
-        descricao: 'Você pode gastar 1 PM para substituir testes de Percepção e Intuição por testes de Investigação até o fim da cena.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Herdeiro',
@@ -331,12 +212,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Comandar', 'Herança']
       },
       imagem: "./img/origens/herdeiro.png",
-      poder: {
-        nome: 'Herança',
-        descricao: 'Você herdou um item de preço de até T$ 1.000. Você pode escolher este poder duas vezes, para um item de até T$ 2.000.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Herói Camponês',
@@ -347,12 +222,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Coração Heroico', 'Sortudo', 'Surto Heroico', 'Torcida']
       },
       imagem: "./img/origens/heroi.png",
-      poder: {
-        nome: 'Coração Heroico',
-        descricao: 'Você recebe +3 pontos de mana. Quando atinge um novo patamar (no 5º, 11º e 17º níveis), recebe +3 PM.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Marujo',
@@ -363,12 +232,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Acrobático','Passagem de Navio']
       },
       imagem: "./img/origens/marujo.png",
-      poder: {
-        nome: 'Passagem de Navio',
-        descricao: 'Você consegue transporte marítimo para você e seus aliados, sem custos, desde que todos paguem com trabalho (passar em pelo menos um teste de perícia adequado durante a viagem).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Mateiro',
@@ -379,12 +242,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Lobo Solitário', 'Sentidos Aguçados', 'Vendedor de Carcaças']
       },
       imagem: "./img/origens/mateiro.png",
-      poder: {
-        nome: 'Vendedor de Carcaças',
-        descricao: 'Você pode extrair recursos de criaturas em um minuto, em vez de uma hora, e recebe +5 no teste',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Membro de Guilda',
@@ -395,12 +252,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Foco em Perícia', 'Rede de Contatos']
       },
       imagem: "./img/origens/membro.png",
-      poder: {
-        nome: 'Rede de Contatos',
-        descricao: 'Graças à influência de sua guilda, você pode usar Diplomacia para interrogar sem custo e em uma hora (veja Investigação).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Mercador',
@@ -411,12 +262,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Negociação', 'Proficiência', 'Sortudo']
       },
       imagem: "./img/origens/mercador.png",
-      poder: {
-        nome: 'Negociação',
-        descricao: 'Você pode vender itens 10% mais caro (não cumulativo com barganha).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Minerador',
@@ -427,12 +272,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Ataque Poderoso','Escavador','Sentidos Aguçados']
       },
       imagem: "./img/origens/minerador.png",
-      poder: {
-        nome: 'Escavador',
-        descricao: 'Você se torna proficiente em picaretas, causa +1 de dano com elas e não é afetado por terreno difícil em masmorras e subterrâneos.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Nômade',
@@ -443,12 +282,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Lobo Solitário', 'Mochileiro', 'Sentidos Aguçados']
       },
       imagem: "./img/origens/nomade.png",
-      poder: {
-        nome: 'Mochileiro',
-        descricao: 'Seu limite de carga aumenta em 5 espaços.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Pivete',
@@ -459,12 +292,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Acrobático','Aparência Inofensiva', 'Quebra-Galho']
       },
       imagem: "./img/origens/pivete.png",
-      poder: {
-        nome: 'Quebra-galho',
-        descricao: 'Em cidades ou metrópoles, você pode comprar qualquer item mundano não superior por metade do preço normal. Esses itens não podem ser matérias-primas e não podem ser revendidos (são velhos, sujos, furtados...).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Refugiado',
@@ -475,12 +302,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Estoico', 'Vontade de Ferro']
       },
       imagem: "./img/origens/refugiado.png",
-      poder: {
-        nome: 'Estoico',
-        descricao: 'Sua condição de descanso é uma categoria acima do padrão pela situação (normal em condições ruins, confortável em condições normais e luxuosa em condições confortáveis ou melhores). Veja as regras de recuperação na página 106.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Seguidor',
@@ -491,12 +312,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Antigo Mestre', 'Proficiência', 'Surto Heroico']
       },
       imagem: "./img/origens/seguidor.png",
-      poder: {
-        nome: 'Antigo Mestre',
-        descricao: 'Você ainda mantém contato com o herói que costumava servir. Uma vez por aventura, ele surge para ajudá-lo por uma cena. Ele é um parceiro mestre de um tipo a sua escolha (definido ao obter este poder) que não conta em seu limite de aliados.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Selvagem',
@@ -507,12 +322,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Lobo Solitário', 'Vida Rústica', 'Vitalidade']
       },
       imagem: "./img/origens/selvagem.png",
-      poder: {
-        nome: 'Vida Rústica',
-        descricao: 'Você come coisas que fariam um avestruz vomitar (sendo imune a efeitos prejudiciais de itens ingeríveis) e também consegue descansar nos lugares mais desconfortáveis (mesmo dormindo ao relento, sua recuperação de PV e PM nunca é inferior a seu próprio nível).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Soldado',
@@ -523,12 +332,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Influência Militar', 'um poder de combate a sua escolha']
       },
       imagem: "./img/origens/soldado.png",
-      poder: {
-        nome: 'Influência Militar',
-        descricao: 'Você fez amigos nas forças armadas. Onde houver acampamentos ou bases militares, você pode conseguir hospedagem e informações para você e seus aliados.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Taverneiro',
@@ -539,12 +342,6 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Gororoba', 'Proficiência', 'Vitalidade']
       },
       imagem: "./img/origens/taverneiro.png",
-      poder: {
-        nome: 'Gororoba',
-        descricao: 'Você não sofre a penalidade de –5 para fabricar um prato especial adiconal.',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
     {
       nome: 'Trabalhador',
@@ -555,11 +352,5 @@ import { TipoPoder } from "../Construtores/Poder";
         poderes: ['Atlético', 'Esforçado']
       },
       imagem: "./img/origens/trabalhador.png",
-      poder: {
-        nome: 'Esforçado',
-        descricao: 'Você não teme trabalho duro, nem prazos apertados. Você recebe um bônus de +2 em todos os testes de perícias estendidos (incluindo perigos complexos).',
-        tipo: TipoPoder.origem,
-        requisitos: []
-      }
     } ,
 ]
