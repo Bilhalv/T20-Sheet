@@ -22,7 +22,7 @@ const App: React.FC = () => {
           {pagina === "Inicio" && <Inicio next="Origens" setPagina={setPagina} />}
           {pagina === "Origens" && <Origens next="Racas" setPagina={setPagina}/>}
           {pagina === "Racas" && <Racas next="Classes" setPagina={setPagina}/>}
-          {pagina === "Classes" && <Classes next="Classes" setPagina={setPagina}/>}
+          {pagina === "Classes" && <Classes next="Atributos" setPagina={setPagina}/>}
           {pagina === "Atributos" && <Atributos next="Atributos" setPagina={setPagina}/>}
           <div className="flex justify-around gap-5 mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (

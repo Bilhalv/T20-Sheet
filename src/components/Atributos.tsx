@@ -136,10 +136,10 @@ function HookUsage({
   }
 
   return (
-    <HStack maxW="200px">
-      <Button {...inc}>+</Button>
-      <Input className="text-center" {...input} />
+    <HStack className="laptop:max-w-[200px]">
       <Button {...dec}>-</Button>
+      <Input className="text-center" {...input} />
+      <Button {...inc}>+</Button>
     </HStack>
   );
 }
@@ -186,17 +186,24 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setTipo(value);
+    setPontos(10);
     if (value === "Rolagem") {
       const resultado = Array.from({ length: 6 }, () => dados());
       setRolagem(
         resultado.map((valor) => {
-          if (valor === 8 || valor === 9) return -1;
-          if (valor === 10 || valor === 11) return 0;
-          if (valor === 12 || valor === 13) return 1;
-          if (valor === 14 || valor === 15) return 2;
-          if (valor === 16 || valor === 17) return 3;
-          if (valor <= 18) return 4;
-          return valor;
+          if (valor <= 9) {
+            return -1;
+          } else if (valor <= 11) {
+            return 0;
+          } else if (valor <= 13) {
+            return 1;
+          } else if (valor <= 15) {
+            return 2;
+          } else if (valor <= 17) {
+            return 3;
+          } else {
+            return 4;
+          }
         })
       );
     }
@@ -277,17 +284,18 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const finalRef = React.useRef(null);
   return (
     <>
-      <Select
-        className="ml-3 mb-3"
-        bgColor={"whiteAlpha.900"}
-        width={"xs"}
-        onChange={handleChange}
-      >
-        <option value={"Pontos"}>Pontos</option>
-        <option value={"Rolagem"}>Rolagem</option>
-      </Select>
+      <div className="desktop:w-1/4 desktop:mx-0 w-2/3 mx-auto">
+        <Select
+          className="ml-3 mb-3"
+          bgColor={"whiteAlpha.900"}
+          onChange={handleChange}
+        >
+          <option value={"Pontos"}>Pontos</option>
+          <option value={"Rolagem"}>Rolagem</option>
+        </Select>
+      </div>
       <section className="flex gap-5 flex-col desktop:flex-row">
-        <article className="flex flex-col bg-white bg-opacity-60 desktop:w-1/3 w-full h-fit p-3 rounded-lg">
+        <article className="flex flex-col bg-white bg-opacity-60 desktop:w-1/3 w-full h-fit p-3 rounded-lg desktop:order-1 order-2">
           {tipo == "Pontos" ? (
             <h1 className="text-center font-bold mb-3 text-red-900">
               Pontos : {pontos}
@@ -309,32 +317,38 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             </button>
             <button
               onClick={handleClick}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg laptop:text-base text-sm py-1 mt-3"
             >
               Confirmar
             </button>
           </div>
         </article>
-        <article className="order-2 flex flex-col flex-wrap w-2/3 h-[25rem] gap-5">
+        <article className="desktop:order-2 order-1 flex flex-col flex-wrap desktop:w-2/3 laptop:h-[25rem] gap-5">
           {TabelaAtributos.map((atributo, index) => (
             <div
               key={atributo.nome}
-              className={`flex flex-row gap-5 bg-opacity-60 bg-white p-4 rounded-md  transition-all ease-in delay-100 hover:cursor-default ${
+              className={`flex flex-col desktop:flex-row gap-5 bg-opacity-60 bg-white p-4 rounded-md  transition-all ease-in delay-100 hover:cursor-default ${
                 atributo.nome === destaque.nome
                   ? "text-red-900 bg-gray-400"
                   : ""
               }`}
             >
+              <h1 className="text-center desktop:hidden block">
+                {atributo.nome}{" "}
+                {atributosRaca[index].valor > 0 &&
+                  "+" + atributosRaca[index].valor}
+                {atributosRaca[index].valor < 0 && atributosRaca[index].valor}
+              </h1>
               <img
                 src={atributo.img}
-                className="w-1/6 rounded-lg hover:cursor-pointer"
+                className="desktop:w-1/6 w-[] desktop:mx-0 mx-auto hover:cursor-pointer"
                 onClick={() => {
                   handleDestaque(index);
                   return undefined;
                 }}
               />
               <div className="flex flex-col w-fit m-auto gap-2">
-                <h1 className="text-lg text-center">
+                <h1 className="text-lg text-center desktop:block hidden">
                   {atributo.nome}{" "}
                   {atributosRaca[index].valor > 0 &&
                     "+" + atributosRaca[index].valor}
@@ -384,11 +398,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
                         <h2>
                           <AccordionButton className="flex justify-between">
                             {pericia.nome}
-                            {isExpanded ? (
-                              <MinusIcon />
-                            ) : (
-                              <PlusIcon />
-                            )}
+                            {isExpanded ? <MinusIcon /> : <PlusIcon />}
                           </AccordionButton>
                         </h2>
                         <AccordionPanel className="font-serif italic text-justify">
