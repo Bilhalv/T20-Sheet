@@ -1,7 +1,7 @@
 import { Atributo } from "../Construtores/Atributo";
 import { Pericia } from "../Construtores/Pericia";
 
-const TabelaPericias: Pericia[] = [
+export const TabelaPericias: Pericia[] = [
     {
         nome: "Acrobacia",
         descricao: "Você consegue fazer proezas acrobáticas.",
