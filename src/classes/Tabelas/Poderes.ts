@@ -1,6 +1,6 @@
 import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
 
-export const TabelaPoderesGerais: Poder[] = [
+export const TabelaPoderes: Poder[] = [
     {
         nome: "Acuidade com Arma",
         descricao: "Quando usa uma arma corpo a corpo leve ou uma arma de arremesso, você pode usar sua Destreza em vez de Força nos testes de ataque e rolagens de dano.",
@@ -511,12 +511,7 @@ export const TabelaPoderesGerais: Poder[] = [
         descricao: "Você pode gastar 1 PM para expelir um líquido grosso e corrosivo. Até o final da cena, você recebe +1 nas rolagens de dano corpo a corpo. Este bônus aumenta em +1 para cada dois outros poderes da Tormenta que você possui.",
         tipo: TipoPoder.tormenta,
         requisitos: []
-    }
-
-
-]
-
-export const TabelaPoderesOrigem: Poder[] = [
+    },
     {
         nome: 'Membro da Igreja',
         descricao: 'Você consegue hospedagem confortável e informação em qualquer templo de sua divindade, para você e seus aliados.',
@@ -727,6 +722,7 @@ export const TabelaPoderesOrigem: Poder[] = [
         tipo: TipoPoder.origem,
         requisitos: []
     },
+
 
 ]
 

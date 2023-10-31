@@ -19,7 +19,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
 
   return (
     <>
-      <h1 className="text-xl text-center mb-4">Escolha de Nome e Nivel</h1>
+      <h1 className="text-center text-lg font-bold mb-3">Escolha de Nome e Nivel</h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg flex flex-col gap-2">
         <form onSubmit={HandleClick}>
           <div className="flex justify-between flex-col desktop:w-1/2 mx-auto">

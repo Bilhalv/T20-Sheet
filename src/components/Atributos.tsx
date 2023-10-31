@@ -284,6 +284,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const finalRef = React.useRef(null);
   return (
     <>
+    <h1 className="text-center text-lg font-bold mb-3">Distribua seus {tipo == "Pontos" ? ("pontos"):("atributos")}</h1>
       <div className="desktop:w-1/4 desktop:mx-0 w-2/3 mx-auto">
         <Select
           className="ml-3 mb-3"

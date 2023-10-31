@@ -20,6 +20,8 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
+import { TabelaPoderes } from "../classes/Tabelas/Poderes";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -79,7 +81,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
   };
   return (
     <>
-      <h1 className="text-xl text-center mb-4">Origem</h1>
+      <h1 className="text-center text-lg font-bold mb-3">Escolha sua Origem</h1>
       <main className="flex gap-5">
         <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow- h-fit">
           <section className="flex flex-col gap-2">
@@ -203,7 +205,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                           return newBeneficios;
                         });
                       }
-
                     }}
                   >
                     {pericia}
@@ -228,7 +229,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                         setBeneficiosSelecionados((beneficios) => {
                           const newBeneficios = [...beneficios];
                           if (!newBeneficios[1].beneficio.includes(poder)) {
-                          newBeneficios[1].beneficio.push(poder);
+                            newBeneficios[1].beneficio.push(poder);
                           }
                           return newBeneficios;
                         });
@@ -266,7 +267,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         <ModalContent className="font-tormenta">
           <ModalHeader>Informações da Origem {origem.nome}</ModalHeader>
           <ModalBody>
-            <ul className="text-justify">
+            <ul className="text-justify mb-3">
               <li>
                 <b>Itens.</b>
                 <i className="font-serif italic ">
@@ -281,10 +282,23 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                 </i>
               </li>
             </ul>
-            {/* <h3 className="mt-2 font-bold">{origem.poder.nome}</h3> */}
-            <p className="font-serif italic text-justify">
-              {/* &nbsp;&nbsp;{origem.poder.descricao} */}
-            </p>
+            <Accordion allowToggle>
+              {origemselecionada.beneficios.poderes.map((poder: any) => (
+                <AccordionItem key={poder}>
+                  <h2>
+                    <AccordionButton className="flex justify-between">
+                      <b>{TabelaPoderes.find((p) => p.nome === poder)?.nome}</b>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <p className="text-justify font-serif italic">
+                      &nbsp;&nbsp;{TabelaPoderes.find((p) => p.nome === poder)?.descricao}
+                    </p>
+                  </AccordionPanel>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="red" mx={"auto"} onClick={onClose}>
