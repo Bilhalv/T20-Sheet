@@ -352,7 +352,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             <ModalCloseButton />
           </ModalContent>
         </Modal>
-        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <Modal size={"lg"} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent className="font-tormenta">
             <ModalHeader>
