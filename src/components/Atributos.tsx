@@ -226,6 +226,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             .join("\n")
       );
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
+      localStorage.setItem("pagina", next);
       setPagina(next);
     } else {
       if (pontos === 0) {
@@ -242,6 +243,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               .join("\n")
         );
         localStorage.setItem("atributosFinais", JSON.stringify(atributos));
+        localStorage.setItem("pagina", next);
         setPagina(next);
       } else if (pontos > 0) {
         alert("Você ainda tem pontos para distribuir");

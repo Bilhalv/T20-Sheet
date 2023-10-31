@@ -19,12 +19,20 @@ const App: React.FC = () => {
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
           </h1>
-          {pagina === "Inicio" && <Inicio next="Origens" setPagina={setPagina} />}
-          {pagina === "Origens" && <Origens next="Racas" setPagina={setPagina}/>}
-          {pagina === "Racas" && <Racas next="Classes" setPagina={setPagina}/>}
-          {pagina === "Classes" && <Classes next="Atributos" setPagina={setPagina}/>}
-          {pagina === "Atributos" && <Atributos next="Atributos" setPagina={setPagina}/>}
-          <div className="flex justify-around gap-5 mt-5 transition-all ease-in-out">
+          {pagina === "Inicio" && (
+            <Inicio next="Origens" setPagina={setPagina} />
+          )}
+          {pagina === "Origens" && (
+            <Origens next="Racas" setPagina={setPagina} />
+          )}
+          {pagina === "Racas" && <Racas next="Classes" setPagina={setPagina} />}
+          {pagina === "Classes" && (
+            <Classes next="Atributos" setPagina={setPagina} />
+          )}
+          {pagina === "Atributos" && (
+            <Atributos next="Atributos" setPagina={setPagina} />
+          )}
+          <div className="flex justify-evenly mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (
               <button
                 key={pagina}
@@ -32,9 +40,11 @@ const App: React.FC = () => {
                   localStorage.setItem("pagina", pagina);
                   setPagina(pagina);
                 }}
-                className="text-white bg-red-800 hover:bg-gray-300 px-2 rounded-full transition-all ease-in-out shadow-lg font-[a]"
+                className={`text-white bg-red-800 active:bg-red-300 hover:bg-red-500 px-2 rounded-full transition-all ease-in-out shadow-lg font-serif ${
+                  pagina === localStorage.getItem("pagina") ? "bg-red-500" : ""
+                }`}
               >
-                {paginas.indexOf(pagina)+1}
+                {paginas.indexOf(pagina) + 1}
               </button>
             ))}
           </div>
@@ -45,4 +55,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-

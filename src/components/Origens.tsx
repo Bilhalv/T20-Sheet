@@ -22,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { TabelaPoderes } from "../classes/Tabelas/Poderes";
 import { tab } from "@testing-library/user-event/dist/tab";
+import { TabelaPericias } from "../classes/Tabelas/Pericias";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -37,6 +38,12 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     onClose: onClose2,
   } = useDisclosure();
   const finalRef2 = React.useRef(null);
+  const {
+    isOpen: isOpen3,
+    onOpen: onOpen3,
+    onClose: onClose3,
+  } = useDisclosure();
+  const finalRef3 = React.useRef(null);
   const selectedOrigem = TabelaOrigens.find(
     (origem) => origem.nome === localStorage.getItem("origem")
   );
@@ -72,12 +79,67 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
   };
 
   const [contador, setContador] = useState(0);
+  const [tipoPoder, setTipoPoder] = useState("combate");
+
+  const [selectedPoder, setSelectedPoder] = useState(TabelaPoderes[0]);
 
   const handleBeneficio = () => {
-    console.log(`Origem Selecionada: ${origem.nome}`);
-    localStorage.setItem("origem", origem.nome);
-    localStorage.setItem("beneficios", JSON.stringify(beneficiosSelecionados));
-    setPagina(next);
+    if (contador < 2) {
+      alert("Escolha 2 benefícios");
+      return;
+    } else {
+      if (beneficiosSelecionados[1].beneficio.includes("Combate")) {
+        const tipoPoderRemover = beneficiosSelecionados[1].beneficio.find(
+          (poder) => poder === "Combate"
+        );
+        setBeneficiosSelecionados((beneficios) => {
+          const newBeneficios = [...beneficios];
+          newBeneficios[1].beneficio =
+            newBeneficios[1].beneficio.filter(
+              (beneficio) => beneficio !== tipoPoderRemover
+            );
+          return newBeneficios;
+        });
+        setTipoPoder("combate");
+        onOpen3();
+      } else if (beneficiosSelecionados[1].beneficio.includes("Tormenta")) {
+        const tipoPoderRemover = beneficiosSelecionados[1].beneficio.find(
+          (poder) => poder === "Tormenta"
+        );
+        setBeneficiosSelecionados((beneficios) => {
+          const newBeneficios = [...beneficios];
+          newBeneficios[1].beneficio =
+            newBeneficios[1].beneficio.filter(
+              (beneficio) => beneficio !== tipoPoderRemover
+            );
+          return newBeneficios;
+        });
+        setTipoPoder("tormenta");
+        onOpen3();
+      } else {
+        onClose3();
+        console.log(`Origem Selecionada: ${origem.nome}`);
+        localStorage.setItem("origem", origem.nome);
+        let removerEspacoPericia = "";
+        let removerEspacoPoder = "";
+        if (beneficiosSelecionados[0].beneficio.length > 1) {
+          removerEspacoPericia = beneficiosSelecionados[0].beneficio.shift()!;
+        }
+        if (beneficiosSelecionados[1].beneficio.length > 1) {
+          removerEspacoPoder = beneficiosSelecionados[1].beneficio.shift()!;
+        }
+        setBeneficiosSelecionados([
+          { tipo: "Perícias", beneficio: [removerEspacoPericia] },
+          { tipo: "Poderes", beneficio: [removerEspacoPoder] },
+        ]);
+        localStorage.setItem(
+          "beneficios",
+          JSON.stringify(beneficiosSelecionados)
+        );
+        localStorage.setItem("pagina", next);
+        setPagina(next);
+      }
+    }
   };
   return (
     <>
@@ -165,92 +227,240 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </section>
         </section>
       </main>
+      <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
+        <ModalOverlay />
+        <ModalContent className="font-tormenta">
+          <ModalHeader>Escolha de poder {tipoPoder}</ModalHeader>
+          <ModalBody>
+            <Select
+              placeholder="Escolha um poder"
+              onChange={(e) => {
+                setBeneficiosSelecionados((beneficios) => {
+                  const newBeneficios = [...beneficios];
+                  newBeneficios[1].beneficio =
+                    newBeneficios[1].beneficio.filter(
+                      (beneficio) => beneficio !== selectedPoder.nome
+                    );
+                  if (!newBeneficios[1].beneficio.includes(e.target.value)) {
+                    newBeneficios[1].beneficio.push(e.target.value);
+                  }
+                  return newBeneficios;
+                });
+                setSelectedPoder(
+                  TabelaPoderes.find(
+                    (poder) => poder.nome === e.target.value
+                  ) ??
+                    TabelaPoderes.filter((poder) => poder.tipo === tipoPoder)[0]
+                );
+              }}
+            >
+              {TabelaPoderes.filter((poder) => poder.tipo === tipoPoder).map(
+                (poder) => (
+                  <option key={poder.nome} value={poder.nome}>
+                    {poder.nome}
+                  </option>
+                )
+              )}
+            </Select>
+            <h1>{selectedPoder.nome}</h1>
+            <p className="text-justify font-serif italic">
+              &nbsp;&nbsp;
+              {selectedPoder.descricao}
+            </p>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mx={"auto"} onClick={onClose3}>
+              Fechar
+            </Button>
+            <Button colorScheme="blue" mx={"auto"} onClick={handleBeneficio}>
+              Confirmar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
         <ModalOverlay />
         <ModalContent className="font-tormenta">
           <ModalHeader>Benefícios da Origem {origem.nome}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <CheckboxGroup>
-              <h1 className="font-bold text-center">Perícias</h1>
-              <div className="flex flex-row justify-evenly">
-                {origem.beneficios.pericias.map((pericia) => (
-                  <Checkbox
-                    key={pericia}
-                    isChecked={beneficiosSelecionados[0].beneficio.includes(
-                      pericia
-                    )}
-                    isDisabled={
-                      contador >= 2 &&
-                      !beneficiosSelecionados[0].beneficio.includes(pericia)
-                    }
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setContador(contador + 1);
-                        setBeneficiosSelecionados((beneficios) => {
-                          const newBeneficios = [...beneficios];
-                          if (!newBeneficios[0].beneficio.includes(pericia)) {
-                            newBeneficios[0].beneficio.push(pericia);
-                          }
-                          return newBeneficios;
-                        });
-                      } else {
-                        setContador(contador - 1);
-                        setBeneficiosSelecionados((beneficios) => {
-                          const newBeneficios = [...beneficios];
-                          newBeneficios[0].beneficio =
-                            newBeneficios[0].beneficio.filter(
-                              (beneficio) => beneficio !== pericia
-                            );
-                          return newBeneficios;
-                        });
+            {origem.nome !== "Amnésico" ? (
+              <CheckboxGroup>
+                <h1 className="font-bold text-center">Perícias</h1>
+                <div className="flex flex-row justify-evenly">
+                  {origem.beneficios.pericias.map((pericia: any) => (
+                    <Checkbox
+                      key={pericia}
+                      isChecked={beneficiosSelecionados[0].beneficio.includes(
+                        pericia
+                      )}
+                      isDisabled={
+                        contador >= 2 &&
+                        !beneficiosSelecionados[0].beneficio.includes(pericia)
                       }
-                    }}
-                  >
-                    {pericia}
-                  </Checkbox>
-                ))}
-              </div>
-              <h1 className="font-bold text-center mt-3">Poderes</h1>
-              <div className="flex flex-row justify-evenly">
-                {origem.beneficios.poderes.map((poder) => (
-                  <Checkbox
-                    key={poder}
-                    isChecked={beneficiosSelecionados[1].beneficio.includes(
-                      poder
-                    )}
-                    isDisabled={
-                      contador >= 2 &&
-                      !beneficiosSelecionados[1].beneficio.includes(poder)
-                    }
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setContador(contador + 1);
-                        setBeneficiosSelecionados((beneficios) => {
-                          const newBeneficios = [...beneficios];
-                          if (!newBeneficios[1].beneficio.includes(poder)) {
-                            newBeneficios[1].beneficio.push(poder);
-                          }
-                          return newBeneficios;
-                        });
-                      } else {
-                        setContador(contador - 1);
-                        setBeneficiosSelecionados((beneficios) => {
-                          const newBeneficios = [...beneficios];
-                          newBeneficios[1].beneficio =
-                            newBeneficios[1].beneficio.filter(
-                              (beneficio) => beneficio !== poder
-                            );
-                          return newBeneficios;
-                        });
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setContador(contador + 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            if (!newBeneficios[0].beneficio.includes(pericia)) {
+                              newBeneficios[0].beneficio.push(pericia);
+                            }
+                            return newBeneficios;
+                          });
+                        } else {
+                          setContador(contador - 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            newBeneficios[0].beneficio =
+                              newBeneficios[0].beneficio.filter(
+                                (beneficio) => beneficio !== pericia
+                              );
+                            return newBeneficios;
+                          });
+                        }
+                      }}
+                    >
+                      {pericia}
+                    </Checkbox>
+                  ))}
+                </div>
+                <h1 className="font-bold text-center mt-3">Poderes</h1>
+                <div className="flex flex-row justify-evenly">
+                  {origem.beneficios.poderes.map((poder) => (
+                    <Checkbox
+                      key={poder}
+                      isChecked={beneficiosSelecionados[1].beneficio.includes(
+                        poder
+                      )}
+                      isDisabled={
+                        contador >= 2 &&
+                        !beneficiosSelecionados[1].beneficio.includes(poder)
                       }
-                    }}
-                  >
-                    {poder}
-                  </Checkbox>
-                ))}
-              </div>
-            </CheckboxGroup>
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setContador(contador + 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            if (!newBeneficios[1].beneficio.includes(poder)) {
+                              newBeneficios[1].beneficio.push(poder);
+                            }
+                            return newBeneficios;
+                          });
+                        } else {
+                          setContador(contador - 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            newBeneficios[1].beneficio =
+                              newBeneficios[1].beneficio.filter(
+                                (beneficio) => beneficio !== poder
+                              );
+                            return newBeneficios;
+                          });
+                        }
+                      }}
+                    >
+                      {poder}
+                    </Checkbox>
+                  ))}
+                  {origem.nome == "Capanga" ||
+                  origem.nome == "Gladiador" ||
+                  origem.nome == "Guarda" ||
+                  origem.nome == "Soldado" ? (
+                    <Checkbox
+                      isChecked={beneficiosSelecionados[1].beneficio.includes(
+                        "Combate"
+                      )}
+                      isDisabled={
+                        contador >= 2 &&
+                        !beneficiosSelecionados[1].beneficio.includes("Combate")
+                      }
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setContador(contador + 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            if (
+                              !newBeneficios[1].beneficio.includes("Combate")
+                            ) {
+                              newBeneficios[1].beneficio.push("Combate");
+                            }
+                            return newBeneficios;
+                          });
+                        } else {
+                          setContador(contador - 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            newBeneficios[1].beneficio =
+                              newBeneficios[1].beneficio.filter(
+                                (beneficio) => beneficio !== "Combate"
+                              );
+                            return newBeneficios;
+                          });
+                        }
+                      }}
+                    >
+                      Poder de Combate
+                    </Checkbox>
+                  ) : origem.nome == "Assistente de Laboratório" ? (
+                    <Checkbox
+                      isChecked={beneficiosSelecionados[1].beneficio.includes(
+                        "Tormenta"
+                      )}
+                      isDisabled={
+                        contador >= 2 &&
+                        !beneficiosSelecionados[1].beneficio.includes(
+                          "Tormenta"
+                        )
+                      }
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setContador(contador + 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            if (
+                              !newBeneficios[1].beneficio.includes("Tormenta")
+                            ) {
+                              newBeneficios[1].beneficio.push("Tormenta");
+                            }
+                            return newBeneficios;
+                          });
+                        } else {
+                          setContador(contador - 1);
+                          setBeneficiosSelecionados((beneficios) => {
+                            const newBeneficios = [...beneficios];
+                            newBeneficios[1].beneficio =
+                              newBeneficios[1].beneficio.filter(
+                                (beneficio) => beneficio !== "Tormenta"
+                              );
+                            return newBeneficios;
+                          });
+                        }
+                      }}
+                    >
+                      Poder da Tormenta
+                    </Checkbox>
+                  ) : null}
+                </div>
+              </CheckboxGroup>
+            ) : (
+              <p className="text-justify font-serif italic">
+                <Select placeholder="Escolha uma perícia(escolha do mestre)">
+                  {TabelaPericias.map((pericia) => (
+                    <option key={pericia.nome} value={pericia.nome}>
+                      {pericia.nome}
+                    </option>
+                  ))}
+                </Select>
+                <Select placeholder="Escolha um poder(escolha do mestre)">
+                  {TabelaPoderes.map((poder) => (
+                    <option key={poder.nome} value={poder.nome}>
+                      {poder.nome}
+                    </option>
+                  ))}
+                </Select>
+              </p>
+            )}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
@@ -293,7 +503,8 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                   </h2>
                   <AccordionPanel pb={4}>
                     <p className="text-justify font-serif italic">
-                      &nbsp;&nbsp;{TabelaPoderes.find((p) => p.nome === poder)?.descricao}
+                      &nbsp;&nbsp;
+                      {TabelaPoderes.find((p) => p.nome === poder)?.descricao}
                     </p>
                   </AccordionPanel>
                 </AccordionItem>

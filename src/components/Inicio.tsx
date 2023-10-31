@@ -14,6 +14,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
     console.log(nome, lvl);
     localStorage.setItem("nome", nome);
     localStorage.setItem("lvl", lvl.toString());
+    localStorage.setItem("pagina", next);
     setPagina(next);
   }
 

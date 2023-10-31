@@ -20,6 +20,7 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
+import { TabelaPericiasEnum } from "../classes/Tabelas/Pericias";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -72,7 +73,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       selectedClass.nome === "Druida"
     ) {
       if (isOpen2 !== true) {
-        setAlt(["a"])
+        setAlt(["a"]);
         onOpen2();
         return;
       }
@@ -95,7 +96,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         onClose2();
       }
     }
-    reset();
+    if (setPericias.length > 1) {
+      reset();
+    }
     onOpen3();
   };
 
@@ -120,13 +123,25 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       console.log(`Classe Selecionada: ${selectedClass.nome}`);
       localStorage.setItem("classe", selectedClass.nome);
       localStorage.setItem("alt", JSON.stringify(alt));
-      const updatedPericias = [...pericias];
+      let updatedPericias = [...pericias];
       selectedClass.pericias.forEach((pericia) => {
         updatedPericias.push(pericia);
       });
+      if (
+        selectedClass.nome === "Bucaneiro" ||
+        selectedClass.nome === "Caçador"
+      ) {
+        updatedPericias.map((pericia) => {
+          if (pericia === "Luta" || pericia === "Pontaria") {
+            updatedPericias.splice(updatedPericias.indexOf(pericia), 1);
+          }
+        });
+        updatedPericias.push(periciasExtras);
+      }
       setPericias(updatedPericias);
       localStorage.setItem("pericias", JSON.stringify(updatedPericias));
       onClose3();
+      localStorage.setItem("pagina", next);
       setPagina(next);
     } else {
       alert(
@@ -141,7 +156,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const reset = () => {
     setContador(0);
   };
-
+  const [periciasExtras, setPericiasExtras] = useState("");
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">Escolha sua Classe</h1>
@@ -215,6 +230,18 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           <ModalContent className="font-tormenta">
             <ModalHeader>Escolha suas pericias</ModalHeader>
             <ModalBody>
+              {selectedClass.nome === "Bucaneiro" ||
+              selectedClass.nome === "Caçador" ? (
+                <Select
+                  placeholder="Escolha sua pericia"
+                  onChange={(event) => {
+                    setPericiasExtras(event.target.value);
+                  }}
+                >
+                  <option value={TabelaPericiasEnum.Luta}>Luta</option>
+                  <option value={TabelaPericiasEnum.Pontaria}>Pontaria</option>
+                </Select>
+              ) : null}
               <CheckboxGroup colorScheme="red" value={pericias}>
                 <div className="grid grid-cols-2 gap-2 mx-auto h-fit">
                   {selectedClass.periciasescolha.map((pericia) => (

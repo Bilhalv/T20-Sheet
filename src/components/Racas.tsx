@@ -89,6 +89,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       }
       localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
       localStorage.setItem("raca", raceSelecionada.nome);
+      localStorage.setItem("pagina", next);
       setPagina(next);
     }
   };
