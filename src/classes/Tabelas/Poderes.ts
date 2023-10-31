@@ -27,7 +27,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Arremesso Múltiplo",
-        descricao: "Uma vez por rodada, quando faz um ataque com uma arma de arremesso, você pode gastar 1 PM para fazer um ataque adicional contra o mesmo alvo, ar- remessando outra arma de arremesso.",
+        descricao: "Uma vez por rodada, quando faz um ataque com uma arma de arremesso, você pode gastar 1 PM para fazer um ataque adicional contra o mesmo alvo, arremessando outra arma de arremesso.",
         tipo: TipoPoder.combate,
         requisitos: [
             RequisitoPoder.atributo, RequisitoPoder.poder
@@ -35,7 +35,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Ataque com Escudo",
-        descricao: "Uma vez por rodada, se estiver empunhando um escudo e fizer a ação agredir, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com o escu- do. Este ataque não faz você perder o bônus do escudo na Defesa.",
+        descricao: "Uma vez por rodada, se estiver empunhando um escudo e fizer a ação agredir, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com o escudo. Este ataque não faz você perder o bônus do escudo na Defesa.",
         tipo: TipoPoder.combate,
         requisitos: [
             RequisitoPoder.poder,
@@ -83,7 +83,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Combate Defensivo",
-        descricao: "Quando usa a ação agredir, você pode usar este poder. Se fizer isso, até seu próximo turno, sofre –2 em todos os testes de ataque, mas recebe +5 na Defesa.",
+        descricao: "Quando usa a ação agredir, você pode usar este poder. Se fizer isso, até seu próximo turno, sofre -2 em todos os testes de ataque, mas recebe +5 na Defesa.",
         tipo: TipoPoder.combate,
         requisitos: [
             RequisitoPoder.atributo
@@ -107,7 +107,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Disparo Preciso",
-        descricao: "Você pode fazer ataques à distância contra oponentes envolvidos em combate corpo a corpo sem sofrer a penalidade de –5 no teste de ataque.",
+        descricao: "Você pode fazer ataques à distância contra oponentes envolvidos em combate corpo a corpo sem sofrer a penalidade de -5 no teste de ataque.",
         tipo: TipoPoder.combate,
         requisitos: [
             RequisitoPoder.poder
@@ -115,7 +115,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Disparo Rápido",
-        descricao: "Se estiver empunhando uma arma de disparo que possa recarregar como ação livre e gastar uma ação completa para agredir, pode fazer um ataque adicional com ela. Se fizer isso, sofre –2 em todos os testes de ataque até o seu próximo turno.",
+        descricao: "Se estiver empunhando uma arma de disparo que possa recarregar como ação livre e gastar uma ação completa para agredir, pode fazer um ataque adicional com ela. Se fizer isso, sofre -2 em todos os testes de ataque até o seu próximo turno.",
         tipo: TipoPoder.combate,
         requisitos: [
             RequisitoPoder.atributo,
@@ -124,7 +124,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Empunhadura Poderosa",
-        descricao: "Ao usar uma arma feita para uma categoria de tamanho maior que a sua, a penalidade que você sofre nos testes de ataque diminui para –2 (normalmente, usar uma arma de uma categoria de tamanho maior impõe –5 nos testes de ataque).",
+        descricao: "Ao usar uma arma feita para uma categoria de tamanho maior que a sua, a penalidade que você sofre nos testes de ataque diminui para -2 (normalmente, usar uma arma de uma categoria de tamanho maior impõe -5 nos testes de ataque).",
         tipo: TipoPoder.combate,
         requisitos: [
             RequisitoPoder.atributo
@@ -172,7 +172,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Estilo de Duas Armas",
-        descricao: "Se estiver empunhando duas armas (e pelo menos uma delas for leve) e fizer a ação agredir, você pode fazer dois ataques, um com cada arma. Se fizer isso, sofre –2 em todos os testes de ataque até o seu próximo turno. Se possuir Ambidestria, em vez disso não sofre penalidade para usá-lo.",
+        descricao: "Se estiver empunhando duas armas (e pelo menos uma delas for leve) e fizer a ação agredir, você pode fazer dois ataques, um com cada arma. Se fizer isso, sofre -2 em todos os testes de ataque até o seu próximo turno. Se possuir Ambidestria, em vez disso não sofre penalidade para usá-lo.",
         tipo: TipoPoder.combate,
         requisitos: [RequisitoPoder.atributo, RequisitoPoder.pericia]
     },
@@ -274,7 +274,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Aparência Inofensiva",
-        descricao: "A primeira criatura inteligente (Int –3 ou maior) que atacar você em uma cena deve fazer um teste de Vontade (CD Car). Se falhar, perderá sua ação. Este poder só funciona uma vez por cena; independentemente de a criatura falhar ou não no teste, poderá atacá-lo nas rodadas seguintes.",
+        descricao: "A primeira criatura inteligente (Int -3 ou maior) que atacar você em uma cena deve fazer um teste de Vontade (CD Car). Se falhar, perderá sua ação. Este poder só funciona uma vez por cena; independentemente de a criatura falhar ou não no teste, poderá atacá-lo nas rodadas seguintes.",
         tipo: TipoPoder.destino,
         requisitos: [RequisitoPoder.atributo]
     },
@@ -478,7 +478,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: "Membros extras",
-        descricao: "Você possui duas armas naturais de patas insetoides que saem de suas costas, ombros ou flancos. Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 2 PM para fazer um ataque corpo a corpo extra com cada uma (dano 1d4, crítico x2, corte). Se possuir Ambidestria ou Estilo de Duas Armas, pode empunhar armas leves em suas patas insetoides (mas ainda precisa pagar 2 PM para atacar com elas e sofre a penalidade de –2 em todos os ataques).",
+        descricao: "Você possui duas armas naturais de patas insetoides que saem de suas costas, ombros ou flancos. Uma vez por rodada, quando usa a ação agredir para atacar com outra arma, pode gastar 2 PM para fazer um ataque corpo a corpo extra com cada uma (dano 1d4, crítico x2, corte). Se possuir Ambidestria ou Estilo de Duas Armas, pode empunhar armas leves em suas patas insetoides (mas ainda precisa pagar 2 PM para atacar com elas e sofre a penalidade de -2 em todos os ataques).",
         tipo: TipoPoder.tormenta,
         requisitos: [RequisitoPoder.poder_tormenta, RequisitoPoder.poder_tormenta, RequisitoPoder.poder_tormenta, RequisitoPoder.poder_tormenta]
     },
@@ -712,7 +712,7 @@ export const TabelaPoderes: Poder[] = [
     },
     {
         nome: 'Gororoba',
-        descricao: 'Você não sofre a penalidade de –5 para fabricar um prato especial adiconal.',
+        descricao: 'Você não sofre a penalidade de -5 para fabricar um prato especial adiconal.',
         tipo: TipoPoder.origem,
         requisitos: []
     },
