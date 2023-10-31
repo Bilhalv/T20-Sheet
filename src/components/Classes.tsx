@@ -20,6 +20,7 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
+import { TabelaPericiasEnum } from "../classes/Tabelas/Pericias";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -51,7 +52,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   );
   const handleClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setAlt(["a"]);
-    setContador(0);
+    reset();
     setPericias([]);
     const selectedClass = TabelaClasses.find(
       (classe) => classe.nome === event.target.value
@@ -71,6 +72,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       selectedClass.nome === "Bardo" ||
       selectedClass.nome === "Druida"
     ) {
+      if (isOpen2 !== true) {
+        setAlt(["a"]);
+        onOpen2();
+        return;
+      }
       if (alt[0] === "a") {
         alert("Escolha uma alternativa");
         return;
@@ -89,6 +95,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         }
         onClose2();
       }
+    }
+    if (setPericias.length > 1) {
+      reset();
     }
     onOpen3();
   };
@@ -114,13 +123,25 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       console.log(`Classe Selecionada: ${selectedClass.nome}`);
       localStorage.setItem("classe", selectedClass.nome);
       localStorage.setItem("alt", JSON.stringify(alt));
-      const updatedPericias = [...pericias];
+      let updatedPericias = [...pericias];
       selectedClass.pericias.forEach((pericia) => {
         updatedPericias.push(pericia);
       });
+      if (
+        selectedClass.nome === "Bucaneiro" ||
+        selectedClass.nome === "Caçador"
+      ) {
+        updatedPericias.map((pericia) => {
+          if (pericia === "Luta" || pericia === "Pontaria") {
+            updatedPericias.splice(updatedPericias.indexOf(pericia), 1);
+          }
+        });
+        updatedPericias.push(periciasExtras);
+      }
       setPericias(updatedPericias);
       localStorage.setItem("pericias", JSON.stringify(updatedPericias));
       onClose3();
+      localStorage.setItem("pagina", next);
       setPagina(next);
     } else {
       alert(
@@ -132,60 +153,16 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     }
   };
 
+  const reset = () => {
+    setContador(0);
+  };
+  const [periciasExtras, setPericiasExtras] = useState("");
   return (
     <>
-      <h1 className="text-xl text-center mb-4">Classes</h1>
+      <h1 className="text-center text-lg font-bold mb-3">Escolha sua Classe</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full ">
           <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
-            {selectedClass.nome === "Arcanista" && (
-              <Select
-                placeholder="Escolha seu caminho"
-                onChange={handleClickAlt}
-                required={true}
-              >
-                <option
-                  selected={"feiticeiro" == selectedAlt}
-                  value="feiticeiro"
-                >
-                  Feiticeiro
-                </option>
-                <option selected={"mago" == selectedAlt} value="mago">
-                  Mago
-                </option>
-                <option selected={"bruxo" == selectedAlt} value="bruxo">
-                  Bruxo
-                </option>
-              </Select>
-            )}
-            {(selectedClass.nome === "Bardo" ||
-              selectedClass.nome === "Druida") && (
-              <Button
-                onClick={onOpen2}
-                variant={"outline"}
-                className="w-full"
-                _hover={{ bg: "transparent", borderColor: "gray.300" }}
-              >
-                Selecionar escolas
-              </Button>
-            )}
-            {selectedClass.nome === "Inventor" && (
-              <Select
-                placeholder="Escolha seu protótipo"
-                onChange={handleClickAlt}
-                required={true}
-              >
-                <option
-                  selected={"alquimicos" == selectedAlt}
-                  value="alquimicos"
-                >
-                  10 itens alquimicos
-                </option>
-                <option selected={"superior" == selectedAlt} value="superior">
-                  Um item superior
-                </option>
-              </Select>
-            )}
             <div className="desktop:hidden w-full transition-all ease-in-out rounded-md">
               <Select placeholder="Escolha sua Classe" onChange={handleClick}>
                 {TabelaClasses.map((classe) => (
@@ -253,6 +230,19 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           <ModalContent className="font-tormenta">
             <ModalHeader>Escolha suas pericias</ModalHeader>
             <ModalBody>
+              {selectedClass.nome === "Bucaneiro" ||
+              selectedClass.nome === "Caçador" ? (
+                <Select
+                  className="mb-2"
+                  placeholder="Escolha sua pericia"
+                  onChange={(event) => {
+                    setPericiasExtras(event.target.value);
+                  }}
+                >
+                  <option value={TabelaPericiasEnum.Luta}>Luta</option>
+                  <option value={TabelaPericiasEnum.Pontaria}>Pontaria</option>
+                </Select>
+              ) : null}
               <CheckboxGroup colorScheme="red" value={pericias}>
                 <div className="grid grid-cols-2 gap-2 mx-auto h-fit">
                   {selectedClass.periciasescolha.map((pericia) => (
@@ -302,44 +292,93 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
           <ModalOverlay />
           <ModalContent className="font-tormenta">
-            <ModalHeader>Escolha suas escolas</ModalHeader>
+            <ModalHeader>
+              {selectedClass.nome === "Bardo" || selectedClass.nome === "Druida"
+                ? "Escolha suas escolas"
+                : selectedClass.nome === "Arcanista"
+                ? "Escolha seu caminho"
+                : "Escolha seu protótipo"}
+            </ModalHeader>
             <ModalBody>
-              <CheckboxGroup colorScheme="red" value={alt}>
-                <div className="grid grid-cols-2 gap-2 mx-auto h-fit">
-                  {escolas.map((escola) => (
-                    <Checkbox
-                      onChange={(event) => {
-                        let newAlt = [...alt];
-                        let newContador = contador;
-                        if (
-                          event &&
-                          event.target &&
-                          event.target.checked &&
-                          !alt.includes(escola.valor)
-                        ) {
-                          if (alt.includes("a")) {
-                            newAlt.splice(newAlt.indexOf("a"), 1);
+              {selectedClass.nome === "Bardo" ||
+              selectedClass.nome === "Druida" ? (
+                <CheckboxGroup colorScheme="red">
+                  <div className="grid grid-cols-2 gap-2 mx-auto h-fit">
+                    {escolas.map((escola) => (
+                      <Checkbox
+                        onChange={(event) => {
+                          let newAlt = [...alt];
+                          let newContador = contador;
+                          if (
+                            event &&
+                            event.target &&
+                            event.target.checked &&
+                            !alt.includes(escola.valor)
+                          ) {
+                            if (alt.includes("a")) {
+                              newAlt.splice(newAlt.indexOf("a"), 1);
+                            }
+                            newAlt.push(event.target.value);
+                            newContador = newContador + 1;
+                          } else if (!event.target.checked) {
+                            newAlt.splice(
+                              newAlt.indexOf(event.target.value),
+                              1
+                            );
+                            newContador = newContador - 1;
                           }
-                          newAlt.push(event.target.value);
-                          newContador = newContador + 1;
-                        } else if (!event.target.checked) {
-                          newAlt.splice(newAlt.indexOf(event.target.value), 1);
-                          newContador = newContador - 1;
+                          if (newAlt.length === 0) {
+                            newAlt.push("a");
+                          }
+                          setContador(newContador);
+                          setAlt(newAlt);
+                        }}
+                        value={escola.valor}
+                        isDisabled={
+                          contador >= 3 && !alt.includes(escola.valor)
                         }
-                        if (newAlt.length === 0) {
-                          newAlt.push("a");
-                        }
-                        setContador(newContador);
-                        setAlt(newAlt);
-                      }}
-                      value={escola.valor}
-                      isDisabled={contador >= 3 && !alt.includes(escola.valor)}
-                    >
-                      {escola.nome}
-                    </Checkbox>
-                  ))}
-                </div>
-              </CheckboxGroup>
+                      >
+                        {escola.nome}
+                      </Checkbox>
+                    ))}
+                  </div>
+                </CheckboxGroup>
+              ) : selectedClass.nome === "Arcanista" ? (
+                <Select
+                  placeholder="Escolha seu caminho"
+                  onChange={handleClickAlt}
+                  required={true}
+                >
+                  <option
+                    selected={"feiticeiro" == selectedAlt}
+                    value="feiticeiro"
+                  >
+                    Feiticeiro
+                  </option>
+                  <option selected={"mago" == selectedAlt} value="mago">
+                    Mago
+                  </option>
+                  <option selected={"bruxo" == selectedAlt} value="bruxo">
+                    Bruxo
+                  </option>
+                </Select>
+              ) : (
+                <Select
+                  placeholder="Escolha seu protótipo"
+                  onChange={handleClickAlt}
+                  required={true}
+                >
+                  <option
+                    selected={"alquimicos" == selectedAlt}
+                    value="alquimicos"
+                  >
+                    10 itens alquimicos
+                  </option>
+                  <option selected={"superior" == selectedAlt} value="superior">
+                    Um item superior
+                  </option>
+                </Select>
+              )}
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
@@ -352,7 +391,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             <ModalCloseButton />
           </ModalContent>
         </Modal>
-        <Modal size={"lg"} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent className="font-tormenta">
             <ModalHeader>
