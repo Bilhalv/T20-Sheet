@@ -63,6 +63,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
       { tipo: "Perícias", beneficio: [""] },
       { tipo: "Poderes", beneficio: [""] },
     ]);
+    setContador(0);
     const selectedOrigem = TabelaOrigens.find(
       (origem) => origem.nome === event.target.value
     );
@@ -227,7 +228,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </section>
         </section>
       </main>
-      <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
+      {/* <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
         <ModalOverlay />
         <ModalContent className="font-tormenta">
           <ModalHeader>Escolha de poder {tipoPoder}</ModalHeader>
@@ -277,7 +278,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
         <ModalOverlay />
         <ModalContent className="font-tormenta">
