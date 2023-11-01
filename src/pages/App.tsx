@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Racas from "../components/Racas";
-import Inicio from "../components/Inicio";
-import Classes from "../components/Classes";
-import Origens from "../components/Origens";
-import Atributos from "../components/Atributos";
+import Navbar from "../components/Geral/Navbar";
+import Racas from "../components/Racas/Racas";
+import Inicio from "../components/Inicio/Inicio";
+import Classes from "../components/Classes/Classes";
+import Origens from "../components/Origens/Origens";
+import Atributos from "../components/Atributos/Atributos";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];

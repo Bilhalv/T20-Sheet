@@ -1,4 +1,4 @@
-import { Classe } from "../Classes/Classe";
+import { Classe } from "../Construtores/Classe";
 import { arcanista } from "../Classes/Arcanista";
 import { barbaro } from "../Classes/Barbaro";
 import { bardo } from "../Classes/Bardo";

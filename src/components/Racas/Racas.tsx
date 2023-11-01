@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaRacas } from "../classes/Tabelas/Racas";
+import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import {
   Accordion,
   AccordionButton,

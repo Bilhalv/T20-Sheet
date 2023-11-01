@@ -1,10 +1,9 @@
+import { infos } from "./Infos";
 import { PoderRaca } from "./Poder";
 
-export class Raca {
-  nome: string = "";
-  descricao: string = "";
+export class Raca extends infos{
   atributos: string[] = [];
   escolhaAtributo: boolean = false;
   imagem: string = "";
-  poderes: PoderRaca[] = [];
+  poderes: infos[] = [];
 }

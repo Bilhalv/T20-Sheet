@@ -1,8 +1,6 @@
-import { Atributo } from "./Atributo";
+import { infos } from "./Infos";
 
-export class PoderRaca {
-  nome: string = "";
-  descricao: string = "";
+export class PoderRaca extends infos{
 }
 
 export enum TipoPoder {
@@ -28,9 +26,7 @@ export enum RequisitoPoder {
   devoto = "devoto",
 }
 
-export class Poder {
-  nome: string = "";
-  descricao: string = "";
+export class Poder extends infos{
   tipo: TipoPoder = TipoPoder.combate;
   requisitos: RequisitoPoder[] = [];
 }

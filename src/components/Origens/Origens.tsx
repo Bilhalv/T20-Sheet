@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaOrigens } from "../classes/Tabelas/Origens";
+import { TabelaOrigens } from "../../classes/Tabelas/Origens";
 import {
   Accordion,
   AccordionButton,
@@ -20,9 +20,10 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import { TabelaPoderes } from "../classes/Tabelas/Poderes";
+import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { tab } from "@testing-library/user-event/dist/tab";
-import { TabelaPericias } from "../classes/Tabelas/Pericias";
+import { TabelaPericias } from "../../classes/Tabelas/Pericias";
+import VerMais from "../Geral/VerMais";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -70,6 +71,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     if (selectedOrigem) {
       setOrigem(selectedOrigem);
       setOrigemselecionada(selectedOrigem);
+      localStorage.setItem("selecionado", selectedOrigem.nome)
       descricao2 = selectedOrigem.descricao.split(".");
       descricao1 = descricao2.shift() + ".";
     }
@@ -188,6 +190,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </div>
           </section>
           <div className="flex gap-2 mx-auto w-full justify-around">
+            <VerMais titulo="Informações" handleSelect={handleSelect}/>
             <button
               onClick={onOpen}
               className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"

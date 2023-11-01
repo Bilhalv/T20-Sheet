@@ -1,14 +1,8 @@
-import { Poder } from "../Construtores/Poder";
+import { Poder } from "./Poder";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
+import { infos } from "./Infos";
 
-
-class habilidade {
-  nome: string = "";
-  descricao: string = "";
-}
-export class Classe {
-  nome: string = "";
-  descricao: string = "";
+export class Classe extends infos {
   vidainicial: number = 0;
   vidapnivel: number = 0;
   manapnivel: number = 0;
@@ -17,7 +11,7 @@ export class Classe {
   pericias: TabelaPericiasEnum[] = [];
   proficiencias: string[] = [];
   poderesunicos: Poder[] = [];
-  habilidades: habilidade[] = [];
+  habilidades: infos[] = [];
   conjurador: boolean = false;
   imagem: string = "./img/template/Class.png";
 }

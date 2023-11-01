@@ -4,6 +4,7 @@ import { Item } from "../Construtores/Item";
 export const TabelasArmasSimles: Arma[] = [
   // Corpo a Corpo — Leves
   {
+    categoria: "Arma",
     nome: "Adaga",
     preco: 2,
     dano: "1d4",
@@ -16,6 +17,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Esta faca afiada é usada por muitos habitantes adultos do Reinado, embora seja favorita de ladrões e assassinos, por ser facilmente escondida (fornece +5 em testes de Ladinagem para ocultá-la). Quando ataca com uma adaga, você pode usar sua Destreza em vez de Força nos testes de ataque. Uma adaga pode ser arremessada.",
   },
   {
+    categoria: "Arma",
     nome: "Espada curta",
     preco: 10,
     dano: "1d6",
@@ -28,6 +30,7 @@ export const TabelasArmasSimles: Arma[] = [
       "O tipo mais comum de espada, usada por guardas ou como arma secundária de guerreiros mais capazes. Mede entre 40 e 50cm.",
   },
   {
+    categoria: "Arma",
     nome: "Foice",
     preco: 4,
     dano: "1d6",
@@ -41,6 +44,7 @@ export const TabelasArmasSimles: Arma[] = [
   },
   // Corpo a Corpo — Uma Mão
   {
+    categoria: "Arma",
     nome: "Clava",
     preco: 1,
     dano: "1d6",
@@ -53,6 +57,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Um pedaço de madeira empunhado como arma, geralmente usado por bárbaros ou criaturas brutais — ou como arma improvisada, como um galho de árvore ou pedaço de mobília. Sendo fácil de conseguir, seu preço é zero.",
   },
   {
+    categoria: "Arma",
     nome: "Lança",
     preco: 2,
     dano: "1d6",
@@ -65,6 +70,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Qualquer arma feita com uma haste de madeira e uma ponta afiada, natural ou metálica. Por sua facilidade de fabricação, é muito comum entre orcs, kobolds, trogloditas e outras raças menos civilizadas. Uma lança pode ser arremessada.",
   },
   {
+    categoria: "Arma",
     nome: "Maça",
     preco: 12,
     dano: "1d8",
@@ -78,6 +84,7 @@ export const TabelasArmasSimles: Arma[] = [
   },
   // Corpo a Corpo — Duas Mãos
   {
+    categoria: "Arma",
     nome: "Bordão",
     preco: 0,
     dano: "1d6/1d6",
@@ -90,6 +97,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Um cajado apreciado por viajantes e camponeses por sua praticidade e fácil acesso (seu preço é zero). O bordão é uma arma dupla.",
   },
   {
+    categoria: "Arma",
     nome: "Pique",
     preco: 2,
     dano: "1d8",
@@ -102,6 +110,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Essencialmente uma lança muito longa. O pique é uma arma alongada.",
   },
   {
+    categoria: "Arma",
     nome: "Tacape",
     preco: 12,
     dano: "1d10",
@@ -115,6 +124,7 @@ export const TabelasArmasSimles: Arma[] = [
   },
   // Ataque à Distância — Uma Mão
   {
+    categoria: "Arma",
     nome: "Azagaia",
     preco: 1,
     dano: "1d6",
@@ -127,6 +137,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Uma lança leve e flexível, própria para arremesso. Pode ser usada como arma corpo a corpo, mas você sofre uma penalidade de –5 no teste de ataque.",
   },
   {
+    categoria: "Arma",
     nome: "Besta leve",
     preco: 35,
     dano: "1d8",
@@ -139,6 +150,7 @@ export const TabelasArmasSimles: Arma[] = [
       "Um arco montado sobre uma coronha de madeira com um gatilho, a besta leve é uma arma que dispara virotes com grande potência. Recarregar uma besta leve é uma ação de movimento.",
   },
   {
+    categoria: "Arma",
     nome: "Funda",
     preco: 0,
     dano: "1d4",
@@ -152,6 +164,7 @@ export const TabelasArmasSimles: Arma[] = [
   },
   // Ataque à Distância — Duas Mãos
   {
+    categoria: "Arma",
     nome: "Arco curto",
     preco: 30,
     dano: "1d6",
@@ -170,6 +183,7 @@ export const tabelaArmas: Arma[] = [
   // Armas Marciais
   // Corpo a Corpo — Leves
   {
+    categoria: "Arma",
     nome: "Machadinha",
     preco: 6,
     dano: "1d6",
@@ -183,6 +197,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Corpo a Corpo — Uma Mão
   {
+    categoria: "Arma",
     nome: "Cimitarra",
     preco: 15,
     dano: "1d6",
@@ -195,6 +210,7 @@ export const tabelaArmas: Arma[] = [
       "Espada com a lâmina curva e muito afiada. A cimitarra é uma arma ágil.",
   },
   {
+    categoria: "Arma",
     nome: "Espada longa",
     preco: 15,
     dano: "1d8",
@@ -207,6 +223,7 @@ export const tabelaArmas: Arma[] = [
       "Arma típica de soldados e guerreiros, esta espada de dois gumes tem lâmina reta medindo entre 80cm e 1m.",
   },
   {
+    categoria: "Arma",
     nome: "Florete",
     preco: 20,
     dano: "1d6",
@@ -219,6 +236,7 @@ export const tabelaArmas: Arma[] = [
       "A lâmina leve e fina desta espada torna a arma muito precisa. O florete é uma arma ágil.",
   },
   {
+    categoria: "Arma",
     nome: "Machado de batalha",
     preco: 10,
     dano: "1d8",
@@ -231,6 +249,7 @@ export const tabelaArmas: Arma[] = [
       "Adaptado do machado de lenhador, este não é um instrumento para corte de árvores, mas sim uma arma capaz de causar ferimentos terríveis.",
   },
   {
+    categoria: "Arma",
     nome: "Mangual",
     preco: 8,
     dano: "1d8",
@@ -243,6 +262,7 @@ export const tabelaArmas: Arma[] = [
       "Uma haste metálica ligada a uma corrente com uma esfera de aço na ponta, que pode se enroscar na arma do adversário. O mangual é uma arma versátil, fornecendo +2 em testes para desarmar.",
   },
   {
+    categoria: "Arma",
     nome: "Martelo de guerra",
     preco: 12,
     dano: "1d8",
@@ -255,6 +275,7 @@ export const tabelaArmas: Arma[] = [
       "Outra ferramenta adaptada para combate, esta é a arma favorita de quase todos os anões que não usam machados.",
   },
   {
+    categoria: "Arma",
     nome: "Picareta",
     preco: 8,
     dano: "1d6",
@@ -267,6 +288,7 @@ export const tabelaArmas: Arma[] = [
       "Usada por mineradores, esta ferramenta quebra pedras com facilidade. Imagine o que pode fazer com carne e osso!",
   },
   {
+    categoria: "Arma",
     nome: "Tridente",
     preco: 15,
     dano: "1d8",
@@ -280,6 +302,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Corpo a Corpo — Duas Mãos
   {
+    categoria: "Arma",
     nome: "Alabarda",
     preco: 10,
     dano: "1d10",
@@ -292,6 +315,7 @@ export const tabelaArmas: Arma[] = [
       "Uma haste de madeira com 2m de comprimento e uma lâmina de machado na ponta. A alabarda é uma arma alongada.",
   },
   {
+    categoria: "Arma",
     nome: "Alfange",
     preco: 75,
     dano: "2d4",
@@ -304,6 +328,7 @@ export const tabelaArmas: Arma[] = [
       "Uma versão maior da cimitarra, esta espada de lâmina larga e curva é bastante usada por guerreiros do Deserto da Perdição.",
   },
   {
+    categoria: "Arma",
     nome: "Gadanho",
     preco: 18,
     dano: "2d4",
@@ -316,6 +341,7 @@ export const tabelaArmas: Arma[] = [
       "Outra ferramenta agrícola, o gadanho é uma versão maior da foice, para uso com as duas mãos. Foi criada para ceifar cereais, mas também pode ceifar vidas.",
   },
   {
+    categoria: "Arma",
     nome: "Lança montada",
     preco: 10,
     dano: "1d8",
@@ -328,6 +354,7 @@ export const tabelaArmas: Arma[] = [
       "A lança montada é uma arma alongada. Se você estiver montado, pode usá-la com apenas uma mão. Além disso, quando usada numa investida montada, causa +2d8 pontos de dano (note que dados extras não são multiplicados em caso de acerto crítico).",
   },
   {
+    categoria: "Arma",
     nome: "Machado de guerra",
     preco: 20,
     dano: "1d12",
@@ -340,6 +367,7 @@ export const tabelaArmas: Arma[] = [
       "Este imenso machado de lâmina dupla é uma arma extremamente perigosa.",
   },
   {
+    categoria: "Arma",
     nome: "Marreta",
     preco: 20,
     dano: "3d4",
@@ -352,6 +380,7 @@ export const tabelaArmas: Arma[] = [
       "Uma haste de madeira resistente com uma pesada cabeça de metal ou pedra.",
   },
   {
+    categoria: "Arma",
     nome: "Montante",
     preco: 50,
     dano: "2d6",
@@ -365,6 +394,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Ataque à Distância — Duas Mãos
   {
+    categoria: "Arma",
     nome: "Arco longo",
     preco: 100,
     dano: "1d8",
@@ -377,6 +407,7 @@ export const tabelaArmas: Arma[] = [
       "Este arco reforçado tem a altura de uma pessoa. Ao contrário da versão curta, é primariamente uma arma de guerra. Por ter uma puxada pesada, permite que você aplique sua Força às rolagens de dano (ao contrário de outras armas de disparo). Porém, um arco longo não pode ser usado se você estiver montado.",
   },
   {
+    categoria: "Arma",
     nome: "Besta pesada",
     preco: 50,
     dano: "1d12",
@@ -390,6 +421,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Armas Exóticas
   {
+    categoria: "Arma",
     nome: "Chicote",
     preco: 2,
     dano: "1d3",
@@ -402,6 +434,7 @@ export const tabelaArmas: Arma[] = [
       "Esta arma pode ser usada para atacar inimigos a até 4,5m e pode se enroscar nas mãos, pernas ou armas de seus adversários. O chicote é uma arma ágil e versátil, fornecendo +2 em testes para derrubar ou desarmar.",
   },
   {
+    categoria: "Arma",
     nome: "Espada bastarda",
     preco: 35,
     dano: "1d10/1d12",
@@ -414,6 +447,7 @@ export const tabelaArmas: Arma[] = [
       "Maior e mais pesada que a espada longa, esta arma é tradicionalmente usada pelos cavaleiros de Bielefeld. A espada bastarda é uma arma adaptável. É muito grande para ser usada com uma só mão sem treinamento especial; por isso é uma arma exótica. Ela pode ser usada como uma arma marcial de duas mãos.",
   },
   {
+    categoria: "Arma",
     nome: "Katana",
     preco: 100,
     dano: "1d8/1d10",
@@ -426,6 +460,7 @@ export const tabelaArmas: Arma[] = [
       "A espada tradicional do samurai tem lâmina levemente curva e apenas um gume. A katana é uma arma adaptável e ágil. É muito grande para ser empunhada com uma só mão sem treinamento especial; por isso, é uma arma exótica. Ela pode ser usada como uma arma marcial de duas mãos.",
   },
   {
+    categoria: "Arma",
     nome: "Machado anão",
     preco: 30,
     dano: "1d10",
@@ -439,6 +474,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Corpo a Corpo — Duas Mãos
   {
+    categoria: "Arma",
     nome: "Corrente de espinhos",
     preco: 25,
     dano: "2d4/2d4",
@@ -451,6 +487,7 @@ export const tabelaArmas: Arma[] = [
       "Esta arma pode ser usada para atacar inimigos a até 4,5m e pode se enroscar nas mãos, pernas ou armas de seus adversários. A corrente de espinhos é uma arma ágil, dupla e versátil, fornecendo +2 em testes para derrubar ou desarmar.",
   },
   {
+    categoria: "Arma",
     nome: "Machado táurico",
     preco: 50,
     dano: "2d8",
@@ -464,6 +501,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Ataque à Distância — Uma Mão
   {
+    categoria: "Arma",
     nome: "Rede",
     preco: 20,
     dano: "",
@@ -477,6 +515,7 @@ export const tabelaArmas: Arma[] = [
   },
   // Armas de Fogo
   {
+    categoria: "Arma",
     nome: "Pistola",
     preco: 250,
     dano: "2d6",
@@ -488,6 +527,7 @@ export const tabelaArmas: Arma[] = [
     descricao: "Arma de fogo de cano curto, a pistola é uma arma de disparo.",
   },
   {
+    categoria: "Arma",
     nome: "Mosquete",
     preco: 500,
     dano: "2d8",
