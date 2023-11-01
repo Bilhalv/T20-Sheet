@@ -10,17 +10,12 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  Box,
-  AccordionIcon,
-  AccordionPanel,
   Select,
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
 import { TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
+import VerMais from "../Geral/VerMais";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -28,8 +23,6 @@ interface ClassesProps {
 }
 
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const finalRef = React.useRef(null);
   const {
     isOpen: isOpen2,
     onOpen: onOpen2,
@@ -188,12 +181,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             {selectedClass.descricao}
           </p>
           <div className="flex gap-2 mx-auto w-full justify-around">
-            <button
-              onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Ver Mais
-            </button>
+            <VerMais
+              handleSelect={handleSelect}
+              selected={selectedClass.nome}
+              pagina="Classe"
+            />
             <button
               onClick={handleSelect}
               className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
@@ -382,114 +374,6 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
-                Fechar
-              </Button>
-              <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
-                Confirmar
-              </Button>
-            </ModalFooter>
-            <ModalCloseButton />
-          </ModalContent>
-        </Modal>
-        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent className="font-tormenta">
-            <ModalHeader>
-              Informações da classe {selectedClass.nome}
-            </ModalHeader>
-            <ModalBody>
-              <h1 className="text-center font-bold">Pontos de Vida</h1>
-              <div className="flex flex-col italic font-serif items-center justify-between">
-                <p>
-                  <b>Inicial:</b> {selectedClass.vidainicial} + constituição
-                </p>
-                <p>
-                  <b>Por Nivel:</b> {selectedClass.vidapnivel} + constituição
-                </p>
-              </div>
-              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
-              <h1 className="text-center font-bold">Pontos de Mana</h1>
-              <div className="flex italic justify-center font-serif ">
-                <p>
-                  <b>Por Nivel:</b> {selectedClass.manapnivel}PM
-                </p>
-              </div>
-              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
-              <h1 className="text-center font-bold">Proficiências</h1>
-              <div className="flex italic font-serif justify-center">
-                <p>
-                  {selectedClass?.proficiencias.map(
-                    (a: string, index: number) => {
-                      if (index === 0) {
-                        return (
-                          <ul className="flex ">
-                            {selectedClass.proficiencias.map(
-                              (a: string, index: number) => {
-                                if (index === 0) {
-                                  return <li key={index}>{a}</li>;
-                                } else if (
-                                  index ===
-                                  selectedClass.proficiencias.length - 1
-                                ) {
-                                  return <li key={index}>&nbsp;e {a}</li>;
-                                } else {
-                                  return <li key={index}>, {a}</li>;
-                                }
-                              }
-                            )}
-                          </ul>
-                        );
-                      }
-                    }
-                  )}
-                </p>
-              </div>
-              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
-              <h1 className="text-center font-bold">Perícias</h1>
-              <div>
-                <p className="italic font-serif text-justify">
-                  &nbsp;&nbsp;{selectedClass.pericias.join(", ")} e{" "}
-                  <b>escolha&nbsp;{selectedClass.periciasescolhanum} entre</b>
-                  &nbsp;
-                  {selectedClass.periciasescolha.join(", ")}
-                </p>
-              </div>
-              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
-              <div>
-                <Accordion
-                  allowToggle
-                  className="border border-gray-200 rounded-2xl px-5 py-2"
-                >
-                  <h1 className="text-center font-bold">Habilidades</h1>
-                  {selectedClass.habilidades.map((habilidade) => (
-                    <AccordionItem>
-                      <h2>
-                        <AccordionButton>
-                          <Box
-                            as="span"
-                            flex="1"
-                            textAlign="left"
-                            _firstLetter={{ textTransform: "uppercase" }}
-                          >
-                            {habilidade.nome}
-                          </Box>
-                          <AccordionIcon />
-                        </AccordionButton>
-                      </h2>
-                      <AccordionPanel
-                        className="italic font-serif text-justify"
-                        pb={4}
-                      >
-                        &nbsp;&nbsp;{habilidade.descricao}
-                      </AccordionPanel>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="red" mx={"auto"} onClick={onClose}>
                 Fechar
               </Button>
               <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>

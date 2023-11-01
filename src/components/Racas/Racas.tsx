@@ -19,6 +19,7 @@ import {
   Select,
   useDisclosure,
 } from "@chakra-ui/react";
+import VerMais from "../Geral/VerMais";
 
 interface RacasProps {
   setPagina: (pagina: string) => void;
@@ -69,7 +70,8 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
         }
       }
       if (raceSelecionada.atributos.length === 2) {
-        const [atributoNome, atributoNum] = raceSelecionada.atributos[1].split(" ");
+        const [atributoNome, atributoNum] =
+          raceSelecionada.atributos[1].split(" ");
         const atributoIndex = atributosSelecionados.findIndex(
           (atributo) => atributo.nome === atributoNome
         );
@@ -81,7 +83,8 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
     } else {
       console.log(`Raça Selecionada: ${raceSelecionada.nome}`);
       for (let i = 0; i < raceSelecionada.atributos.length; i++) {
-        const [atributoNome, atributoNum] = raceSelecionada.atributos[i].split(" ");
+        const [atributoNome, atributoNum] =
+          raceSelecionada.atributos[i].split(" ");
         const atributoIndex = atributosSelecionados.findIndex(
           (atributo) => atributo.nome === atributoNome
         );
@@ -96,11 +99,11 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
 
   const handleArtibutoChange = () => {
     if (contador === 3) {
-    console.log(`Raça Selecionada: ${raceSelecionada.nome}`);
-    console.log(atributosSelecionados);
-    localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
-    localStorage.setItem("raca", raceSelecionada.nome);
-    setPagina(next);
+      console.log(`Raça Selecionada: ${raceSelecionada.nome}`);
+      console.log(atributosSelecionados);
+      localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
+      localStorage.setItem("raca", raceSelecionada.nome);
+      setPagina(next);
     } else {
       alert("Você deve escolher 3 atributos");
     }
@@ -114,10 +117,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-1/2 w-full">
           <div className="desktop:hidden">
-            <Select
-              placeholder="Escolha Sua Raça"
-              onChange={handleRaceChange}
-            >
+            <Select placeholder="Escolha Sua Raça" onChange={handleRaceChange}>
               {TabelaRacas.map((raca) => (
                 <option
                   selected={raca.nome == (raceSelecionada?.nome ?? "")}
@@ -145,12 +145,11 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
             {raceSelecionada.atributos.join(" | ")}
           </h2>
           <div className="flex gap-2 mx-auto w-full justify-around">
-            <button
-              onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Ver Mais
-            </button>
+            <VerMais
+              pagina="Raca"
+              handleSelect={handleSelect}
+              selected={raceSelecionada.nome}
+            />
             <button
               onClick={handleSelect}
               className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
@@ -193,18 +192,27 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
               <div className="flex flex-col gap-2">
                 {atributosSelecionados.map((atributo, index) => (
                   <div key={index}>
-                    <Checkbox isDisabled={atributo.valor < 0 || (contador >= 3 && !(atributosSelecionados[index].valor == 1))} onChange={
-                      (event) => {
+                    <Checkbox
+                      isDisabled={
+                        atributo.valor < 0 ||
+                        (contador >= 3 &&
+                          !(atributosSelecionados[index].valor == 1))
+                      }
+                      onChange={(event) => {
                         const newAtributos = [...atributosSelecionados];
                         const atributoIndex = newAtributos.findIndex(
                           (atributo) => atributo.nome === event.target.name
                         );
-                        newAtributos[atributoIndex].valor = event.target.checked ? 1 : 0;
+                        newAtributos[atributoIndex].valor = event.target.checked
+                          ? 1
+                          : 0;
                         setAtributosSelecionados(newAtributos);
-                        const newContador = event.target.checked ? contador + 1 : contador - 1;
+                        const newContador = event.target.checked
+                          ? contador + 1
+                          : contador - 1;
                         setContador(newContador);
-                      }
-                    } name={atributo.nome}
+                      }}
+                      name={atributo.nome}
                     >
                       {atributo.nome}
                     </Checkbox>
@@ -225,54 +233,6 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
           </ModalFooter>
         </ModalContent>
         <ModalCloseButton />
-      </Modal>
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent className="font-tormenta">
-          <ModalHeader>Informações da raça {raceSelecionada.nome}</ModalHeader>
-          <ModalBody>
-            <h3 className="mt-2 font-bold">Atributos</h3>
-            <p>{raceSelecionada.atributos.join(", ")}</p>
-            <h3 className="mt-2 font-bold">Poderes</h3>
-            <ul>
-              <Accordion
-                allowToggle
-                className="border border-gray-200 px-2 rounded-lg"
-              >
-                {raceSelecionada.poderes.map((power, index) => (
-                  <li key={index} className="text-sm my-2">
-                    <i>
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton className="flex justify-between">
-                            <b className="font-bold">{power.nome}</b>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel
-                          className="font-serif text-justify"
-                          pb={4}
-                        >
-                          <p>&nbsp;&nbsp;{power.descricao}</p>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </i>
-                  </li>
-                ))}
-              </Accordion>
-            </ul>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="red" mx={"auto"} onClick={onClose}>
-              Fechar
-            </Button>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
-              Confirmar
-            </Button>
-          </ModalFooter>
-          <ModalCloseButton />
-        </ModalContent>
       </Modal>
     </>
   );

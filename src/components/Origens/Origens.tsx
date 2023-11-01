@@ -71,7 +71,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
     if (selectedOrigem) {
       setOrigem(selectedOrigem);
       setOrigemselecionada(selectedOrigem);
-      localStorage.setItem("selecionado", selectedOrigem.nome)
       descricao2 = selectedOrigem.descricao.split(".");
       descricao1 = descricao2.shift() + ".";
     }
@@ -97,10 +96,9 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         );
         setBeneficiosSelecionados((beneficios) => {
           const newBeneficios = [...beneficios];
-          newBeneficios[1].beneficio =
-            newBeneficios[1].beneficio.filter(
-              (beneficio) => beneficio !== tipoPoderRemover
-            );
+          newBeneficios[1].beneficio = newBeneficios[1].beneficio.filter(
+            (beneficio) => beneficio !== tipoPoderRemover
+          );
           return newBeneficios;
         });
         setTipoPoder("combate");
@@ -111,10 +109,9 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         );
         setBeneficiosSelecionados((beneficios) => {
           const newBeneficios = [...beneficios];
-          newBeneficios[1].beneficio =
-            newBeneficios[1].beneficio.filter(
-              (beneficio) => beneficio !== tipoPoderRemover
-            );
+          newBeneficios[1].beneficio = newBeneficios[1].beneficio.filter(
+            (beneficio) => beneficio !== tipoPoderRemover
+          );
           return newBeneficios;
         });
         setTipoPoder("tormenta");
@@ -190,13 +187,11 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             </div>
           </section>
           <div className="flex gap-2 mx-auto w-full justify-around">
-            <VerMais titulo="Informações" handleSelect={handleSelect}/>
-            <button
-              onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Ver Mais
-            </button>
+            <VerMais
+              handleSelect={handleSelect}
+              selected={origemselecionada.nome}
+              pagina={"Origem"}
+            />
             <button
               onClick={handleSelect}
               className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
@@ -231,57 +226,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </section>
         </section>
       </main>
-      {/* <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
-        <ModalOverlay />
-        <ModalContent className="font-tormenta">
-          <ModalHeader>Escolha de poder {tipoPoder}</ModalHeader>
-          <ModalBody>
-            <Select
-              placeholder="Escolha um poder"
-              onChange={(e) => {
-                setBeneficiosSelecionados((beneficios) => {
-                  const newBeneficios = [...beneficios];
-                  newBeneficios[1].beneficio =
-                    newBeneficios[1].beneficio.filter(
-                      (beneficio) => beneficio !== selectedPoder.nome
-                    );
-                  if (!newBeneficios[1].beneficio.includes(e.target.value)) {
-                    newBeneficios[1].beneficio.push(e.target.value);
-                  }
-                  return newBeneficios;
-                });
-                setSelectedPoder(
-                  TabelaPoderes.find(
-                    (poder) => poder.nome === e.target.value
-                  ) ??
-                    TabelaPoderes.filter((poder) => poder.tipo === tipoPoder)[0]
-                );
-              }}
-            >
-              {TabelaPoderes.filter((poder) => poder.tipo === tipoPoder).map(
-                (poder) => (
-                  <option key={poder.nome} value={poder.nome}>
-                    {poder.nome}
-                  </option>
-                )
-              )}
-            </Select>
-            <h1>{selectedPoder.nome}</h1>
-            <p className="text-justify font-serif italic">
-              &nbsp;&nbsp;
-              {selectedPoder.descricao}
-            </p>
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="red" mx={"auto"} onClick={onClose3}>
-              Fechar
-            </Button>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleBeneficio}>
-              Confirmar
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal> */}
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
         <ModalOverlay />
         <ModalContent className="font-tormenta">
@@ -471,55 +415,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
               Fechar
             </Button>
             <Button colorScheme="blue" mx={"auto"} onClick={handleBeneficio}>
-              Confirmar
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent className="font-tormenta">
-          <ModalHeader>Informações da Origem {origem.nome}</ModalHeader>
-          <ModalBody>
-            <ul className="text-justify mb-3">
-              <li>
-                <b>Itens.</b>
-                <i className="font-serif italic ">
-                  &nbsp;{origem.itens.join(", ")}
-                </i>
-              </li>
-              <li>
-                <b>Benefícios.</b>
-                <i className="font-serif italic">
-                  &nbsp;{origem.beneficios.pericias.join(", ")}
-                  (perícias) e {origem.beneficios.poderes.join(", ")} (poderes).
-                </i>
-              </li>
-            </ul>
-            <Accordion allowToggle>
-              {origemselecionada.beneficios.poderes.map((poder: any) => (
-                <AccordionItem key={poder}>
-                  <h2>
-                    <AccordionButton className="flex justify-between">
-                      <b>{TabelaPoderes.find((p) => p.nome === poder)?.nome}</b>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <p className="text-justify font-serif italic">
-                      &nbsp;&nbsp;
-                      {TabelaPoderes.find((p) => p.nome === poder)?.descricao}
-                    </p>
-                  </AccordionPanel>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="red" mx={"auto"} onClick={onClose}>
-              Fechar
-            </Button>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
               Confirmar
             </Button>
           </ModalFooter>
