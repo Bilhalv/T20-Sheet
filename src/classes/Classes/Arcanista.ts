@@ -1,5 +1,5 @@
 import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
-import { Classe } from "./Classe";
+import { Classe } from "../Construtores/Classe";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
 export const poderesArcanista: Poder[] = [
@@ -155,7 +155,7 @@ export const arcanista: Classe = {
     TabelaPericiasEnum.Percepção,
   ],
   periciasescolhanum: 2,
-  proficiencias: [],
+  proficiencias: ["Nenhuma"],
   habilidades: [
     {
       nome: "Caminho do Arcanista",

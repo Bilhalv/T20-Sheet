@@ -1,5 +1,5 @@
 import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
-import { Classe } from "./Classe";
+import { Classe } from "../Construtores/Classe";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 import { RequiredIndicator } from "@chakra-ui/react";
 

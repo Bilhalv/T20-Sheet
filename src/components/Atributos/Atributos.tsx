@@ -19,9 +19,9 @@ import {
   useNumberInput,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { TabelaAtributos } from "../classes/Tabelas/Atributos";
+import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
 import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
-import { TabelaPericias } from "../classes/Tabelas/Pericias";
+import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 
 interface AtributosProps {
   setPagina: (pagina: string) => void;

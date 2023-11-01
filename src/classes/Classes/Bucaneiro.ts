@@ -1,5 +1,5 @@
 import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
-import { Classe } from "./Classe";
+import { Classe } from "../Construtores/Classe";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 
 export const poderesBucaneiro: Poder[] = [

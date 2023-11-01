@@ -1,5 +1,5 @@
 import { Poder, RequisitoPoder, TipoPoder } from "../Construtores/Poder";
-import { Classe } from "./Classe";
+import { Classe } from "../Construtores/Classe";
 import { TabelaPericiasEnum } from "../Tabelas/Pericias";
 import { RequiredIndicator } from "@chakra-ui/react";
 
@@ -153,7 +153,7 @@ export const bardo: Classe = {
     TabelaPericiasEnum.Vontade,
   ],
   periciasescolhanum: 6,
-  proficiencias: ["armas marciais"],
+  proficiencias: ["Armas marciais"],
   habilidades: [
     {
       nome: "inspiração",

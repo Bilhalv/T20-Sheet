@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaClasses } from "../classes/Tabelas/Classes";
+import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import {
   Modal,
   ModalOverlay,
@@ -20,7 +20,7 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
-import { TabelaPericiasEnum } from "../classes/Tabelas/Pericias";
+import { TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -399,20 +399,52 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </ModalHeader>
             <ModalBody>
               <h1 className="text-center font-bold">Pontos de Vida</h1>
-              <div className="flex italic font-serif justify-between">
+              <div className="flex flex-col italic font-serif items-center justify-between">
                 <p>
                   <b>Inicial:</b> {selectedClass.vidainicial} + constituição
                 </p>
-                <p className="text-right">
+                <p>
                   <b>Por Nivel:</b> {selectedClass.vidapnivel} + constituição
                 </p>
               </div>
+              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
               <h1 className="text-center font-bold">Pontos de Mana</h1>
-              <div className="flex italic font-serif ">
+              <div className="flex italic justify-center font-serif ">
                 <p>
                   <b>Por Nivel:</b> {selectedClass.manapnivel}PM
                 </p>
               </div>
+              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
+              <h1 className="text-center font-bold">Proficiências</h1>
+              <div className="flex italic font-serif justify-center">
+                <p>
+                  {selectedClass?.proficiencias.map(
+                    (a: string, index: number) => {
+                      if (index === 0) {
+                        return (
+                          <ul className="flex ">
+                            {selectedClass.proficiencias.map(
+                              (a: string, index: number) => {
+                                if (index === 0) {
+                                  return <li key={index}>{a}</li>;
+                                } else if (
+                                  index ===
+                                  selectedClass.proficiencias.length - 1
+                                ) {
+                                  return <li key={index}>&nbsp;e {a}</li>;
+                                } else {
+                                  return <li key={index}>, {a}</li>;
+                                }
+                              }
+                            )}
+                          </ul>
+                        );
+                      }
+                    }
+                  )}
+                </p>
+              </div>
+              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
               <h1 className="text-center font-bold">Perícias</h1>
               <div>
                 <p className="italic font-serif text-justify">
@@ -422,9 +454,13 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                   {selectedClass.periciasescolha.join(", ")}
                 </p>
               </div>
-              <h1 className="text-center font-bold">Habilidades</h1>
+              <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
               <div>
-                <Accordion allowToggle>
+                <Accordion
+                  allowToggle
+                  className="border border-gray-200 rounded-2xl px-5 py-2"
+                >
+                  <h1 className="text-center font-bold">Habilidades</h1>
                   {selectedClass.habilidades.map((habilidade) => (
                     <AccordionItem>
                       <h2>
