@@ -53,12 +53,14 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               ))}
             </Select>
           </div>
+          <div className="w-1/2 mx-auto">
           <button
             type="submit"
             className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
-          >
+            >
             Confirmar
           </button>
+            </div>
         </form>
       </section>
     </>
