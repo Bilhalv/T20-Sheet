@@ -22,12 +22,13 @@ import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 
 interface Props {
+  titulo: string;
   handleSelect: any;
   selected: string;
   pagina: string;
 }
 
-export default function VerMais({ handleSelect, selected, pagina }: Props) {
+export default function VerMais({titulo, handleSelect, selected, pagina }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
   var origem =
@@ -45,7 +46,7 @@ export default function VerMais({ handleSelect, selected, pagina }: Props) {
       <Modal finalFocusRef={finalRef} onClose={onClose} isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent className="font-tormenta">
-          <ModalHeader className="text-center">{selected}</ModalHeader>
+          <ModalHeader className="text-center">{titulo}</ModalHeader>
           <ModalBody>
             {pagina === "Origem" ? (
               <>

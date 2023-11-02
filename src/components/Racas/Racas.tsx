@@ -20,6 +20,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import VerMais from "../Geral/VerMais";
+import SelectList from "../Geral/SelectList";
+import Botoes from "../Geral/Botoes";
 
 interface RacasProps {
   setPagina: (pagina: string) => void;
@@ -117,17 +119,12 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-1/2 w-full">
           <div className="desktop:hidden">
-            <Select placeholder="Escolha Sua Raça" onChange={handleRaceChange}>
-              {TabelaRacas.map((raca) => (
-                <option
-                  selected={raca.nome == (raceSelecionada?.nome ?? "")}
-                  key={raca.nome}
-                  value={raca.nome}
-                >
-                  {raca.nome}
-                </option>
-              ))}
-            </Select>
+            <SelectList
+              onChange={handleRaceChange}
+              placeholder="Escolha sua Raça"
+              selected={raceSelecionada.nome}
+              tabela={TabelaRacas}
+            />
           </div>
           <h1 className="text-center text-2xl mb-2">{raceSelecionada.nome}</h1>
           <div className="flex desktop:flex-row flex-col">
@@ -146,6 +143,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
           </h2>
           <div className="flex gap-2 mx-auto w-full justify-around">
             <VerMais
+              titulo={`Informações da raça ${raceSelecionada.nome}`}
               pagina="Raca"
               handleSelect={handleSelect}
               selected={raceSelecionada.nome}
@@ -159,27 +157,11 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
           </div>
         </section>
         <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
-          {TabelaRacas.map((race) => (
-            <Button
-              key={race.nome}
-              onClick={() =>
-                handleRaceChange({
-                  target: { value: race.nome },
-                } as React.ChangeEvent<HTMLSelectElement>)
-              }
-              _active={{
-                color: "red.900",
-                bg: "gray.300",
-              }}
-              isActive={race.nome === raceSelecionada.nome}
-              width="auto"
-              whiteSpace="normal"
-              wordBreak="break-word"
-              className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
-            >
-              {race.nome}
-            </Button>
-          ))}
+          <Botoes
+            onChange={handleRaceChange}
+            tabela={TabelaRacas}
+            selected={raceSelecionada.nome}
+          />
         </section>
       </div>
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>

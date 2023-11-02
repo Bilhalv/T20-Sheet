@@ -24,6 +24,8 @@ import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { tab } from "@testing-library/user-event/dist/tab";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import VerMais from "../Geral/VerMais";
+import SelectList from "../Geral/SelectList";
+import Botoes from "../Geral/Botoes";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -82,8 +84,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
 
   const [contador, setContador] = useState(0);
   const [tipoPoder, setTipoPoder] = useState("combate");
-
-  const [selectedPoder, setSelectedPoder] = useState(TabelaPoderes[0]);
 
   const handleBeneficio = () => {
     if (contador < 2) {
@@ -148,26 +148,18 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow- h-fit">
           <section className="flex flex-col gap-2">
             <div className="laptop:hidden">
-              <Select
-                placeholder="Escolha Sua Origem"
+              <SelectList
                 onChange={handleOrigemChange}
-              >
-                {TabelaOrigens.map((origem) => (
-                  <option
-                    selected={origem.nome == (selectedOrigem?.nome ?? "")}
-                    key={origem.nome}
-                    value={origem.nome}
-                  >
-                    {origem.nome}
-                  </option>
-                ))}
-              </Select>
+                tabela={TabelaOrigens}
+                selected={origemselecionada.nome}
+                placeholder="Escolha sua origem"
+              />
             </div>
             <div className="text-center">
               <h1 className="text-2xl">{origem.nome}</h1>
               <div className="flex flex-col desktop:flex-row items-center">
                 <img
-                  className="mx-auto w-1/4 laptop:w-1/6 desktop:mx-0"
+                  className="mx-auto w-1/4 laptop:w-1/6 desktop:mx-0 mb-3"
                   src={origem.imagem}
                   alt={origem.nome}
                   title={origem.nome}
@@ -188,6 +180,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </section>
           <div className="flex gap-2 mx-auto w-full justify-around">
             <VerMais
+              titulo={`Informações da origem ${origemselecionada.nome}`}
               handleSelect={handleSelect}
               selected={origemselecionada.nome}
               pagina={"Origem"}
@@ -202,27 +195,11 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         </section>
         <section className="hidden laptop:block p-3">
           <section className="order-2 grid-cols-5 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
-            {TabelaOrigens.map((origem) => (
-              <Button
-                key={origem.nome}
-                onClick={() =>
-                  handleOrigemChange({
-                    target: { value: origem.nome },
-                  } as React.ChangeEvent<HTMLSelectElement>)
-                }
-                isActive={origem.nome === origemselecionada?.nome}
-                _active={{
-                  color: "red.900",
-                  bg: "gray.300",
-                }}
-                width="auto"
-                whiteSpace="normal"
-                wordBreak="break-word"
-                className="bg-gray-300 p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80 mb-2"
-              >
-                {origem.nome}
-              </Button>
-            ))}
+            <Botoes
+              onChange={handleOrigemChange}
+              tabela={TabelaOrigens}
+              selected={origemselecionada.nome}
+            />
           </section>
         </section>
       </main>

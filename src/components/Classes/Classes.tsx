@@ -16,6 +16,8 @@ import {
 } from "@chakra-ui/react";
 import { TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
 import VerMais from "../Geral/VerMais";
+import SelectList from "../Geral/SelectList";
+import Botoes from "../Geral/Botoes";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -157,17 +159,12 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full ">
           <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
             <div className="desktop:hidden w-full transition-all ease-in-out rounded-md">
-              <Select placeholder="Escolha sua Classe" onChange={handleClick}>
-                {TabelaClasses.map((classe) => (
-                  <option
-                    selected={classe.nome == selectedClass.nome}
-                    key={classe.nome}
-                    value={classe.nome}
-                  >
-                    {classe.nome}
-                  </option>
-                ))}
-              </Select>
+              <SelectList
+                onChange={handleClick}
+                tabela={TabelaClasses}
+                selected={selectedClass.nome}
+                placeholder="Escolha sua classe"
+              />
             </div>
           </div>
           <h1 className="text-center text-2xl">{selectedClass.nome}</h1>
@@ -182,6 +179,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           </p>
           <div className="flex gap-2 mx-auto w-full justify-around">
             <VerMais
+              titulo={`Informações da classe ${selectedClass.nome}`}
               handleSelect={handleSelect}
               selected={selectedClass.nome}
               pagina="Classe"
@@ -194,28 +192,12 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </button>
           </div>
         </section>
-        <section className="order-2 grid-cols-3 gap-5 w-1/2 mx-auto h-full transition-all ease-in-out hidden desktop:grid">
-          {TabelaClasses.map((classe) => (
-            <Button
-              key={classe.nome}
-              onClick={() =>
-                handleClick({
-                  target: { value: classe.nome },
-                } as React.ChangeEvent<HTMLSelectElement>)
-              }
-              isActive={classe.nome === selectedClass?.nome}
-              _active={{
-                color: "red.900",
-                bg: "gray.300",
-              }}
-              width="auto"
-              whiteSpace="normal"
-              wordBreak="break-word"
-              className="bg-gray-300 p-2 w-full rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg opacity-80"
-            >
-              {classe.nome}
-            </Button>
-          ))}
+        <section className="order-2 grid-cols-3 gap-3 w-1/2 mx-auto h-full transition-all ease-in-out hidden desktop:grid">
+          <Botoes
+            onChange={handleClick}
+            tabela={TabelaClasses}
+            selected={selectedClass.nome}
+          />
         </section>
         <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
           <ModalOverlay />

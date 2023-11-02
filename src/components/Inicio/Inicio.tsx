@@ -20,7 +20,9 @@ export default function Inicio({ setPagina, next }: InicioProps) {
 
   return (
     <>
-      <h1 className="text-center text-lg font-bold mb-3">Escolha de Nome e Nivel</h1>
+      <h1 className="text-center text-lg font-bold mb-3">
+        Escolha de Nome e Nivel
+      </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg flex flex-col gap-2">
         <form onSubmit={HandleClick}>
           <div className="flex justify-between flex-col desktop:w-1/2 mx-auto">
@@ -44,7 +46,9 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               value={lvl}
               onChange={(event) => setLvl(parseInt(event.target.value))}
               className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
-              placeholder={localStorage.getItem("lvl")?.toString() ?? "Escolha seu nivel"}
+              placeholder={
+                localStorage.getItem("lvl")?.toString() ?? "Escolha seu nivel"
+              }
             >
               {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
                 <option value={num} key={num}>
@@ -53,14 +57,14 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               ))}
             </Select>
           </div>
-          <div className="w-1/2 mx-auto">
-          <button
-            type="submit"
-            className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
+          <div className="desktop:w-1/2 mx-auto">
+            <button
+              type="submit"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
             >
-            Confirmar
-          </button>
-            </div>
+              Confirmar
+            </button>
+          </div>
         </form>
       </section>
     </>
