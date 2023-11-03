@@ -44,7 +44,8 @@ export default function VerMais({titulo, handleSelect, selected, pagina }: Props
         Ver mais
       </button>
       <Modal size={"xl"} finalFocusRef={finalRef} onClose={onClose} isOpen={isOpen}>
-        <ModalOverlay />
+        <ModalOverlay backdropFilter
+        ='blur(5px)' />
         <ModalContent className="font-tormenta">
           <ModalHeader className="text-center">{titulo}</ModalHeader>
           <ModalBody>

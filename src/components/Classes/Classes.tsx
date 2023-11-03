@@ -18,6 +18,7 @@ import { TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
 import VerMais from "../Geral/VerMais";
 import SelectList from "../Geral/SelectList";
 import Botoes from "../Geral/Botoes";
+import useCustomToast from "../Geral/Toasted";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -25,6 +26,7 @@ interface ClassesProps {
 }
 
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
+  const {showCustomToast} =  useCustomToast();
   const {
     isOpen: isOpen2,
     onOpen: onOpen2,
@@ -73,19 +75,24 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         return;
       }
       if (alt[0] === "a") {
-        alert("Escolha uma alternativa");
+        showCustomToast({
+          title: "Atenção",
+          desc: "Escolha uma alternativa",
+          status: "warning",
+        });
         return;
       } else {
         if (
           (contador < 3 && selectedClass.nome === "Bardo") ||
           (contador < 3 && selectedClass.nome === "Druida")
         ) {
-          alert(
-            "Escolha mais " +
-              (3 - contador) +
-              " escola" +
-              (contador === 2 ? "" : "s")
-          );
+          showCustomToast({
+            title: "Atenção",
+            desc: `Escolha mais ${
+              3 - contador
+            } escola${contador === 2 ? "" : "s"}`,
+            status: "warning",
+          });
           return;
         }
         onClose2();
@@ -117,6 +124,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     if (contador >= selectedClass.periciasescolhanum) {
       console.log(`Classe Selecionada: ${selectedClass.nome}`);
       localStorage.setItem("classe", selectedClass.nome);
+      showCustomToast({ title: "Classe selecionada com sucesso", desc: `Classe selecionada: ${selectedClass.nome}`});
       localStorage.setItem("alt", JSON.stringify(alt));
       let updatedPericias = [...pericias];
       selectedClass.pericias.forEach((pericia) => {
@@ -139,12 +147,13 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       localStorage.setItem("pagina", next);
       setPagina(next);
     } else {
-      alert(
-        "Escolha mais " +
-          (selectedClass.periciasescolhanum - contador) +
-          " pericia" +
-          (+contador <= 2 ? "s" : "")
-      );
+      showCustomToast({
+        title: "Atenção",
+        desc: `Escolha mais ${
+          selectedClass.periciasescolhanum - contador
+        } pericia${contador === 2 ? "" : "s"}`,
+        status: "warning",
+      });
     }
   };
 
@@ -200,7 +209,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           />
         </section>
         <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
-          <ModalOverlay />
+          <ModalOverlay backdropFilter="blur(5px)" />
           <ModalContent className="font-tormenta">
             <ModalHeader>Escolha suas pericias</ModalHeader>
             <ModalBody>
@@ -264,7 +273,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           </ModalContent>
         </Modal>
         <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
-          <ModalOverlay />
+          <ModalOverlay backdropFilter="blur(5px)" />
           <ModalContent className="font-tormenta">
             <ModalHeader>
               {selectedClass.nome === "Bardo" || selectedClass.nome === "Druida"

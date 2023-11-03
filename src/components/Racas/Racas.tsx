@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Button,
   Checkbox,
-  CheckboxGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,12 +10,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Select,
   useDisclosure,
 } from "@chakra-ui/react";
 import VerMais from "../Geral/VerMais";
 import SelectList from "../Geral/SelectList";
 import Botoes from "../Geral/Botoes";
+import useCustomToast from "../Geral/Toasted";
 
 interface RacasProps {
   setPagina: (pagina: string) => void;
@@ -29,7 +23,8 @@ interface RacasProps {
 }
 
 const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { showCustomToast } = useCustomToast();
+
   const {
     isOpen: isOpen2,
     onOpen: onOpen2,
@@ -44,7 +39,6 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
     { nome: "Carisma", valor: 0 },
   ]);
   const finalRef2 = React.useRef(null);
-  const finalRef = React.useRef(null);
 
   const selectedRacas = TabelaRacas.find(
     (raca) => raca.nome === localStorage.getItem("raca")
@@ -95,19 +89,21 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
       localStorage.setItem("raca", raceSelecionada.nome);
       localStorage.setItem("pagina", next);
+      showCustomToast({ title: "Raça selecionada com sucesso", desc: `Raça selecionada: ${raceSelecionada.nome}`});
       setPagina(next);
     }
   };
-
+  
   const handleArtibutoChange = () => {
     if (contador === 3) {
       console.log(`Raça Selecionada: ${raceSelecionada.nome}`);
       console.log(atributosSelecionados);
       localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
       localStorage.setItem("raca", raceSelecionada.nome);
+      showCustomToast({ title: "Raça selecionada com sucesso", desc: `Raça selecionada: ${raceSelecionada.nome}`});
       setPagina(next);
     } else {
-      alert("Você deve escolher 3 atributos");
+      showCustomToast({ title: "Cuidado", desc: `Você deve escolher mais ${3-contador} atributo${3-contador >1 ? "s" : ""}`, status: "warning" });
     }
   };
 
@@ -165,7 +161,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
         </section>
       </div>
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
-        <ModalOverlay />
+          <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent className="font-tormanta">
           <ModalHeader>Escolha seus atributos</ModalHeader>
           <ModalBody>

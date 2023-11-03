@@ -1,19 +1,50 @@
 import { Input, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
+import useCustomToast from "../Geral/Toasted";
 interface InicioProps {
   setPagina: (pagina: string) => void;
   next: string;
 }
 
 export default function Inicio({ setPagina, next }: InicioProps) {
-  const [nome, setNome] = useState("");
-  const [lvl, setLvl] = useState(0);
+  const { showCustomToast } = useCustomToast();
+  const [nome, setNome] = useState(localStorage.getItem("nome")||"");
+  const [lvl, setLvl] = useState(Number(localStorage.getItem("lvl")) || 0);
 
   function HandleClick(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (nome === "" && lvl === 0) {
+      showCustomToast({
+        title: "Erro!",
+        desc: "Escolha seu nome e nivel!",
+        status: "error",
+      });
+      return;
+    }
+    if (nome === "") {
+      showCustomToast({
+        title: "Erro!",
+        desc: "Escolha seu nome!",
+        status: "error",
+      });
+      return;
+    }
+    if (lvl === 0) {
+      showCustomToast({
+        title: "Erro!",
+        desc: "Escolha seu nivel!",
+        status: "error",
+      });
+      return;
+    }
     console.log(nome, lvl);
     localStorage.setItem("nome", nome);
     localStorage.setItem("lvl", lvl.toString());
+    showCustomToast({
+      title: "Nome e nivel salvos!",
+      desc: `Nome: ${nome} | Nivel: ${lvl}`,
+      status: "success",
+    });
     localStorage.setItem("pagina", next);
     setPagina(next);
   }
@@ -33,7 +64,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               value={nome}
               onChange={(event) => setNome(event.target.value)}
               placeholder={localStorage.getItem("nome") ?? "Insira seu nome"}
-              className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
+              className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out font-serif"
               type="text"
               defaultValue={localStorage.getItem("nome") ?? ""}
             />
@@ -43,15 +74,13 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               Escolha seu nivel:
             </h1>
             <Select
-              value={lvl}
-              onChange={(event) => setLvl(parseInt(event.target.value))}
-              className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
-              placeholder={
-                localStorage.getItem("lvl")?.toString() ?? "Escolha seu nivel"
-              }
-            >
+             value={lvl}
+             onChange={(event) => setLvl(parseInt(event.target.value))}
+             className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
+             placeholder={"Escolha seu nivel"}
+           >
               {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
-                <option value={num} key={num}>
+                <option selected={num === Number(localStorage.getItem("lvl"))} value={num} key={num}>
                   {num}
                 </option>
               ))}

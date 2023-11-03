@@ -22,6 +22,7 @@ import React, { useEffect, useState } from "react";
 import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
 import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
+import useCustomToast from "../Geral/Toasted";
 
 interface AtributosProps {
   setPagina: (pagina: string) => void;
@@ -145,6 +146,7 @@ function HookUsage({
 }
 
 export default function Atributos({ setPagina, next }: AtributosProps) {
+  const { showCustomToast } = useCustomToast();
   if (localStorage.getItem("atributos") === null) {
     localStorage.setItem(
       "atributos",
@@ -189,23 +191,35 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
     setPontos(10);
     if (value === "Rolagem") {
       const resultado = Array.from({ length: 6 }, () => dados());
-      setRolagem(
-        resultado.map((valor) => {
-          if (valor <= 9) {
-            return -1;
-          } else if (valor <= 11) {
-            return 0;
-          } else if (valor <= 13) {
-            return 1;
-          } else if (valor <= 15) {
-            return 2;
-          } else if (valor <= 17) {
-            return 3;
-          } else {
-            return 4;
-          }
-        })
-      );
+      const resultadoAtributos = resultado.map((valor) => {
+        if (valor <= 9) {
+          return -1;
+        } else if (valor <= 11) {
+          return 0;
+        } else if (valor <= 13) {
+          return 1;
+        } else if (valor <= 15) {
+          return 2;
+        } else if (valor <= 17) {
+          return 3;
+        } else {
+          return 4;
+        }
+      });
+      setRolagem(resultadoAtributos);
+      showCustomToast({
+        title: "Rolagem de dados",
+        desc: `Dados sendo rolados...`,
+        status: "loading",
+        duration: 1000,
+        onCloseComplete: () => {
+          showCustomToast({
+            title: "Rolagem de dados",
+            desc: `Resultado dos dados foi: ${resultadoAtributos.join(" | ")}`,
+            status: "success",
+          });
+        },
+      });
     }
   };
 
@@ -219,14 +233,15 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           valor: atributo.valor + atributosRaca[index].valor + rolagem[index],
         };
       });
-      alert(
-        "Seus atributos finais são:\n" +
-          atributos
-            .map((atributo) => "- " + atributo.nome + ": " + atributo.valor)
-            .join("\n")
-      );
+      showCustomToast({
+        title: "Atributos finais",
+        desc: `Seus atributos finais são: ${atributos
+          .map((atributo) => atributo.nome + ": " + atributo.valor)
+          .join(" | ")}`,
+      });
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
       localStorage.setItem("pagina", next);
+
       setPagina(next);
     } else {
       if (pontos === 0) {
@@ -236,19 +251,27 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             valor: atributo.valor + atributosRaca[index].valor,
           };
         });
-        alert(
-          "Seus atributos finais são:\n" +
-            atributos
-              .map((atributo) => "- " + atributo.nome + ": " + atributo.valor)
-              .join("\n")
-        );
+        showCustomToast({
+          title: "Atributos finais",
+          desc: `Seus atributos finais são: ${atributos
+            .map((atributo) => atributo.nome + ": " + atributo.valor)
+            .join(" | ")}`,
+        });
         localStorage.setItem("atributosFinais", JSON.stringify(atributos));
         localStorage.setItem("pagina", next);
         setPagina(next);
       } else if (pontos > 0) {
-        alert("Você ainda tem pontos para distribuir");
+        showCustomToast({
+          title: "Você ainda tem pontos para distribuir",
+          desc: `Você ainda tem ${pontos} pontos para distribuir`,
+          status: "warning",
+        });
       } else {
-        alert("Você não pode ter pontos negativos");
+        showCustomToast({
+          title: "Erro",
+          desc: `Você não pode ter pontos negativos`,
+          status: "error",
+        });
       }
     }
   };
@@ -286,7 +309,9 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const finalRef = React.useRef(null);
   return (
     <>
-    <h1 className="text-center text-lg font-bold mb-3">Distribua seus {tipo == "Pontos" ? ("pontos"):("atributos")}</h1>
+      <h1 className="text-center text-lg font-bold mb-3">
+        Distribua seus {tipo == "Pontos" ? "pontos" : "atributos"}
+      </h1>
       <div className="desktop:w-1/4 desktop:mx-0 w-2/3 mx-auto">
         <Select
           className="ml-3 mb-3"
@@ -344,7 +369,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               </h1>
               <img
                 src={atributo.img}
-                className="desktop:w-1/6 w-[] desktop:mx-0 mx-auto hover:cursor-pointer"
+                className="desktop:w-1/6 w-[] desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110"
                 onClick={() => {
                   handleDestaque(index);
                   return undefined;
@@ -388,8 +413,13 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             </div>
           ))}
         </article>
-        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
+        <Modal
+          size={"xl"}
+          finalFocusRef={finalRef}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <ModalOverlay backdropFilter="blur(5px)" />
           <ModalContent className="font-tormenta">
             <ModalHeader>Pericias do atributo {destaque.nome}</ModalHeader>
             <ModalBody>

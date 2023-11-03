@@ -26,6 +26,7 @@ import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import VerMais from "../Geral/VerMais";
 import SelectList from "../Geral/SelectList";
 import Botoes from "../Geral/Botoes";
+import useCustomToast from "../Geral/Toasted";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -77,17 +78,22 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
       descricao1 = descricao2.shift() + ".";
     }
   };
-
+  
   const handleSelect = () => {
     onOpen2();
   };
-
+  
+  const { showCustomToast } = useCustomToast();
   const [contador, setContador] = useState(0);
   const [tipoPoder, setTipoPoder] = useState("combate");
 
   const handleBeneficio = () => {
     if (contador < 2) {
-      alert("Escolha 2 benefícios");
+      showCustomToast({
+        title: "Benefícios incompletos!",
+        desc: `Escolha 2 benefícios`,
+        status: "warning",
+      });
       return;
     } else {
       if (beneficiosSelecionados[1].beneficio.includes("Combate")) {
@@ -118,7 +124,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         onOpen3();
       } else {
         onClose3();
-        console.log(`Origem Selecionada: ${origem.nome}`);
         localStorage.setItem("origem", origem.nome);
         let removerEspacoPericia = "";
         let removerEspacoPoder = "";
@@ -137,9 +142,14 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           JSON.stringify(beneficiosSelecionados)
         );
         localStorage.setItem("pagina", next);
+        showCustomToast({
+          title: "Origem escolhida com sucesso!",
+          desc: `Você escolheu a origem ${origem.nome}`,
+        });
         setPagina(next);
       }
     }
+
   };
   return (
     <>
@@ -204,7 +214,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         </section>
       </main>
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
-        <ModalOverlay />
+          <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent className="font-tormenta">
           <ModalHeader>Benefícios da Origem {origem.nome}</ModalHeader>
           <ModalCloseButton />

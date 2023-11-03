@@ -5,6 +5,7 @@ import Inicio from "../components/Inicio/Inicio";
 import Classes from "../components/Classes/Classes";
 import Origens from "../components/Origens/Origens";
 import Atributos from "../components/Atributos/Atributos";
+import { Button } from "@chakra-ui/react";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
@@ -34,18 +35,24 @@ const App: React.FC = () => {
           )}
           <div className="flex justify-evenly mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (
-              <button
+              <Button
                 key={pagina}
+                isActive={pagina === localStorage.getItem("pagina")}
+                bg={"darkred"}
+                color={"white"}
+                _hover={{ bg: "red.600" }}
+                width="auto"
+                size={"sm"}
+                borderRadius={"full"}
+                boxShadow="lg"
+                _active={{ bg: "red.600", color: "darkred" }}
                 onClick={() => {
                   localStorage.setItem("pagina", pagina);
                   setPagina(pagina);
                 }}
-                className={`text-white bg-red-800 active:bg-red-300 hover:bg-red-500 px-2 rounded-full transition-all ease-in-out shadow-lg font-serif ${
-                  pagina === localStorage.getItem("pagina") ? "bg-red-500" : ""
-                }`}
               >
                 {paginas.indexOf(pagina) + 1}
-              </button>
+              </Button>
             ))}
           </div>
         </article>

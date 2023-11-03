@@ -13,11 +13,11 @@ export default function Botoes({ onChange, tabela, selected }: Props) {
       {tabela.map((tabelaItem) => (
         <Button
           onClick={onChange}
-          className={`p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-80 mb-2`}
+          className={`p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-80 mb-2 hover:shadow-2xl hover:transform hover:scale-110`}
           key={tabelaItem.nome}
           value={tabelaItem.nome}
-          bg={tabelaItem.nome == selected ? "red.300" : "gray.300"}
-          color={tabelaItem.nome == selected ? "red.900" : "black"}
+          bg={"gray.300"}
+          color={"black"}
           _hover={{ bg: "gray.400" }}
           width="auto"
           whiteSpace="normal"
@@ -25,8 +25,8 @@ export default function Botoes({ onChange, tabela, selected }: Props) {
           opacity={0.8}
           boxShadow="lg"
           mb={2}
-          isActive={tabelaItem.nome == selected}
           _active={{ bg: "red.300", color: "red.900" }}
+          isActive={tabelaItem.nome == selected}
         >
           {tabelaItem.nome}
         </Button>
