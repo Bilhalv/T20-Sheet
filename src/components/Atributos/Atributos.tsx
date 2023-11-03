@@ -137,7 +137,7 @@ function HookUsage({
   }
 
   return (
-    <HStack className="desktop:w-1/2 w-3/4 mx-auto">
+    <HStack className="desktop:w-1/2 w-[150px] mx-auto">
       <Button {...dec}>-</Button>
       <Input className="text-center" {...input} />
       <Button {...inc}>+</Button>
@@ -355,7 +355,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           {TabelaAtributos.map((atributo, index) => (
             <div
               key={atributo.nome}
-              className={`laptop:w-1/2 desktop:w-full flex flex-col desktop:flex-row gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
+              className={`laptop:w-1/2 w-[190px] desktop:w-full flex flex-col desktop:flex-row gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
                 atributo.nome === destaque.nome
                   ? "text-red-900 bg-gray-400"
                   : "bg-white"
