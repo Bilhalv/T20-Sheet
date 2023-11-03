@@ -351,11 +351,11 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             </button>
           </div>
         </article>
-        <article className="desktop:order-2 order-1 flex desktop:flex-col flex-wrap desktop:w-2/3 h-fit laptop:h-[20rem] gap-5 justify-center">
+        <article className="desktop:order-2 order-1 flex desktop:flex-col flex-wrap desktop:w-2/3 h-fit laptop:h-[20rem] gap-5 justify-center laptop:mr-5">
           {TabelaAtributos.map((atributo, index) => (
             <div
               key={atributo.nome}
-              className={`laptop:w-[425px] desktop:w-full flex flex-col desktop:flex-row gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
+              className={`laptop:w-1/2 desktop:w-full flex flex-col desktop:flex-row gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
                 atributo.nome === destaque.nome
                   ? "text-red-900 bg-gray-400"
                   : "bg-white"
