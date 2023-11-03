@@ -25,7 +25,7 @@ export default function Botoes({ onChange, tabela, selected }: Props) {
           opacity={0.8}
           boxShadow="lg"
           mb={2}
-          _active={{ bg: "red.300", color: "red.900" }}
+          _active={{ bg: "darkred", color: "red.200" }}
           isActive={tabelaItem.nome == selected}
         >
           {tabelaItem.nome}

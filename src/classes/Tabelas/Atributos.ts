@@ -37,7 +37,7 @@ const [
 export const TabelaAtributos: atributoConstrutor[] = [
   {
     nome: "Força",
-    img: "./img/templates/Atributo.png",
+    img: "./img/atributos/forca.png",
     descricao: "Seu poder muscular. A Força é aplicada em testes de Atletismo e Luta; rolagens de dano corpo a corpo ou com armas de arremesso, e testes de Força para levantar peso e atos similares.",
     pericias: periciasForca.map(
       ({ nome, descricao, atributo, somentetreinada, penalidadearmadura }) => ({
@@ -107,7 +107,7 @@ export const TabelaAtributos: atributoConstrutor[] = [
   },
   {
     nome: "Carisma",
-    img: "./img/templates/Atributo.png",
+    img: "./img/atributos/carisma.png",
     descricao: "Sua força de personalidade e capacidade de persuasão, além de uma mistura de simpatia e beleza. O Carisma é aplicado em testes de Adestramento, Atuação, Diplomacia, Enganação, Intimidação e Jogatina.",
     pericias: periciasCarisma.map(
       ({ nome, descricao, atributo, somentetreinada, penalidadearmadura }) => ({
