@@ -355,7 +355,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           {TabelaAtributos.map((atributo, index) => (
             <div
               key={atributo.nome}
-              className={`laptop:w-1/2 w-[190px] desktop:w-full flex flex-col desktop:flex-row gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
+              className={`laptop:w-1/2 w-[190px] desktop:w-full flex flex-col desktop:flex-row laptop:gap-0 gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
                 atributo.nome === destaque.nome
                   ? "text-red-900 bg-gray-400"
                   : "bg-white"
@@ -369,7 +369,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               </h1>
               <img
                 src={atributo.img}
-                className={`desktop:w-1/6 w-1/4 desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110 bg-red-700 p-2 ${
+                className={`desktop:w-1/6 w-1/4 desktop:h-full desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110 bg-red-700 p-2 ${
                   atributo.nome === destaque.nome ? "grayscale-0" : "grayscale"
                 }`}
                 onClick={() => {
