@@ -137,7 +137,7 @@ function HookUsage({
   }
 
   return (
-    <HStack className="laptop:max-w-[200px]">
+    <HStack className="desktop:w-1/2 w-3/4 mx-auto">
       <Button {...dec}>-</Button>
       <Input className="text-center" {...input} />
       <Button {...inc}>+</Button>
@@ -345,23 +345,23 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             </button>
             <button
               onClick={handleClick}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg laptop:text-base text-sm py-1 mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg desktop:text-base text-sm py-1 mt-3"
             >
               Confirmar
             </button>
           </div>
         </article>
-        <article className="desktop:order-2 order-1 flex flex-col flex-wrap desktop:w-2/3 laptop:h-[25rem] gap-5">
+        <article className="desktop:order-2 order-1 flex desktop:flex-col flex-wrap desktop:w-2/3 h-fit laptop:h-[20rem] gap-5 justify-center">
           {TabelaAtributos.map((atributo, index) => (
             <div
               key={atributo.nome}
-              className={`flex flex-col desktop:flex-row gap-5 bg-opacity-60 bg-white p-4 rounded-md  transition-all ease-in delay-100 hover:cursor-default ${
+              className={`laptop:w-[425px] desktop:w-full flex flex-col desktop:flex-row gap-5 bg-opacity-60 rounded-md transition-all ease-in delay-100 hover:cursor-default py-4 desktop:py-0 ${
                 atributo.nome === destaque.nome
                   ? "text-red-900 bg-gray-400"
-                  : ""
+                  : "bg-white"
               }`}
             >
-              <h1 className="text-center desktop:hidden block">
+              <h1 className="text-center text-lg desktop:hidden block">
                 {atributo.nome}{" "}
                 {atributosRaca[index].valor > 0 &&
                   "+" + atributosRaca[index].valor}
@@ -369,46 +369,50 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               </h1>
               <img
                 src={atributo.img}
-                className="desktop:w-1/6 w-[] desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110"
+                className={`desktop:w-1/6 w-1/4 desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110 bg-red-700 p-2 ${
+                  atributo.nome === destaque.nome ? "grayscale-0" : "grayscale"
+                }`}
                 onClick={() => {
                   handleDestaque(index);
                   return undefined;
                 }}
               />
-              <div className="flex flex-col w-fit m-auto gap-2">
-                <h1 className="text-lg text-center desktop:block hidden">
+              <div className="flex flex-col gap-2 mx-auto laptop:my-2 desktop:my-auto">
+                <h1 className="text-lg text-center mx-auto desktop:block hidden">
                   {atributo.nome}{" "}
                   {atributosRaca[index].valor > 0 &&
                     "+" + atributosRaca[index].valor}
                   {atributosRaca[index].valor < 0 && atributosRaca[index].valor}
                 </h1>
-                {tipo === "Pontos" ? (
-                  <HookUsage
-                    setAtributosSelecionados={setAtributosSelecionados}
-                    index={index}
-                    setPontos={setPontos}
-                  />
-                ) : (
-                  <div className="bg-d20 flex justify-center gap-6">
-                    <button
-                      disabled={index == 0}
-                      onClick={() => handleUp(index)}
-                      className="bg-white bg-opacity-70 rounded-full p-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <MoveUp />
-                    </button>
-                    <p className="text-red-800 text-lg my-auto">
-                      {rolagem[index]}
-                    </p>
-                    <button
-                      disabled={index == 5}
-                      onClick={() => handleDown(index)}
-                      className="bg-white bg-opacity-70 rounded-full p-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <MoveDown />
-                    </button>
-                  </div>
-                )}
+                <div className="mx-auto">
+                  {tipo === "Pontos" ? (
+                    <HookUsage
+                      setAtributosSelecionados={setAtributosSelecionados}
+                      index={index}
+                      setPontos={setPontos}
+                    />
+                  ) : (
+                    <div className="bg-d20 flex justify-center gap-6">
+                      <button
+                        disabled={index == 0}
+                        onClick={() => handleUp(index)}
+                        className="bg-white bg-opacity-70 rounded-full p-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <MoveUp />
+                      </button>
+                      <p className="text-red-800 text-lg my-auto">
+                        {rolagem[index]}
+                      </p>
+                      <button
+                        disabled={index == 5}
+                        onClick={() => handleDown(index)}
+                        className="bg-white bg-opacity-70 rounded-full p-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <MoveDown />
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}
