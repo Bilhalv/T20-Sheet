@@ -1,10 +1,4 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
   Button,
   IconButton,
   Modal,
@@ -15,7 +9,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Info } from "lucide-react";
 
 interface Props {
@@ -38,7 +32,6 @@ export default function InfoModal({ pagina }: Props) {
         <Info size={32} />
       </IconButton>
       <Modal
-      isCentered={true}
         size={"xl"}
         finalFocusRef={finalRef}
         onClose={onClose}
@@ -194,40 +187,43 @@ export default function InfoModal({ pagina }: Props) {
                   </div>
                 </div>
               </>
-            ) : (
-              pagina === "Atributos" ? (
-                <>
-                  <div className="text-center flex flex-col gap-3">
-                    <p className="italic font-serif mt-[-20px]">
-                      Todo personagem tem seis atributos, que definem suas
-                      competências básicas: Força, Destreza, Constituição,
-                      Inteligência, Sabedoria e Carisma. Atributos são medidos
-                      numericamente. Um valor 0 representa a média humana,
-                      valores 1 ou 2 estão acima da média e valores 3 ou 4
-                      representam pessoas extraordinárias. Existem 2 formas de
-                      definir estes atributos.
+            ) : pagina === "Atributos" ? (
+              <>
+                <div className="text-center flex flex-col gap-3">
+                  <p className="italic font-serif mt-[-20px]">
+                    Todo personagem tem seis atributos, que definem suas
+                    competências básicas: Força, Destreza, Constituição,
+                    Inteligência, Sabedoria e Carisma. Atributos são medidos
+                    numericamente. Um valor 0 representa a média humana, valores
+                    1 ou 2 estão acima da média e valores 3 ou 4 representam
+                    pessoas extraordinárias. Existem 2 formas de definir estes
+                    atributos.
+                  </p>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Pontos</h1>
+                    <p className="italic font-serif">
+                      Você começa com todos os atributos em 0 e recebe 10 pontos
+                      para aumentá-los. Cada numero tem um preço que nem sempre
+                      são iguais ao numero em si.
                     </p>
-                    <hr />
-                    <div>
-                      <h1 className="text-md font-bold">Pontos</h1>
-                      <p className="italic font-serif">
-                        Você começa com todos os atributos em 0 e recebe 10
-                        pontos para aumentá-los. Cada numero tem um preço que
-                        nem sempre são iguais ao numero em si.
-                      </p>
-                    </div>
-                    <hr />
-                    <div>
-                      <h1 className="text-md font-bold">Rolagem</h1>
-                      <p className="italic font-serif">
-                        Alternativamente você pode rolar seus atributos e
-                        escolher qual desses numeros irão para qual atributo. Os
-                        dados rolados são 4d6 eliminando o menor valor.
-                      </p>
-                    </div>
                   </div>
-                </>
-            ) : (<><p>Error</p></>))}
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Rolagem</h1>
+                    <p className="italic font-serif">
+                      Alternativamente você pode rolar seus atributos e escolher
+                      qual desses numeros irão para qual atributo. Os dados
+                      rolados são 4d6 eliminando o menor valor.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <p>Error</p>
+              </>
+            )}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mx={"auto"} onClick={onClose}>
