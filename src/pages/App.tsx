@@ -7,6 +7,7 @@ import Origens from "../components/Origens/Origens";
 import Atributos from "../components/Atributos/Atributos";
 import { Button, IconButton } from "@chakra-ui/react";
 import { Info } from "lucide-react";
+import InfoModal from "../components/Geral/InfoModal";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
@@ -19,15 +20,9 @@ const App: React.FC = () => {
         <Navbar titulo={"Inicio"} />
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
           <div className="flex flex-row-reverse mb-[-40px]">
-            <IconButton
-            zIndex={40}
-              borderRadius={"full"}
-              aria-label="Info"
-              bg={"transparent"}
-              _hover={{ bg: "transparent", color: "gray.200", mouse: "pointer" }}
-            >
-              <Info size={32} />
-            </IconButton>
+            <InfoModal
+              pagina={pagina}
+            />
           </div>
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
