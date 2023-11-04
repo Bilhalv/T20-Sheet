@@ -22,7 +22,7 @@ export default function InfoModal({ pagina }: Props) {
   return (
     <>
       <IconButton
-        zIndex={40}
+        zIndex={2}
         borderRadius={"full"}
         aria-label="Info"
         bg={"transparent"}
