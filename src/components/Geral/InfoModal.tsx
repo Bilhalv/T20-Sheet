@@ -217,6 +217,16 @@ export default function InfoModal({ pagina }: Props) {
                       rolados são 4d6 eliminando o menor valor.
                     </p>
                   </div>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Modificador de raça</h1>
+                    <p className="italic font-serif">
+                      Ao lado de alguns atributos, você encontrará um numero
+                      positivo ou negativo entre -1 e +2, esse é seu modificador
+                      de raça, ele é somado ao valor do atributo no final da sua
+                      distribuição de pontos ou dados.
+                    </p>
+                  </div>
                 </div>
               </>
             ) : (
