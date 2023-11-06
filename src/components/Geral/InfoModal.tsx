@@ -1,4 +1,9 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Button,
   IconButton,
   Modal,
@@ -207,6 +212,72 @@ export default function InfoModal({ pagina }: Props) {
                       para aumentá-los. Cada numero tem um preço que nem sempre
                       são iguais ao numero em si.
                     </p>
+                    <Accordion allowToggle>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton className="flex justify-between">
+                            <p className="font-bold">Tabela de pontos</p>
+                            <AccordionIcon/>
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel>
+                          <table className="border border-gray-300 p-2 w-full">
+                            <thead>
+                              <tr>
+                                <th className="border border-gray-300 p-2 w-1/2 text-red-800">
+                                  Numero
+                                </th>
+                                <th className="border border-gray-300 p-2 w-1/2 text-red-800">
+                                  Preço
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td className="border border-gray-300 p-2">
+                                  0
+                                </td>
+                                <td className="border border-gray-300 p-2">
+                                  0
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="border border-gray-300 p-2">
+                                  1
+                                </td>
+                                <td className="border border-gray-300 p-2">
+                                  1
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="border border-gray-300 p-2">
+                                  2
+                                </td>
+                                <td className="border border-gray-300 p-2">
+                                  2
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="border border-gray-300 p-2">
+                                  3
+                                </td>
+                                <td className="border border-gray-300 p-2">
+                                  3
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="border border-gray-300 p-2">
+                                  4
+                                </td>
+                                <td className="border border-gray-300 p-2">
+                                  4
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </Accordion>
                   </div>
                   <hr />
                   <div>

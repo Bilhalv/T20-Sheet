@@ -222,8 +222,13 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       });
     }
   };
+  const [destaqueImg, setDestaqueImg] = useState("./img/atributos/forca2.png");
 
-  const handleDestaque = (index: number) => setDestaque(TabelaAtributos[index]);
+  const handleDestaque = (index: number) => {
+    setDestaque(TabelaAtributos[index]);
+    const img = TabelaAtributos[index].img.split(".pn");
+    setDestaqueImg(img[0] + "2.pn" + img[1]);
+  };
 
   const handleClick = () => {
     if (tipo === "Rolagem") {
@@ -307,6 +312,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
+
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">
@@ -333,8 +339,8 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               Rolagem : {rolagem.join(" | ")}
             </h1>
           )}
-          <h1 className="text-center text-2xl mb-2">{destaque.nome}</h1>
-          <img src={destaque.img} className="w-1/2 rounded-2xl mx-auto" />
+          <h1 className="text-center text-3xl mb-2">{destaque.nome}</h1>
+          <img src={destaqueImg} className="w-1/2 mx-auto p-3 bg-red-700" />
           <p className="text-center font-serif my-4">{destaque.descricao}</p>
           <div className="flex gap-2 mx-auto w-full justify-around">
             <button
@@ -369,7 +375,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               </h1>
               <img
                 src={atributo.img}
-                className={`desktop:w-1/6 w-1/4 desktop:h-full desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110 bg-red-700 p-2 ${
+                className={`desktop:w-1/5 w-2/4 desktop:h-full desktop:mx-0 mx-auto hover:cursor-pointer grayscale hover:grayscale-0 transition-all ease-in-out hover:shadow-2xl hover:transform hover:scale-110 bg-red-700 p-2 ${
                   atributo.nome === destaque.nome ? "grayscale-0" : "grayscale"
                 }`}
                 onClick={() => {
