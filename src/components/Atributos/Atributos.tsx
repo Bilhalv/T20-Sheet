@@ -222,12 +222,19 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       });
     }
   };
+  const destaqueImgTable = [
+    "./img/atributos/forca2.png",
+    "./img/atributos/destreza2.png",
+    "./img/atributos/constituicao2.png",
+    "./img/atributos/inteligencia2.png",
+    "./img/atributos/sabedoria2.png",
+    "./img/atributos/carisma2.png",
+  ];
   const [destaqueImg, setDestaqueImg] = useState("./img/atributos/forca2.png");
 
   const handleDestaque = (index: number) => {
     setDestaque(TabelaAtributos[index]);
-    const img = TabelaAtributos[index].img.split(".pn");
-    setDestaqueImg(img[0] + "2.pn" + img[1]);
+    setDestaqueImg(destaqueImgTable[index]);
   };
 
   const handleClick = () => {
