@@ -139,7 +139,7 @@ function HookUsage({
   return (
     <HStack className="desktop:w-1/2 w-[150px] mx-auto">
       <Button {...dec}>-</Button>
-      <Input className="text-center" {...input} />
+      <Input className={`text-center ${valor > 0 ? "text-green-800" : valor < 0 && "text-red-900"}`} {...input} />
       <Button {...inc}>+</Button>
     </HStack>
   );

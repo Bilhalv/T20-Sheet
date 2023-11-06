@@ -217,7 +217,7 @@ export default function InfoModal({ pagina }: Props) {
                         <h2>
                           <AccordionButton className="flex justify-between">
                             <p className="font-bold">Tabela de pontos</p>
-                            <AccordionIcon/>
+                            <AccordionIcon />
                           </AccordionButton>
                         </h2>
                         <AccordionPanel>
@@ -235,6 +235,14 @@ export default function InfoModal({ pagina }: Props) {
                             <tbody>
                               <tr>
                                 <td className="border border-gray-300 p-2">
+                                  -1
+                                </td>
+                                <td className="border border-gray-300 p-2">
+                                  -1
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="border border-gray-300 p-2">
                                   0
                                 </td>
                                 <td className="border border-gray-300 p-2">
@@ -262,7 +270,7 @@ export default function InfoModal({ pagina }: Props) {
                                   3
                                 </td>
                                 <td className="border border-gray-300 p-2">
-                                  3
+                                  4
                                 </td>
                               </tr>
                               <tr>
@@ -270,7 +278,7 @@ export default function InfoModal({ pagina }: Props) {
                                   4
                                 </td>
                                 <td className="border border-gray-300 p-2">
-                                  4
+                                  7
                                 </td>
                               </tr>
                             </tbody>
