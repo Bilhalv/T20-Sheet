@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import {
   Modal,
@@ -26,18 +26,26 @@ interface ClassesProps {
 }
 
 const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
-  const {showCustomToast} =  useCustomToast();
-  const {
-    isOpen: isOpen2,
-    onOpen: onOpen2,
-    onClose: onClose2,
-  } = useDisclosure();
+  const { showCustomToast } = useCustomToast();
+
+  const initialState = {
+    isOpen2: false,
+    isOpen3: false,
+  };
+
+  function reducer(state: any, action: any) {
+    switch (action.type) {
+      case "toggleAlt":
+        return { ...state, isOpen2: !state.isOpen2 };
+      case "togglePericias":
+        return { ...state, isOpen3: !state.isOpen3 };
+      default:
+        throw new Error();
+    }
+  }
+
+  const [state, dispatch] = useReducer(reducer, initialState);
   const finalRef2 = React.useRef(null);
-  const {
-    isOpen: isOpen3,
-    onOpen: onOpen3,
-    onClose: onClose3,
-  } = useDisclosure();
   const finalRef3 = React.useRef(null);
   const [alt, setAlt] = useState<string[]>(["a"]);
   const selecteClass = TabelaClasses.find(
@@ -69,9 +77,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       selectedClass.nome === "Bardo" ||
       selectedClass.nome === "Druida"
     ) {
-      if (isOpen2 !== true) {
+      if (state.isOpen2 !== true) {
         setAlt(["a"]);
-        onOpen2();
+        dispatch({ type: "toggleAlt" });
         return;
       }
       if (alt[0] === "a") {
@@ -88,20 +96,20 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
         ) {
           showCustomToast({
             title: "Atenção",
-            desc: `Escolha mais ${
-              3 - contador
-            } escola${contador === 2 ? "" : "s"}`,
+            desc: `Escolha mais ${3 - contador} escola${
+              contador === 2 ? "" : "s"
+            }`,
             status: "warning",
           });
           return;
         }
-        onClose2();
+        dispatch({ type: "toggleAlt" });
       }
     }
     if (setPericias.length > 1) {
       reset();
     }
-    onOpen3();
+    dispatch({ type: "togglePericias" });
   };
 
   const handleClickAlt = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -124,7 +132,10 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     if (contador >= selectedClass.periciasescolhanum) {
       console.log(`Classe Selecionada: ${selectedClass.nome}`);
       localStorage.setItem("classe", selectedClass.nome);
-      showCustomToast({ title: "Classe selecionada com sucesso", desc: `Classe selecionada: ${selectedClass.nome}`});
+      showCustomToast({
+        title: "Classe selecionada com sucesso",
+        desc: `Classe selecionada: ${selectedClass.nome}`,
+      });
       localStorage.setItem("alt", JSON.stringify(alt));
       let updatedPericias = [...pericias];
       selectedClass.pericias.forEach((pericia) => {
@@ -143,7 +154,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       }
       setPericias(updatedPericias);
       localStorage.setItem("pericias", JSON.stringify(updatedPericias));
-      onClose3();
+      dispatch({ type: "togglePericias" });
       localStorage.setItem("pagina", next);
       setPagina(next);
     } else {
@@ -208,7 +219,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             selected={selectedClass.nome}
           />
         </section>
-        <Modal finalFocusRef={finalRef3} isOpen={isOpen3} onClose={onClose3}>
+        <Modal
+          finalFocusRef={finalRef3}
+          isOpen={state.isOpen3}
+          onClose={() => dispatch({ type: "togglePericias" })}
+        >
           <ModalOverlay backdropFilter="blur(5px)" />
           <ModalContent className="font-tormenta">
             <ModalHeader>Escolha suas pericias</ModalHeader>
@@ -262,7 +277,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
               </CheckboxGroup>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="red" mx={"auto"} onClick={onClose3}>
+              <Button
+                colorScheme="red"
+                mx={"auto"}
+                onClick={() => dispatch({ type: "togglePericias" })}
+              >
                 Fechar
               </Button>
               <Button colorScheme="blue" mx={"auto"} onClick={handlePericias}>
@@ -272,7 +291,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             <ModalCloseButton />
           </ModalContent>
         </Modal>
-        <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
+        <Modal
+          finalFocusRef={finalRef2}
+          isOpen={state.isOpen2}
+          onClose={() => dispatch({ type: "toggleAlt" })}
+        >
           <ModalOverlay backdropFilter="blur(5px)" />
           <ModalContent className="font-tormenta">
             <ModalHeader>
@@ -364,7 +387,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
               )}
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
+              <Button
+                colorScheme="red"
+                mx={"auto"}
+                onClick={() => dispatch({ type: "toggleAlt" })}
+              >
                 Fechar
               </Button>
               <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>

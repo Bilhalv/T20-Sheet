@@ -54,9 +54,9 @@ export default function Inicio({ setPagina, next }: InicioProps) {
       <h1 className="text-center text-lg font-bold mb-3">
         Escolha de Nome e Nivel
       </h1>
-      <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg flex flex-col gap-2">
+      <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-lg">
         <form onSubmit={HandleClick}>
-          <div className="flex justify-between flex-col desktop:w-1/2 mx-auto">
+          <div className="flex justify-between flex-col desktop:w-1/2 mx-auto mb-2">
             <h1 className="text-3xl text-center text-black">
               Escolha seu nome:
             </h1>
@@ -86,7 +86,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               ))}
             </Select>
           </div>
-          <div className="desktop:w-1/2 mx-auto">
+          <div className="desktop:w-1/2 mx-auto mt-5">
             <button
               type="submit"
               className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"

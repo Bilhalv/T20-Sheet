@@ -139,7 +139,12 @@ function HookUsage({
   return (
     <HStack className="desktop:w-1/2 w-[150px] mx-auto">
       <Button {...dec}>-</Button>
-      <Input className={`text-center ${valor > 0 ? "text-green-800" : valor < 0 && "text-red-900"}`} {...input} />
+      <Input
+        className={`text-center ${
+          valor > 0 ? "text-green-800" : valor < 0 && "text-red-900"
+        }`}
+        {...input}
+      />
       <Button {...inc}>+</Button>
     </HStack>
   );
@@ -225,7 +230,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const destaqueImgTable = [
     "./img/atributos/forca2.png",
     "./img/atributos/destreza2.png",
-    "./img/atributos/constituicao2.png",
+    "./img/atributos/constituicao2. png",
     "./img/atributos/inteligencia2.png",
     "./img/atributos/sabedoria2.png",
     "./img/atributos/carisma2.png",
@@ -325,7 +330,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       <h1 className="text-center text-lg font-bold mb-3">
         Distribua seus {tipo == "Pontos" ? "pontos" : "atributos"}
       </h1>
-      <div className="desktop:w-1/4 desktop:mx-0 w-2/3 mx-auto">
+      <div className="desktop:w-1/4 desktop:mx-0 w-3/4">
         <Select
           className="ml-3 mb-3"
           bgColor={"whiteAlpha.900"}
