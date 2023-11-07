@@ -1,7 +1,6 @@
 import {
   Accordion,
   AccordionButton,
-  AccordionIcon,
   AccordionItem,
   AccordionPanel,
   Button,
@@ -21,8 +20,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
 import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
-import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import useCustomToast from "../Geral/Toasted";
+import { useNavigate } from "react-router-dom";
 
 interface AtributosProps {
   setPagina: (pagina: string) => void;
@@ -151,6 +150,7 @@ function HookUsage({
 }
 
 export default function Atributos({ setPagina, next }: AtributosProps) {
+  const navigate = useNavigate();
   const { showCustomToast } = useCustomToast();
   if (localStorage.getItem("atributos") === null) {
     localStorage.setItem(
@@ -259,7 +259,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
       localStorage.setItem("pagina", next);
 
-      setPagina(next);
+      navigate("/criarpt2");
     } else {
       if (pontos === 0) {
         const atributos = atributosSelecionados.map((atributo, index) => {

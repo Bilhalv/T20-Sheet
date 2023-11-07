@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
 import Racas from "../components/Racas/Racas";
 import Inicio from "../components/Inicio/Inicio";
+import Inicio2 from "./Inicio";
 import Classes from "../components/Classes/Classes";
 import Origens from "../components/Origens/Origens";
 import Atributos from "../components/Atributos/Atributos";
-import { Button, IconButton } from "@chakra-ui/react";
-import { Info } from "lucide-react";
+import { Button } from "@chakra-ui/react";
 import InfoModal from "../components/Geral/InfoModal";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
+  if (pag === ""){
+    
+  }
 
   return (
     <>
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen pb-2 w-full font-tormenta">
-        <Navbar titulo={"Inicio"} />
+        <Navbar back={"/"} />
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
           <div className="flex flex-row-reverse mb-[-40px]">
-            <InfoModal
-              pagina={pagina}
-            />
+            <InfoModal pagina={pagina} />
           </div>
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR

@@ -7,7 +7,7 @@ const Inicio: React.FC = () => {
   return (
     <>
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen w-full font-tormenta">
-        <Navbar titulo={"Inicio"} />
+        <Navbar back={"/"} />
         <article className="bg-gray-50 bg-opacity-30 w-3/4 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
@@ -23,7 +23,7 @@ const Inicio: React.FC = () => {
               pericias e os auxiliando nas rolagens de dados.
             </p>
             <div className="flex flex-col mx-auto gap-5 desktop:flex-row">
-              <Link to="/criar">
+              <Link to="/criarpt1">
                 <button className="mx-auto desktop:mx-0 bg-gray-50 bg-opacity-50 p-5 text-red-950 font-bold rounded-lg hover:bg-opacity-70 transition-all ease-in-out flex gap-1">
                   <Plus /> Novo Personagem
                 </button>
