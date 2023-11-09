@@ -176,7 +176,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
     <>
       <h1 className="text-center text-lg font-bold mb-3">Escolha sua Classe</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
-        <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-lg h-fit desktop:w-[50%] w-full ">
+        <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit desktop:w-[50%] w-full ">
           <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
             <div className="desktop:hidden w-full transition-all ease-in-out rounded-md">
               <SelectList

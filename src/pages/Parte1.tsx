@@ -21,7 +21,7 @@ const App: React.FC = () => {
     <>
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen pb-2 w-full font-tormenta">
         <Navbar back={"/"} />
-        <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
+        <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-row-reverse mb-[-40px]">
             <InfoModal pagina={pagina} />
           </div>

@@ -78,11 +78,11 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
       descricao1 = descricao2.shift() + ".";
     }
   };
-  
+
   const handleSelect = () => {
     onOpen2();
   };
-  
+
   const { showCustomToast } = useCustomToast();
   const [contador, setContador] = useState(0);
   const [tipoPoder, setTipoPoder] = useState("combate");
@@ -149,13 +149,12 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         setPagina(next);
       }
     }
-
   };
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">Escolha sua Origem</h1>
       <main className="flex gap-5">
-        <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow- h-fit">
+        <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit">
           <section className="flex flex-col gap-2">
             <div className="laptop:hidden">
               <SelectList
@@ -174,7 +173,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
                   alt={origem.nome}
                   title={origem.nome}
                 />
-                <div className="ml-4 w-full laptop:w-5/6">
+                <div className="desktop:ml-4 w-full laptop:w-5/6">
                   <p className="text-sm text-justify font-serif">
                     &nbsp;&nbsp;{descricao1}
                   </p>
@@ -214,7 +213,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         </section>
       </main>
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
-          <ModalOverlay backdropFilter="blur(5px)" />
+        <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent className="font-tormenta">
           <ModalHeader>Benefícios da Origem {origem.nome}</ModalHeader>
           <ModalCloseButton />

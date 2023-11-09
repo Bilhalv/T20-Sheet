@@ -328,7 +328,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">
-        Distribua seus {tipo == "Pontos" ? "pontos" : "atributos"}
+        Escolha seus atributos
       </h1>
       <div className="desktop:w-1/4 desktop:mx-0 w-3/4">
         <Select
@@ -341,7 +341,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
         </Select>
       </div>
       <section className="flex gap-5 flex-col desktop:flex-row">
-        <article className="flex flex-col bg-white bg-opacity-60 desktop:w-1/3 w-full h-fit p-3 rounded-lg desktop:order-1 order-2">
+        <article className="flex flex-col bg-white bg-opacity-60 desktop:w-1/3 w-full h-fit p-3 rounded-lg desktop:order-1 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] order-2">
           {tipo == "Pontos" ? (
             <h1 className="text-center font-bold mb-3 text-red-900">
               Pontos : {pontos}
