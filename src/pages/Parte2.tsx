@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
+import Divindades from "../components/pagina 2/Divindades/Divindades";
 
 const App: React.FC = () => {
   const paginas = ["Divindades", "Poderes", "Magias", "Equipamentos", "Alt"];
@@ -14,7 +15,7 @@ const App: React.FC = () => {
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
           </h1>
-          {pagina === "Divindades" && <h1>Divindades</h1>}
+          {pagina === "Divindades" && <Divindades setPagina={setPagina} next="Divindades"/>}
         </article>
       </body>
     </>

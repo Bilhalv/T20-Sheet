@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaOrigens } from "../../classes/Tabelas/Origens";
+import { TabelaOrigens } from "../../../classes/Tabelas/Origens";
 import {
   Accordion,
   AccordionButton,
@@ -20,13 +20,13 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
+import { TabelaPoderes } from "../../../classes/Tabelas/Poderes";
 import { tab } from "@testing-library/user-event/dist/tab";
-import { TabelaPericias } from "../../classes/Tabelas/Pericias";
-import VerMais from "../Geral/VerMais";
-import SelectList from "../Geral/SelectList";
-import Botoes from "../Geral/Botoes";
-import useCustomToast from "../Geral/Toasted";
+import { TabelaPericias } from "../../../classes/Tabelas/Pericias";
+import VerMais from "../../Geral/VerMais";
+import SelectList from "../../Geral/SelectList";
+import Botoes from "../../Geral/Botoes";
+import useCustomToast from "../../Geral/Toasted";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;

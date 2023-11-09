@@ -1,6 +1,6 @@
 import { Input, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
-import useCustomToast from "../Geral/Toasted";
+import useCustomToast from "../../Geral/Toasted";
 interface InicioProps {
   setPagina: (pagina: string) => void;
   next: string;

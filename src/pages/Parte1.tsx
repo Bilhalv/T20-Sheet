@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import Racas from "../components/Racas/Racas";
-import Inicio from "../components/Inicio/Inicio";
+import Racas from "../components/pagina 1/Racas/Racas";
+import Inicio from "../components/pagina 1/Inicio/Inicio";
 import Inicio2 from "./Inicio";
-import Classes from "../components/Classes/Classes";
-import Origens from "../components/Origens/Origens";
-import Atributos from "../components/Atributos/Atributos";
+import Classes from "../components/pagina 1/Classes/Classes";
+import Origens from "../components/pagina 1/Origens/Origens";
+import Atributos from "../components/pagina 1/Atributos/Atributos";
 import { Button } from "@chakra-ui/react";
 import InfoModal from "../components/Geral/InfoModal";
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
             <Classes next="Atributos" setPagina={setPagina} />
           )}
           {pagina === "Atributos" && (
-            <Atributos next="Atributos" setPagina={setPagina} />
+            <Atributos next="Divindades" setPagina={setPagina} />
           )}
           <div className="flex justify-evenly mt-5 transition-all ease-in-out">
             {paginas.map((pagina) => (

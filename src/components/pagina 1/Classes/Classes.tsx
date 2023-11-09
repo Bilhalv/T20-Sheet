@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { TabelaClasses } from "../../classes/Tabelas/Classes";
+import { TabelaClasses } from "../../../classes/Tabelas/Classes";
 import {
   Modal,
   ModalOverlay,
@@ -14,11 +14,11 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
-import { TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
-import VerMais from "../Geral/VerMais";
-import SelectList from "../Geral/SelectList";
-import Botoes from "../Geral/Botoes";
-import useCustomToast from "../Geral/Toasted";
+import { TabelaPericiasEnum } from "../../../classes/Tabelas/Pericias";
+import VerMais from "../../Geral/VerMais";
+import SelectList from "../../Geral/SelectList";
+import Botoes from "../../Geral/Botoes";
+import useCustomToast from "../../Geral/Toasted";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;

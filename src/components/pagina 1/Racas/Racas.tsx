@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaRacas } from "../../classes/Tabelas/Racas";
+import { TabelaRacas } from "../../../classes/Tabelas/Racas";
 import {
   Button,
   Checkbox,
@@ -12,10 +12,10 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import VerMais from "../Geral/VerMais";
-import SelectList from "../Geral/SelectList";
-import Botoes from "../Geral/Botoes";
-import useCustomToast from "../Geral/Toasted";
+import VerMais from "../../Geral/VerMais";
+import SelectList from "../../Geral/SelectList";
+import Botoes from "../../Geral/Botoes";
+import useCustomToast from "../../Geral/Toasted";
 
 interface RacasProps {
   setPagina: (pagina: string) => void;

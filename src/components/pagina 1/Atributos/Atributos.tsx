@@ -18,9 +18,9 @@ import {
   useNumberInput,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
+import { TabelaAtributos } from "../../../classes/Tabelas/Atributos";
 import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
-import useCustomToast from "../Geral/Toasted";
+import useCustomToast from "../../Geral/Toasted";
 import { useNavigate } from "react-router-dom";
 
 interface AtributosProps {
@@ -258,7 +258,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       });
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
       localStorage.setItem("pagina", next);
-
+      setPagina(next);
       navigate("/criarpt2");
     } else {
       if (pontos === 0) {
