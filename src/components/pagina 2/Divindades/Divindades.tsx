@@ -74,7 +74,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
           </div>
         </section>
         <section className="desktop:block hidden w-1/2">
-          <div className="grid grid-cols-4 place-items-center">
+          <div className="grid gap-5 grid-cols-4 place-items-center">
             {tabelaDivindades.map((divindade) => {
               return (
                 <div
