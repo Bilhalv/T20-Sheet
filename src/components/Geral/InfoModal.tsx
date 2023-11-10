@@ -233,54 +233,23 @@ export default function InfoModal({ pagina }: Props) {
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td className="border border-gray-300 p-2">
-                                  -1
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  -1
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="border border-gray-300 p-2">
-                                  0
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  0
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="border border-gray-300 p-2">
-                                  1
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  1
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="border border-gray-300 p-2">
-                                  2
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  2
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="border border-gray-300 p-2">
-                                  3
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  4
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="border border-gray-300 p-2">
-                                  4
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  7
-                                </td>
-                              </tr>
+                              {[
+                                [-1, -1],
+                                [0, 0],
+                                [1, 1],
+                                [2, 2],
+                                [3, 4],
+                                [4, 7],
+                              ].map(([num, price]) => (
+                                <tr key={num}>
+                                  <td className="border border-gray-300 p-2">
+                                    {num}
+                                  </td>
+                                  <td className="border border-gray-300 p-2">
+                                    {price}
+                                  </td>
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
                         </AccordionPanel>
@@ -307,6 +276,12 @@ export default function InfoModal({ pagina }: Props) {
                     </p>
                   </div>
                 </div>
+              </>
+            ) : pagina === "Divindade" ? (
+              <>
+                <p>
+                  info info
+                </p>
               </>
             ) : (
               <>
