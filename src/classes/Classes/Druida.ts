@@ -22,7 +22,7 @@ export const poderesDruida: Poder[] = [
 export const druida: Classe = {
   nome: "Druida",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "Guardião do mundo natural e devoto das forças selvagens, naturais ou monstruosas.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,

@@ -139,7 +139,7 @@ export const poderesBarbaro: Poder[] = [
 export const barbaro: Classe = {
   nome: "Bárbaro",
   descricao:
-    "O bárbaro é um herói primitivo, confiando menos em técnica e mais em puro frenesi de batalha.",
+    "Um combatente primitivo, que usa fúria e instintos para destruir seus inimigos.",
   vidapnivel: 6,
   vidainicial: 24,
   manapnivel: 3,

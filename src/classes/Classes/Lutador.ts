@@ -22,7 +22,7 @@ export const poderesLutador: Poder[] = [
 export const lutador: Classe = {
   nome: "Lutador",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "Um especialista em combate desarmado rústico e durão.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,

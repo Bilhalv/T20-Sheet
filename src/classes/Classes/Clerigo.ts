@@ -22,27 +22,32 @@ export const poderesClerigo: Poder[] = [
 export const clerigo: Classe = {
   nome: "Clérigo",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
-  vidapnivel: 2,
-  vidainicial: 8,
-  manapnivel: 6,
-  pericias: [TabelaPericiasEnum.Misticismo, TabelaPericiasEnum.Vontade],
+    "Servo de um dos deuses de Arton, usa poderes divinos para defender seus ideais.",
+  vidapnivel: 4,
+  vidainicial: 16,
+  manapnivel: 5,
+  pericias: [TabelaPericiasEnum.Religião, TabelaPericiasEnum.Vontade],
   periciasescolha: [
     TabelaPericiasEnum.Conhecimento,
+    TabelaPericiasEnum.Cura,
     TabelaPericiasEnum.Diplomacia,
-    TabelaPericiasEnum.Enganação,
-    TabelaPericiasEnum.Guerra,
+    TabelaPericiasEnum.Fortitude,
     TabelaPericiasEnum.Iniciativa,
-    TabelaPericiasEnum.Intimidação,
     TabelaPericiasEnum.Intuição,
-    TabelaPericiasEnum.Investigação,
+    TabelaPericiasEnum.Luta,
+    TabelaPericiasEnum.Misticismo,
     TabelaPericiasEnum.Nobreza,
     TabelaPericiasEnum.Ofício,
     TabelaPericiasEnum.Percepção,
   ],
   periciasescolhanum: 2,
-  proficiencias: [],
-  habilidades: [],
+  proficiencias: ["Armaduras pesadas", "Escudos"],
+  habilidades: [
+    {
+      nome: "Devoto Fiel.",
+      descricao: ""
+    }
+  ],
   poderesunicos: poderesClerigo,
   conjurador: true,
   imagem: "./img/classes/clerigo.png",

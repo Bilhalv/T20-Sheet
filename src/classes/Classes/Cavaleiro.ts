@@ -106,7 +106,7 @@ export const poderesCavaleiro: Poder[] = [
 export const cavaleiro: Classe = {
   nome: "Cavaleiro",
   descricao:
-    "O cavaleiro representa uma tradição heróica antiga, mantendo ideais e táticas antigas. Eles são formais e carregam a responsabilidade de honrar a história da cavalaria.",
+    "Um combatente honrado, especializado em suportar dano e proteger os outros.",
   vidapnivel: 5,
   vidainicial: 20,
   manapnivel: 3,

@@ -22,7 +22,7 @@ export const poderesInventor: Poder[] = [
 export const inventor: Classe = {
   nome: "Inventor",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "Um ferreiro, alquimista ou engenhoqueiro, especializado em fabricar e usar itens.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,

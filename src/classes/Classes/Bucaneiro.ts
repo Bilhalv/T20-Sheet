@@ -107,7 +107,7 @@ export const poderesBucaneiro: Poder[] = [
 export const bucaneiro: Classe = {
   nome: "Bucaneiro",
   descricao:
-    "Bucaneiros são aventureiros que singram as águas deste mundo, sempre metidos em missões, batalhas, buscas, patrulhas ou a simples luta pela sobrevivência.",
+    "Um navegador inconsequente e galante, sempre em busca de ouro ou emoção.",
   vidapnivel: 4,
   vidainicial: 16,
   manapnivel: 3,

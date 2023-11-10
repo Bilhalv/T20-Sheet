@@ -128,7 +128,7 @@ export const poderesBardo: Poder[] = [
 export const bardo: Classe = {
   nome: "Bardo",
   descricao:
-    "Bardos tem uma intimidade com a musica tão grande que através dela lançam magias. São versados em muitas habilidades, embora não sejam mestres em nenhuma.",
+    "Um artista errante e faz-tudo versátil, sempre com a solução certa para cada ocasião.",
   vidapnivel: 3,
   vidainicial: 12,
   manapnivel: 4,

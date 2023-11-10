@@ -22,7 +22,7 @@ export const poderesLadino: Poder[] = [
 export const ladino: Classe = {
   nome: "Ladino",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "Aventureiro cheio de truques, confiando mais em agilidade e esperteza que em força bruta.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,

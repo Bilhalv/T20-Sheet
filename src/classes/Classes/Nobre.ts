@@ -22,7 +22,7 @@ export const poderesNobre: Poder[] = [
 export const nobre: Classe = {
   nome: "Nobre",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "Um membro da alta sociedade cujas principais armas são as palavras e o orgulho.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,

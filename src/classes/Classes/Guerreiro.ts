@@ -22,7 +22,7 @@ export const poderesGuerreiro: Poder[] = [
 export const guerreiro: Classe = {
   nome: "Guerreiro",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "O especialista supremo em técnicas de combate com armas.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,

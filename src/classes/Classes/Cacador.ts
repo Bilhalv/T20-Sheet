@@ -123,7 +123,7 @@ export const poderesCacador: Poder[] = [
 export const cacador: Classe = {
   nome: "Caçador",
   descricao:
-    "O caçador é um especialista em sobrevivência nos terrenos mais selvagens e inóspitos,capaz de obter alimento e achar abrigo em qualquer lugar.",
+    "Um exterminador de monstros e mestre da sobrevivência em áreas selvagens.",
   vidapnivel: 4,
   vidainicial: 16,
   manapnivel: 4,

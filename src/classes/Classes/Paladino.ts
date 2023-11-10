@@ -22,7 +22,7 @@ export const poderesPaladino: Poder[] = [
 export const paladino: Classe = {
   nome: "Paladino",
   descricao:
-    "Um conjurador de magias arcanas, por meio de estudo, um foco ou dom natural.",
+    "Um campeão do bem e da ordem, o perfeito soldado dos deuses.",
   vidapnivel: 2,
   vidainicial: 8,
   manapnivel: 6,
