@@ -87,7 +87,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
                     selected === divindade.nome
                       ? "bg-gray-300"
                       : "bg-gray-200 hover:bg-gray-300"
-                  } p-2 rounded-lg shadow-lx my-2 cursor-pointer w-fit hover:shadow-[0px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all ease-in-out hover:scale-105`}
+                  } p-2 rounded-lg shadow-lx my-2 cursor-pointer w-full hover:shadow-[0px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all ease-in-out hover:scale-105`}
                 >
                   <img src={divindade.imagens[1]} className="mx-auto w-12" />
                   <h1 className="text-center">
