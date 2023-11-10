@@ -165,11 +165,11 @@ export const barbaro: Classe = {
     },
     {
       nome: "instinto selvagem",
-      descricao: "No 3o nível, você recebe +1 em rolagens de dano, Percepção e Reflexos. A cada seis níveis, esse bônus aumenta em +1."
+      descricao: "No 3º nível, você recebe +1 em rolagens de dano, Percepção e Reflexos. A cada seis níveis, esse bônus aumenta em +1."
     },
     {
       nome: "redução de dano",
-      descricao: "A partir do 5o nível, gra- ças a seu vigor e força de vontade, você ignora parte de seus ferimentos. Você recebe redução de dano 2 (todo dano que sofre é reduzido em 2). A cada três níveis, sua RD aumenta em 2, até um máximo de RD 10 no 17o nível."
+      descricao: "A partir do 5º nível, gra- ças a seu vigor e força de vontade, você ignora parte de seus ferimentos. Você recebe redução de dano 2 (todo dano que sofre é reduzido em 2). A cada três níveis, sua RD aumenta em 2, até um máximo de RD 10 no 17º nível."
     }
   ]
   ,

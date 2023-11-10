@@ -53,7 +53,7 @@ export const poderesCacador: Poder[] = [
   },
   {
     nome: "Camuflagem",
-    descricao: "Você pode gastar 2 PM para se esconder mesmo sem camuflagem ou cobertura disponível. Pré-requisito: 6o nível de caçador.",
+    descricao: "Você pode gastar 2 PM para se esconder mesmo sem camuflagem ou cobertura disponível.",
     tipo: TipoPoder.classe,
     requisitos: [],
   },
@@ -156,11 +156,11 @@ export const cacador: Classe = {
     },
     {
       nome: "Explorador",
-      descricao: "No 3o nível, escolha um tipo de terreno entre aquático, ártico, colina, deserto, floresta, montanha, pântano, planície, subterrâneo ou urbano. A partir do 11o nível, você também pode escolher área de Tormenta. Quando estiver no tipo de terreno escolhido, você soma sua Sabedoria (mínimo +1) na Defesa e nos testes de Acrobacia, Atletismo, Furtividade, Percepção e Sobrevivência. A cada quatro níveis, escolha outro tipo de terreno para receber o bônus ou aumente o bônus em um tipo de terreno já escolhido em +2."
+      descricao: "No 3º nível, escolha um tipo de terreno entre aquático, ártico, colina, deserto, floresta, montanha, pântano, planície, subterrâneo ou urbano. A partir do 11º nível, você também pode escolher área de Tormenta. Quando estiver no tipo de terreno escolhido, você soma sua Sabedoria (mínimo +1) na Defesa e nos testes de Acrobacia, Atletismo, Furtividade, Percepção e Sobrevivência. A cada quatro níveis, escolha outro tipo de terreno para receber o bônus ou aumente o bônus em um tipo de terreno já escolhido em +2."
     },
     {
       nome: "Caminho do Explorador",
-      descricao: "No 5o nível, você pode atravessar terrenos difíceis sem sofrer redução em seu deslocamento e a CD para rastrear você aumenta em +10. Esta habilidade só funciona em terrenos nos quais você tenha a habilidade Explorador."
+      descricao: "No 5º nível, você pode atravessar terrenos difíceis sem sofrer redução em seu deslocamento e a CD para rastrear você aumenta em +10. Esta habilidade só funciona em terrenos nos quais você tenha a habilidade Explorador."
     },
   ],
   poderesunicos: poderesCacador,

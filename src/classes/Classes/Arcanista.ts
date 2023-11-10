@@ -20,7 +20,7 @@ export const poderesArcanista: Poder[] = [
   {
     nome: "Caldeirão do Bruxo.",
     descricao:
-    "Você pode criar poções, como se tivesse o poder geral Preparar Poção. Se tiver ambos, pode criar poções de até 5o círculo. Pré-requisitos: Bruxo, treinado em Ofício (alquimista).",
+    "Você pode criar poções, como se tivesse o poder geral Preparar Poção. Se tiver ambos, pode criar poções de até 5o círculo.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.tipo_arcanista, RequisitoPoder.pericia],
     // Bruxo, oficio(alquimista)
@@ -96,7 +96,7 @@ export const poderesArcanista: Poder[] = [
   {
     nome: "Poder Mágico.",
     descricao:
-      "Você recebe +1 ponto de mana por nível de arcanista. Quando sobe de nível, os PM que recebe por este poder aumentam de acordo. Por exemplo, se escolher este poder no 4o nível, recebe 4 PM. Quando subir para o 5o nível, recebe +1 PM e assim por diante.",
+      "Você recebe +1 ponto de mana por nível de arcanista. Quando sobe de nível, os PM que recebe por este poder aumentam de acordo. Por exemplo, se escolher este poder no 4º nível, recebe 4 PM. Quando subir para o 5º nível, recebe +1 PM e assim por diante.",
     tipo: TipoPoder.classe,
     requisitos: [],
   },
