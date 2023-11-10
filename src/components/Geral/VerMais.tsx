@@ -20,6 +20,7 @@ import { TabelaOrigens } from "../../classes/Tabelas/Origens";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
+import { tabelaDivindades } from "../../classes/Tabelas/Divindades";
 
 interface Props {
   titulo: string;
@@ -28,13 +29,21 @@ interface Props {
   pagina: string;
 }
 
-export default function VerMais({titulo, handleSelect, selected, pagina }: Props) {
+export default function VerMais({
+  titulo,
+  handleSelect,
+  selected,
+  pagina,
+}: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
   var origem =
     TabelaOrigens.find((o) => o.nome === selected) ?? TabelaOrigens[0];
   var raca = TabelaRacas.find((r) => r.nome === selected) ?? TabelaRacas[0];
-  var classe = TabelaClasses.find((c) => c.nome === selected) ?? TabelaClasses[0];
+  var classe =
+    TabelaClasses.find((c) => c.nome === selected) ?? TabelaClasses[0];
+  var divindade =
+    tabelaDivindades.find((d) => d.nome === selected) ?? tabelaDivindades[0];
   return (
     <>
       <button
@@ -43,9 +52,13 @@ export default function VerMais({titulo, handleSelect, selected, pagina }: Props
       >
         Ver mais
       </button>
-      <Modal size={"xl"} finalFocusRef={finalRef} onClose={onClose} isOpen={isOpen}>
-        <ModalOverlay backdropFilter
-        ='blur(5px)' />
+      <Modal
+        size={"xl"}
+        finalFocusRef={finalRef}
+        onClose={onClose}
+        isOpen={isOpen}
+      >
+        <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent className="font-tormenta">
           <ModalHeader className="text-center">{titulo}</ModalHeader>
           <ModalBody>
@@ -146,30 +159,28 @@ export default function VerMais({titulo, handleSelect, selected, pagina }: Props
                 <h1 className="text-center font-bold">Proficiências</h1>
                 <div className="flex italic font-serif justify-center">
                   <p>
-                    {classe?.proficiencias.map(
-                      (a: string, index: number) => {
-                        if (index === 0) {
-                          return (
-                            <ul className="flex ">
-                              {classe.proficiencias.map(
-                                (a: string, index: number) => {
-                                  if (index === 0) {
-                                    return <li key={index}>{a}</li>;
-                                  } else if (
-                                    index ===
-                                    classe.proficiencias.length - 1
-                                  ) {
-                                    return <li key={index}>&nbsp;e {a}</li>;
-                                  } else {
-                                    return <li key={index}>, {a}</li>;
-                                  }
+                    {classe?.proficiencias.map((a: string, index: number) => {
+                      if (index === 0) {
+                        return (
+                          <ul className="flex ">
+                            {classe.proficiencias.map(
+                              (a: string, index: number) => {
+                                if (index === 0) {
+                                  return <li key={index}>{a}</li>;
+                                } else if (
+                                  index ===
+                                  classe.proficiencias.length - 1
+                                ) {
+                                  return <li key={index}>&nbsp;e {a}</li>;
+                                } else {
+                                  return <li key={index}>, {a}</li>;
                                 }
-                              )}
-                            </ul>
-                          );
-                        }
+                              }
+                            )}
+                          </ul>
+                        );
                       }
-                    )}
+                    })}
                   </p>
                 </div>
                 <hr className="my-3 border-gray-400 w-5/6 mx-auto" />
@@ -215,8 +226,49 @@ export default function VerMais({titulo, handleSelect, selected, pagina }: Props
                   </Accordion>
                 </div>
               </>
+            ) : pagina === "Divindade" ? (
+              <>
+                <p className="font-serif text-center italic text-md mt-[-15px]">
+                  {divindade.descricao}
+                </p>
+                <hr className="my-4" />
+                <h1 className="text-center font-bold text-2xl">
+                  Símbolo Sagrado
+                </h1>
+                <p className="font-serif text-center italic text-md">
+                  {divindade.simbolo}
+                </p>
+                <hr className="my-4" />
+                <h1 className="text-center text-2xl">
+                  <b>Canalizar energia: </b>
+                  {divindade.energia}
+                </h1>
+                <hr className="my-4" />
+                <h1 className="text-center font-bold text-2xl">
+                  Devotos
+                </h1>
+                <p className="font-serif text-center italic text-md">
+                  {divindade.devotos.join(", ")}
+                </p>
+                <hr className="my-4" />
+                <h1 className="text-center font-bold text-2xl">
+                  Poderes concedidos
+                </h1>
+                <p className="font-serif text-center italic text-md">
+                  {divindade.poderes.join(", ")}
+                </p>
+                <hr className="my-4" />
+                <h1 className="text-center font-bold text-2xl">
+                  Obrigações e restrições
+                </h1>
+                <p className="font-serif text-center italic text-md">
+                  {divindade.obrigacoes}
+                </p>
+              </>
             ) : (
-              <></>
+              <>
+                <p>Error</p>
+              </>
             )}
           </ModalBody>
           <ModalFooter>
