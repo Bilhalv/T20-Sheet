@@ -56,7 +56,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
             </h1>
             <img src={mapear(selected)[0]?.imagens[0]} className="mx-auto transition-all ease-in-out" />
             <p className="text-center mt-3 font-serif ">
-              {mapear(selected)[0]?.crencas}
+            Os devotos de {selected} {mapear(selected)[0]?.crencas}
             </p>
             <div className="flex justify-center mt-3 gap-2">
               <VerMais
