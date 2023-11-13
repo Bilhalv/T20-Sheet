@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaRacas } from "../../../classes/Tabelas/Racas";
+import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import {
   Button,
   Checkbox,
@@ -12,10 +12,11 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import VerMais from "../../Geral/VerMais";
-import SelectList from "../../Geral/SelectList";
-import Botoes from "../../Geral/Botoes";
-import useCustomToast from "../../Geral/Toasted";
+import VerMais from "../Geral/VerMais";
+import SelectList from "../Geral/SelectList";
+import Botoes from "../Geral/Botoes";
+import useCustomToast from "../Geral/Toasted";
+import Confirmar from "../Geral/Confirmar";
 
 interface RacasProps {
   setPagina: (pagina: string) => void;
@@ -144,12 +145,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
               handleSelect={handleSelect}
               selected={raceSelecionada.nome}
             />
-            <button
-              onClick={handleSelect}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Confirmar
-            </button>
+            <Confirmar onSelect={handleSelect} pagina="Raca" />
           </div>
         </section>
         <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">

@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { TabelaClasses } from "../../../classes/Tabelas/Classes";
+import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import {
   Modal,
   ModalOverlay,
@@ -14,11 +14,12 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
-import { TabelaPericiasEnum } from "../../../classes/Tabelas/Pericias";
-import VerMais from "../../Geral/VerMais";
-import SelectList from "../../Geral/SelectList";
-import Botoes from "../../Geral/Botoes";
-import useCustomToast from "../../Geral/Toasted";
+import { TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
+import VerMais from "../Geral/VerMais";
+import SelectList from "../Geral/SelectList";
+import Botoes from "../Geral/Botoes";
+import useCustomToast from "../Geral/Toasted";
+import Confirmar from "../Geral/Confirmar";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -204,12 +205,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
               selected={selectedClass.nome}
               pagina="Classe"
             />
-            <button
-              onClick={handleSelect}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Confirmar
-            </button>
+            <Confirmar onSelect={handleSelect} pagina="Classe" />
           </div>
         </section>
         <section className="order-2 grid-cols-3 gap-3 w-1/2 mx-auto h-full transition-all ease-in-out hidden desktop:grid">

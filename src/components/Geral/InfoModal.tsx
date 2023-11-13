@@ -12,9 +12,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Info } from "lucide-react";
 
 interface Props {
@@ -26,16 +27,18 @@ export default function InfoModal({ pagina }: Props) {
   const finalRef = React.useRef(null);
   return (
     <>
-      <IconButton
-        zIndex={2}
-        borderRadius={"full"}
-        aria-label="Info"
-        bg={"transparent"}
-        onClick={onOpen}
-        _hover={{ bg: "transparent", color: "gray.200", mouse: "pointer" }}
-      >
-        <Info size={32} />
-      </IconButton>
+      <Tooltip bg={"red.800"} label="Tutorial">
+        <IconButton
+          zIndex={2}
+          borderRadius={"full"}
+          aria-label="Info"
+          bg={"transparent"}
+          onClick={onOpen}
+          _hover={{ bg: "transparent", color: "gray.200", mouse: "pointer" }}
+        >
+          <Info size={32} />
+        </IconButton>
+      </Tooltip>
       <Modal
         size={"xl"}
         finalFocusRef={finalRef}
@@ -279,9 +282,7 @@ export default function InfoModal({ pagina }: Props) {
               </>
             ) : pagina === "Divindade" ? (
               <>
-                <p>
-                  info info
-                </p>
+                <p>info info</p>
               </>
             ) : (
               <>

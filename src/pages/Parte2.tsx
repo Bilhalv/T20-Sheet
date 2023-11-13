@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import Divindades from "../components/pagina 2/Divindades/Divindades";
+import Divindades from "../components/pagina 2/Divindades";
+import { Button } from "@chakra-ui/react";
+import Poderes from "../components/pagina 2/Poderes";
+import Magias from "../components/pagina 2/Magias";
+import Equipamentos from "../components/pagina 2/Equipamentos";
+import Alt from "../components/pagina 2/Alt";
 
 const App: React.FC = () => {
   const paginas = ["Divindades", "Poderes", "Magias", "Equipamentos", "Alt"];
@@ -15,7 +20,42 @@ const App: React.FC = () => {
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR
           </h1>
-          {pagina === "Divindades" && <Divindades setPagina={setPagina} next="Divindades"/>}
+          {pagina === "Divindades" && (
+            <Divindades setPagina={setPagina} next="Poderes" />
+          )}
+          {pagina === "Poderes" && (
+            <Poderes setPagina={setPagina} next="Magias" />
+          )}
+          {pagina === "Magias" && (
+            <Magias setPagina={setPagina} next="Equipamentos" />
+          )}
+          {pagina === "Equipamentos" && (
+            <Equipamentos setPagina={setPagina} next="Alt" />
+          )}
+          {pagina === "Alt" && <Alt setPagina={setPagina} next="Confirmar" />}
+
+          <div className="flex justify-evenly mt-5 transition-all ease-in-out">
+            {paginas.map((pagina) => (
+              <Button
+                key={pagina}
+                isActive={pagina === localStorage.getItem("pagina")}
+                bg={"darkred"}
+                color={"white"}
+                _hover={{ bg: "red.600" }}
+                width="auto"
+                size={"sm"}
+                borderRadius={"full"}
+                boxShadow="lg"
+                _active={{ bg: "red.600", color: "darkred" }}
+                onClick={() => {
+                  localStorage.setItem("pagina", pagina);
+                  setPagina(pagina);
+                }}
+              >
+                {paginas.indexOf(pagina) + 1}
+              </Button>
+            ))}
+          </div>
         </article>
       </body>
     </>

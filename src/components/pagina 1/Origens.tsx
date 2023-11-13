@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TabelaOrigens } from "../../../classes/Tabelas/Origens";
+import { TabelaOrigens } from "../../classes/Tabelas/Origens";
 import {
   Accordion,
   AccordionButton,
@@ -20,13 +20,14 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-import { TabelaPoderes } from "../../../classes/Tabelas/Poderes";
+import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { tab } from "@testing-library/user-event/dist/tab";
-import { TabelaPericias } from "../../../classes/Tabelas/Pericias";
-import VerMais from "../../Geral/VerMais";
-import SelectList from "../../Geral/SelectList";
-import Botoes from "../../Geral/Botoes";
-import useCustomToast from "../../Geral/Toasted";
+import { TabelaPericias } from "../../classes/Tabelas/Pericias";
+import VerMais from "../Geral/VerMais";
+import SelectList from "../Geral/SelectList";
+import Botoes from "../Geral/Botoes";
+import useCustomToast from "../Geral/Toasted";
+import Confirmar from "../Geral/Confirmar";
 
 interface OrigensProps {
   setPagina: (pagina: string) => void;
@@ -34,8 +35,6 @@ interface OrigensProps {
 }
 
 const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const finalRef = React.useRef(null);
   const {
     isOpen: isOpen2,
     onOpen: onOpen2,
@@ -194,12 +193,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
               selected={origemselecionada.nome}
               pagina={"Origem"}
             />
-            <button
-              onClick={handleSelect}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Confirmar
-            </button>
+            <Confirmar onSelect={handleSelect} pagina="Origem" />
           </div>
         </section>
         <section className="hidden laptop:block p-3">

@@ -48,7 +48,7 @@ export default function VerMais({
     <>
       <button
         onClick={onOpen}
-        className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
+        className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3"
       >
         Ver mais
       </button>
@@ -244,9 +244,7 @@ export default function VerMais({
                   {divindade.energia}
                 </h1>
                 <hr className="my-4" />
-                <h1 className="text-center font-bold text-2xl">
-                  Devotos
-                </h1>
+                <h1 className="text-center font-bold text-2xl">Devotos</h1>
                 <p className="font-serif text-center italic text-md">
                   {divindade.devotos.join(", ")}
                 </p>
@@ -254,9 +252,25 @@ export default function VerMais({
                 <h1 className="text-center font-bold text-2xl">
                   Poderes concedidos
                 </h1>
-                <p className="font-serif text-center italic text-md">
-                  {divindade.poderes.join(", ")}
-                </p>
+                <Accordion allowToggle>
+                  {divindade.poderes.map((poder) => (
+                    <AccordionItem>
+                      <h2>
+                        <AccordionButton className="flex justify-between">
+                          {poder.nome}
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel
+                        className="italic font-serif text-justify"
+                        pb={4}
+                      >
+                        &nbsp;&nbsp;{poder.descricao}
+                        <small>{poder.tipo}</small>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
                 <hr className="my-4" />
                 <h1 className="text-center font-bold text-2xl">
                   Obrigações e restrições

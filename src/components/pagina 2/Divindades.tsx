@@ -1,7 +1,8 @@
-import { tabelaDivindades } from "../../../classes/Tabelas/Divindades";
-import SelectList from "../../Geral/SelectList";
+import { tabelaDivindades } from "../../classes/Tabelas/Divindades";
+import SelectList from "../Geral/SelectList";
 import { useState } from "react";
-import VerMais from "../../Geral/VerMais";
+import VerMais from "../Geral/VerMais";
+import Confirmar from "../Geral/Confirmar";
 
 interface DivindadesProps {
   setPagina: (pagina: string) => void;
@@ -54,9 +55,12 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
             <h1 className="text-lg font-bold text-center desktop:block hidden">
               {selected}
             </h1>
-            <img src={mapear(selected)[0]?.imagens[0]} className="mx-auto transition-all ease-in-out" />
+            <img
+              src={mapear(selected)[0]?.imagens[0]}
+              className="mx-auto transition-all ease-in-out"
+            />
             <p className="text-center mt-3 font-serif ">
-            Os devotos de {selected} {mapear(selected)[0]?.crencas}
+              Os devotos de {selected} {mapear(selected)[0]?.crencas}
             </p>
             <div className="flex justify-center mt-3 gap-2">
               <VerMais
@@ -65,12 +69,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
                 selected={selected}
                 pagina="Divindade"
               />
-              <button
-                onClick={handleSelect}
-                className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
-              >
-                Confirmar
-              </button>
+              <Confirmar onSelect={() => {}} pagina="Divindade" />
             </div>
           </div>
         </section>

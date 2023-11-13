@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import Racas from "../components/pagina 1/Racas/Racas";
-import Inicio from "../components/pagina 1/Inicio/Inicio";
+import Racas from "../components/pagina 1/Racas";
+import Inicio from "../components/pagina 1/Inicio";
 import Inicio2 from "./Inicio";
-import Classes from "../components/pagina 1/Classes/Classes";
-import Origens from "../components/pagina 1/Origens/Origens";
-import Atributos from "../components/pagina 1/Atributos/Atributos";
+import Classes from "../components/pagina 1/Classes";
+import Origens from "../components/pagina 1/Origens";
+import Atributos from "../components/pagina 1/Atributos";
 import { Button } from "@chakra-ui/react";
 import InfoModal from "../components/Geral/InfoModal";
+import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
@@ -24,6 +25,7 @@ const App: React.FC = () => {
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-row-reverse mb-[-40px]">
             <InfoModal pagina={pagina} />
+            <FichaModal pagina={1} setPagina={setPagina} />
           </div>
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR

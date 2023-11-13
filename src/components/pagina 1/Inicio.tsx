@@ -1,6 +1,7 @@
 import { Input, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
-import useCustomToast from "../../Geral/Toasted";
+import useCustomToast from "../Geral/Toasted";
+import Confirmar from "../Geral/Confirmar";
 interface InicioProps {
   setPagina: (pagina: string) => void;
   next: string;
@@ -87,12 +88,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
             </Select>
           </div>
           <div className="desktop:w-1/2 mx-auto mt-5">
-            <button
-              type="submit"
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
-            >
-              Confirmar
-            </button>
+            <Confirmar pagina="inicio" onSelect={() => {}} />
           </div>
         </form>
       </section>

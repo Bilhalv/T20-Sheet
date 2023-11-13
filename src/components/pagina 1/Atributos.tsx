@@ -18,10 +18,11 @@ import {
   useNumberInput,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { TabelaAtributos } from "../../../classes/Tabelas/Atributos";
+import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
 import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
-import useCustomToast from "../../Geral/Toasted";
+import useCustomToast from "../Geral/Toasted";
 import { useNavigate } from "react-router-dom";
+import Confirmar from "../Geral/Confirmar";
 
 interface AtributosProps {
   setPagina: (pagina: string) => void;
@@ -357,16 +358,11 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           <div className="flex gap-2 mx-auto w-full justify-around">
             <button
               onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg py-1 mt-3"
+              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3"
             >
               Ver Mais
             </button>
-            <button
-              onClick={handleClick}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-1/2 transition-all ease-in-out shadow-lg desktop:text-base text-sm py-1 mt-3"
-            >
-              Confirmar
-            </button>
+            <Confirmar onSelect={handleClick} pagina="Atributos" />
           </div>
         </article>
         <article className="desktop:order-2 order-1 flex desktop:flex-col flex-wrap desktop:w-2/3 h-fit laptop:h-[20rem] gap-5 justify-center laptop:mr-5">
