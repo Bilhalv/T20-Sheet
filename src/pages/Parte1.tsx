@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Geral/Navbar";
 import Racas from "../components/pagina 1/Racas";
 import Inicio from "../components/pagina 1/Inicio";
-import Inicio2 from "./Inicio";
 import Classes from "../components/pagina 1/Classes";
 import Origens from "../components/pagina 1/Origens";
 import Atributos from "../components/pagina 1/Atributos";
@@ -14,9 +13,16 @@ const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
-  if (pag === ""){
-    
-  }
+  useEffect(() => {
+    if (!paginas.includes(pag??paginas[0])) {
+      handleChange(paginas[0]);
+    }
+  }, [pag, paginas, setPagina]);
+
+  const handleChange = (e: string) => {
+    localStorage.setItem("pagina", e);
+    setPagina(e);
+  };
 
   return (
     <>
@@ -25,7 +31,7 @@ const App: React.FC = () => {
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-row-reverse mb-[-40px]">
             <InfoModal pagina={pagina} />
-            <FichaModal pagina={1} setPagina={setPagina} />
+            <FichaModal pagina={1} setPagina={setPagina}/>
           </div>
           <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             T20 CHARACTER CREATOR

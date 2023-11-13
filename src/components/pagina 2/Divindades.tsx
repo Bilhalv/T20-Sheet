@@ -1,8 +1,25 @@
 import { tabelaDivindades } from "../../classes/Tabelas/Divindades";
 import SelectList from "../Geral/SelectList";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import VerMais from "../Geral/VerMais";
 import Confirmar from "../Geral/Confirmar";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 interface DivindadesProps {
   setPagina: (pagina: string) => void;
@@ -10,6 +27,8 @@ interface DivindadesProps {
 }
 
 export default function Divindades({ setPagina, next }: DivindadesProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const finalRef = React.useRef(null);
   const mapear = (nome: string) => {
     const mapeado = tabelaDivindades.map((divindade) => {
       if (divindade.nome === nome) {
@@ -34,8 +53,25 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
 
   const onChange = (e: any) => {
     setSelected(e.target.value);
+    setContador(0);
     console.log(mapear(selected)[0]?.crencas);
   };
+
+  const onSelect = () => {
+    onOpen();
+  };
+
+  const [contador, setContador] = useState(0);
+  const [bencao, setBencao] = useState([""]);
+  const [limite, setLimite] = useState(1);
+  useEffect(() => {
+    if (
+      localStorage.getItem("classe") === "Clérigo" ||
+      localStorage.getItem("classe") === "Paladino"
+    ) {
+      setLimite(2);
+    }
+  }, [localStorage.getItem("classe")]);
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">
@@ -69,7 +105,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
                 selected={selected}
                 pagina="Divindade"
               />
-              <Confirmar onSelect={() => {}} pagina="Divindade" />
+              <Confirmar onSelect={onSelect} pagina="Divindade" />
             </div>
           </div>
         </section>
@@ -84,7 +120,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
                   }}
                   className={`${
                     selected === divindade.nome
-                      ? "bg-red-950 text-red-200  "
+                      ? "bg-red-950 text-red-200"
                       : "bg-gray-200 hover:bg-gray-300"
                   } p-2 rounded-lg shadow-lx my-2 cursor-pointer w-full hover:shadow-[0px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all ease-in-out hover:scale-105 bg-opacity-90`}
                 >
@@ -96,6 +132,66 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
           </div>
         </section>
       </div>
+      <Modal
+        size={"xl"}
+        finalFocusRef={finalRef}
+        onClose={onClose}
+        isOpen={isOpen}
+      >
+        <ModalOverlay backdropFilter="blur(5px)" />
+        <ModalContent className="font-tormenta">
+          <ModalHeader className="text-center">Escolha sua benção</ModalHeader>
+          <ModalBody>
+            <CheckboxGroup>
+              <Accordion allowToggle>
+                {mapear(selected)[0]?.poderes.map((poder) => (
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton className="flex justify-between">
+                        <p className="flex gap-2">
+                          <Checkbox
+                            disabled={
+                              contador >= limite && !bencao.includes(poder.nome)
+                            }
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setContador(contador + 1);
+                                setBencao([...bencao, poder.nome]);
+                              } else {
+                                setContador(contador - 1);
+                                setBencao(
+                                  bencao.filter((item) => item !== poder.nome)
+                                );
+                              }
+                            }}
+                          />
+                          {poder.nome}
+                        </p>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel
+                      className="italic font-serif text-justify"
+                      pb={4}
+                    >
+                      &nbsp;&nbsp;{poder.descricao}
+                      <small>{poder.tipo}</small>
+                    </AccordionPanel>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </CheckboxGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mx={"auto"} onClick={onClose}>
+              Fechar
+            </Button>
+            <Button colorScheme="blue" mx={"auto"} onClick={onClose}>
+              Confirmar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
