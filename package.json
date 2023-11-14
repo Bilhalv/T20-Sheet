@@ -13,6 +13,7 @@
     "@types/node": "^16.18.57",
     "@types/react": "^18.2.24",
     "@types/react-dom": "^18.2.8",
+    "@vercel/postgres": "^0.5.1",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.288.0",
     "react": "^18.2.0",
