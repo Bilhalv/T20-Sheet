@@ -17,7 +17,10 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { TabelaPericias, TabelaPericiasEnum } from "../../classes/Tabelas/Pericias";
+import {
+  TabelaPericias,
+  TabelaPericiasEnum,
+} from "../../classes/Tabelas/Pericias";
 import VerMais from "../Geral/VerMais";
 import SelectList from "../Geral/SelectList";
 import Botoes, { FecharOnModal, ConfirmarOnModal } from "../Geral/Botoes";
@@ -228,13 +231,11 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   ];
   return (
     <>
+      <h1 className="text-center text-3xl font-bold mb-4">Escolha sua Classe</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit desktop:w-[50%] w-full ">
           <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
             <div className="desktop:hidden w-full transition-all ease-in-out rounded-md">
-              <h1 className="text-center text-lg font-bold mb-3">
-                Escolha sua Classe
-              </h1>
               <SelectList
                 onChange={handleClick}
                 tabela={TabelaClasses}
@@ -264,9 +265,6 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
           </div>
         </section>
         <div className="order-2 w-1/2 mx-auto h-full hidden desktop:block">
-          <h1 className="text-center text-lg font-bold mb-3">
-            Escolha sua Classe
-          </h1>
           <section className="grid-cols-3 gap-3 transition-all ease-in-out grid">
             <Botoes
               onChange={handleClick}
@@ -298,53 +296,53 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
                 </Select>
               ) : null}
               <CheckboxGroup colorScheme="red" value={pericias}>
-                  <Accordion allowToggle>
-                    {selectedClass.periciasescolha.map((pericia, index) => (
-                      <AccordionItem>
-                        <AccordionButton className="flex justify-between">
-                          <div className="flex gap-2">
-                            <Checkbox
-                              onChange={(pericia) => {
-                                let newPericias = [...pericias];
-                                let newContador = contador;
-                                if (
-                                  pericia.target.checked &&
-                                  !pericias.includes(pericia.target.value)
-                                ) {
-                                  newPericias.push(pericia.target.value);
-                                  newContador = newContador + 1;
-                                } else if (!pericia.target.checked) {
-                                  newPericias.splice(
-                                    newPericias.indexOf(pericia.target.value),
-                                    1
-                                  );
-                                  newContador = newContador - 1;
-                                }
-                                setContador(newContador);
-                                setPericias(newPericias);
-                              }}
-                              value={pericia}
-                              isDisabled={
-                                contador >= selectedClass.periciasescolhanum &&
-                                !pericias.includes(pericia)
+                <Accordion allowToggle>
+                  {selectedClass.periciasescolha.map((pericia, index) => (
+                    <AccordionItem>
+                      <AccordionButton className="flex justify-between">
+                        <div className="flex gap-2">
+                          <Checkbox
+                            onChange={(pericia) => {
+                              let newPericias = [...pericias];
+                              let newContador = contador;
+                              if (
+                                pericia.target.checked &&
+                                !pericias.includes(pericia.target.value)
+                              ) {
+                                newPericias.push(pericia.target.value);
+                                newContador = newContador + 1;
+                              } else if (!pericia.target.checked) {
+                                newPericias.splice(
+                                  newPericias.indexOf(pericia.target.value),
+                                  1
+                                );
+                                newContador = newContador - 1;
                               }
-                            />
-                            {pericia}
-                          </div>
-                          <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel>
-                          <p className="text-justify font-serif">
-                            &nbsp;&nbsp;&nbsp;
-                            {TabelaPericias.find(
-                              (per) => per.nome === pericia
-                            )?.descricao  
+                              setContador(newContador);
+                              setPericias(newPericias);
+                            }}
+                            value={pericia}
+                            isDisabled={
+                              contador >= selectedClass.periciasescolhanum &&
+                              !pericias.includes(pericia)
                             }
-                          </p>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
+                          />
+                          {pericia}
+                        </div>
+                        <AccordionIcon />
+                      </AccordionButton>
+                      <AccordionPanel>
+                        <p className="text-justify font-serif">
+                          &nbsp;&nbsp;&nbsp;
+                          {
+                            TabelaPericias.find((per) => per.nome === pericia)
+                              ?.descricao
+                          }
+                        </p>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </CheckboxGroup>
             </ModalBody>
             <ModalFooter>
