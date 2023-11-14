@@ -90,13 +90,13 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
   }, [localStorage.getItem("classe")]);
   return (
     <>
+      <h1 className="text-center text-3xl font-bold mb-4">
+        Escolha sua divindade
+      </h1>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] desktop:w-1/2 h-fit my-auto">
           <div>
             <div className="desktop:hidden block">
-              <h1 className="text-center text-lg font-bold mb-3">
-                Escolha sua divindade
-              </h1>
               <div className="flex justify-evenly">
                 <Checkbox
                   isDisabled={
@@ -152,9 +152,6 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
           </div>
         </section>
         <section className="desktop:block hidden w-1/2">
-          <h1 className="text-center text-lg font-bold mb-3">
-            Escolha sua divindade
-          </h1>
           <div className="flex justify-evenly">
             <Checkbox
               isDisabled={
