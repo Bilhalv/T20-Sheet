@@ -64,6 +64,8 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
   const [contador, setContador] = useState(0);
   const [bencao, setBencao] = useState([""]);
   const [limite, setLimite] = useState(1);
+  const [alternativo, setAlternativo] = useState(false);
+  const escolhas = [];
   useEffect(() => {
     if (
       localStorage.getItem("classe") === "Clérigo" ||
@@ -71,16 +73,56 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
     ) {
       setLimite(2);
     }
+    if (localStorage.getItem("classe") === "Druida") {
+      escolhas.push("Allihanna", "Megalokk", "Oceano");
+    } else if (localStorage.getItem("classe") === "Paladino") {
+      escolhas.push(
+        "Azgher",
+        "Khalmyr",
+        "Lena",
+        "Lin-Wu",
+        "Marah",
+        "Tanna-Toh",
+        "Thyatis",
+        "Valkaria"
+      );
+    }
   }, [localStorage.getItem("classe")]);
   return (
     <>
-      <h1 className="text-center text-lg font-bold mb-3">
-        Escolha sua divindade
-      </h1>
       <div className="flex gap-5">
-        <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] desktop:w-1/2">
+        <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] desktop:w-1/2 h-fit my-auto">
           <div>
             <div className="desktop:hidden block">
+              <h1 className="text-center text-lg font-bold mb-3">
+                Escolha sua divindade
+              </h1>
+              <div className="flex justify-evenly">
+                <Checkbox
+                  isDisabled={
+                    localStorage.getItem("classe") !== "Paladino" ||
+                    localStorage.getItem("classe") !== "Clérigo"
+                  }
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setAlternativo(true);
+                      setSelected("Todas");
+                    }
+                  }}
+                >
+                  Todas (Apenas para Clérigos e Paladinos)
+                </Checkbox>
+                <Checkbox
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setAlternativo(true);
+                      setSelected("Todas");
+                    }
+                  }}
+                >
+                  Nenhuma
+                </Checkbox>
+              </div>
               <SelectList
                 tabela={tabelaDivindades}
                 onChange={onChange}
@@ -110,6 +152,35 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
           </div>
         </section>
         <section className="desktop:block hidden w-1/2">
+          <h1 className="text-center text-lg font-bold mb-3">
+            Escolha sua divindade
+          </h1>
+          <div className="flex justify-evenly">
+            <Checkbox
+              isDisabled={
+                localStorage.getItem("classe") !== "Paladino" ||
+                localStorage.getItem("classe") !== "Clérigo"
+              }
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setAlternativo(true);
+                  setSelected("Todas");
+                }
+              }}
+            >
+              Todas (Apenas para Clérigos e Paladinos)
+            </Checkbox>
+            <Checkbox
+              onChange={(e) => {
+                if (e.target.checked) {
+                  setAlternativo(true);
+                  setSelected("Todas");
+                }
+              }}
+            >
+              Nenhuma
+            </Checkbox>
+          </div>
           <div className="grid gap-5 grid-cols-4 place-items-center">
             {tabelaDivindades.map((divindade) => {
               return (

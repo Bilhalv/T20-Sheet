@@ -34,3 +34,32 @@ export default function Botoes({ onChange, tabela, selected }: Props) {
     </>
   );
 }
+
+interface ConfirmarProps {
+  onSelect: any;
+}
+
+export function ConfirmarOnModal({ onSelect }: ConfirmarProps) {
+  return (
+    <Button
+      _hover={{ bgColor: "red.400" }}
+      bgColor={"red.600"}
+      textColor={"white"}
+      mx={"auto"}
+      onClick={onSelect}
+    >
+      Confirmar
+    </Button>
+  );
+}
+interface FecharProps {
+  onClose: any;
+}
+
+export function FecharOnModal({ onClose }: FecharProps) {
+  return (
+    <Button colorScheme="red" variant={"outline"} mx={"auto"} onClick={onClose}>
+      Fechar
+    </Button>
+  );
+}

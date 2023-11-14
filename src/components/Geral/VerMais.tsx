@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Button,
   Modal,
   ModalBody,
   ModalContent,
@@ -14,13 +13,15 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { stringify } from "querystring";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TabelaOrigens } from "../../classes/Tabelas/Origens";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { tabelaDivindades } from "../../classes/Tabelas/Divindades";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
+import { ConfirmarOnModal, FecharOnModal } from "./Botoes";
 
 interface Props {
   titulo: string;
@@ -44,11 +45,13 @@ export default function VerMais({
     TabelaClasses.find((c) => c.nome === selected) ?? TabelaClasses[0];
   var divindade =
     tabelaDivindades.find((d) => d.nome === selected) ?? tabelaDivindades[0];
+  var atributo =
+    TabelaAtributos.find((a) => a.nome === selected) ?? TabelaAtributos[0];
   return (
     <>
       <button
         onClick={onOpen}
-        className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3"
+        className="my-2 text-red-800 bg-transparent border-white border hover:bg-gray-300 hover:bg-opacity-40 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3"
       >
         Ver mais
       </button>
@@ -279,6 +282,26 @@ export default function VerMais({
                   {divindade.obrigacoes}
                 </p>
               </>
+            ) : pagina === "Atributos" ? (
+              <>
+                <Accordion allowToggle>
+                  {atributo.pericias.map((pericia: any) => (
+                    <AccordionItem>
+                        <>
+                          <h2>
+                            <AccordionButton className="flex justify-between">
+                              {pericia.nome}
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </h2>
+                          <AccordionPanel className="font-serif italic text-justify">
+                            <p>&nbsp;&nbsp;{pericia.descricao}</p>
+                          </AccordionPanel>
+                        </>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </>
             ) : (
               <>
                 <p>Error</p>
@@ -286,12 +309,10 @@ export default function VerMais({
             )}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="red" mx={"auto"} onClick={onClose}>
-              Fechar
-            </Button>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleSelect}>
-              Confirmar
-            </Button>
+            <FecharOnModal onClose={onClose} />
+            {pagina !== "Atributos" && (
+              <ConfirmarOnModal onSelect={handleSelect}/>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import VerMais from "../Geral/VerMais";
 import SelectList from "../Geral/SelectList";
-import Botoes from "../Geral/Botoes";
+import Botoes, { ConfirmarOnModal } from "../Geral/Botoes";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
 
@@ -90,21 +90,33 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
       localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
       localStorage.setItem("raca", raceSelecionada.nome);
       localStorage.setItem("pagina", next);
-      showCustomToast({ title: "Raça selecionada com sucesso", desc: `Raça selecionada: ${raceSelecionada.nome}`});
+      showCustomToast({
+        title: "Raça selecionada com sucesso",
+        desc: `Raça selecionada: ${raceSelecionada.nome}`,
+      });
       setPagina(next);
     }
   };
-  
+
   const handleArtibutoChange = () => {
     if (contador === 3) {
       console.log(`Raça Selecionada: ${raceSelecionada.nome}`);
       console.log(atributosSelecionados);
       localStorage.setItem("atributos", JSON.stringify(atributosSelecionados));
       localStorage.setItem("raca", raceSelecionada.nome);
-      showCustomToast({ title: "Raça selecionada com sucesso", desc: `Raça selecionada: ${raceSelecionada.nome}`});
+      showCustomToast({
+        title: "Raça selecionada com sucesso",
+        desc: `Raça selecionada: ${raceSelecionada.nome}`,
+      });
       setPagina(next);
     } else {
-      showCustomToast({ title: "Cuidado", desc: `Você deve escolher mais ${3-contador} atributo${3-contador >1 ? "s" : ""}`, status: "warning" });
+      showCustomToast({
+        title: "Cuidado",
+        desc: `Você deve escolher mais ${3 - contador} atributo${
+          3 - contador > 1 ? "s" : ""
+        }`,
+        status: "warning",
+      });
     }
   };
 
@@ -112,10 +124,12 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
 
   return (
     <>
-      <h1 className="text-center text-lg font-bold mb-3">Escolha sua Raça</h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit desktop:w-1/2 w-full">
           <div className="desktop:hidden">
+            <h1 className="text-center text-lg font-bold mb-3">
+              Escolha sua Raça
+            </h1>
             <SelectList
               onChange={handleRaceChange}
               placeholder="Escolha sua Raça"
@@ -148,16 +162,21 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
             <Confirmar onSelect={handleSelect} pagina="Raca" />
           </div>
         </section>
-        <section className="order-2 grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
-          <Botoes
-            onChange={handleRaceChange}
-            tabela={TabelaRacas}
-            selected={raceSelecionada.nome}
-          />
+        <section className="order-2 hidden desktop:block mx-auto">
+            <h1 className="text-center text-lg font-bold mb-3">
+              Escolha sua Raça
+            </h1>
+          <div className="grid-cols-3 gap-5 mx-auto h-fit transition-all ease-in-out grid">
+            <Botoes
+              onChange={handleRaceChange}
+              tabela={TabelaRacas}
+              selected={raceSelecionada.nome}
+            />
+          </div>
         </section>
       </div>
       <Modal finalFocusRef={finalRef2} isOpen={isOpen2} onClose={onClose2}>
-          <ModalOverlay backdropFilter="blur(5px)" />
+        <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent className="font-tormanta">
           <ModalHeader>Escolha seus atributos</ModalHeader>
           <ModalBody>
@@ -196,14 +215,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button
-              ref={finalRef2}
-              colorScheme="blue"
-              mx={"auto"}
-              onClick={handleArtibutoChange}
-            >
-              Confirmar
-            </Button>
+            <ConfirmarOnModal onSelect={handleArtibutoChange} />
           </ModalFooter>
         </ModalContent>
         <ModalCloseButton />

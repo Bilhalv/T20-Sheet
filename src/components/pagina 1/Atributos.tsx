@@ -1,28 +1,17 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
   Button,
   HStack,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Select,
-  useDisclosure,
   useNumberInput,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
-import { MinusIcon, MoveDown, MoveUp, PlusIcon } from "lucide-react";
+import { MoveDown, MoveUp } from "lucide-react";
 import useCustomToast from "../Geral/Toasted";
 import { useNavigate } from "react-router-dom";
 import Confirmar from "../Geral/Confirmar";
+import VerMais from "../Geral/VerMais";
 
 interface AtributosProps {
   setPagina: (pagina: string) => void;
@@ -151,37 +140,22 @@ function HookUsage({
 }
 
 export default function Atributos({ setPagina, next }: AtributosProps) {
+  const atributosDefault = [
+    { nome: "Força", valor: 0 },
+    { nome: "Destreza", valor: 0 },
+    { nome: "Constituição", valor: 0 },
+    { nome: "Inteligência", valor: 0 },
+    { nome: "Sabedoria", valor: 0 },
+    { nome: "Carisma", valor: 0 },
+  ];
   const navigate = useNavigate();
   const { showCustomToast } = useCustomToast();
   if (localStorage.getItem("atributos") === null) {
-    localStorage.setItem(
-      "atributos",
-      JSON.stringify([
-        { nome: "Força", valor: 0 },
-        { nome: "Destreza", valor: 0 },
-        { nome: "Constituição", valor: 0 },
-        { nome: "Inteligência", valor: 0 },
-        { nome: "Sabedoria", valor: 0 },
-        { nome: "Carisma", valor: 0 },
-      ])
-    );
+    localStorage.setItem("atributos", JSON.stringify(atributosDefault));
   }
-  const [atributosSelecionados, setAtributosSelecionados] = useState([
-    { nome: "Força", valor: 0 },
-    { nome: "Destreza", valor: 0 },
-    { nome: "Constituição", valor: 0 },
-    { nome: "Inteligência", valor: 0 },
-    { nome: "Sabedoria", valor: 0 },
-    { nome: "Carisma", valor: 0 },
-  ]);
-  const [atributosRaca, setAtributosRaca] = useState([
-    { nome: "Força", valor: 0 },
-    { nome: "Destreza", valor: 0 },
-    { nome: "Constituição", valor: 0 },
-    { nome: "Inteligência", valor: 0 },
-    { nome: "Sabedoria", valor: 0 },
-    { nome: "Carisma", valor: 0 },
-  ]);
+  const [atributosSelecionados, setAtributosSelecionados] =
+    useState(atributosDefault);
+  const [atributosRaca, setAtributosRaca] = useState(atributosDefault);
   const [pontos, setPontos] = useState(10);
   const [tipo, setTipo] = useState("Pontos");
   const [destaque, setDestaque] = useState(TabelaAtributos[0]);
@@ -231,7 +205,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   const destaqueImgTable = [
     "./img/atributos/forca2.png",
     "./img/atributos/destreza2.png",
-    "./img/atributos/constituicao2. png",
+    "./img/atributos/constituicao2.png",
     "./img/atributos/inteligencia2.png",
     "./img/atributos/sabedoria2.png",
     "./img/atributos/carisma2.png",
@@ -323,9 +297,6 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
     });
   };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const finalRef = React.useRef(null);
-
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">
@@ -356,12 +327,12 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           <img src={destaqueImg} className="w-1/2 mx-auto p-3 bg-red-700" />
           <p className="text-center font-serif my-4">{destaque.descricao}</p>
           <div className="flex gap-2 mx-auto w-full justify-around">
-            <button
-              onClick={onOpen}
-              className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3"
-            >
-              Ver Mais
-            </button>
+            <VerMais
+              selected={destaque.nome}
+              titulo={`Pericias do atributo ${destaque.nome}`}
+              pagina="Atributos"
+              handleSelect={() => {}}
+            />
             <Confirmar onSelect={handleClick} pagina="Atributos" />
           </div>
         </article>
@@ -431,45 +402,6 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
             </div>
           ))}
         </article>
-        <Modal
-          size={"xl"}
-          finalFocusRef={finalRef}
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay backdropFilter="blur(5px)" />
-          <ModalContent className="font-tormenta">
-            <ModalHeader>Pericias do atributo {destaque.nome}</ModalHeader>
-            <ModalBody>
-              <Accordion allowToggle>
-                {destaque.pericias.map((pericia) => (
-                  <AccordionItem>
-                    {({ isExpanded }) => (
-                      <>
-                        <h2>
-                          <AccordionButton className="flex justify-between">
-                            {pericia.nome}
-                            {isExpanded ? <MinusIcon /> : <PlusIcon />}
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel className="font-serif italic text-justify">
-                          <p>&nbsp;&nbsp;{pericia.descricao}</p>
-                        </AccordionPanel>
-                      </>
-                    )}
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="red" mx={"auto"} onClick={onClose}>
-                Fechar
-              </Button>
-            </ModalFooter>
-            <ModalCloseButton />
-          </ModalContent>
-        </Modal>
       </section>
     </>
   );

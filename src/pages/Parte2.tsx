@@ -6,6 +6,8 @@ import Poderes from "../components/pagina 2/Poderes";
 import Magias from "../components/pagina 2/Magias";
 import Equipamentos from "../components/pagina 2/Equipamentos";
 import Alt from "../components/pagina 2/Alt";
+import InfoModal from "../components/Geral/InfoModal";
+import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
   const paginas = ["Divindades", "Poderes", "Magias", "Equipamentos", "Alt"];
@@ -17,7 +19,11 @@ const App: React.FC = () => {
       <body className="bg-bgT20 bg-cover bg-bottom min-h-screen pb-2 w-full font-tormenta">
         <Navbar back={"/criarpt1"} />
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
-          <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
+          <div className="flex flex-row-reverse mb-[-40px]">
+            <InfoModal pagina={pagina} />
+            <FichaModal pagina={2} setPagina={setPagina} />
+          </div>
+          <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] mb-2">
             T20 CHARACTER CREATOR
           </h1>
           {pagina === "Divindades" && (

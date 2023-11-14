@@ -5,22 +5,12 @@ interface Props {
 
 export default function Confirmar({ onSelect, pagina }: Props) {
   return (
-    <>
-      {pagina === "inicio" ? (
-        <button
-          type="submit"
-          className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
-        >
-          Confirmar
-        </button>
-      ) : (
-        <button
-          onClick={onSelect}
-          className="my-2 text-red-800 bg-white hover:bg-gray-300 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
-        >
-          Confirmar
-        </button>
-      )}
-    </>
+    <button
+      type="submit"
+      onClick={pagina !== "inicio" && onSelect}
+      className="my-2 text-white bg-red-800 hover:bg-red-500 px-2 rounded w-full transition-all ease-in-out shadow-lg mt-3"
+    >
+      Confirmar
+    </button>
   );
 }

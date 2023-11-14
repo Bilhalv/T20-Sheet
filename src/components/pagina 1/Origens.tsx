@@ -17,15 +17,13 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
-  Stack,
   useDisclosure,
 } from "@chakra-ui/react";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
-import { tab } from "@testing-library/user-event/dist/tab";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import VerMais from "../Geral/VerMais";
 import SelectList from "../Geral/SelectList";
-import Botoes from "../Geral/Botoes";
+import Botoes, { ConfirmarOnModal, FecharOnModal } from "../Geral/Botoes";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
 
@@ -95,67 +93,41 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
       });
       return;
     } else {
-      if (beneficiosSelecionados[1].beneficio.includes("Combate")) {
-        const tipoPoderRemover = beneficiosSelecionados[1].beneficio.find(
-          (poder) => poder === "Combate"
-        );
-        setBeneficiosSelecionados((beneficios) => {
-          const newBeneficios = [...beneficios];
-          newBeneficios[1].beneficio = newBeneficios[1].beneficio.filter(
-            (beneficio) => beneficio !== tipoPoderRemover
-          );
-          return newBeneficios;
-        });
-        setTipoPoder("combate");
-        onOpen3();
-      } else if (beneficiosSelecionados[1].beneficio.includes("Tormenta")) {
-        const tipoPoderRemover = beneficiosSelecionados[1].beneficio.find(
-          (poder) => poder === "Tormenta"
-        );
-        setBeneficiosSelecionados((beneficios) => {
-          const newBeneficios = [...beneficios];
-          newBeneficios[1].beneficio = newBeneficios[1].beneficio.filter(
-            (beneficio) => beneficio !== tipoPoderRemover
-          );
-          return newBeneficios;
-        });
-        setTipoPoder("tormenta");
-        onOpen3();
-      } else {
-        onClose3();
-        localStorage.setItem("origem", origem.nome);
-        let removerEspacoPericia = "";
-        let removerEspacoPoder = "";
-        if (beneficiosSelecionados[0].beneficio.length > 1) {
-          removerEspacoPericia = beneficiosSelecionados[0].beneficio.shift()!;
-        }
-        if (beneficiosSelecionados[1].beneficio.length > 1) {
-          removerEspacoPoder = beneficiosSelecionados[1].beneficio.shift()!;
-        }
-        setBeneficiosSelecionados([
-          { tipo: "Perícias", beneficio: [removerEspacoPericia] },
-          { tipo: "Poderes", beneficio: [removerEspacoPoder] },
-        ]);
-        localStorage.setItem(
-          "beneficios",
-          JSON.stringify(beneficiosSelecionados)
-        );
-        localStorage.setItem("pagina", next);
-        showCustomToast({
-          title: "Origem escolhida com sucesso!",
-          desc: `Você escolheu a origem ${origem.nome}`,
-        });
-        setPagina(next);
+      onClose3();
+      localStorage.setItem("origem", origem.nome);
+      let removerEspacoPericia = "";
+      let removerEspacoPoder = "";
+      if (beneficiosSelecionados[0].beneficio.length > 1) {
+        removerEspacoPericia = beneficiosSelecionados[0].beneficio.shift()!;
       }
+      if (beneficiosSelecionados[1].beneficio.length > 1) {
+        removerEspacoPoder = beneficiosSelecionados[1].beneficio.shift()!;
+      }
+      setBeneficiosSelecionados([
+        { tipo: "Perícias", beneficio: [removerEspacoPericia] },
+        { tipo: "Poderes", beneficio: [removerEspacoPoder] },
+      ]);
+      localStorage.setItem(
+        "beneficios",
+        JSON.stringify(beneficiosSelecionados)
+      );
+      localStorage.setItem("pagina", next);
+      showCustomToast({
+        title: "Origem escolhida com sucesso!",
+        desc: `Você escolheu a origem ${origem.nome}`,
+      });
+      setPagina(next);
     }
   };
   return (
     <>
-      <h1 className="text-center text-lg font-bold mb-3">Escolha sua Origem</h1>
       <main className="flex gap-5">
         <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit">
           <section className="flex flex-col gap-2">
             <div className="laptop:hidden">
+              <h1 className="text-center text-xl font-bold mb-3">
+                Escolha sua Origem
+              </h1>
               <SelectList
                 onChange={handleOrigemChange}
                 tabela={TabelaOrigens}
@@ -197,6 +169,9 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </div>
         </section>
         <section className="hidden laptop:block p-3">
+          <h1 className="text-center text-xl font-bold mb-3">
+            Escolha sua Origem
+          </h1>
           <section className="order-2 grid-cols-5 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
             <Botoes
               onChange={handleOrigemChange}
@@ -216,159 +191,241 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
               <CheckboxGroup>
                 <h1 className="font-bold text-center">Perícias</h1>
                 <div className="flex flex-row justify-evenly">
-                  {origem.beneficios.pericias.map((pericia: any) => (
-                    <Checkbox
-                      key={pericia}
-                      isChecked={beneficiosSelecionados[0].beneficio.includes(
-                        pericia
-                      )}
-                      isDisabled={
-                        contador >= 2 &&
-                        !beneficiosSelecionados[0].beneficio.includes(pericia)
-                      }
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setContador(contador + 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            if (!newBeneficios[0].beneficio.includes(pericia)) {
-                              newBeneficios[0].beneficio.push(pericia);
+                  <Accordion className="w-full" allowToggle>
+                    {origem.beneficios.pericias.map((pericia: any) => (
+                      <AccordionItem>
+                        <AccordionButton className="flex justify-between">
+                          <div className="flex gap-2">
+                            <Checkbox
+                              key={pericia}
+                              isChecked={beneficiosSelecionados[0].beneficio.includes(
+                                pericia
+                              )}
+                              isDisabled={
+                                contador >= 2 &&
+                                !beneficiosSelecionados[0].beneficio.includes(
+                                  pericia
+                                )
+                              }
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setContador(contador + 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    if (
+                                      !newBeneficios[0].beneficio.includes(
+                                        pericia
+                                      )
+                                    ) {
+                                      newBeneficios[0].beneficio.push(pericia);
+                                    }
+                                    return newBeneficios;
+                                  });
+                                } else {
+                                  setContador(contador - 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    newBeneficios[0].beneficio =
+                                      newBeneficios[0].beneficio.filter(
+                                        (beneficio) => beneficio !== pericia
+                                      );
+                                    return newBeneficios;
+                                  });
+                                }
+                              }}
+                            />
+                            {pericia}
+                          </div>
+                          <AccordionIcon />
+                        </AccordionButton>
+                        <AccordionPanel>
+                          <p className="text-justify font-serif italic">
+                            &nbsp;&nbsp;&nbsp;
+                            {
+                              TabelaPericias.find(
+                                (periciaTabela) =>
+                                  periciaTabela.nome === pericia
+                              )?.descricao
                             }
-                            return newBeneficios;
-                          });
-                        } else {
-                          setContador(contador - 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            newBeneficios[0].beneficio =
-                              newBeneficios[0].beneficio.filter(
-                                (beneficio) => beneficio !== pericia
-                              );
-                            return newBeneficios;
-                          });
-                        }
-                      }}
-                    >
-                      {pericia}
-                    </Checkbox>
-                  ))}
+                          </p>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </div>
                 <h1 className="font-bold text-center mt-3">Poderes</h1>
                 <div className="flex flex-row justify-evenly">
-                  {origem.beneficios.poderes.map((poder) => (
-                    <Checkbox
-                      key={poder}
-                      isChecked={beneficiosSelecionados[1].beneficio.includes(
-                        poder
-                      )}
-                      isDisabled={
-                        contador >= 2 &&
-                        !beneficiosSelecionados[1].beneficio.includes(poder)
-                      }
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setContador(contador + 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            if (!newBeneficios[1].beneficio.includes(poder)) {
-                              newBeneficios[1].beneficio.push(poder);
+                  <Accordion className="w-full" allowToggle>
+                    {origem.beneficios.poderes.map((poder) => (
+                      <AccordionItem>
+                        <AccordionButton className="flex justify-between">
+                          <div className="flex gap-2">
+                            <Checkbox
+                              key={poder}
+                              isChecked={beneficiosSelecionados[1].beneficio.includes(
+                                poder
+                              )}
+                              isDisabled={
+                                contador >= 2 &&
+                                !beneficiosSelecionados[1].beneficio.includes(
+                                  poder
+                                )
+                              }
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setContador(contador + 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    if (
+                                      !newBeneficios[1].beneficio.includes(
+                                        poder
+                                      )
+                                    ) {
+                                      newBeneficios[1].beneficio.push(poder);
+                                    }
+                                    return newBeneficios;
+                                  });
+                                } else {
+                                  setContador(contador - 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    newBeneficios[1].beneficio =
+                                      newBeneficios[1].beneficio.filter(
+                                        (beneficio) => beneficio !== poder
+                                      );
+                                    return newBeneficios;
+                                  });
+                                }
+                              }}
+                            />
+                            {poder}
+                          </div>
+                          <AccordionIcon />
+                        </AccordionButton>
+                        <AccordionPanel>
+                          <p className="text-justify font-serif italic">
+                            &nbsp;&nbsp;&nbsp;
+                            {
+                              TabelaPoderes.find(
+                                (poderTabela) => poderTabela.nome === poder
+                              )?.descricao
                             }
-                            return newBeneficios;
-                          });
-                        } else {
-                          setContador(contador - 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            newBeneficios[1].beneficio =
-                              newBeneficios[1].beneficio.filter(
-                                (beneficio) => beneficio !== poder
-                              );
-                            return newBeneficios;
-                          });
-                        }
-                      }}
-                    >
-                      {poder}
-                    </Checkbox>
-                  ))}
-                  {origem.nome == "Capanga" ||
-                  origem.nome == "Gladiador" ||
-                  origem.nome == "Guarda" ||
-                  origem.nome == "Soldado" ? (
-                    <Checkbox
-                      isChecked={beneficiosSelecionados[1].beneficio.includes(
-                        "Combate"
-                      )}
-                      isDisabled={
-                        contador >= 2 &&
-                        !beneficiosSelecionados[1].beneficio.includes("Combate")
-                      }
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setContador(contador + 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            if (
-                              !newBeneficios[1].beneficio.includes("Combate")
-                            ) {
-                              newBeneficios[1].beneficio.push("Combate");
-                            }
-                            return newBeneficios;
-                          });
-                        } else {
-                          setContador(contador - 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            newBeneficios[1].beneficio =
-                              newBeneficios[1].beneficio.filter(
-                                (beneficio) => beneficio !== "Combate"
-                              );
-                            return newBeneficios;
-                          });
-                        }
-                      }}
-                    >
-                      Poder de Combate
-                    </Checkbox>
-                  ) : origem.nome == "Assistente de Laboratório" ? (
-                    <Checkbox
-                      isChecked={beneficiosSelecionados[1].beneficio.includes(
-                        "Tormenta"
-                      )}
-                      isDisabled={
-                        contador >= 2 &&
-                        !beneficiosSelecionados[1].beneficio.includes(
-                          "Tormenta"
-                        )
-                      }
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setContador(contador + 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            if (
-                              !newBeneficios[1].beneficio.includes("Tormenta")
-                            ) {
-                              newBeneficios[1].beneficio.push("Tormenta");
-                            }
-                            return newBeneficios;
-                          });
-                        } else {
-                          setContador(contador - 1);
-                          setBeneficiosSelecionados((beneficios) => {
-                            const newBeneficios = [...beneficios];
-                            newBeneficios[1].beneficio =
-                              newBeneficios[1].beneficio.filter(
-                                (beneficio) => beneficio !== "Tormenta"
-                              );
-                            return newBeneficios;
-                          });
-                        }
-                      }}
-                    >
-                      Poder da Tormenta
-                    </Checkbox>
-                  ) : null}
+                          </p>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    ))}
+                    {origem.nome == "Capanga" ||
+                    origem.nome == "Gladiador" ||
+                    origem.nome == "Guarda" ||
+                    origem.nome == "Soldado" ? (
+                      <AccordionItem>
+                        <AccordionButton className="flex justify-between">
+                          <div className="flex gap-2">
+                            <Checkbox
+                              isChecked={beneficiosSelecionados[1].beneficio.includes(
+                                "Combate"
+                              )}
+                              isDisabled={
+                                contador >= 2 &&
+                                !beneficiosSelecionados[1].beneficio.includes(
+                                  "Combate"
+                                )
+                              }
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setContador(contador + 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    if (
+                                      !newBeneficios[1].beneficio.includes(
+                                        "Combate"
+                                      )
+                                    ) {
+                                      newBeneficios[1].beneficio.push(
+                                        "Combate"
+                                      );
+                                    }
+                                    return newBeneficios;
+                                  });
+                                } else {
+                                  setContador(contador - 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    newBeneficios[1].beneficio =
+                                      newBeneficios[1].beneficio.filter(
+                                        (beneficio) => beneficio !== "Combate"
+                                      );
+                                    return newBeneficios;
+                                  });
+                                }
+                              }}
+                            />
+                            Poder de Combate
+                          </div>
+                          <AccordionIcon />
+                        </AccordionButton>
+                        <AccordionPanel>
+                          <p className="text-justify font-serif italic">
+                            &nbsp;&nbsp;&nbsp;Um poder de combate da sua escolha
+                          </p>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    ) : origem.nome == "Assistente de Laboratório" ? (
+                      <AccordionItem>
+                        <AccordionButton className="flex justify-between">
+                          <div className="flex gap-2">
+                            <Checkbox
+                              isChecked={beneficiosSelecionados[1].beneficio.includes(
+                                "Tormenta"
+                              )}
+                              isDisabled={
+                                contador >= 2 &&
+                                !beneficiosSelecionados[1].beneficio.includes(
+                                  "Tormenta"
+                                )
+                              }
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setContador(contador + 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    if (
+                                      !newBeneficios[1].beneficio.includes(
+                                        "Tormenta"
+                                      )
+                                    ) {
+                                      newBeneficios[1].beneficio.push(
+                                        "Tormenta"
+                                      );
+                                    }
+                                    return newBeneficios;
+                                  });
+                                } else {
+                                  setContador(contador - 1);
+                                  setBeneficiosSelecionados((beneficios) => {
+                                    const newBeneficios = [...beneficios];
+                                    newBeneficios[1].beneficio =
+                                      newBeneficios[1].beneficio.filter(
+                                        (beneficio) => beneficio !== "Tormenta"
+                                      );
+                                    return newBeneficios;
+                                  });
+                                }
+                              }}
+                            />
+                            Poder da Tormenta
+                          </div>
+                          <AccordionIcon />
+                        </AccordionButton>
+                        <AccordionPanel>
+                          <p className="text-justify font-serif italic">
+                            &nbsp;&nbsp;&nbsp;Um poder da tormenta da sua
+                            escolha
+                          </p>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    ) : null}
+                  </Accordion>
                 </div>
               </CheckboxGroup>
             ) : (
@@ -391,12 +448,8 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="red" mx={"auto"} onClick={onClose2}>
-              Fechar
-            </Button>
-            <Button colorScheme="blue" mx={"auto"} onClick={handleBeneficio}>
-              Confirmar
-            </Button>
+            <FecharOnModal onClose={onClose2} />
+            <ConfirmarOnModal onSelect={handleBeneficio} />
           </ModalFooter>
         </ModalContent>
       </Modal>

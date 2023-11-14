@@ -58,7 +58,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
             <Tabs variant="enclosed">
               <TabList>
                 <Tab>Primeira pagina</Tab>
-                <Tab>Segunda pagina</Tab>
+                <Tab isDisabled={pagina==1}>Segunda pagina</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>

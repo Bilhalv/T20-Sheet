@@ -143,7 +143,7 @@ export const druida: Classe = {
   proficiencias: ["Escudos"],
   habilidades: [
     {
-      nome: "Devoto Fie.",
+      nome: "Devoto Fiel.",
       descricao: "Você se torna devoto de um deus disponível para druidas (Allihanna, Megalokk ou Oceano). Veja as regras de devotos na página 96. Ao contrário de devotos normais, você recebe dois poderes concedidos por se tornar devoto, em vez de apenas um."
     },
     {
