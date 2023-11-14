@@ -52,6 +52,24 @@ export function ConfirmarOnModal({ onSelect }: ConfirmarProps) {
     </Button>
   );
 }
+interface EntendiProps {
+  onClose: any;
+}
+
+export function EntendiOnModal({ onClose }: EntendiProps) {
+  return (
+    <Button
+      _hover={{ bgColor: "red.400" }}
+      bgColor={"red.600"}
+      textColor={"white"}
+      mx={"auto"}
+      onClick={onClose}
+    >
+      Entendi
+    </Button>
+  );
+}
+
 interface FecharProps {
   onClose: any;
 }

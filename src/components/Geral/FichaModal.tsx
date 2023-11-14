@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { BookUser, Pencil } from "lucide-react";
 import React from "react";
+import { EntendiOnModal } from "./Botoes";
 
 interface Props {
   setPagina: any;
@@ -282,9 +283,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
             </Tabs>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mx={"auto"} onClick={onClose}>
-              Entendi
-            </Button>
+            <EntendiOnModal onClose={onClose} />
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Info } from "lucide-react";
+import { EntendiOnModal } from "./Botoes";
 
 interface Props {
   pagina: string;
@@ -291,9 +292,7 @@ export default function InfoModal({ pagina }: Props) {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mx={"auto"} onClick={onClose}>
-              Entendi
-            </Button>
+            <EntendiOnModal onClose={onClose} />
           </ModalFooter>
         </ModalContent>
       </Modal>
