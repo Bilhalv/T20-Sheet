@@ -299,7 +299,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
 
   return (
     <>
-      <h1 className="text-center text-lg font-bold mb-3">
+      <h1 className="text-center text-3xl font-bold mb-4">
         Escolha seus atributos
       </h1>
       <div className="desktop:w-1/4 desktop:mx-0 w-3/4">

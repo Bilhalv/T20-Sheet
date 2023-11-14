@@ -121,13 +121,13 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
   };
   return (
     <>
+      <h1 className="text-center text-3xl font-bold mb-4">
+        Escolha sua Origem
+      </h1>
       <main className="flex gap-5">
         <section className="bg-gray-300 laptop:w-1/2 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit">
           <section className="flex flex-col gap-2">
             <div className="laptop:hidden">
-              <h1 className="text-center text-xl font-bold mb-3">
-                Escolha sua Origem
-              </h1>
               <SelectList
                 onChange={handleOrigemChange}
                 tabela={TabelaOrigens}
@@ -169,9 +169,6 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
           </div>
         </section>
         <section className="hidden laptop:block p-3">
-          <h1 className="text-center text-xl font-bold mb-3">
-            Escolha sua Origem
-          </h1>
           <section className="order-2 grid-cols-5 gap-5 mx-auto h-fit transition-all ease-in-out hidden desktop:grid">
             <Botoes
               onChange={handleOrigemChange}

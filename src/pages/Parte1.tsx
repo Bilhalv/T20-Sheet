@@ -33,9 +33,6 @@ const App: React.FC = () => {
             <InfoModal pagina={pagina} />
             <FichaModal pagina={1} setPagina={setPagina}/>
           </div>
-          <h1 className="text-3xl text-center text-red-800 drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] mb-2">
-            T20 CHARACTER CREATOR
-          </h1>
           {pagina === "Inicio" && (
             <Inicio next="Origens" setPagina={setPagina} />
           )}
