@@ -229,7 +229,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
                       </>
                     )
                   ) : (
-                    <>Você não segue nenhum Deus</>
+                    <>Você não segue nenhum Deus(Não significa que não acredita na existência deles, pois seria o equivalente a terraplanismo em Arton)</>
                   )}
                 </>
               ) : (
