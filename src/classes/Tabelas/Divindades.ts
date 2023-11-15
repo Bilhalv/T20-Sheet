@@ -15,25 +15,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Afinidade com a Tormenta",
                 descricao: "Você recebe +10 em testes de resistência contra efeitos da Tormenta, de suas criaturas e de devotos de Aharadak. Além disso, seu primeiro poder da Tormenta não conta para perda de Carisma.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Êxtase da Loucura",
                 descricao: "Toda vez que uma ou mais criaturas falham em um teste de Vontade contra uma de suas habilidades mágicas, você recebe 1 PM temporário cumulativo. Você pode ganhar um máximo de PM temporários por cena desta forma igual a sua Sabedoria.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Percepção Temporal",
                 descricao: "Você pode gastar 3 PM para somar sua Sabedoria (limitado por seu nível e não cumulativo com efeitos que somam este atributo) a seus ataques, Defesa e testes de Reflexos até o fim da cena.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Rejeição Divina",
                 descricao: "Você recebe resistência a magia divina +5.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Quase todos os cultistas de Aharadak são maníacos insanos, compelidos a praticar os atos mais abomináveis. No entanto, talvez devido à natureza alienígena e incompreensível deste deus, alguns devotos conseguem se resguardar. Preservam sua humanidade, abstendo-se de cometer crimes ou profanações. Ainda assim, o devoto paga um preço. No início de qualquer cena de ação, role 1d6. Com um resultado ímpar, você fica fascinado na primeira rodada, perdido em devaneios sobre a futilidade da vida (mesmo que seja imune a esta condição).",
@@ -52,25 +56,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Compreender os Ermos",
                 descricao: "Você recebe +2 em Sobrevivência e pode usar Sabedoria para Adestramento (em vez de Carisma).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Dedo Verde",
                 descricao: "Você aprende e pode lançar Controlar Plantas. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Descanso Natural",
                 descricao: "Para você, dormir ao relento conta como condição de descanso confortável.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Voz da Natureza",
                 descricao: "Você pode falar com animais (como o efeito da magia Voz Divina) e aprende e pode lançar Acalmar Animal, mas só contra animais. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
 
         ],
@@ -90,25 +98,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Conjurar Arma",
                 descricao: "Você pode gastar 1 PM para invocar uma arma corpo a corpo ou de arremesso com a qual seja proficiente. A arma surge em sua mão, fornece +1 em testes de ataque e rolagens de dano, é considerada mágica e dura pela cena. Você não pode criar armas de disparo, mas pode criar 20 munições.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Coragem Total",
                 descricao: "Você é imune a efeitos de medo, mágicos ou não. Este poder não elimina fobias raciais (como o medo de altura dos minotauros).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Fé Guerreira",
                 descricao: "Você pode usar Sabedoria para Guerra (em vez de Inteligência). Além disso, em combate, pode gastar 2 PM para substituir um teste de perícia (exceto testes de ataque) por um teste de Guerra.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Sangue de Ferro",
                 descricao: "Você pode pagar 3 PM para receber +2 em rolagens de dano e redução de dano 5 até o fim da cena.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Um devoto de Arsenal é proibido de ser derrotado em qualquer tipo de combate ou disputa (como um teste oposto para ver quem é mais forte). Caso seu grupo seja derrotado, isso também constitui uma violação das obrigações.",
@@ -127,25 +139,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Espada Solar",
                 descricao: "Você pode gastar 1 PM para fazer uma arma corpo a corpo de corte que esteja empunhando causar +1d6 de dano por fogo até o fim da cena.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Fulgor Solar",
                 descricao: "Você recebe redução de frio e trevas 5. Além disso, quando é alvo de um ataque você pode gastar 1 PM para emitir um clarão solar que deixa o atacante ofuscado por uma rodada.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Habitante do Deserto",
                 descricao: "Você recebe redução de fogo 10 e pode pagar 1 PM para criar água pura e potável suficiente para um odre (ou outro recipiente pequeno).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Inimigo de Tenebra",
                 descricao: "Seus ataques e habilidades causam +1d6 pontos de dano contra mortos-vivos. Quando você usa um efeito que gera luz, o alcance da iluminação dobra.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "O devoto de Azgher deve manter o rosto sempre coberto (com uma máscara, capuz ou trapos). Sua face pode ser revelada apenas ao sumo-sacerdote ou em seu funeral. Devotos do Sol também devem doar para a igreja de Azgher 20% de qualquer tesouro obtido. Essa doação deve ser feita em ouro, seja na forma de moedas ou itens",
@@ -164,25 +180,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Apostar com o Trapaceiro",
                 descricao: "Quando faz um teste de perícia, você pode gastar 1 PM para apostar com Hyninn. Você e o mestre rolam 1d20, mas o mestre mantém o resultado dele em segredo. Você então escolhe entre usar seu próprio resultado ou o resultado oculto do mestre (neste caso, ele revela o resultado).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Farsa do Fingidor",
                 descricao: "Você aprende e pode lançar Criar Ilusão. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Forma de Macaco",
                 descricao: "Você pode gastar uma ação completa e 2 PM para se transformar em um macaco. Você adquire tamanho Minúsculo (o que fornece +5 em Furtividade e –5 em testes de manobra) e recebe deslocamento de escalar 9m. Seu equipamento desaparece (e você perde seus benefícios) até você voltar ao normal, mas suas outras estatísticas não são alteradas. A transformação dura indefinidamente, mas termina caso você faça um ataque, lance uma magia ou sofra dano.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Golpista Divino",
                 descricao: "Você recebe +2 em Enganação, Jogatina e Ladinagem.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Um devoto de Hyninn não recusa participação em um golpe, trapaça ou artimanha (o que muitas vezes inclui missões para roubar... hã, resgatar tesouros), exceto quando prejudica seus próprios aliados. O devoto também deve fazer um ato furtivo, ousado ou proibido por dia (ou por sessão de jogo, o que demorar mais), como oferenda a Hyninn. Roubar uma bolsa, enganar um miliciano, invadir o quarto de um nobre... Em termos de jogo, uma ação exigindo um teste de Enganação ou Ladinagem com CD mínima 15 + metade do seu nível.",
@@ -201,25 +221,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Servos do Dragão",
                 descricao: "Você pode gastar uma ação completa e 2 PM para invocar 2d4+1 kobolds capangas em espaços desocupados em alcance curto. Você pode gastar uma ação de movimento para fazer os kobolds andarem (eles têm deslocamento 9m) ou uma ação padrão para fazê-los causar dano a criaturas adjacentes (1d6–1 pontos de dano de perfuração cada). Os kobolds têm For –1, Des 1, Defesa 12, 1 PV e falham automaticamente em qualquer teste de resistência ou oposto. Eles desaparecem quando morrem ou no fim da cena. Os kobolds não agem sem receber uma ordem. Usos criativos para capangas fora de combate ficam a critério do mestre.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Presas Primordiais",
                 descricao: "Você pode gastar 1 PM para transformar seus dentes em presas afiadas até o fim da cena. Você recebe uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir com outra arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida. Se já possuir outro ataque natural de mordida, em vez disso, o dano desse ataque aumenta em dois passos.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Escamas Dracônicas",
                 descricao: "Você recebe +2 na Defesa e em Fortitude.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Aura de Medo",
                 descricao: "Você pode gastar 2 PM para gerar uma aura de medo de 9m de raio e duração até o fim da cena. Todos os inimigos que entrem na aura devem fazer um teste de Vontade (CD Car) ou ficam abalados até o fim da cena. Uma criatura que passe no teste de Vontade fica imune a esta habilidade por um dia.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Para subir de nível, além de acumular XP suficiente, o devoto de Kally deve realizar uma oferenda em tesouro. O valor é igual à 20% da diferença do dinheiro inicial do nível que vai alcançar para o nível atual (por exemplo, T$ 80 para subir para o 4° nível). Sabe-se, também, de devotos malignos que sacrificam vítimas a Kally (não permitido para personagens jogadores).",
@@ -238,25 +262,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Coragem total",
                 descricao: "Você é imune a efeitos de medo, mágicos ou não. Este poder não elimina fobias raciais (como o medo de altura dos minotauros).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Dom da Verdade",
                 descricao: "Você pode pagar 2 PM para receber +5 em testes de Intuição, e em testes de Percepção contra Enganação e Furtividade, até o fim da cena.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Espada Justiceira",
                 descricao: "Você pode gastar 1 PM para encantar sua espada (ou outra arma corpo a corpo de corte que esteja empunhando). Ela tem seu dano aumentado em um passo até o fim da cena.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Reparar Injustiça",
                 descricao: "Uma vez por rodada, quando um oponente em alcance curto acerta um ataque em você ou em um de seus aliados, você pode gastar 2 PM para fazer este oponente repetir o ataque, escolhendo o pior entre os dois resultados.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Khalmyr não podem recusar pedidos de ajuda de pessoas inocentes. Também devem cumprir as ordens de superiores na hierarquia da igreja (devotos do Deus da Justiça de nível maior) e só podem usar itens mágicos permanentes criados por devotos do mesmo deus.",
@@ -275,25 +303,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Ataque Piedoso",
                 descricao: "Você pode usar armas corpo a corpo para causar dano não letal sem sofrer a penalidade de –5 no teste de ataque.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Aura Restauradora",
                 descricao: "Efeitos de cura usados por você e seus aliados em alcance curto recuperam +1 PV por dado.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Cura Gentil",
                 descricao: "Você soma seu Carisma aos PV restaurados por seus efeitos mágicos de cura.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Curandeira Perfeita",
                 descricao: "Você sempre pode escolher 10 em testes de Cura. Além disso, não sofre penalidade por usar essa perícia sem uma maleta de medicamentos. Se possuir o item, recebe +2 no teste de Cura (ou +5, se ele for aprimorado).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Lena não podem causar dano letal ou perda de PV a criaturas vivas (fornecer bônus em dano letal também é proibido). Podem causar dano não letal e prejudicar seus inimigos (em termos de jogo, impondo condições), desde que não causem dano letal ou perda de PV. Para um devoto de Lena, é preferível perder a própria vida a tirá-la de outros. Apenas mulheres podem ser devotas de Lena. Uma clériga precisa dar à luz pelo menos uma vez antes de receber seus poderes divinos. A fecundação é um mistério bem guardado pelas sacerdotisas; conta-se que a própria deusa vem semear suas discípulas. Paladinos de Lena podem ser homens (são os únicos devotos masculinos permitidos) ou mulheres.",
@@ -312,25 +344,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Coragem total",
                 descricao: "Você é imune a efeitos de medo, mágicos ou não. Este poder não elimina fobias raciais (como o medo de altura dos minotauros).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Kiai Divino",
                 descricao: "Uma vez por rodada, quando faz um ataque corpo a corpo, você pode pagar 3 PM. Se acertar o ataque, causa dano máximo, sem necessidade de rolar dados.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Mente Vazia",
                 descricao: "Você recebe +2 em Iniciativa, Percepção e Vontade.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Tradição de Lin-Wu",
                 descricao: "Você considera a katana uma arma simples e, se for proficiente em armas marciais, recebe +1 na margem de ameaça com ela.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
 
         ],
@@ -350,25 +386,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Aura de Paz",
                 descricao: "Você pode gastar 2 PM para gerar uma aura de paz com alcance curto e duração de uma cena. Qualquer inimigo dentro da aura que tente fazer uma ação hostil contra você deve fazer um teste de Vontade (CD Car). Se falhar, perderá sua ação. Se passar, fica imune a esta habilidade por um dia.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Dom da Esperança",
                 descricao: "Você soma sua Sabedoria em seus PV em vez de Constituição, e se torna imune às condições alquebrado, esmorecido e frustrado.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Palavras de Bondade",
                 descricao: "Você aprende e pode lançar Enfeitiçar. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Talento Artístico",
                 descricao: "Você recebe +2 em Acrobacia, Atuação e Diplomacia.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Marah não podem causar dano, perda de PV e condições a criaturas, exceto enfeitiçado, fascinado e pasmo (fornecer bônus em dano também é proibido). Em combate, só podem recorrer a ações como proteger ou curar — ou fugir, render-se ou aceitar a morte. Um devoto de Marah jamais vai causar violência, nem mesmo para se salvar.",
@@ -387,25 +427,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Presas primordiais",
                 descricao: "Você pode gastar 1 PM para transformar seus dentes em presas afiadas até o fim da cena. Você recebe uma arma natural de mordida (dano 1d6, crítico x2, perfuração). Uma vez por rodada, quando usa a ação agredir com outra arma, você pode gastar 1 PM para fazer um ataque corpo a corpo extra com a mordida. Se já possuir outro ataque natural de mordida, em vez disso, o dano desse ataque aumenta em dois passos.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Olhar Amedrontador",
                 descricao: "Você aprende e pode lançar Amedrontar. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Urro Divino",
                 descricao: "Quando faz um ataque ou lança uma magia, você pode pagar 1 PM para somar sua Constituição (mínimo +1) à rolagem de dano desse ataque ou magia.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Voz dos Monstros",
                 descricao: "Você conhece os idiomas de todos os monstros inteligentes e pode se comunicar livremente com monstros não inteligentes (Int –4 ou menor), como se estivesse sob efeito da magia Voz Divina.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Megalokk devem rejeitar os modos civilizados e se entregar à ferocidade, descontrole e impaciência. Você é proibido de usar perícias baseadas em Inteligência ou Carisma (exceto Adestramento e Intimidação) e não pode preparar uma ação, escolher 10 ou 20 em testes e lançar magias sustentadas (pois são ações que exigem foco e paciência).",
@@ -424,25 +468,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Êxtase da Loucura",
                 descricao: "Toda vez que uma ou mais criaturas falham em um teste de Vontade contra uma de suas habilidades mágicas, você recebe 1 PM temporário cumulativo. Você pode ganhar um máximo de PM temporários por cena desta forma igual a sua Sabedoria.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Poder Oculto",
                 descricao: "Você pode gastar uma ação de movimento e 2 PM para invocar a força, a rapidez ou o vigor dos loucos. Role 1d6 para receber +2 em Força (1 ou 2), Destreza (3 ou 4) ou Constituição (5 ou 6) até o fim da cena. Você pode usar este poder várias vezes, mas bônus no mesmo atributo não são cumulativos.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Sorte dos loucos",
                 descricao: "Você pode pagar 1 PM para rolar novamente um teste recém realizado. Se ainda assim falhar no teste, você perde 1d6 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Transmissão da Loucura",
                 descricao: "Você pode lançar Sussurros Insanos (CD Car). Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Por serem incapazes de seguir regras, estes devotos não têm “obrigações” verdadeiras (portanto, nunca perdem PM por descumprirem suas O&R). No entanto, sofrem certas restrições que não podem ignorar. Devotos de Nimb são loucos (ou agem como se fossem), não conseguindo convencer ninguém de coisa alguma. Você sofre –5 em testes de perícias baseadas em Carisma. Além disso, no início de cada cena de ação, role 1d6. Com um resultado 1, você fica confuso (mesmo que seja imune a esta condição).",
@@ -461,25 +509,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Anfíbio",
                 descricao: "Você pode respirar embaixo d’água e adquire deslocamento de natação igual a seu deslocamento terrestre.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Arsenal das profundezas",
                 descricao: "Você recebe +2 nas rolagens de dano com azagaias, lanças e tridentes e seu multiplicador de crítico com essas armas aumenta em +1.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Mestre dos Mares",
                 descricao: "Você pode falar com animais aquáticos (como o efeito da magia Voz Divina) e aprende e pode lançar Acalmar Animal, mas só contra criaturas aquáticas. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Sopro do Mar",
                 descricao: "Você pode gastar uma ação padrão e 1 PM para soprar vento marinho em um cone de 6m. Criaturas na área sofrem 2d6 pontos de dano de frio (Reflexos CD Sab reduz à metade). Você pode aprender Sopro das Uivantes como uma magia divina. Se fizer isso, o custo dela diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "As únicas armas permitidas para devotos do Oceano são a azagaia, a lança, o tridente e a rede. Podem usar apenas armaduras leves. O devoto também não pode se manter afastado do oceano por mais de um mês.",
@@ -498,25 +550,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Astúcia da Serpente",
                 descricao: "Você recebe +2 em Enganação, Furtividade e Intuição.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Familiar Ofídico",
                 descricao: "Você recebe um familiar cobra (veja a página 38) que não conta em seu limite de parceiros.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Presas venenosas",
                 descricao: "Você pode gastar uma ação de movimento e 1 PM para envenenar uma arma corpo a corpo que esteja empunhando. Em caso de acerto, a arma causa perda de 1d12 pontos de vida. A arma permanece envenenada até atingir uma criatura ou até o fim da cena, o que acontecer primeiro.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Sangue Ofídico",
                 descricao: "Você recebe resistência a veneno +5 e a CD para resistir aos seus venenos aumenta em +2.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Sszzaas devem sempre mentir, enganar e trair. Você é proibido de usar perícias baseadas em Sabedoria ou Carisma (exceto Intimidação e Percepção) e não pode recusar um pedido de ajuda de um aliado (pois seria uma traição).",
@@ -535,25 +591,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Conhecimento Enciclopédico",
                 descricao: "Você se torna treinado em duas perícias baseadas em Inteligência a sua escolha.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Mente Analítica",
                 descricao: "Você recebe +2 em Intuição, Investigação e Vontade.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Pesquisa Abençoada",
                 descricao: "Se passar uma hora pesquisando seus livros e anotações, você pode rolar novamente um teste de perícia baseada em Inteligência ou Sabedoria que tenha feito desde a última cena. Se tiver acesso a mais livros, você recebe um bônus no teste: +2 para uma coleção particular ou biblioteca pequena e +5 para a biblioteca de um templo ou universidade.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Voz da Civilização",
                 descricao: "Você está sempre sob efeito de Compreensão.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Tanna-Toh jamais podem recusar uma missão que envolva a busca por um novo conhecimento ou informação; investigar rumores sobre um livro perdido, procurar uma aldeia lendária, pesquisar os hábitos de uma criatura desconhecida... Além disso, o devoto sempre deve dizer a verdade e nunca pode se recusar a responder uma pergunta direta, pouco importando as consequências. É proibido para ele esconder qualquer conhecimento.",
@@ -572,25 +632,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Carícia Sombria",
                 descricao: "Você pode gastar 1 PM e uma ação padrão para cobrir sua mão com energia negativa e tocar uma criatura em alcance corpo a corpo. A criatura sofre 2d6 pontos de dano de trevas (Fortitude CD Sab reduz à metade) e você recupera PV iguais à metade do dano causado. Você pode aprender Toque Vampírico como uma magia divina. Se fizer isso, o custo dela diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Manto da Penumbra",
                 descricao: "Você aprende e pode lançar Escuridão. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Visão nas Trevas",
                 descricao: "Você enxerga perfeitamente no escuro, incluindo em magias de escuridão.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Zumbificar",
                 descricao: "Você pode gastar uma ação completa e 3 PM para reanimar o cadáver de uma criatura Pequena ou Média adjacente por um dia. O cadáver funciona como um parceiro iniciante de um tipo a sua escolha entre combatente, fortão ou guardião. Além disso, quando sofre dano, você pode sacrificar esse parceiro; se fizer isso, você sofre apenas metade do dano, mas o cadáver é destruído.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Tenebra proíbe que seus devotos sejam tocados por Azgher, o odiado rival. O devoto deve se cobrir inteiramente durante o dia, sem expor ao sol nenhum pedaço de pele.",
@@ -609,25 +673,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Almejar o Impossível",
                 descricao: "Quando faz um teste de perícia, um resultado de 19 ou mais no dado sempre é um sucesso, não importando o valor a ser alcançado.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Fúria Divina",
                 descricao: "Você pode gastar 2 PM para invocar uma fúria selvagem, tornando-se temível em combate. Até o fim da cena, você recebe +2 em testes de ataque e rolagens de dano corpo a corpo, mas não pode executar nenhuma ação que exija paciência ou concentração (como usar a perícia Furtividade ou lançar magias). Se usar este poder em conjunto com a habilidade Fúria, ela também dura uma cena (e não termina se você não atacar ou for alvo de uma ação hostil).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Olhar Amedrontador",
                 descricao: "Você aprende e pode lançar Amedrontar. Caso aprenda novamente essa magia, seu custo diminui em –1 PM.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Tropas Duyshidakk",
                 descricao: "Você pode gastar uma ação completa e 2 PM para invocar 1d4+1 goblinoides capangas em espaços desocupados em alcance curto. Você pode gastar uma ação de movimento para fazer os goblinoides andarem (eles têm deslocamento 9m) ou uma ação",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Thwor devem sempre buscar a expansão de seu território e poder. Você é proibido de recusar uma oportunidade de conquista, seja de território, riquezas ou poder. Além disso, o devoto deve sempre se esforçar para se tornar mais forte, seja por meio de treinamento, magia ou itens mágicos.",
@@ -646,25 +714,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Ataque Piedoso",
                 descricao: "Você pode usar armas corpo a corpo para causar dano não letal sem sofrer a penalidade de –5 no teste de ataque.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Dom da Imortalidade",
                 descricao: "Você é imortal. Sempre que morre, não importando o motivo, volta à vida após 3d6 dias. Apenas paladinos podem escolher este poder. Um personagem pode ter Dom da Imortalidade ou Dom da Ressurreição, mas não ambos.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Dom da Profecia",
                 descricao: "Você pode lançar Augúrio. Caso aprenda novamente essa magia, seu custo diminui em –1 PM. Você também pode gastar 2 PM para receber +2 em um teste.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Dom da Ressurreição",
                 descricao: "Você pode gastar uma ação completa e todos os PM que possui (mínimo 1 PM) para tocar o corpo de uma criatura morta há menos de um ano e ressuscitá-la. A criatura volta à vida com 1 PV e 0 PM, e perde 1 ponto de Constituição permanentemente. Este poder só pode ser usado uma vez em cada criatura. Apenas clérigos podem escolher este poder. Um personagem pode ter Dom da Imortalidade ou Dom da Ressurreição, mas não ambos.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Thyatis são proibidos de matar criaturas inteligentes (Int –3 ou maior). Podem atacar e causar dano, mas jamais levar à morte. Por esse motivo, devotos de Thyatis preferem armas e ataques que apenas incapacitam seus oponentes ou causam dano não letal.",
@@ -683,25 +755,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Almejar o Impossível",
                 descricao: "Quando faz um teste de perícia, um resultado de 19 ou mais no dado sempre é um sucesso, não importando o valor a ser alcançado.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Coragem Total",
                 descricao: "Você é imune a efeitos de medo, mágicos ou não. Este poder não elimina fobias raciais (como o medo de altura dos minotauros).",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Armas da ambição",
                 descricao: "Você recebe +1 em testes de ataque e na margem de ameaça com armas nas quais é proficiente.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Liberdade Divina",
                 descricao: "Você pode gastar 2 PM para receber imunidade a efeitos de movimento por uma rodada.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             }
         ],
         obrigacoes: "Devotos de Valkaria não podem recusar um desafio. Você é proibido de recusar um duelo, uma aposta ou qualquer outra forma de desafio. Além disso, o devoto deve sempre buscar superar seus próprios limites, seja por meio de treinamento, magia ou itens mágicos.",
@@ -720,25 +796,29 @@ export const tabelaDivindades: divindade[] = [
                 nome: "Bênção do Mana",
                 descricao: "Você recebe +1 PM a cada nível ímpar.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Centelha Mágica",
                 descricao: "Escolha uma magia arcana ou divina de 1o círculo. Você aprende e pode lançar essa magia.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Escudo Mágico",
                 descricao: "Quando lança uma magia, você recebe um bônus na Defesa igual ao círculo da magia lançada até o início do seu próximo turno.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto]
+                requisitos: [],
+                requisitos_descricao: []
             },
             {
                 nome: "Teurgista Místico",
                 descricao: "Até uma magia de cada círculo que você aprender poderá ser escolhida entre magias divinas (se você for um conjurador arcano) ou entre magias arcanas (se for um conjurador divino). Pré-requisito: habilidade de classe Magias.",
                 tipo: TipoPoder.concedidos,
-                requisitos: [RequisitoPoder.devoto, RequisitoPoder.magia]
+                requisitos: [RequisitoPoder.magia],
+                requisitos_descricao: ["Habilidade de soltar magia"]
             }
         ],
         obrigacoes: "Devotos de Wynna devem praticar a bondade e a generosidade de sua deusa, jamais recusando um pedido de ajuda de alguém inocente. Além disso, devotos de Wynna são proibidos de matar seres mágicos (elfos, qareen, sílfides e outros a critério do mestre) e conjuradores arcanos.",
