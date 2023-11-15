@@ -8,96 +8,112 @@ export const poderesLadino: Poder[] = [
     descricao: "Você pode gastar uma ação de movimento e 3 PM para analisar uma criatura em alcance curto. Até o fim de seu próximo turno, seu primeiro Ataque Furtivo que causar dano a ela tem seus dados de dano extras dessa habilidade dobrados.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.nivel],
+    requisitos_descricao: ["Nível 5"]
   },
   {
     nome: "Aumento de Atributo",
     descricao: "Você recebe +1 em um atributo. Você pode escolher este poder várias vezes, mas apenas uma vez por patamar para um mesmo atributo.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Contatos no Submundo",
     descricao: "Quando chega em uma comunidade equivalente a uma vila ou maior, você pode gastar 2 PM para fazer um teste de Carisma (CD 10). Se passar, enquanto estiver nessa comunidade, recebe +5 em testes de Investigação para interrogar, pode comprar itens mundanos, poções e pergaminhos com 20% de desconto (não cumulativo com barganha e outros descontos) e, de acordo com o mestre, tem acesso a itens e serviços proibidos (como armas de pólvora e venenos).",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Emboscar",
     descricao: "Na primeira rodada de cada combate, você pode gastar 2 PM para executar uma ação padrão adicional em seu turno.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.pericia],
+    requisitos_descricao: ["Treinado em Furtividade"]
   },
   {
     nome: "Escapista",
     descricao: "Você recebe +5 em testes de Acrobacia para escapar, passar por espaço apertado e passar por inimigo e em testes para resistir a efeitos de movimento.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Fuga Formidável",
     descricao: "Você pode gastar uma ação completa e 1 PM para analisar o lugar no qual está (um castelo, um porto, a praça de uma cidade...). Até o fim da cena, recebe +3m em seu deslocamento, +5 em Acrobacia e Atletismo e ignora penalidades em movimento por terreno difícil. Você perde esses benefícios se fizer uma ação que não seja diretamente relacionada a fugir. Por exemplo, você só pode atacar um inimigo se ele estiver bloqueando seu caminho, agarrando-o etc. Você pode fazer ações para ajudar seus aliados, mas apenas se eles estiverem tentando escapar.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.atributo],
+    requisitos_descricao: ["Inteligência 1"]
   },
   {
     nome: "Gatuno",
     descricao: "Você recebe +2 em Atletismo. Quando escala, não fica desprevenido e avança seu deslocamento normal, em vez de metade dele.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Mão na Boca",
     descricao: "Você recebe +2 em testes de agarrar. Quando acerta um ataque furtivo contra uma criatura desprevenida, você pode fazer um teste de agarrar como uma ação livre. Se agarrar a criatura, ela não poderá falar enquanto estiver agarrada.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.pericia],
+    requisitos_descricao: ["Treinado em Luta"]
   },
   {
     nome: "Mãos Rápidas",
     descricao: "Uma vez por rodada, ao fazer um teste de Ladinagem para abrir fechaduras, ocultar item, punga ou sabotar, você pode pagar 1 PM para fazê-lo como uma ação livre.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.atributo],
+    requisitos_descricao: ["Destreza 2", "Treinado em Ladinagem"]
   },
   {
     nome: "Mente Criminosa",
     descricao: "Você soma sua Inteligência em Ladinagem e Furtividade.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.atributo],
+    requisitos_descricao: ["Inteligência 1"]
   },
   {
     nome: "Rolamento Defensivo",
     descricao: "Sempre que sofre dano, você pode gastar 2 PM para reduzir esse dano à metade. Após usar este poder, você fica caído.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.pericia],
+    requisitos_descricao: ["Treinado em Reflexos"]
   },
   {
     nome: "Saqueador de Tumbas",
     descricao: "Você recebe +5 em testes de Investigação para encontrar armadilhas e em testes de resistência contra elas. Além disso, gasta uma ação padrão para desabilitar mecanismos, em vez de 1d4 rodadas (veja a perícia Ladinagem).",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Sombra",
     descricao: "Você recebe +2 em Furtividade, não sofre penalidade em testes de Furtividade por se mover no seu deslocamento normal e reduz a penalidade por atacar e fazer outras ações chamativas para –10.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.pericia],
+    requisitos_descricao: ["Treinado em Furtividade"]
   },
   {
     nome: "Truque Mágico",
     descricao: "Você aprende e pode lançar uma magia arcana de 1o círculo a sua escolha, pagando seu custo normal em PM. Seu atributo-chave para esta magia é Inteligência. Você pode escolher este poder quantas vezes quiser.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.atributo],
+    requisitos_descricao: ["Inteligência 1"]
   },
   {
     nome: "Velocidade Ladina",
     descricao: "Uma vez por rodada, você pode gastar 2 PM para realizar uma ação de movimento adicional em seu turno.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.atributo, RequisitoPoder.pericia],
+    requisitos_descricao: ["Destreza 2", "Treinado em Iniciativa"]
   },
   {
     nome: "Veneno potente",
     descricao: "A CD para resistir aos venenos que você usa aumenta em +5.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.pericia],
+    requisitos_descricao: ["Treinado em Ofício (alquimia)"]
   }
 ];
 

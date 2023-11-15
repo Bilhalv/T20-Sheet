@@ -9,6 +9,7 @@ export const poderesPaladino: Poder[] = [
       "Quando usa Golpe Divino para atacar com a arma preferida de sua divindade, o dado de dano que você rola por Golpe Divino aumenta para d12.",
     tipo: TipoPoder.classe,
     requisitos: [RequisitoPoder.devoto],
+    requisitos_descricao: ["Devoto de uma divindade(exceto Lena e Marah)"]
   },
   {
     nome: "Aumento de Atributo.",
@@ -16,6 +17,7 @@ export const poderesPaladino: Poder[] = [
       "Você recebe +1 em um atributo. Você pode escolher este poder várias vezes, mas apenas uma vez por patamar para um mesmo atributo.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Fulgor Divino",
@@ -23,6 +25,7 @@ export const poderesPaladino: Poder[] = [
       "Quando usa Golpe Divino, todos os inimigos em alcance curto ficam ofuscados até o início do seu próximo turno.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Arrependimento",
@@ -30,6 +33,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 2 PM para marcar um inimigo em alcance curto. Na próxima vez que esse inimigo acertar um ataque em você ou em um de seus aliados, deve fazer um teste de Vontade (CD Car). Se falhar, fica atordoado no próximo turno dele (apenas uma vez por cena).",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Autoridade",
@@ -37,6 +41,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 1 PM para comandar uma criatura em alcance curto. Faça um teste de Diplomacia oposto pelo teste de Vontade do alvo. Se você vencer, ele obedece a um comando simples, como “pare” ou “largue a arma” (apenas uma vez por cena). Mental.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Coragem",
@@ -44,6 +49,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 2 PM para inspirar coragem em uma criatura em alcance curto, incluindo você mesmo. A criatura fica imune a efeitos de medo e recebe +2 em testes de ataque contra o inimigo com maior ND na cena.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Iluminação",
@@ -51,6 +57,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode marcar um inimigo em alcance curto. Quando acerta um ataque corpo a corpo nesse inimigo, você recebe 2 PM temporários. Você só pode proferir este julgamento uma vez por cena.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Justiça",
@@ -58,6 +65,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 2 PM para marcar um inimigo em alcance curto. A próxima vez que esse inimigo causar dano em você ou em um de seus aliados, deve fazer um teste de Vontade (CD Car). Se falhar, sofre dano de luz igual à metade do dano que causou.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Libertação",
@@ -65,6 +73,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 5 PM para cancelar uma condição negativa qualquer (como abalado, paralisado etc.) que esteja afetando uma criatura em alcance curto.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Salvação",
@@ -72,12 +81,14 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 2 PM para marcar um inimigo em alcance curto. Até o fim da cena, quando você acerta um ataque corpo a corpo nesse inimigo, recupera 5 pontos de vida.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Vindicação",
     descricao: "Você pode gastar 2 PM para marcar um inimigo que tenha causado dano a você ou a seus aliados na cena. Você recebe +1 em testes de ataque e +1d8 em rolagens de dano contra o inimigo escolhido, mas sofre –5 em testes de ataque contra quaisquer outros alvos. No 5o nível, e a cada cinco níveis seguintes, você pode pagar +1 PM para aumentar o bônus de ataque em +1 e o bônus de dano em +1d8. O efeito termina caso o alvo fique inconsciente.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Julgamento Divino: Zelo",
@@ -85,6 +96,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode gastar 1 PM para marcar um alvo em alcance longo. Pelo restante da cena, sempre que se mover na direção desse alvo, você se move com o dobro de seu deslocamento.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Orar",
@@ -92,6 +104,7 @@ export const poderesPaladino: Poder[] = [
       "Você aprende e pode lançar uma magia divina de 1o círculo a sua escolha. Seu atributo-chave para esta magia é Sabedoria. Você pode escolher este poder quantas vezes quiser.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Virtude Paladinesca: Caridade",
@@ -99,6 +112,7 @@ export const poderesPaladino: Poder[] = [
       "O custo de suas habilidades de paladino que tenham um aliado como alvo é reduzido em –1 PM.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Virtude Paladinesca: Castidade",
@@ -106,6 +120,7 @@ export const poderesPaladino: Poder[] = [
       "Você se torna imune a efeitos de encantamento e recebe +5 em testes de Intuição para perceber blefes.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Virtude Paladinesca: Compaixão",
@@ -113,6 +128,7 @@ export const poderesPaladino: Poder[] = [
       "Você pode usar Cura pelas Mãos em alcance curto e, para cada PM que gastar, cura 2d6+1 (em vez de 1d8+1).",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Virtude Paladinesca: Humildade",
@@ -120,6 +136,7 @@ export const poderesPaladino: Poder[] = [
       "Na primeira rodada de um combate, você pode gastar uma ação completa para rezar e pedir orientação. Você recebe uma quantidade de PM temporários igual ao seu Carisma (duram até o fim da cena).",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Virtude Paladinesca: Temperança",
@@ -127,6 +144,7 @@ export const poderesPaladino: Poder[] = [
       "Quando ingere um alimento, item alquímico ou poção, você consome apenas metade do item. Na prática, cada item desses rende duas “doses” para você.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   }
   ];
 

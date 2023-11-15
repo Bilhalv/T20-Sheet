@@ -9,96 +9,112 @@ export const poderesCavaleiro: Poder[] = [
     descricao: "No início de cada cena, você recebe uma quantidade de pontos de vida temporários igual a seu nível + seu Carisma. Os PV temporários duram até o final da cena.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Aumento de Atributo",
     descricao: "Você recebe +1 em um atributo. Você pode escolher este poder várias vezes, mas apenas uma vez por patamar para um mesmo atributo.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Desprezar os Covardes",
     descricao: "Você recebe redução de dano 5 se estiver caído, desprevenido ou flanqueado.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Escudeiro",
     descricao: "Você recebe os serviços de um escudeiro, um parceiro especial que cuida de seu equipamento. Suas armas fornecem +1 em rolagens de dano e sua armadura concede +1 na Defesa. Além disso, você pode pagar 1 PM para receber ajuda do escudeiro em combate. Você recebe uma ação de movimento que pode usar para se levantar, sacar um item ou trazer sua montaria. O escudeiro não conta em seu limite de parceiros. Caso ele morra, você pode treinar outro com um mês de trabalho.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Etiqueta",
     descricao: "Você recebe +2 Diplomacia ou Nobreza e pode gastar 1 PM para rolar novamente um teste recém realizado de uma dessas perícias.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Investida Destruidora",
     descricao: "Quando faz a ação investida, você pode gastar 2 PM. Se fizer isso, causa +2d8 pontos de dano. Você deve usar esta habilidade antes de rolar o ataque.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Montaria Corajosa",
     descricao: "Sua montaria concede +1d6 em rolagens de dano corpo a corpo (cumulativo com qualquer bônus que ela já forneça como parceiro).",
     tipo: TipoPoder.classe,
-    requisitos: [RequisitoPoder.pericia],
+    requisitos: [RequisitoPoder.poder],
+    requisitos_descricao: ["Montaria"]
   },
   {
     nome: "Pajem",
     descricao: "Você recebe os serviços de um pajem, um parceiro que o auxilia em pequenos afazeres. Você recebe +2 em Diplomacia, por estar sempre aprumado, e sua condição de descanso é uma categoria acima do padrão pela situação. O pajem pode executar pequenas tarefas, como entregar mensagens e comprar itens, e não conta em seu limite de parceiros. Caso ele morra, você pode treinar outro com uma semana de trabalho.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Postura de Combate: Aríete Implacável",
     descricao: "Ao assumir esta postura, você aumenta o bônus de ataque em investidas em +2. Para cada 2 PM adicionais que gastar quando assumir a postura, aumenta o bônus de ataque em +1. Além disso, se fizer uma investida contra um construto ou objeto, causa +2d8 de dano. Você precisa se deslocar todos os turnos para manter esta postura ativa.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Postura de Combate: Castigo de Ferro",
     descricao: "Sempre que um aliado adjacente sofrer um ataque corpo a corpo, você pode gastar 1 PM para fazer um ataque na criatura que o atacou.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Postura de Combate: Foco de Batalha",
     descricao: "Sempre que um inimigo atacá-lo, você recebe 1 PM temporário (cumulativos). Você pode ganhar um máximo de PM temporários por cena igual ao seu nível. Esses pontos temporários desaparecem no final da cena.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Postura de Combate: Muralha Intransponível",
     descricao: "Para assumir esta postura você precisa estar empunhando um escudo. Você recebe +1 na Defesa e em Reflexos. Além disso, quando sofre um efeito que permite um teste de Reflexos para reduzir o dano à metade, não sofre nenhum dano se passar. Para cada 2 PM adicionais que gastar quando assumir a postura, aumente esse bônus em +1. Por fim, enquanto mantiver esta postura, seu deslocamento é reduzido para 3m.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Postura de Combate: Provocação Petulante",
     descricao: "Enquanto esta postura estiver ativa, todos os inimigos que iniciarem seus turnos em alcance curto devem fazer um teste de Vontade (CD Car). Se falharem, qualquer ação hostil que realizarem deve ter você como alvo (mas suas outras ações não têm esta restrição). Ações hostis incluem ataques e outras ações que causem dano e/ou condições negativas. Mental.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Postura de Combate: Torre Inabalável",
     descricao: "Você assume uma postura defensiva que o torna imune a qualquer tentativa de tirá-lo do lugar, de forma mundana ou mágica. Enquanto mantiver a postura, você não pode se deslocar, mas soma sua Constituição na Defesa e pode substituir testes de Reflexos e Vontade por testes de Fortitude.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Solidez",
     descricao: "Se estiver usando um escudo, você soma o bônus na Defesa recebido pelo escudo em testes de resistência.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Torre Armada",
     descricao: "Quando um inimigo erra um ataque contra você, você pode gastar 1 PM. Se fizer isso, recebe +5 em rolagens de dano contra esse inimigo até o fim de seu próximo turno.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   }
   
 ];

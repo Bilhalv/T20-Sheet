@@ -9,6 +9,7 @@ export const poderesNobre: Poder[] = [
       "Você recebe +1 em um atributo. Você pode escolher este poder várias vezes, mas apenas uma vez por patamar para um mesmo atributo.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Educação Privilegiada",
@@ -16,6 +17,7 @@ export const poderesNobre: Poder[] = [
       "Você se torna treinado em duas perícias de nobre a sua escolha.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Favor",
@@ -23,6 +25,7 @@ export const poderesNobre: Poder[] = [
       "Você pode usar sua influência para pedir favores a pessoas poderosas. Isso gasta 5 PM e uma hora de conversa e bajulação, ou mais, de acordo com o mestre, e funciona como o uso persuasão de Diplomacia (veja a página 118). Porém, você pode pedir favores ainda mais caros, difíceis ou perigosos — um convite para uma festa particular, uma carona de barco até Galrasia ou mesmo acesso aos planos militares do reino. Se você falhar, não pode pedir o mesmo favor por pelo menos uma semana.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Inspirar confiança",
@@ -30,6 +33,7 @@ export const poderesNobre: Poder[] = [
       "Sua presença faz as pessoas darem o melhor de si. Quando um aliado em alcance curto faz um teste, você pode gastar 2 PM para fazer com que ele possa rolar esse teste novamente.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Jogo da Corte",
@@ -37,6 +41,7 @@ export const poderesNobre: Poder[] = [
       "Você pode gastar 1 PM para rolar novamente um teste recém realizado de Diplomacia, Intuição ou Nobreza.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Língua de prata",
@@ -44,6 +49,7 @@ export const poderesNobre: Poder[] = [
       "Quando faz um teste de perícia baseada em Carisma, você pode gastar 2 PM para receber um bônus no teste igual a metade do seu nível.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Língua rápida",
@@ -51,6 +57,7 @@ export const poderesNobre: Poder[] = [
       "Quando faz um teste de Diplomacia para mudar atitude como uma ação completa, você sofre uma penalidade de –5, em vez de –10.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
   {
     nome: "Voz poderosa",
@@ -58,6 +65,7 @@ export const poderesNobre: Poder[] = [
       "Você recebe +2 em Diplomacia e Intimidação. Suas habilidades de nobre com alcance curto passam para alcance médio.",
     tipo: TipoPoder.classe,
     requisitos: [],
+    requisitos_descricao: []
   },
 ];
 

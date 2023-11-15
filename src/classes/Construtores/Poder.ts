@@ -29,4 +29,5 @@ export enum RequisitoPoder {
 export class Poder extends infos{
   tipo: TipoPoder = TipoPoder.combate;
   requisitos: RequisitoPoder[] = [];
+  requisitos_descricao: string[] = [];
 }
