@@ -5,13 +5,15 @@ interface Props {
   onChange: any;
   tabela: any[];
   selected: string;
+  isDisabled?: boolean;
 }
 
-export default function Botoes({ onChange, tabela, selected }: Props) {
+export default function Botoes({ onChange, tabela, selected, isDisabled }: Props) {
   return (
     <>
       {tabela.map((tabelaItem) => (
         <Button
+          isDisabled={isDisabled}
           onClick={onChange}
           className={`p-2 rounded hover:bg-gray-400 transition-all ease-in-out shadow-lg bg-opacity-80 mb-2 hover:shadow-2xl hover:transform hover:scale-110`}
           key={tabelaItem.nome}

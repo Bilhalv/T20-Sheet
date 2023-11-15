@@ -6,21 +6,39 @@ interface Props {
   tabela: any[];
   selected: string;
   placeholder: string;
+  isDisabled?: boolean;
+  filter?: string[];
 }
 
-export default function SelectList({ onChange, tabela, selected, placeholder }: Props) {
+export default function SelectList({
+  onChange,
+  tabela,
+  selected,
+  placeholder,
+  isDisabled,
+  filter,
+}: Props) {
+  if (filter === undefined) {
+    filter = tabela.map((tabelaItem) => tabelaItem.nome);
+  }
   return (
     <>
-      <Select placeholder={placeholder} onChange={onChange}>
-        {tabela.map((tabelaItem) => (
-          <option
-            selected={tabelaItem.nome == selected ?? ""}
-            key={tabelaItem.nome}
-            value={tabelaItem.nome}
-          >
-            {tabelaItem.nome}
-          </option>
-        ))}
+      <Select
+        placeholder={placeholder}
+        onChange={onChange}
+        isDisabled={isDisabled}
+      >
+        {tabela.map((tabelaItem) =>
+            (filter ?? []).includes(tabelaItem.nome) ? (
+            <option
+              selected={tabelaItem.nome === selected}
+              key={tabelaItem.nome}
+              value={tabelaItem.nome}
+            >
+              {tabelaItem.nome}
+            </option>
+          ) : null
+        )}
       </Select>
     </>
   );

@@ -28,6 +28,7 @@ interface Props {
   handleSelect: any;
   selected: string;
   pagina: string;
+  isDisabled?: boolean;
 }
 
 export default function VerMais({
@@ -35,6 +36,7 @@ export default function VerMais({
   handleSelect,
   selected,
   pagina,
+  isDisabled
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
@@ -51,7 +53,8 @@ export default function VerMais({
     <>
       <button
         onClick={onOpen}
-        className="my-2 text-red-800 bg-transparent border-white border hover:bg-gray-300 hover:bg-opacity-40 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3"
+        disabled={isDisabled}
+        className="my-2 text-red-800 bg-transparent border-white border hover:bg-gray-300 hover:bg-opacity-40 px-2 rounded w-full transition-all ease-in-out shadow-lg py-1 mt-3 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Ver mais
       </button>
