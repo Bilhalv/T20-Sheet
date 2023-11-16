@@ -4,7 +4,6 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Button,
   IconButton,
   Modal,
   ModalBody,

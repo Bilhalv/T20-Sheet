@@ -32,7 +32,8 @@ interface PoderesProps {
 
 export default function Poderes({ setPagina, next }: PoderesProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [limite, setLimite] = useState<number>(2);
+  const nivel = Number(localStorage.getItem("lvl"));
+  const [limite, setLimite] = useState(nivel-1);
   const [poderesSelecionados, setPoderesSelecionados] = useState<string[]>(
     localStorage.getItem("poderes")?.split(",") ?? []
   );
