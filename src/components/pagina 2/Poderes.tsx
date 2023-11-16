@@ -59,15 +59,15 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
   function renderSwitch(tipo: TipoPoder) {
     switch (tipo) {
       case TipoPoder.combate:
-        return "green";
-      case TipoPoder.classe:
         return "blue";
+      case TipoPoder.classe:
+        return "purple";
       case TipoPoder.tormenta:
         return "red";
       case TipoPoder.destino:
-        return "yellow";
+        return ;
       default:
-        return "purple";
+        return "green";
     }
   }
   interface Filter {
