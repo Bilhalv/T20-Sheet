@@ -35,10 +35,9 @@ export default function InfoModal({ pagina }: Props) {
           aria-label="Info"
           bg={"transparent"}
           onClick={onOpen}
-          _hover={{ bg: "transparent", color: "gray.200", mouse: "pointer" }}
-        >
-          <Info size={32} />
-        </IconButton>
+          _hover={{ bg: "transparent", color: "white", transform: "scale(1.1)" }}
+          icon={<Info size={32} />}
+        />
       </Tooltip>
       <Modal
         size={"xl"}

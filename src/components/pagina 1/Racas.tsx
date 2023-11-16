@@ -124,7 +124,7 @@ const Racas: React.FC<RacasProps> = ({ setPagina, next }) => {
 
   return (
     <>
-            <h1 className="text-center text-3xl font-bold mb-4">
+            <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
               Escolha sua Raça
             </h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">

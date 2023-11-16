@@ -41,10 +41,13 @@ export default function FichaModal({ setPagina, pagina }: Props) {
           aria-label="Ficha"
           bg={"transparent"}
           onClick={onOpen}
-          _hover={{ bg: "transparent", color: "gray.200", mouse: "pointer" }}
-        >
-          <BookUser size={32} />
-        </IconButton>
+          _hover={{
+            bg: "transparent",
+            color: "white",
+            transform: "scale(1.1)",
+          }}
+          icon={<BookUser size={32} />}
+        />
       </Tooltip>
       <Modal
         size={"2xl"}
@@ -59,7 +62,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
             <Tabs variant="enclosed">
               <TabList>
                 <Tab>Primeira pagina</Tab>
-                <Tab isDisabled={pagina==1}>Segunda pagina</Tab>
+                <Tab isDisabled={pagina == 1}>Segunda pagina</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
@@ -67,7 +70,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                     <div className="w-1/2">
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
-                        <h1 className="font-bold my-auto text-xl text-center">Nome</h1>
+                        <h1 className="font-bold my-auto text-xl text-center">
+                          Nome
+                        </h1>
                         <IconButton
                           zIndex={2}
                           borderRadius={"full"}
@@ -84,12 +89,14 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {localStorage.getItem("nome") ? "" :"Nenhum"}
+                        {localStorage.getItem("nome") ? "" : "Nenhum"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
-                        <h1 className="font-bold my-auto text-xl text-center">Nivel</h1>
+                        <h1 className="font-bold my-auto text-xl text-center">
+                          Nivel
+                        </h1>
                         <IconButton
                           zIndex={2}
                           borderRadius={"full"}
@@ -106,12 +113,14 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {localStorage.getItem("lvl") ? "" :"Nenhum"}
+                        {localStorage.getItem("lvl") ? "" : "Nenhum"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
-                        <h1 className="font-bold my-auto text-xl text-center">Origem</h1>
+                        <h1 className="font-bold my-auto text-xl text-center">
+                          Origem
+                        </h1>
                         <IconButton
                           zIndex={2}
                           borderRadius={"full"}
@@ -128,12 +137,14 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {localStorage.getItem("origem") ? "" :"Nenhuma"}
+                        {localStorage.getItem("origem") ? "" : "Nenhuma"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
-                        <h1 className="font-bold my-auto text-xl text-center">Raça</h1>
+                        <h1 className="font-bold my-auto text-xl text-center">
+                          Raça
+                        </h1>
                         <IconButton
                           zIndex={2}
                           borderRadius={"full"}
@@ -150,12 +161,14 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {localStorage.getItem("raca") ? "" :"Nenhuma"}
+                        {localStorage.getItem("raca") ? "" : "Nenhuma"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
-                        <h1 className="font-bold my-auto text-xl text-center">Classe</h1>
+                        <h1 className="font-bold my-auto text-xl text-center">
+                          Classe
+                        </h1>
                         <IconButton
                           zIndex={2}
                           borderRadius={"full"}
@@ -172,7 +185,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {localStorage.getItem("classe") ? "" :"Nenhuma"}
+                        {localStorage.getItem("classe") ? "" : "Nenhuma"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
@@ -233,14 +246,14 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                       <p className="text-center flex flex-col">
                         {localStorage.getItem("beneficios")
                           ? JSON.parse(localStorage.getItem("beneficios")!).map(
-                              (beneficio: any, index: number) => (
+                              (beneficio: any) => (
                                 <>
                                   <hr className="my-2 w-1/2 mx-auto" />
                                   <h1 className="font-bold my-auto text-lg">
                                     {beneficio.tipo}
                                   </h1>
                                   {beneficio.beneficio.map((item: any) => (
-                                    <span>{item !== "" ? item: "Nenhum"}</span>
+                                    <span>{item !== "" ? item : "Nenhum"}</span>
                                   ))}
                                 </>
                               )
@@ -270,7 +283,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                       </div>
                       <p className="text-center flex flex-col">
                         {localStorage.getItem("pericias")
-                          ? JSON.parse(localStorage.getItem("pericias")!).join(", ")
+                          ? JSON.parse(localStorage.getItem("pericias")!).join(
+                              ", "
+                            )
                           : ""}
                       </p>
                     </div>

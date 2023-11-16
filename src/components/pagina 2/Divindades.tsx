@@ -138,11 +138,11 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
   return (
     <>
       <div className="flex flex-row-reverse justify-between">
-        <div className="w-1/3"></div>
-        <h1 className="w-1/3 text-center text-3xl font-bold mb-4">
+        <div className="w-1/4"></div>
+        <h1 className="w-2/4 text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
           Escolha sua divindade
         </h1>
-        <div className="w-1/3">
+        <div className="w-1/4">
           {classe !== "Clérigo" && classe !== "Paladino" ? (
             classe !== "Druida" ?? (
               <Checkbox
