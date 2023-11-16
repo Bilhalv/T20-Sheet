@@ -229,6 +229,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                 onChange={(e) => (filters.nome = e.target.value)}
                 className="mr-2"
                 placeholder="Nome do poder"
+                defaultValue={filters.nome}
               />
               <Select
                 onChange={(e) => (filters.tipo = e.target.value as string)}
