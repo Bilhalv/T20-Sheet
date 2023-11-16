@@ -69,7 +69,7 @@ export const TabelaPoderes: Poder[] = [
         descricao: "Se estiver empunhando uma arma corpo a corpo em uma das mãos e nada na outra, você recebe +2 na margem de ameaça e +1 no multiplicador de crítico.",
         tipo: TipoPoder.combate,
         requisitos: [
-            RequisitoPoder.atributo,
+            RequisitoPoder.poder,
         ],
         requisitos_descricao: ["Estilo de Uma Arma"]
     },

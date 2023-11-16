@@ -22,8 +22,9 @@ import {
 import { Filter } from "lucide-react";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { useState } from "react";
-import { TipoPoder } from "../../classes/Construtores/Poder";
+import { RequisitoPoder, TipoPoder } from "../../classes/Construtores/Poder";
 import { ConfirmarOnModal, FecharOnModal } from "../Geral/Botoes";
+import { TabelaClasses } from "../../classes/Tabelas/Classes";
 
 interface PoderesProps {
   setPagina: (pagina: string) => void;
@@ -31,9 +32,17 @@ interface PoderesProps {
 }
 
 export default function Poderes({ setPagina, next }: PoderesProps) {
+  const totalPoderes = [...TabelaPoderes];
+  TabelaClasses.forEach((classe) => {
+    if (classe.nome === localStorage.getItem("classe")) {
+      classe.poderesunicos.forEach((poder) => {
+        totalPoderes.push(poder);
+      });
+    }
+  });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const nivel = Number(localStorage.getItem("lvl"));
-  const [limite, setLimite] = useState(nivel-1);
+  const [limite, setLimite] = useState(nivel - 1);
   const [poderesSelecionados, setPoderesSelecionados] = useState<string[]>(
     localStorage.getItem("poderes")?.split(",") ?? []
   );
@@ -45,7 +54,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     selecionado: boolean;
   }
   const [array, setArray] = useState<ArrayPoderes[]>(() => {
-    const newArray = TabelaPoderes.map((poder) => {
+    const newArray = totalPoderes.map((poder) => {
       const selected = poderesSelecionados.includes(poder.nome);
       return {
         nome: poder.nome,
@@ -66,7 +75,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
       case TipoPoder.tormenta:
         return "red";
       case TipoPoder.destino:
-        return ;
+        return;
       default:
         return "green";
     }
@@ -82,11 +91,14 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     tipo: "default",
   });
   const handleFilter = () => {
-    let filtered = TabelaPoderes.filter((poder) => {
+    let filtered = totalPoderes.filter((poder) => {
       return (
         (filters.nome === "" ||
           poder.nome.toLowerCase().includes(filters.nome.toLowerCase())) &&
-        (!filters.requisito || poder.requisitos_descricao.length === 0) &&
+        (!filters.requisito ||
+          !poderesIndisponiveis.some(
+            (poderIndisponivel) => poder.nome === poderIndisponivel.nome
+          )) &&
         (filters.tipo === "default" || poder.tipo === filters.tipo)
       );
     });
@@ -104,6 +116,42 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     setArray(secondArray);
     onClose();
   };
+  const poderesIndisponiveis = totalPoderes.filter((poder) => {
+    let isIndisponivel = false;
+
+    if (poder.requisitos.includes(RequisitoPoder.atributo)) {
+      const atributoslocal = JSON.parse(
+        localStorage.getItem("atributosFinais") || "[]"
+      );
+      isIndisponivel = poder.requisitos_descricao.some((requisito) => {
+        const [atributo, valor] = requisito.split(" ");
+        const atributolocalvalor =
+          atributoslocal.find((atributoL: any) => atributoL.nome === atributo)
+            ?.valor || 0;
+        return atributolocalvalor < Number(valor);
+      });
+    }
+
+    if (!isIndisponivel && poder.requisitos.includes(RequisitoPoder.nivel)) {
+      const nivelfim = Number(
+        poder.requisitos_descricao
+          .filter((requisito) => requisito.includes("Nível"))[0]
+          .split(" ")[1]
+      );
+      isIndisponivel = Number(localStorage.getItem("lvl")) < nivelfim;
+    }
+
+    if (!isIndisponivel && poder.requisitos.includes(RequisitoPoder.pericia)) {
+      const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
+      isIndisponivel = !poder.requisitos_descricao.some((requisito) => {
+        const desc = requisito.split("reinado em ")[1];
+        return pericias.includes(desc);
+      });
+    }
+
+    return isIndisponivel;
+  });
+
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
@@ -137,8 +185,8 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
           </div>
           <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg bg-gray-200">
             <div className="flex flex-col px-4 pt-2">
-              {array.map((poder) => (
-                <div className="flex border-b border-gray-300 items-center py-2 gap-2">
+              {array.map((poder, index) => (
+                <div key={index} className="flex border-b border-gray-300 items-center py-2 gap-2">
                   <div className="w-3/5 flex justify-between items-center">
                     <p className="w-2/3">{poder.nome}</p>
                     <div className="w-1/3">
@@ -179,8 +227,12 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                   <p className="w-1/5 text-center">
                     <Checkbox
                       isDisabled={
-                        poderesSelecionados.length > limite &&
-                        !poder.selecionado
+                        (poderesSelecionados.length > limite &&
+                          !poder.selecionado) ||
+                        poderesIndisponiveis.some(
+                          (poderIndisponivel) =>
+                            poder.nome === poderIndisponivel.nome
+                        )
                       }
                       onChange={(e) => {
                         poder.selecionado = e.target.checked;
@@ -246,7 +298,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
               defaultChecked={filters.requisito}
               onChange={(e) => (filters.requisito = e.target.checked)}
             >
-              Poderes com pré-requisitos
+              Mostrar apenas poderes disponíveis
             </Checkbox>
           </ModalBody>
           <ModalFooter>
