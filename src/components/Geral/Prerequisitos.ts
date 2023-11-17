@@ -54,7 +54,10 @@ export function PreRequisitos(totalPoderes: Poder[]) {
       //filtro tipo_arcanista
       if (poder.requisitos.includes(RequisitoPoder.tipo_arcanista)) {
         const tipo = poder.requisitos_descricao;
-        const arcanista = localStorage.getItem("alt");
+        const arcanista = JSON.parse(localStorage.getItem("alt")||"[]");
+        if (tipo.includes(arcanista)) {
+          return true;
+        }
       }
 
       return false;
