@@ -29,10 +29,12 @@ export function PreRequisitos(totalPoderes: Poder[]) {
       if (poder.requisitos.includes(RequisitoPoder.pericia)) {
         const desc = requisito.split("reinado em ")[1];
         const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
-        const periciasorigem = JSON.parse(
-          localStorage.getItem("beneficios") || "[]"
-        ).filter((beneficio: any) => beneficio.tipo === "Perícias");
-        pericias.push(...periciasorigem[0].beneficio);
+        if(localStorage.getItem("beneficios") !== null){
+          const periciasorigem = JSON.parse(
+            localStorage.getItem("beneficios") || "[]"
+          ).filter((beneficio: any) => beneficio.tipo === "Perícias");
+          pericias.push(...periciasorigem[0].beneficio);
+        }
         console.log(pericias);
         if (!pericias.includes(desc)) {
           return true;
@@ -51,7 +53,6 @@ export function PreRequisitos(totalPoderes: Poder[]) {
 
       //filtro tipo_arcanista
       if (poder.requisitos.includes(RequisitoPoder.tipo_arcanista)) {
-        
         const tipo = poder.requisitos_descricao;
         const arcanista = localStorage.getItem("alt");
       }
