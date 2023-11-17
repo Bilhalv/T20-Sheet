@@ -480,7 +480,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </ModalBody>
             <ModalFooter>
               <FecharOnModal onClose={() => dispatch({ type: "toggleAlt" })} />
-              <ConfirmarOnModal onSelect={handleSelect} />
+              <ConfirmarOnModal onSelect={() => dispatch({ type: "togglePericias" })} />
             </ModalFooter>
             <ModalCloseButton />
           </ModalContent>
