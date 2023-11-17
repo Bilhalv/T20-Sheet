@@ -248,10 +248,11 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           desc: `Seus atributos finais são: ${atributos
             .map((atributo) => atributo.nome + ": " + atributo.valor)
             .join(" | ")}`,
-        });
-        localStorage.setItem("atributosFinais", JSON.stringify(atributos));
-        localStorage.setItem("pagina", next);
-        setPagina(next);
+          });
+          localStorage.setItem("atributosFinais", JSON.stringify(atributos));
+          localStorage.setItem("pagina", next);
+          setPagina(next);
+          navigate("/criarpt2");
       } else if (pontos > 0) {
         showCustomToast({
           title: "Você ainda tem pontos para distribuir",

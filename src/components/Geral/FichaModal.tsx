@@ -16,8 +16,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { BookUser, Pencil } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { EntendiOnModal } from "./Botoes";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   setPagina: any;
@@ -25,11 +26,33 @@ interface Props {
 }
 
 export default function FichaModal({ setPagina, pagina }: Props) {
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
+  var nome = localStorage.getItem("nome");
+  var lvl = localStorage.getItem("lvl");
+  var origem = localStorage.getItem("origem");
+  var raca = localStorage.getItem("raca");
+  var classe = localStorage.getItem("classe");
+  var atributos = localStorage.getItem("atributos");
+  var beneficios = localStorage.getItem("beneficios");
+  var pericias = localStorage.getItem("pericias");
+  useEffect(() => {
+    nome = localStorage.getItem("nome");
+    lvl = localStorage.getItem("lvl");
+    origem = localStorage.getItem("origem");
+    raca = localStorage.getItem("raca");
+    classe = localStorage.getItem("classe");
+    atributos = localStorage.getItem("atributos");
+    beneficios = localStorage.getItem("beneficios");
+    pericias = localStorage.getItem("pericias");
+  }, [nome, lvl, origem, raca, classe, atributos, beneficios, pericias]);
 
-  const trocarPagina = (pagina: string) => {
-    setPagina(pagina);
+  const trocarPagina = (subpagina: string) => {
+    if (pagina === 2) {
+      navigate("/criarpt1");
+    }
+    setPagina(subpagina);
     onClose();
   };
   return (
@@ -88,9 +111,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">
-                        {localStorage.getItem("nome") ? "" : "Nenhum"}
-                      </p>
+                      <p className="text-center">{nome === "" ? "Nenhum nome":nome}</p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -112,9 +133,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">
-                        {localStorage.getItem("lvl") ? "" : "Nenhum"}
-                      </p>
+                      <p className="text-center">{lvl === "" ? "Nenhum":lvl}</p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -136,9 +155,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">
-                        {localStorage.getItem("origem") ? "" : "Nenhuma"}
-                      </p>
+                      <p className="text-center">{origem === "" ? "Nenhuma":origem}</p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -160,9 +177,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">
-                        {localStorage.getItem("raca") ? "" : "Nenhuma"}
-                      </p>
+                      <p className="text-center">{raca === "" ? "Nenhuma":raca}</p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -174,7 +189,11 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          onClick={() => trocarPagina("Classes")}
+                          onClick={() => {
+                            if (pagina === 2) {
+                            }
+                            trocarPagina("Classes");
+                          }}
                           _hover={{
                             bg: "transparent",
                             color: "gray.200",
@@ -184,9 +203,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">
-                        {localStorage.getItem("classe") ? "" : "Nenhuma"}
-                      </p>
+                      <p className="text-center">{classe === "" ? "Nenhuma":classe}</p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -211,15 +228,13 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center flex flex-col">
-                        {localStorage.getItem("atributos")
-                          ? JSON.parse(localStorage.getItem("atributos")!).map(
-                              (atributo: any) => (
-                                <span>
-                                  {atributo.nome} {atributo.valor}{" "}
-                                </span>
-                              )
-                            )
-                          : ""}
+                        {atributos
+                          ? JSON.parse(atributos!).map((atributo: any) => (
+                              <span>
+                                {atributo.nome} {atributo.valor}{" "}
+                              </span>
+                            ))
+                          : "Atributos ainda não definidos"}
                       </p>
                     </div>
                     <div className="w-1/2 my-auto">
@@ -244,21 +259,19 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center flex flex-col">
-                        {localStorage.getItem("beneficios")
-                          ? JSON.parse(localStorage.getItem("beneficios")!).map(
-                              (beneficio: any) => (
-                                <>
-                                  <hr className="my-2 w-1/2 mx-auto" />
-                                  <h1 className="font-bold my-auto text-lg">
-                                    {beneficio.tipo}
-                                  </h1>
-                                  {beneficio.beneficio.map((item: any) => (
-                                    <span>{item !== "" ? item : "Nenhum"}</span>
-                                  ))}
-                                </>
-                              )
-                            )
-                          : ""}
+                        {beneficios
+                          ? JSON.parse(beneficios!).map((beneficio: any) => (
+                              <>
+                                <hr className="my-2 w-1/2 mx-auto" />
+                                <h1 className="font-bold my-auto text-lg">
+                                  {beneficio.tipo}
+                                </h1>
+                                {beneficio.beneficio.map((item: any) => (
+                                  <span>{item !== "" ? item : "Nenhum"}</span>
+                                ))}
+                              </>
+                            ))
+                          : "beneficios ainda não definidos"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
@@ -282,11 +295,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center flex flex-col">
-                        {localStorage.getItem("pericias")
-                          ? JSON.parse(localStorage.getItem("pericias")!).join(
-                              ", "
-                            )
-                          : ""}
+                        {pericias ? JSON.parse(pericias!).join(", ") : "pericias ainda não definidas"}
                       </p>
                     </div>
                   </div>
