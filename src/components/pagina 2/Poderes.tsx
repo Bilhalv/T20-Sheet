@@ -46,7 +46,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
   const nivel = Number(localStorage.getItem("lvl"));
   const [limite, setLimite] = useState(nivel - 1);
   const [poderesSelecionados, setPoderesSelecionados] = useState<string[]>(
-    localStorage.getItem("poderes")?.split(",") ?? []
+    JSON.parse(localStorage.getItem("poderes") || "[]") as string[]
   );
   interface ArrayPoderes {
     nome: string;
