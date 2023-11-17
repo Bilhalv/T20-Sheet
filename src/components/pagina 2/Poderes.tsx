@@ -26,6 +26,7 @@ import { RequisitoPoder, TipoPoder } from "../../classes/Construtores/Poder";
 import { ConfirmarOnModal, FecharOnModal } from "../Geral/Botoes";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { PreRequisitos } from "../Geral/Prerequisitos";
+import { useEffect } from "react";
 
 interface PoderesProps {
   setPagina: (pagina: string) => void;
@@ -117,7 +118,12 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     setArray(secondArray);
     onClose();
   };
-  const poderesIndisponiveis = PreRequisitos(totalPoderes, poderesSelecionados)
+  useEffect(() => {
+    setPoderesSelecionados(
+      JSON.parse(localStorage.getItem("poderes") ?? "[]")
+    );
+  }, [setPoderesSelecionados]);
+  const poderesIndisponiveis = PreRequisitos(totalPoderes, poderesSelecionados);
 
   return (
     <>
@@ -153,7 +159,10 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
           <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg bg-gray-200">
             <div className="flex flex-col px-4 pt-2">
               {array.map((poder, index) => (
-                <div key={index} className="flex border-b border-gray-300 items-center py-2 gap-2">
+                <div
+                  key={index}
+                  className="flex border-b border-gray-300 items-center py-2 gap-2"
+                >
                   <div className="w-3/5 flex justify-between items-center">
                     <p className="w-2/3">{poder.nome}</p>
                     <div className="w-1/3">
@@ -204,14 +213,12 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                       onChange={(e) => {
                         poder.selecionado = e.target.checked;
                         if (poder.selecionado) {
+                          poderesSelecionados.push(poder.nome);
                           localStorage.setItem(
                             "poderes",
-                            [...poderesSelecionados, poder.nome].join(",")
+                            JSON.stringify(poderesSelecionados)
                           );
-                          setPoderesSelecionados([
-                            ...poderesSelecionados,
-                            poder.nome,
-                          ]);
+                          console.log(poder.nome);
                         } else {
                           setPoderesSelecionados(
                             poderesSelecionados.filter(
@@ -220,9 +227,11 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                           );
                           localStorage.setItem(
                             "poderes",
-                            poderesSelecionados
-                              .filter((poder1) => poder1 !== poder.nome)
-                              .join(",")
+                            JSON.stringify(
+                              poderesSelecionados.filter(
+                                (poder1) => poder1 !== poder.nome
+                              )
+                            )
                           );
                         }
                       }}

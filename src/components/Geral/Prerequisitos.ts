@@ -40,6 +40,24 @@ export function PreRequisitos(totalPoderes: Poder[], selecionados: string[]) {
         }
       }
 
+      //filtro de poder
+      if (poder.requisitos.includes(RequisitoPoder.poder)) {
+        const poderesSelecionados = JSON.parse(
+            localStorage.getItem("poderes") || "[]"
+            );
+        console.log(
+          poder.nome,
+          poder.requisitos_descricao,
+          selecionados,
+          !poder.requisitos_descricao.some((requisito) =>
+            poderesSelecionados.some((poder: any) => requisito.includes(poder))
+          )
+        );
+        return !poder.requisitos_descricao.some((requisito) =>
+          selecionados.some((poder: any) => requisito.includes(poder))
+        );
+      }
+
       return false;
     });
   });
