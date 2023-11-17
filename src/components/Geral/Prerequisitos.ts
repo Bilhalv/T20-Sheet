@@ -32,9 +32,8 @@ export function PreRequisitos(totalPoderes: Poder[], selecionados: string[]) {
         const periciasorigem = JSON.parse(
           localStorage.getItem("beneficios") || "[]"
         ).filter((beneficio: any) => beneficio.tipo === "Perícias");
-        pericias.push(
-          ...periciasorigem.map((beneficio: any) => beneficio.descricao)
-        );
+        pericias.push(...periciasorigem[0].beneficio);
+        console.log(pericias);
         if (!pericias.includes(desc)) {
           return true;
         }
@@ -43,15 +42,7 @@ export function PreRequisitos(totalPoderes: Poder[], selecionados: string[]) {
       //filtro de poder
       if (poder.requisitos.includes(RequisitoPoder.poder)) {
         const poderesSelecionados = JSON.parse(
-            localStorage.getItem("poderes") || "[]"
-            );
-        console.log(
-          poder.nome,
-          poder.requisitos_descricao,
-          selecionados,
-          !poder.requisitos_descricao.some((requisito) =>
-            poderesSelecionados.some((poder: any) => requisito.includes(poder))
-          )
+          localStorage.getItem("poderes") || "[]"
         );
         return !poder.requisitos_descricao.some((requisito) =>
           selecionados.some((poder: any) => requisito.includes(poder))
