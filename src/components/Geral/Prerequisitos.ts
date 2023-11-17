@@ -1,58 +1,74 @@
 import { Poder, RequisitoPoder } from "../../classes/Construtores/Poder";
 
 export function PreRequisitos(totalPoderes: Poder[]) {
-  const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
-  const beneficios = JSON.parse(localStorage.getItem("beneficios") || "[]");
-  const periciasorigem = beneficios.find((beneficio: any) => beneficio.tipo === "Perícias")?.beneficio || [];
-
-  pericias.push(...periciasorigem);
-
-  return totalPoderes.filter((poder) =>
-    poder.requisitos_descricao.some((requisito) => {
-      const checkAtributo = () => {
+  const Indisponiveis = totalPoderes.filter((poder) => {
+    return poder.requisitos_descricao.some((requisito) => {
+      //filtro de atributo
+      if (poder.requisitos.includes(RequisitoPoder.atributo)) {
         const [atributo, valor] = requisito.split(" ");
-        const atributoslocal = JSON.parse(localStorage.getItem("atributosFinais") || "[]");
-        const atributolocalvalor = atributoslocal.find((atributoL: any) => atributoL.nome === atributo)?.valor || 0;
-        return atributolocalvalor < Number(valor);
-      };
+        const atributoslocal = JSON.parse(
+          localStorage.getItem("atributosFinais") || "[]"
+        );
+        const atributolocalvalor =
+          atributoslocal.find((atributoL: any) => atributoL.nome === atributo)
+            ?.valor || 0;
+        if (atributolocalvalor < Number(valor)) {
+          return true;
+        }
+      }
 
-      const checkNivel = () => {
+      //filtro de nivel
+      if (poder.requisitos.includes(RequisitoPoder.nivel)) {
         const nivelfim = Number(requisito.split(" ")[1]);
-        return Number(localStorage.getItem("lvl")) < nivelfim;
-      };
+        if (Number(localStorage.getItem("lvl")) < nivelfim) {
+          return true;
+        }
+      }
 
-      const checkPericia = () => {
+      //filtro de pericia
+      if (poder.requisitos.includes(RequisitoPoder.pericia)) {
         const desc = requisito.split("reinado em ")[1];
+        const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
+        if (localStorage.getItem("beneficios") !== null) {
+          const periciasorigem = JSON.parse(
+            localStorage.getItem("beneficios") || "[]"
+          ).filter((beneficio: any) => beneficio.tipo === "Perícias");
+          pericias.push(...periciasorigem[0].beneficio);
+        }
+        console.log(pericias);
         return pericias.includes(desc);
-      };
+      }
 
-      const checkPoder = () => {
-        const poderesSelecionados = JSON.parse(localStorage.getItem("poderes") || "[]");
+      //filtro de poder
+      if (poder.requisitos.includes(RequisitoPoder.poder)) {
+        const poderesSelecionados = JSON.parse(
+          localStorage.getItem("poderes") || "[]"
+        );
         return !poder.requisitos_descricao.some((requisito) =>
           poderesSelecionados.some((poder: any) => requisito.includes(poder))
         );
-      };
+      }
 
-      const checkTipoArcanista = () => {
+      //filtro tipo_arcanista
+      if (poder.requisitos.includes(RequisitoPoder.tipo_arcanista)) {
         const tipo = poder.requisitos_descricao;
         const arcanista = JSON.parse(localStorage.getItem("alt") || "[]");
-        return tipo.includes(arcanista);
-      };
+        if (tipo.includes(arcanista)) {
+          return true;
+        }
+      }
 
-      const checkMagia = () => {
+      //filtro de magia
+      if (poder.requisitos.includes(RequisitoPoder.magia)) {
         const magias = JSON.parse(localStorage.getItem("magias") || "[]");
         const desc = poder.requisitos_descricao;
-        return desc.some((requisito) => !magias.includes(requisito));
-      };
+        if (desc.some((requisito) => !magias.includes(requisito))) {
+          return true;
+        }
+      }
 
-      return (
-        (poder.requisitos.includes(RequisitoPoder.atributo) && checkAtributo()) ||
-        (poder.requisitos.includes(RequisitoPoder.nivel) && checkNivel()) ||
-        (poder.requisitos.includes(RequisitoPoder.pericia) && checkPericia()) ||
-        (poder.requisitos.includes(RequisitoPoder.poder) && checkPoder()) ||
-        (poder.requisitos.includes(RequisitoPoder.tipo_arcanista) && checkTipoArcanista()) ||
-        (poder.requisitos.includes(RequisitoPoder.magia) && checkMagia())
-      );
-    })
-  );
+      return false;
+    });
+  });
+  return Indisponiveis;
 }
