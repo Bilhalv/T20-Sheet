@@ -123,7 +123,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
       JSON.parse(localStorage.getItem("poderes") ?? "[]")
     );
   }, [setPoderesSelecionados]);
-  const poderesIndisponiveis = PreRequisitos(totalPoderes, poderesSelecionados);
+  const poderesIndisponiveis = PreRequisitos(totalPoderes);
 
   return (
     <>

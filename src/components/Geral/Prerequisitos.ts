@@ -1,6 +1,6 @@
 import { Poder, RequisitoPoder } from "../../classes/Construtores/Poder";
 
-export function PreRequisitos(totalPoderes: Poder[], selecionados: string[]) {
+export function PreRequisitos(totalPoderes: Poder[]) {
   const Indisponiveis = totalPoderes.filter((poder) => {
     return poder.requisitos_descricao.some((requisito) => {
       //filtro de atributo
@@ -45,7 +45,7 @@ export function PreRequisitos(totalPoderes: Poder[], selecionados: string[]) {
           localStorage.getItem("poderes") || "[]"
         );
         return !poder.requisitos_descricao.some((requisito) =>
-          selecionados.some((poder: any) => requisito.includes(poder))
+          poderesSelecionados.some((poder: any) => requisito.includes(poder))
         );
       }
 
