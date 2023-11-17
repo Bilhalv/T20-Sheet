@@ -204,35 +204,33 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                       isDisabled={
                         (poderesSelecionados.length > limite &&
                           !poder.selecionado) ||
-                        poderesIndisponiveis.some(
+                        (poderesIndisponiveis.some(
                           (poderIndisponivel) =>
                             poder.nome === poderIndisponivel.nome
-                        )
+                        ) &&
+                          !poder.selecionado)
                       }
                       onChange={(e) => {
-                        poder.selecionado = e.target.checked;
-                        if (poder.selecionado) {
-                          poderesSelecionados.push(poder.nome);
-                          localStorage.setItem(
-                            "poderes",
-                            JSON.stringify(poderesSelecionados)
-                          );
-                          console.log(poder.nome);
+                        const isChecked = e.target.checked;
+                        let updatedPoderesSelecionados;
+
+                        if (isChecked) {
+                          updatedPoderesSelecionados = [
+                            ...poderesSelecionados,
+                            poder.nome,
+                          ];
                         } else {
-                          setPoderesSelecionados(
+                          updatedPoderesSelecionados =
                             poderesSelecionados.filter(
                               (poder1) => poder1 !== poder.nome
-                            )
-                          );
-                          localStorage.setItem(
-                            "poderes",
-                            JSON.stringify(
-                              poderesSelecionados.filter(
-                                (poder1) => poder1 !== poder.nome
-                              )
-                            )
-                          );
+                            );
                         }
+
+                        setPoderesSelecionados(updatedPoderesSelecionados);
+                        localStorage.setItem(
+                          "poderes",
+                          JSON.stringify(updatedPoderesSelecionados)
+                        );
                       }}
                       defaultChecked={poder.selecionado ?? false}
                       colorScheme="red"
