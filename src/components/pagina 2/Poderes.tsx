@@ -25,6 +25,7 @@ import { useState } from "react";
 import { RequisitoPoder, TipoPoder } from "../../classes/Construtores/Poder";
 import { ConfirmarOnModal, FecharOnModal } from "../Geral/Botoes";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
+import { PreRequisitos } from "../Geral/Prerequisitos";
 
 interface PoderesProps {
   setPagina: (pagina: string) => void;
@@ -116,41 +117,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     setArray(secondArray);
     onClose();
   };
-  const poderesIndisponiveis = totalPoderes.filter((poder) => {
-    let isIndisponivel = false;
-
-    if (poder.requisitos.includes(RequisitoPoder.atributo)) {
-      const atributoslocal = JSON.parse(
-        localStorage.getItem("atributosFinais") || "[]"
-      );
-      isIndisponivel = poder.requisitos_descricao.some((requisito) => {
-        const [atributo, valor] = requisito.split(" ");
-        const atributolocalvalor =
-          atributoslocal.find((atributoL: any) => atributoL.nome === atributo)
-            ?.valor || 0;
-        return atributolocalvalor < Number(valor);
-      });
-    }
-
-    if (!isIndisponivel && poder.requisitos.includes(RequisitoPoder.nivel)) {
-      const nivelfim = Number(
-        poder.requisitos_descricao
-          .filter((requisito) => requisito.includes("Nível"))[0]
-          .split(" ")[1]
-      );
-      isIndisponivel = Number(localStorage.getItem("lvl")) < nivelfim;
-    }
-
-    if (!isIndisponivel && poder.requisitos.includes(RequisitoPoder.pericia)) {
-      const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
-      isIndisponivel = !poder.requisitos_descricao.some((requisito) => {
-        const desc = requisito.split("reinado em ")[1];
-        return pericias.includes(desc);
-      });
-    }
-
-    return isIndisponivel;
-  });
+  const poderesIndisponiveis = PreRequisitos(totalPoderes)
 
   return (
     <>
