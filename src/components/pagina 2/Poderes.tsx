@@ -117,7 +117,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     setArray(secondArray);
     onClose();
   };
-  const poderesIndisponiveis = PreRequisitos(totalPoderes)
+  const poderesIndisponiveis = PreRequisitos(totalPoderes, poderesSelecionados)
 
   return (
     <>

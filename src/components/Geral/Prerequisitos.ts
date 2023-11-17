@@ -1,8 +1,9 @@
 import { Poder, RequisitoPoder } from "../../classes/Construtores/Poder";
 
-export function PreRequisitos(totalPoderes: Poder[]) {
-  const poderesIndisponiveis = totalPoderes.filter((poder) => {
+export function PreRequisitos(totalPoderes: Poder[], selecionados: string[]) {
+  const Indisponiveis = totalPoderes.filter((poder) => {
     return poder.requisitos_descricao.some((requisito) => {
+      //filtro de atributo
       if (poder.requisitos.includes(RequisitoPoder.atributo)) {
         const [atributo, valor] = requisito.split(" ");
         const atributoslocal = JSON.parse(
@@ -16,6 +17,7 @@ export function PreRequisitos(totalPoderes: Poder[]) {
         }
       }
 
+      //filtro de nivel
       if (poder.requisitos.includes(RequisitoPoder.nivel)) {
         const nivelfim = Number(requisito.split(" ")[1]);
         if (Number(localStorage.getItem("lvl")) < nivelfim) {
@@ -23,9 +25,16 @@ export function PreRequisitos(totalPoderes: Poder[]) {
         }
       }
 
+      //filtro de pericia
       if (poder.requisitos.includes(RequisitoPoder.pericia)) {
         const desc = requisito.split("reinado em ")[1];
         const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
+        const periciasorigem = JSON.parse(
+          localStorage.getItem("beneficios") || "[]"
+        ).filter((beneficio: any) => beneficio.tipo === "Perícias");
+        pericias.push(
+          ...periciasorigem.map((beneficio: any) => beneficio.descricao)
+        );
         if (!pericias.includes(desc)) {
           return true;
         }
@@ -34,5 +43,5 @@ export function PreRequisitos(totalPoderes: Poder[]) {
       return false;
     });
   });
-  return poderesIndisponiveis;
+  return Indisponiveis;
 }
