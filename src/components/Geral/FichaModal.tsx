@@ -220,7 +220,7 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {classe === "" ? "Nenhuma" : classe}
+                        {classe === "" ? "Nenhuma" : classe}{classe === "Arcanista" ? ` - ${JSON.parse(localStorage.getItem("alt") ||"")}`:""}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
