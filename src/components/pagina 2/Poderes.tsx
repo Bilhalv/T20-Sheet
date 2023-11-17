@@ -119,9 +119,7 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
     onClose();
   };
   useEffect(() => {
-    setPoderesSelecionados(
-      JSON.parse(localStorage.getItem("poderes") ?? "[]")
-    );
+    setPoderesSelecionados(JSON.parse(localStorage.getItem("poderes") ?? "[]"));
   }, [setPoderesSelecionados]);
   const poderesIndisponiveis = PreRequisitos(totalPoderes);
 
@@ -180,10 +178,11 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                           </PopoverHeader>
                           <PopoverBody className="font-serif text-justify">
                             <p>&nbsp;&nbsp;&nbsp;{poder.descricao}</p>
-                            <i className="text-sm">
-                              {" "}
-                              Pré-requisito: {poder.requisito.join(", ")}
-                            </i>
+                            {poder.requisito.length > 0 && (
+                              <i className="text-sm">
+                                Pré-requisito: {poder.requisito.join(", ")}
+                              </i>
+                            )}
                           </PopoverBody>
                         </PopoverContent>
                       </Popover>
