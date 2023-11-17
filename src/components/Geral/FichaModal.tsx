@@ -34,7 +34,11 @@ export default function FichaModal({ setPagina, pagina }: Props) {
   var origem = localStorage.getItem("origem");
   var raca = localStorage.getItem("raca");
   var classe = localStorage.getItem("classe");
-  var atributos = localStorage.getItem("atributos");
+  if (pagina === 1) {
+    var atributos = localStorage.getItem("atributos");
+  } else {
+    var atributos = localStorage.getItem("atributosFinais");
+  }
   var beneficios = localStorage.getItem("beneficios");
   var pericias = localStorage.getItem("pericias");
   useEffect(() => {
@@ -43,7 +47,11 @@ export default function FichaModal({ setPagina, pagina }: Props) {
     origem = localStorage.getItem("origem");
     raca = localStorage.getItem("raca");
     classe = localStorage.getItem("classe");
-    atributos = localStorage.getItem("atributos");
+    if (pagina === 1) {
+      atributos = localStorage.getItem("atributos");
+    } else {
+      atributos = localStorage.getItem("atributosFinais");
+    }
     beneficios = localStorage.getItem("beneficios");
     pericias = localStorage.getItem("pericias");
   }, [nome, lvl, origem, raca, classe, atributos, beneficios, pericias]);
@@ -111,7 +119,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">{nome === "" ? "Nenhum nome":nome}</p>
+                      <p className="text-center">
+                        {nome === "" ? "Nenhum nome" : nome}
+                      </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -133,7 +143,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">{lvl === "" ? "Nenhum":lvl}</p>
+                      <p className="text-center">
+                        {lvl === "" ? "Nenhum" : lvl}
+                      </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -155,7 +167,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">{origem === "" ? "Nenhuma":origem}</p>
+                      <p className="text-center">
+                        {origem === "" ? "Nenhuma" : origem}
+                      </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -177,7 +191,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">{raca === "" ? "Nenhuma":raca}</p>
+                      <p className="text-center">
+                        {raca === "" ? "Nenhuma" : raca}
+                      </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -203,7 +219,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center">{classe === "" ? "Nenhuma":classe}</p>
+                      <p className="text-center">
+                        {classe === "" ? "Nenhuma" : classe}
+                      </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
@@ -227,12 +245,13 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                           <Pencil />
                         </IconButton>
                       </div>
-                      <p className="text-center flex flex-col">
+                      <p className="text-center flex flex-col w-2/3 mx-auto px-3">
                         {atributos
                           ? JSON.parse(atributos!).map((atributo: any) => (
-                              <span>
-                                {atributo.nome} {atributo.valor}{" "}
-                              </span>
+                              <div className="flex justify-between w-full">
+                                <span>{atributo.nome}</span>
+                                <p>{atributo.valor}</p>
+                              </div>
                             ))
                           : "Atributos ainda não definidos"}
                       </p>
@@ -295,7 +314,9 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center flex flex-col">
-                        {pericias ? JSON.parse(pericias!).join(", ") : "pericias ainda não definidas"}
+                        {pericias
+                          ? JSON.parse(pericias!).join(", ")
+                          : "pericias ainda não definidas"}
                       </p>
                     </div>
                   </div>
