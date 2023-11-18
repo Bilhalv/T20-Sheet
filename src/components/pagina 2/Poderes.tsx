@@ -22,7 +22,7 @@ import {
 import { Filter } from "lucide-react";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { useState } from "react";
-import { RequisitoPoder, TipoPoder } from "../../classes/Construtores/Poder";
+import { TipoPoder } from "../../classes/Construtores/Poder";
 import { ConfirmarOnModal, FecharOnModal } from "../Geral/Botoes";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { PreRequisitos } from "../Geral/Prerequisitos";
@@ -34,7 +34,7 @@ interface PoderesProps {
 }
 
 export default function Poderes({ setPagina, next }: PoderesProps) {
-  const totalPoderes = [...TabelaPoderes];
+  const totalPoderes = TabelaPoderes.filter((poder) => poder.tipo !== TipoPoder.origem);
   TabelaClasses.forEach((classe) => {
     if (classe.nome === localStorage.getItem("classe")) {
       classe.poderesunicos.forEach((poder) => {
