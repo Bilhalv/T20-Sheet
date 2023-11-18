@@ -34,7 +34,9 @@ interface PoderesProps {
 }
 
 export default function Poderes({ setPagina, next }: PoderesProps) {
-  const totalPoderes = TabelaPoderes.filter((poder) => poder.tipo !== TipoPoder.origem);
+  const totalPoderes = TabelaPoderes.filter(
+    (poder) => poder.tipo !== TipoPoder.origem
+  );
   TabelaClasses.forEach((classe) => {
     if (classe.nome === localStorage.getItem("classe")) {
       classe.poderesunicos.forEach((poder) => {
@@ -262,9 +264,16 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                 defaultValue={filters.tipo}
               >
                 <option value="default">Todos os tipos</option>
-                {Object.keys(TipoPoder).map((tipo) => (
-                  <option value={tipo}>{tipo}</option>
-                ))}
+                {Object.keys(TipoPoder)
+                  .filter(
+                    (tipo) =>
+                      tipo !== TipoPoder.origem && tipo !== TipoPoder.concedidos
+                  )
+                  .map((tipo) => (
+                    <option key={tipo} value={tipo}>
+                      {tipo}
+                    </option>
+                  ))}
               </Select>
             </div>
             <Checkbox
