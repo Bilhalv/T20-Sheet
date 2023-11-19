@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
 import Divindades from "../components/pagina 2/Divindades";
-import { Button } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+} from "@chakra-ui/react";
 import Poderes from "../components/pagina 2/Poderes";
 import Magias from "../components/pagina 2/Magias";
 import Equipamentos from "../components/pagina 2/Equipamentos";
@@ -13,6 +25,10 @@ const App: React.FC = () => {
   const paginas = ["Divindades", "Poderes", "Magias", "Equipamentos", "Alt"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
+  const handleChange = (e: string) => {
+    localStorage.setItem("pagina", e);
+    setPagina(e);
+  };
 
   return (
     <>
@@ -37,28 +53,45 @@ const App: React.FC = () => {
           )}
           {pagina === "Alt" && <Alt setPagina={setPagina} next="Confirmar" />}
 
-          <div className="flex justify-evenly mt-5 transition-all ease-in-out">
-            {paginas.map((pagina) => (
-              <Button
-                key={pagina}
-                isActive={pagina === localStorage.getItem("pagina")}
-                bg={"darkred"}
-                color={"white"}
-                _hover={{ bg: "red.600" }}
-                width="auto"
-                size={"sm"}
-                borderRadius={"full"}
-                boxShadow="lg"
-                _active={{ bg: "red.600", color: "darkred" }}
-                onClick={() => {
-                  localStorage.setItem("pagina", pagina);
-                  setPagina(pagina);
-                }}
-              >
-                {paginas.indexOf(pagina) + 1}
-              </Button>
+          <Stepper
+            colorScheme="red"
+            index={paginas.indexOf(pagina)}
+            className="mt-3"
+          >
+            {paginas.map((pagina, index) => (
+              <>
+                <Step key={index}>
+                  <StepIndicator
+                    className="hover:cursor-pointer hover:transform hover:scale-110 transition-all ease-in-out"
+                    onClick={() => handleChange(pagina)}
+                  >
+                    <StepStatus
+                      complete={<StepIcon color="white" />}
+                      incomplete={<StepNumber />}
+                      active={<StepNumber className="text-white" />}
+                    />
+                  </StepIndicator>
+                  <Box flexShrink="0">
+                    <StepTitle
+                      className={`
+                      hidden desktop:block
+                      ${
+                        index <=
+                        paginas.indexOf(localStorage.getItem("pagina") || "")
+                          ? "text-gray-200"
+                          : ""
+                      }
+                        `}
+                    >
+                      {pagina}
+                    </StepTitle>
+                    <StepDescription></StepDescription>
+                  </Box>
+                  <StepSeparator />
+                </Step>
+              </>
             ))}
-          </div>
+          </Stepper>
         </article>
       </body>
     </>

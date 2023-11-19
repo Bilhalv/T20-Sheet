@@ -5,16 +5,28 @@ import Inicio from "../components/pagina 1/Inicio";
 import Classes from "../components/pagina 1/Classes";
 import Origens from "../components/pagina 1/Origens";
 import Atributos from "../components/pagina 1/Atributos";
-import { Button } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+} from "@chakra-ui/react";
 import InfoModal from "../components/Geral/InfoModal";
 import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
-  let pag = localStorage.getItem("pagina");
-  const [pagina, setPagina] = useState(pag ?? paginas[0]);
+  const [pag, setPag] = useState(localStorage.getItem("pagina") ?? paginas[0]);
+  const [pagina, setPagina] = useState(pag);
   useEffect(() => {
-    if (!paginas.includes(pag??paginas[0])) {
+    if (!paginas.includes(pag)) {
       handleChange(paginas[0]);
     }
   }, [pag, paginas, setPagina]);
@@ -31,7 +43,7 @@ const App: React.FC = () => {
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-row-reverse mb-[-40px]">
             <InfoModal pagina={pagina} />
-            <FichaModal pagina={1} setPagina={setPagina}/>
+            <FichaModal pagina={1} setPagina={setPagina} />
           </div>
           {pagina === "Inicio" && (
             <Inicio next="Origens" setPagina={setPagina} />
@@ -46,28 +58,45 @@ const App: React.FC = () => {
           {pagina === "Atributos" && (
             <Atributos next="Divindades" setPagina={setPagina} />
           )}
-          <div className="flex justify-evenly mt-5 transition-all ease-in-out">
-            {paginas.map((pagina) => (
-              <Button
-                key={pagina}
-                isActive={pagina === localStorage.getItem("pagina")}
-                bg={"darkred"}
-                color={"white"}
-                _hover={{ bg: "red.600" }}
-                width="auto"
-                size={"sm"}
-                borderRadius={"full"}
-                boxShadow="lg"
-                _active={{ bg: "red.600", color: "darkred" }}
-                onClick={() => {
-                  localStorage.setItem("pagina", pagina);
-                  setPagina(pagina);
-                }}
-              >
-                {paginas.indexOf(pagina) + 1}
-              </Button>
+          <Stepper
+            colorScheme="red"
+            index={paginas.indexOf(pagina)}
+            className="mt-3"
+          >
+            {paginas.map((pagina, index) => (
+              <>
+                <Step key={index}>
+                  <StepIndicator
+                    className="hover:cursor-pointer hover:transform hover:scale-110 transition-all ease-in-out"
+                    onClick={() => handleChange(pagina)}
+                  >
+                    <StepStatus
+                      complete={<StepIcon color="white" />}
+                      incomplete={<StepNumber />}
+                      active={<StepNumber className="text-white" />}
+                    />
+                  </StepIndicator>
+                  <Box flexShrink="0">
+                    <StepTitle
+                      className={`
+                        hidden desktop:block
+                        ${
+                          index <=
+                          paginas.indexOf(localStorage.getItem("pagina") || "")
+                            ? "text-gray-200"
+                            : ""
+                        }
+                          `}
+                    >
+                      {pagina}
+                    </StepTitle>
+                    <StepDescription></StepDescription>
+                  </Box>
+                  <StepSeparator />
+                </Step>
+              </>
             ))}
-          </div>
+          </Stepper>
         </article>
       </body>
     </>
