@@ -5,6 +5,7 @@ import "./input.css";
 import Inicio from "./pages/Inicio";
 import Parte1 from "./pages/Parte1";
 import Parte2 from "./pages/Parte2";
+import Ficha from "./pages/Ficha";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -19,6 +20,7 @@ root.render(
           <Route path="/" element={<Inicio />} />
           <Route path="/criarpt1" element={<Parte1 />} />
           <Route path="/criarpt2" element={<Parte2 />} />
+          <Route path="/ficha" element={<Ficha />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
