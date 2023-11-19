@@ -7,7 +7,7 @@ interface NavbarProps {
 export default function Navbar({ back }: NavbarProps) {
   return (
     <>
-      <nav className="z-10 flex sticky top-0 justify-between bg-[#10000d] desktop:p-5 p-3 text-white shadow-lg">
+      <nav className="z-40 flex sticky top-0 justify-between bg-[#10000d] desktop:p-5 p-3 text-white shadow-lg">
         <div className="w-1/3">
           <Link to="/" className="w-1/3">
             <img className="h-8" src="./img/bannerT20.png" />
