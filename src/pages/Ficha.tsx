@@ -82,7 +82,7 @@ const Ficha: React.FC = () => {
             {personagem.nome}
           </h1>
           <article className="flex-col flex justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12">
-            <section className="flex flex-wrap justify-between">
+            <section className="flex justify-between">
               {[
                 { label: "Raça", value: personagem.raca },
                 { label: "Origem", value: personagem.origem },
@@ -107,15 +107,21 @@ const Ficha: React.FC = () => {
                   <div className="w-1/2">
                     <div className="flex justify-evenly">
                       {Object.keys(personagem.atributos).map((atributo) => (
-                        <div className="bg-white rounded-xl bg-opacity-70 border border-black flex flex-col p-3 w-13 h-16">
+                        <div className="bg-gray-200 rounded-xl border border-black flex flex-col p-3 w-13 h-20 z-10">
                           <h1 className="text-center mt-[-15px] text-red-900 drop-shadow-2xl text-md">
                             {atributo.substring(0, 3).toUpperCase()}
                           </h1>
                           <h1 className="text-center text-3xl text-red-900 drop-shadow-2xl text-md mb-3">
+                            {Number(personagem.atributos[atributo]) > 0
+                              ? "+"
+                              : ""}
                             {personagem.atributos[atributo]}
                           </h1>
                         </div>
                       ))}
+                      <p className="absolute bg-red-800 w-80 h-10 text-red-800 mt-5 z-0">
+                        a
+                      </p>
                     </div>
                   </div>
                   <div className="w-1/2"></div>
