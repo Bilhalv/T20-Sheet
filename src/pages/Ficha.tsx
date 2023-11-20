@@ -21,6 +21,15 @@ const Ficha: React.FC = () => {
     quantidade: number;
     espacos: number;
     desc: string;
+    isArma?: boolean;
+    isArmadura?: boolean;
+    isEscudo?: boolean;
+    bonusAtaque?: number;
+    Dano?: string;
+    crit?: string;
+    alcance?: string;
+    tipo?: string;
+    defesa?: number;
   }
   const [itens, setItens] = useState<Item[]>([
     {
@@ -28,18 +37,28 @@ const Ficha: React.FC = () => {
       quantidade: 1,
       espacos: 2,
       desc: "Uma espada longa afiada e poderosa.",
+      isArma: true,
+      bonusAtaque: 0,
+      Dano: "1d8",
+      crit: "19/x2",
+      alcance: "Pessoal",
+      tipo: "Corte",
     },
     {
       nome: "Escudo",
       quantidade: 1,
       espacos: 1,
       desc: "Um escudo resistente para proteção.",
+      isEscudo: true,
+      defesa: 1,
     },
     {
       nome: "Armadura de Couro",
       quantidade: 1,
       espacos: 3,
       desc: "Uma armadura de couro leve e flexível.",
+      isArmadura: true,
+      defesa: 2,
     },
     {
       nome: "Poção de Cura",
@@ -52,12 +71,24 @@ const Ficha: React.FC = () => {
       quantidade: 2,
       espacos: 1,
       desc: "Uma adaga afiada e fácil de manusear.",
+      isArma: true,
+      bonusAtaque: 0,
+      Dano: "1d4",
+      crit: "19/x2",
+      alcance: "Curto",
+      tipo: "Perfuração",
     },
     {
       nome: "Arco Longo",
       quantidade: 1,
       espacos: 2,
       desc: "Um arco longo para ataques à distância.",
+      isArma: true,
+      bonusAtaque: 3,
+      Dano: "1d8",
+      crit: "20/x3",
+      alcance: "Curto",
+      tipo: "Perfuração",
     },
   ]);
   const [personagem, setPersonagem] = useState<any>({
@@ -86,30 +117,65 @@ const Ficha: React.FC = () => {
           <h1 className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             {personagem.nome}
           </h1>
-          <Atributos personagem={personagem} />
-          <Tabs variant={"enclosed"} colorScheme="red" isFitted>
-            <TabList>
-              <Tab _selected={{color: "black", bg: 'white' }} color={"white"} bgColor={"red.600"}><img src="./img/tabsFicha/ficha.svg" /></Tab>
-              <Tab _selected={{color: "black", bg: 'white' }} color={"white"} bgColor={"red.600"}><img src="./img/tabsFicha/combate.svg" /></Tab>
-              <Tab _selected={{color: "black", bg: 'white' }} color={"white"} bgColor={"red.600"}>Three</Tab>
-              <Tab _selected={{color: "black", bg: 'white' }} color={"white"} bgColor={"red.600"}>Four</Tab>
-            </TabList>
-
-            <TabPanels>
-              <TabPanel>
-                <p>one!</p>
-              </TabPanel>
-              <TabPanel>
-                <p>two!</p>
-              </TabPanel>
-              <TabPanel>
-                <p>three!</p>
-              </TabPanel>
-              <TabPanel>
-                <p>four!</p>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <div className="block desktop:hidden">
+            <Atributos personagem={personagem} />
+            <Tabs
+              variant={"enclosed"}
+              colorScheme="red"
+              className="mt-4"
+              isFitted
+            >
+              <TabList>
+                <Tab
+                  roundedTop={"3xl"}
+                  _selected={{ color: "black", bg: "white" }}
+                  color={"white"}
+                  bgColor={"red.600"}
+                >
+                  <img src="./img/tabsFicha/ficha.svg" />
+                </Tab>
+                <Tab
+                  roundedTop={"3xl"}
+                  _selected={{ color: "black", bg: "white" }}
+                  color={"white"}
+                  bgColor={"red.600"}
+                >
+                  <img src="./img/tabsFicha/combate.svg" />
+                </Tab>
+                <Tab
+                  roundedTop={"3xl"}
+                  _selected={{ color: "black", bg: "white" }}
+                  color={"white"}
+                  bgColor={"red.600"}
+                >
+                  Three
+                </Tab>
+                <Tab
+                  roundedTop={"3xl"}
+                  _selected={{ color: "black", bg: "white" }}
+                  color={"white"}
+                  bgColor={"red.600"}
+                >
+                  Four
+                </Tab>
+              </TabList>
+              <TabPanels className="bg-white">
+                <TabPanel>
+                  <Info personagem={personagem} />
+                  <Equipamento personagem={personagem} setItens={setItens} />
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>three!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>four!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </div>
           <article className="flex-col flex justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12"></article>
         </article>
       </body>

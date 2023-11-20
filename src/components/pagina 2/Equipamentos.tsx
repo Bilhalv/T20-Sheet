@@ -29,15 +29,17 @@ export default function Equipamentos({ setPagina, next }: EquipamentosProps) {
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
           <Accordion allowToggle>
-            <Checkbox isDisabled isChecked>
-              Mochila
-            </Checkbox>
-            <Checkbox isDisabled isChecked>
-              Saco de dormir
-            </Checkbox>
-            <Checkbox isDisabled isChecked>
-              Traje de viajante
-            </Checkbox>
+            <div className="flex justify-evenly">
+              <Checkbox isDisabled isChecked>
+                Mochila
+              </Checkbox>
+              <Checkbox isDisabled isChecked>
+                Saco de dormir
+              </Checkbox>
+              <Checkbox isDisabled isChecked>
+                Traje de viajante
+              </Checkbox>
+            </div>
             <AccordionItem>
               <AccordionButton className="flex justify-between">
                 <h2 className="text-lg font-bold">Arma Simples</h2>
