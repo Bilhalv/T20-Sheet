@@ -74,19 +74,6 @@ export default function Equipamentos({ setPagina, next }: EquipamentosProps) {
                     <p className="w-fit">{arma.espacos}</p>
                   </div>
                 ))}
-                {/* 
-    categoria: "Arma",
-    nome: "Adaga",
-    preco: 2,
-    dano: "1d4",
-    crit: "19/x2",
-    alcance: "Curto",
-    tipo: "Perfuração",
-    espacos: 1,
-    proficiencia: "Simples-Leve",
-    descricao:
-      "Esta faca afiada é usada por muitos habitantes adultos do Reinado, embora seja favorita de ladrões e assassinos, por ser facilmente escondida (fornece +5 em testes de Ladinagem para ocultá-la). Quando ataca com uma adaga, você pode usar sua Destreza em vez de Força nos testes de ataque. Uma adaga pode ser arremessada." 
-*/}
               </AccordionPanel>
             </AccordionItem>
             <AccordionItem>
