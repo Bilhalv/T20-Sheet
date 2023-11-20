@@ -22,7 +22,7 @@ import InfoModal from "../components/Geral/InfoModal";
 import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
-  const paginas = ["Divindades", "Poderes", "Magias", "Equipamentos", "Alt"];
+  const paginas = ["Divindades", "Poderes","Equipamentos", "Magias", "Alt"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
   const handleChange = (e: string) => {
