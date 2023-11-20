@@ -27,6 +27,12 @@ export enum enumEscolas{
     transmutacao = "Transmutação"
 }
 
+export enum enumTipo{
+    divina = "Divina",
+    arcana = "Arcana",
+    qualquer = "Qualquer"
+}
+
 export class Magia extends infos{
     circulo: number = 0;
     execucao: enumExecucao = enumExecucao.padrao;
@@ -36,4 +42,5 @@ export class Magia extends infos{
     resistencia: string = "";
     escola: enumEscolas = enumEscolas.abjuracao;
     aprimoramentos: aprimoramentos[] = [];
+    tipo: enumTipo = enumTipo.arcana;
 }
