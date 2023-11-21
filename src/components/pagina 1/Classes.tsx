@@ -26,6 +26,7 @@ import SelectList from "../Geral/SelectList";
 import Botoes, { FecharOnModal, ConfirmarOnModal } from "../Geral/Botoes";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
+import { enumEscolas } from "../../classes/Construtores/Magia";
 
 interface ClassesProps {
   setPagina: (pagina: string) => void;
@@ -128,43 +129,43 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const escolas = [
     {
       nome: "Abjuração",
-      valor: "abjur",
+      valor: enumEscolas.abjuracao,
       desc: "Magias de proteção, que anulam outras magias ou expulsam criaturas invocadas de volta a seus planos de existência nativos",
     },
     {
       nome: "Adivinhação",
-      valor: "adiv",
+      valor: enumEscolas.adivinhacao,
       desc: "Magias de detecção ou que vasculham passado e futuro.",
     },
     {
       nome: "Convocação",
-      valor: "conv",
+      valor: enumEscolas.convocacao,
       desc: "Magias que transportam matéria. Esse transporte é realizado através do Éter Entre Mundos; por isso, qualquer efeito que bloqueia viagens etéreas também impede convocações. Criaturas convocadas surgem em uma superfície desocupada e, quando destruídas, desaparecem e são devolvidas a seus mundos nativos.",
     },
     {
       nome: "Encantamento",
-      valor: "encan",
+      valor: enumEscolas.encantamento,
       desc: "Magias que afetam a mente. Todas as magias de encantamento são efeitos mentais.",
     },
     {
       nome: "Evocação",
-      valor: "evoc",
+      valor: enumEscolas.evocacao,
       desc: "Magias que manipulam ou geram energia pura. Ácido, eletricidade, fogo e frio são as energias geradas pelos quatro elementos, respectivamente terra, ar, fogo e água. Magias de fogo funcionam sob a água, mas criam vapor quente em vez de chamas abertas. Luz é energia positiva, cuja manifestação é capaz de iluminar, curar e causar dano de luz. Por fim, essência é energia mágica pura.",
     },
     {
       nome: "Ilusão",
-      valor: "ilusao",
+      valor: enumEscolas.ilusao,
       desc: "Essas magias fazem outros perceberem algo que não existe ou ignorarem algo real. Todas as magias de ilusão são efeitos mentais.",
     },
     {
       nome: "Necromancia",
-      valor: "necro",
+      valor: enumEscolas.necromancia,
       desc: "Magias que canalizam energia negativa, criando escuridão, drenando a força vital de criaturas vivas e criando mortos-vivos. Magias de necromancia são efeitos de trevas.",
     },
     {
       nome: "Transmutação",
-      valor: "trans",
-      desc: " Magias que alteram as propriedades físicas de uma criatura ou objeto.",
+      valor: enumEscolas.transmutacao,
+      desc: "Magias que alteram as propriedades físicas de uma criatura ou objeto.",
     },
   ];
 
