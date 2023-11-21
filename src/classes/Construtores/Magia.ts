@@ -8,7 +8,8 @@ export enum enumExecucao {
     livre = "Livre",
     instantanea = "Instantanea",
     cena = "Cena",
-    nenhuma = "Nenhuma"
+    nenhuma = "Nenhuma",
+    outra = "Outra"
 }
 
 export class aprimoramentos {
@@ -30,7 +31,7 @@ export enum enumEscolas{
 export enum enumTipo{
     divina = "Divina",
     arcana = "Arcana",
-    qualquer = "Qualquer"
+    universal = "Universal"
 }
 
 export class Magia extends infos{
