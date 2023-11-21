@@ -139,7 +139,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
               <h1 className="text-2xl">{origem.nome}</h1>
               <div className="flex flex-col desktop:flex-row items-center">
                 <img
-                  className="mx-auto w-1/4 laptop:w-1/6 desktop:mx-0 mb-3"
+                  className="mx-auto w-1/4 laptop:w-1/4 desktop:mx-0 mb-3"
                   src={origem.imagem}
                   alt={origem.nome}
                   title={origem.nome}
