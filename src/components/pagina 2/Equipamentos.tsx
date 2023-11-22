@@ -29,9 +29,12 @@ interface EquipamentosProps {
 
 export default function Equipamentos({ setPagina, next }: EquipamentosProps) {
   const padrao = ["Mochila", "Saco de dormir", "Traje de viajante"];
-  const classe = TabelaClasses.filter(
+  var classe = TabelaClasses.filter(
     (x: any) => x.nome === localStorage.getItem("classe")
   );
+  if (classe === undefined) {
+    classe = [TabelaClasses[0]];
+  }
   const filtroArmaduras = ["Couro batido", "Gibão de peles"];
   if (
     classe !== undefined &&
@@ -59,15 +62,29 @@ export default function Equipamentos({ setPagina, next }: EquipamentosProps) {
   ) {
     padrao.push("Escudo Leve");
   }
-  const [Itens, setItens] = useState(padrao);
   const [armasSimples, setArmasSimples] = useState<string[]>([]);
   const [armasMarciais, setArmasMarciais] = useState<string[]>([]);
   const [armaduras, setArmaduras] = useState<string[]>([]);
+  const [Itens, setItens] = useState(padrao);
+  const [tibares, setTibares] = useState<number>(() => {
+    const nivel = Number(localStorage.getItem("lvl"));
+    const tabela = [300, 600, 1000, 2000];
+    if (nivel === 1) {
+      let tibas = 0;
+      for (let i = 0; i < 4; i++) {
+        tibas += Math.floor(Math.random() * 6);
+      }
+      return tibas;
+    } else {
+      return tabela[nivel - 2];
+    }
+  });
   return (
     <>
       <h1 className="text-center text-lg font-bold mb-3">
         Escolha seus Equipamentos
       </h1>
+      <i>T$ {tibares}</i>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
           <Accordion allowToggle>
