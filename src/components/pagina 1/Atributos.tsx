@@ -174,11 +174,10 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
     });
     if (contadorzinho >= 2) {
       setEncorajamento(
-        "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente." +
-          contadorzinho
+        "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."
       );
     } else {
-      setEncorajamento("" + contadorzinho);
+      setEncorajamento("");
     }
   };
 
