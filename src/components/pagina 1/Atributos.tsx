@@ -12,6 +12,7 @@ import useCustomToast from "../Geral/Toasted";
 import { useNavigate } from "react-router-dom";
 import Confirmar from "../Geral/Confirmar";
 import VerMais from "../Geral/VerMais";
+import { RolarDado } from "../Geral/RolarDado";
 
 interface AtributosProps {
   handleChange: (pagina: string) => void;
@@ -186,8 +187,11 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
     setTipo(value);
     setPontos(10);
     if (value === "Rolagem") {
-      const resultado = Array.from({ length: 6 }, () => dados());
-      const resultadoAtributos = resultado.map((valor) => {
+      const resultado = [];
+      for (let i = 0; i < 6; i++) {
+        resultado.push(RolarDado({ qtd: 4, lados: 6, descarte: 1}).total);
+      }
+      const resultadoAtributos = resultado.map((valor:number) => {
         if (valor <= 9) {
           return -1;
         } else if (valor <= 11) {
@@ -284,18 +288,6 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
         });
       }
     }
-  };
-
-  const dados = () => {
-    const rolls = Array.from(
-      { length: 4 },
-      () => Math.floor(Math.random() * 6) + 1
-    );
-    const lowestRoll = Math.min(...rolls);
-    return rolls.reduce(
-      (sum, roll) => sum + (roll === lowestRoll ? 0 : roll),
-      0
-    );
   };
 
   const handleUp = (index: number) => {
