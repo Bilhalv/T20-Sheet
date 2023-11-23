@@ -133,7 +133,7 @@ export const TabelaRacas: Raca[] = [
       "Carisma -1",
     ],
     escolhaAtributo: true,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/lefou.png",
     poderes: [
       {
         nome: "Cria da Tormenta.",
@@ -153,7 +153,7 @@ export const TabelaRacas: Raca[] = [
       "Povo guerreiro, orgulhoso e poderoso, criadores de uma civilização avançada, com a missão sagrada de proteger e governar os fracos ou assim se enxergavam. Em seus tempos áureos, tomaram grande parte de Arton. Hoje, após a morte de sua divindade e a decadência de seu Império, os minotauros lutam para recuperar a glória perdida ou encontrar um novo papel no mundo.",
     atributos: ["Força +2", "Constituição +1", "Sabedoria -1"],
     escolhaAtributo: false,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/minotauro.png",
     poderes: [
       {
         nome: "Chifres.",
