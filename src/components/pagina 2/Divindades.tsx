@@ -23,11 +23,11 @@ import {
 import useCustomToast from "../Geral/Toasted";
 
 interface DivindadesProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-export default function Divindades({ setPagina, next }: DivindadesProps) {
+export default function Divindades({ handleChange, next }: DivindadesProps) {
   const { showCustomToast } = useCustomToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
@@ -133,7 +133,7 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
       setBencao(bencao.filter((item) => item !== ""));
       localStorage.setItem("bencao", bencao.toString());
     }
-    setPagina(next);
+    handleChange(next);
   };
   return (
     <>
@@ -229,7 +229,11 @@ export default function Divindades({ setPagina, next }: DivindadesProps) {
                       </>
                     )
                   ) : (
-                    <>Você não segue nenhum Deus(Não significa que não acredita na existência deles, pois seria o equivalente a terraplanismo em Arton)</>
+                    <>
+                      Você não segue nenhum Deus(Não significa que não acredita
+                      na existência deles, pois seria o equivalente a
+                      terraplanismo em Arton)
+                    </>
                   )}
                 </>
               ) : (

@@ -22,7 +22,7 @@ import InfoModal from "../components/Geral/InfoModal";
 import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
-  const paginas = ["Divindades", "Poderes","Equipamentos", "Magias", "Alt"];
+  const paginas = ["Divindades", "Poderes", "Equipamentos", "Magias", "Alt"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
   const handleChange = (e: string) => {
@@ -37,21 +37,23 @@ const App: React.FC = () => {
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
           <div className="flex flex-row-reverse mb-[-40px]">
             <InfoModal pagina={pagina} />
-            <FichaModal pagina={2} setPagina={setPagina} />
+            <FichaModal pagina={2} handleChange={handleChange} />
           </div>
           {pagina === "Divindades" && (
-            <Divindades setPagina={setPagina} next="Poderes" />
+            <Divindades handleChange={handleChange} next="Poderes" />
           )}
           {pagina === "Poderes" && (
-            <Poderes setPagina={setPagina} next="Magias" />
+            <Poderes handleChange={handleChange} next="Magias" />
           )}
           {pagina === "Magias" && (
-            <Magias setPagina={setPagina} next="Equipamentos" />
+            <Magias handleChange={handleChange} next="Equipamentos" />
           )}
           {pagina === "Equipamentos" && (
-            <Equipamentos setPagina={setPagina} next="Alt" />
+            <Equipamentos handleChange={handleChange} next="Alt" />
           )}
-          {pagina === "Alt" && <Alt setPagina={setPagina} next="Confirmar" />}
+          {pagina === "Alt" && (
+            <Alt handleChange={handleChange} next="Confirmar" />
+          )}
 
           <Stepper
             colorScheme="red"

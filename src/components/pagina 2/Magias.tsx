@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Magia,
   aprimoramentos,
   enumEscolas,
   enumTipo,
@@ -8,11 +7,11 @@ import {
 import { TabelaMagias } from "../../classes/Tabelas/Magias";
 
 interface MagiasProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-export default function Magias({ setPagina, next }: MagiasProps) {
+export default function Magias({ handleChange, next }: MagiasProps) {
   const classe = localStorage.getItem("classe");
   const nivel = localStorage.getItem("nivel");
   const escolas = JSON.parse(localStorage.getItem("alt") || "[]");
@@ -152,7 +151,9 @@ export default function Magias({ setPagina, next }: MagiasProps) {
                   {magia.aprimoramentos.map((aprimoramento, index) => {
                     return (
                       <p key={index}>
-                        <span className="font-bold">{aprimoramento.pm_a_mais}:</span>{" "}
+                        <span className="font-bold">
+                          {aprimoramento.pm_a_mais}:
+                        </span>{" "}
                         {aprimoramento.descricao}
                       </p>
                     );

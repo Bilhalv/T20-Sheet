@@ -21,11 +21,11 @@ import { EntendiOnModal } from "./Botoes";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
-  setPagina: any;
+  handleChange: any;
   pagina: number;
 }
 
-export default function FichaModal({ setPagina, pagina }: Props) {
+export default function FichaModal({ handleChange, pagina }: Props) {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
@@ -57,10 +57,10 @@ export default function FichaModal({ setPagina, pagina }: Props) {
   }, [nome, lvl, origem, raca, classe, atributos, beneficios, pericias]);
 
   const trocarPagina = (subpagina: string) => {
+    handleChange(subpagina);
     if (pagina === 2) {
       navigate("/criarpt1");
     }
-    setPagina(subpagina);
     onClose();
   };
   return (
@@ -220,7 +220,12 @@ export default function FichaModal({ setPagina, pagina }: Props) {
                         </IconButton>
                       </div>
                       <p className="text-center">
-                        {classe === "" ? "Nenhuma" : classe}{classe === "Arcanista" ? ` - ${JSON.parse(localStorage.getItem("alt") ||"")}`:""}
+                        {classe === "" ? "Nenhuma" : classe}
+                        {classe === "Arcanista"
+                          ? ` - ${JSON.parse(
+                              localStorage.getItem("alt") || ""
+                            )}`
+                          : ""}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">

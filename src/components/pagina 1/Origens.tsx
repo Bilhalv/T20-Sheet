@@ -6,7 +6,6 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Button,
   Checkbox,
   CheckboxGroup,
   Modal,
@@ -28,11 +27,11 @@ import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
 
 interface OrigensProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
+const Origens: React.FC<OrigensProps> = ({ handleChange, next }) => {
   const {
     isOpen: isOpen2,
     onOpen: onOpen2,
@@ -116,7 +115,7 @@ const Origens: React.FC<OrigensProps> = ({ setPagina, next }) => {
         title: "Origem escolhida com sucesso!",
         desc: `Você escolheu a origem ${origem.nome}`,
       });
-      setPagina(next);
+      handleChange(next);
     }
   };
   return (

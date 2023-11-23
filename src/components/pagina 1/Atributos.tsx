@@ -14,7 +14,7 @@ import Confirmar from "../Geral/Confirmar";
 import VerMais from "../Geral/VerMais";
 
 interface AtributosProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 interface HookUsageProps {
@@ -139,7 +139,7 @@ function HookUsage({
   );
 }
 
-export default function Atributos({ setPagina, next }: AtributosProps) {
+export default function Atributos({ handleChange, next }: AtributosProps) {
   const atributosDefault = [
     { nome: "Força", valor: 0 },
     { nome: "Destreza", valor: 0 },
@@ -181,7 +181,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeTipo = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setTipo(value);
     setPontos(10);
@@ -250,7 +250,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       });
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
       localStorage.setItem("pagina", next);
-      setPagina(next);
+      handleChange(next);
       navigate("/criarpt2");
     } else {
       if (pontos === 0) {
@@ -268,7 +268,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
         });
         localStorage.setItem("atributosFinais", JSON.stringify(atributos));
         localStorage.setItem("pagina", next);
-        setPagina(next);
+        handleChange(next);
         navigate("/criarpt2");
       } else if (pontos > 0) {
         showCustomToast({
@@ -324,7 +324,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
         <Select
           className="ml-3 mb-3"
           bgColor={"whiteAlpha.900"}
-          onChange={handleChange}
+          onChange={handleChangeTipo}
         >
           <option value={"Pontos"}>Pontos</option>
           <option value={"Rolagem"}>Rolagem</option>

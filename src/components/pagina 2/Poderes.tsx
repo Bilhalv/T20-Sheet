@@ -29,11 +29,11 @@ import { PreRequisitos } from "../Geral/Prerequisitos";
 import { useEffect } from "react";
 
 interface PoderesProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-export default function Poderes({ setPagina, next }: PoderesProps) {
+export default function Poderes({ handleChange, next }: PoderesProps) {
   const totalPoderes = TabelaPoderes.filter(
     (poder) => poder.tipo !== TipoPoder.origem
   );

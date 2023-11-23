@@ -29,11 +29,11 @@ import Confirmar from "../Geral/Confirmar";
 import { enumEscolas } from "../../classes/Construtores/Magia";
 
 interface ClassesProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
+const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
   const { showCustomToast } = useCustomToast();
 
   const initialState = {
@@ -197,7 +197,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       localStorage.setItem("pericias", JSON.stringify(updatedPericias));
       dispatch({ type: "togglePericias" });
       localStorage.setItem("pagina", next);
-      setPagina(next);
+      handleChange(next);
     } else {
       showCustomToast({
         title: "Atenção",
@@ -232,7 +232,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   ];
   return (
     <>
-      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">Escolha sua Classe</h1>
+      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
+        Escolha sua Classe
+      </h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit desktop:w-[50%] w-full ">
           <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
@@ -481,7 +483,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </ModalBody>
             <ModalFooter>
               <FecharOnModal onClose={() => dispatch({ type: "toggleAlt" })} />
-              <ConfirmarOnModal onSelect={() => dispatch({ type: "togglePericias" })} />
+              <ConfirmarOnModal
+                onSelect={() => dispatch({ type: "togglePericias" })}
+              />
             </ModalFooter>
             <ModalCloseButton />
           </ModalContent>

@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
 interface InicioProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-export default function Inicio({ setPagina, next }: InicioProps) {
+export default function Inicio({ handleChange, next }: InicioProps) {
   const { showCustomToast } = useCustomToast();
-  const [nome, setNome] = useState(localStorage.getItem("nome")||"");
+  const [nome, setNome] = useState(localStorage.getItem("nome") || "");
   const [lvl, setLvl] = useState(Number(localStorage.getItem("lvl")) || 0);
 
   function HandleClick(event: React.FormEvent<HTMLFormElement>) {
@@ -47,7 +47,7 @@ export default function Inicio({ setPagina, next }: InicioProps) {
       status: "success",
     });
     localStorage.setItem("pagina", next);
-    setPagina(next);
+    handleChange(next);
   }
 
   return (
@@ -72,13 +72,17 @@ export default function Inicio({ setPagina, next }: InicioProps) {
               Escolha seu nivel:
             </h1>
             <Select
-             value={lvl}
-             onChange={(event) => setLvl(parseInt(event.target.value))}
-             className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
-             placeholder={"Escolha seu nivel"}
-           >
+              value={lvl}
+              onChange={(event) => setLvl(parseInt(event.target.value))}
+              className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out"
+              placeholder={"Escolha seu nivel"}
+            >
               {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
-                <option selected={num === Number(localStorage.getItem("lvl"))} value={num} key={num}>
+                <option
+                  selected={num === Number(localStorage.getItem("lvl"))}
+                  value={num}
+                  key={num}
+                >
                   {num}
                 </option>
               ))}

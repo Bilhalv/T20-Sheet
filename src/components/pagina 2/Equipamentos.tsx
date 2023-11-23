@@ -23,11 +23,14 @@ import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { useState } from "react";
 
 interface EquipamentosProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-export default function Equipamentos({ setPagina, next }: EquipamentosProps) {
+export default function Equipamentos({
+  handleChange,
+  next,
+}: EquipamentosProps) {
   const padrao = ["Mochila", "Saco de dormir", "Traje de viajante"];
   var classe = TabelaClasses.filter(
     (x: any) => x.nome === localStorage.getItem("classe")
