@@ -1483,7 +1483,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Controlar Plantas",
     descricao:
-      "Esta magia só pode ser lançada em uma área com vegetação. As plantas se enroscam nas criaturas da área. Aquelas que falharem na resistência ficam enredadas. Uma vítima pode se libertar com uma ação padrão e um teste de Acrobacia ou Atletismo. Além disso, a área é considerada terreno difícil. No início de seus turnos, a vegetação tenta enredar novamente qualquer criatura na área, exigindo um novo teste de Reflexos.\nTruque: muda a área para alvo de 1 planta e a resistência para nenhuma. Em vez do normal, você pode fazer a planta se mover como se fosse animada. Ela não pode causar dano ou atrapalhar a concentração de um conjurador.",
+      "Esta magia só pode ser lançada em uma área com vegetação. As plantas se enroscam nas criaturas da área. Aquelas que falharem na resistência ficam enredadas. Uma vítima pode se libertar com uma ação padrão e um teste de Acrobacia ou Atletismo. Além disso, a área é considerada terreno difícil. No início de seus turnos, a vegetação tenta enredar novamente qualquer criatura na área, exigindo um novo teste de Reflexos.",
     execucao: enumExecucao.padrao,
     alcance: "curto",
     alvo: "quadrado com 9m de lado",
@@ -1629,7 +1629,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Criar Ilusão",
     descricao:
-      "Esta magia cria uma ilusão visual (uma criatura, uma parede...) ou sonora (um grito de socorro, um uivo assustador...). A magia cria apenas imagens ou sons simples, com volume equivalente ao tom de voz normal para cada cubo de 1,5m no efeito. Não é possível criar cheiros, texturas ou temperaturas, nem sons complexos, como uma música ou diálogo. Criaturas e objetos atravessam uma ilusão sem sofrer dano, mas a magia pode, por exemplo, esconder uma armadilha ou inimigo. A magia é dissipada se você sair do alcance.\nTruque: muda a duração para sustentada. A cada rodada você pode gastar uma ação livre para mover a imagem ou alterar levemente o som, como aumentar o volume ou fazer com que pareça se afastar ou se aproximar, ainda dentro dos limites do efeito. Você pode, por exemplo, criar a ilusão de um fantasma que anda pela sala, controlando seus movimentos. Quando você para de sustentar a magia, a imagem ou som persistem por mais uma rodada antes de a magia se dissipar.\n+1 PM: aumenta o efeito da ilusão em +1 cubo de 1,5m.\n+1 PM: também pode criar ilusões de imagem e sons combinados.\n+1 PM: também pode criar sons complexos com volume máximo equivalente ao que cinco pessoas podem produzir para cada cubo de 1,5m no efeito.\nCom uma ação livre, você pode alterar o volume do som ou fazê-lo se aproximar ou se afastar dentro do alcance.\n+2 PM: também pode criar odores e sensações térmicas, que são percebidos a uma distância igual ao dobro do tamanho máximo do efeito. Por exemplo, uma miragem de uma fogueira com 4 cubos de 1,5m poderia emanar calor e cheiro de queimado a até 12m.\n+2 PM: muda o alcance para longo e o efeito para esfera com 30m de raio. Em vez do normal, você cria um som muito alto, equivalente a uma multidão. Criaturas na área lançam magias como se estivessem em uma condição ruim e a CD de testes de Percepção para ouvir aumenta em +10. Requer 2º círculo.\n+2 PM: também criar sensações táteis, como texturas; criaturas que não saibam que é uma ilusão não conseguem atravessá-la sem passar em um teste de Vontade (objetos ainda a atravessam). A ilusão ainda é incapaz de causar ou sofrer dano. Requer 2º círculo.\n+5 PM: muda a duração para sustentada. Além do normal, você pode gastar uma ação livre para modificar livremente a ilusão (mas não pode acrescentar novos aprimoramentos após lançá-la). Requer 3º círculo.",
+      "Esta magia cria uma ilusão visual (uma criatura, uma parede...) ou sonora (um grito de socorro, um uivo assustador...). A magia cria apenas imagens ou sons simples, com volume equivalente ao tom de voz normal para cada cubo de 1,5m no efeito. Não é possível criar cheiros, texturas ou temperaturas, nem sons complexos, como uma música ou diálogo. Criaturas e objetos atravessam uma ilusão sem sofrer dano, mas a magia pode, por exemplo, esconder uma armadilha ou inimigo. A magia é dissipada se você sair do alcance.",
     execucao: enumExecucao.padrao,
     alcance: "médio",
     alvo: "até 4 cubos de 1,5m",
@@ -1637,6 +1637,11 @@ export const TabelaMagias: Magia[] = [
     resistencia: "Vontade desacredita",
     escola: enumEscolas.ilusao,
     aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao:
+          "Muda a duração para sustentada. A cada rodada você pode gastar uma ação livre para mover a imagem ou alterar levemente o som, como aumentar o volume ou fazer com que pareça se afastar ou se aproximar, ainda dentro dos limites do efeito. Você pode, por exemplo, criar a ilusão de um fantasma que anda pela sala, controlando seus movimentos. Quando você para de sustentar a magia, a imagem ou som persistem por mais uma rodada antes de a magia se dissipar.",
+      },
       {
         pm_a_mais: 1,
         descricao:
@@ -1687,7 +1692,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Cúpula de Repulsão",
     descricao:
-      "Uma cúpula de energia invisível o cerca, impedindo a aproximação de certas criaturas. Escolha um tipo de criatura (animais, espíritos, monstros...) ou uma raça de humanoides (elfos, goblins, minotauros..). Criaturas do grupo escolhido que tentem se aproximar a menos de 3m de você (ou seja, que tentem ficar adjacentes a você) devem fazer um teste de Vontade. Se falharem, não conseguem, gastam a ação e só podem tentar novamente na rodada seguinte. Isso impede ataques corpo a corpo, mas não ataques ou outros efeitos à distância. Se você tentar se aproximar além do limite de 3m, rompe a cúpula e a magia é dissipada.\n+2 PM: a cúpula impede criaturas de se aproximarem a menos de 4,5m de você (ou seja, deve haver dois quadrados entre você e as criaturas).\n+5 PM: além do normal, criaturas afetadas também precisam fazer o teste de resistência se fizerem um ataque ou efeito à distância você. Se falharem, o efeito é desviado pela cúpula. Requer 5º círculo.",
+      "Uma cúpula de energia invisível o cerca, impedindo a aproximação de certas criaturas. Escolha um tipo de criatura (animais, espíritos, monstros...) ou uma raça de humanoides (elfos, goblins, minotauros..). Criaturas do grupo escolhido que tentem se aproximar a menos de 3m de você (ou seja, que tentem ficar adjacentes a você) devem fazer um teste de Vontade. Se falharem, não conseguem, gastam a ação e só podem tentar novamente na rodada seguinte. Isso impede ataques corpo a corpo, mas não ataques ou outros efeitos à distância. Se você tentar se aproximar além do limite de 3m, rompe a cúpula e a magia é dissipada.",
     execucao: enumExecucao.padrao,
     alcance: "pessoal",
     alvo: "você",
@@ -1712,7 +1717,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Curar Ferimentos",
     descricao:
-      "Você canaliza luz que recupera 2d8+2 pontos de vida na criatura tocada.\nTruque: muda o alvo para 1 morto-vivo. Em vez do normal, causa 1d8 pontos de dano de luz (Vontade reduz à metade).\n+1 PM: aumenta a cura em +1d8+1.\n+2 PM: também remove uma condição de fadiga do alvo.\n+2 PM: muda o alcance para curto.\n+5 PM: muda o alcance para curto e o alvo para criaturas escolhidas.",
+      "Você canaliza luz que recupera 2d8+2 pontos de vida na criatura tocada.",
     execucao: enumExecucao.padrao,
     alcance: "toque",
     alvo: "1 criatura",
@@ -1720,6 +1725,10 @@ export const TabelaMagias: Magia[] = [
     resistencia: "",
     escola: enumEscolas.evocacao,
     aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao: "muda o alvo para 1 morto-vivo. Em vez do normal, causa 1d8 pontos de dano de luz (Vontade reduz à metade)."
+      },
       {
         pm_a_mais: 1,
         descricao: "Aumenta a cura em +1d8+1.",
@@ -1744,7 +1753,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Deflagração de Mana",
     descricao:
-      "Após concentrar seu mana, você emana energia, como uma estrela em plena terra. Todas as criaturas na área sofrem 150 pontos de dano de essência e todos os itens mágicos (exceto artefatos) tornam-se mundanos. Você não é afetado pela magia. Alvos que passem no teste de Fortitude sofrem metade do dano e seus itens mágicos voltam a funcionar após um dia.\n+1 PM: aumenta o dano em 10.\n+5 PM: afeta apenas criaturas a sua escolha.",
+      "Após concentrar seu mana, você emana energia, como uma estrela em plena terra. Todas as criaturas na área sofrem 150 pontos de dano de essência e todos os itens mágicos (exceto artefatos) tornam-se mundanos. Você não é afetado pela magia. Alvos que passem no teste de Fortitude sofrem metade do dano e seus itens mágicos voltam a funcionar após um dia.",
     execucao: enumExecucao.completa,
     alcance: "pessoal",
     alvo: "esfera com 15m de raio",
@@ -1767,7 +1776,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Deflagração de Mana",
     descricao:
-      "Após concentrar seu mana, você emana energia, como uma estrela em plena terra. Todas as criaturas na área sofrem 150 pontos de dano de essência e todos os itens mágicos (exceto artefatos) tornam-se mundanos. Você não é afetado pela magia. Alvos que passem no teste de Fortitude sofrem metade do dano e seus itens mágicos voltam a funcionar após um dia.\n+1 PM: aumenta o dano em 10.\n+5 PM: afeta apenas criaturas a sua escolha.",
+      "Após concentrar seu mana, você emana energia, como uma estrela em plena terra. Todas as criaturas na área sofrem 150 pontos de dano de essência e todos os itens mágicos (exceto artefatos) tornam-se mundanos. Você não é afetado pela magia. Alvos que passem no teste de Fortitude sofrem metade do dano e seus itens mágicos voltam a funcionar após um dia.",
     execucao: enumExecucao.completa,
     alcance: "pessoal",
     alvo: "esfera com 15m de raio",
@@ -1819,7 +1828,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Desespero Esmagador",
     descricao:
-      "Humanoides na área são acometidos de grande tristeza, adquirindo as condições fraco e frustrado. Se passarem na resistência, adquirem essas condições por uma rodada.\n+2 PM: em vez do normal, as condições adquiridas são debilitado e esmorecido.\n+3 PM: em vez do normal, afeta qualquer tipo de criatura.\n+3 PM: além do normal, criaturas que falhem na resistência ficam aos prantos (pasmos) por 1 rodada (apenas uma vez por cena). Requer 3º círculo.",
+      "Humanoides na área são acometidos de grande tristeza, adquirindo as condições fraco e frustrado. Se passarem na resistência, adquirem essas condições por uma rodada.",
     execucao: enumExecucao.padrao,
     alcance: "pessoal",
     alvo: "cone de 6m",
@@ -1848,7 +1857,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Desintegrar",
     descricao:
-      "Você dispara um raio fino e esverdeado que causa 10d12 pontos de dano de essência. Se o alvo passar no teste de resistência, em vez disso sofre 2d12 pontos de dano. Independentemente do resultado do teste de Fortitude, se os PV do alvo forem reduzidos a 0 ou menos, ele será completamente desintegrado, restando apenas pó.\n+4 PM: aumenta o dano total em +2d12 e o dano mínimo em +1d12.",
+      "Você dispara um raio fino e esverdeado que causa 10d12 pontos de dano de essência. Se o alvo passar no teste de resistência, em vez disso sofre 2d12 pontos de dano. Independentemente do resultado do teste de Fortitude, se os PV do alvo forem reduzidos a 0 ou menos, ele será completamente desintegrado, restando apenas pó.",
     execucao: enumExecucao.padrao,
     alcance: "médio",
     alvo: "1 criatura ou objeto",
@@ -1867,7 +1876,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Despedaçar",
     descricao:
-      "Esta magia emite um som alto e agudo. O alvo sofre 1d8+2 pontos de dano de impacto (ou o dobro disso e ignora RD se for um construto ou objeto mundano) e fica atordoado por uma rodada (apenas uma vez por cena). Um teste de Fortitude reduz o dano à metade e evita o atordoamento.\n+2 PM: aumenta o dano em +1d8+2.\n+2 PM: muda o alvo para objeto mundano Médio. Requer 2º círculo.\n+5 PM: muda o alvo para objeto mundano Grande. Requer 3º círculo.\n+9 PM: muda o alvo para objeto mundano Enorme. Requer 4º círculo.\n+14 PM: muda o alvo para objeto mundano Colossal. Requer 5º círculo.\n+5 PM: muda o alcance para pessoal e a área para esfera com 6m de raio. Todas as criaturas e objetos mundanos na área são afetados.",
+      "Esta magia emite um som alto e agudo. O alvo sofre 1d8+2 pontos de dano de impacto (ou o dobro disso e ignora RD se for um construto ou objeto mundano) e fica atordoado por uma rodada (apenas uma vez por cena). Um teste de Fortitude reduz o dano à metade e evita o atordoamento.",
     execucao: enumExecucao.padrao,
     alcance: "curto",
     alvo: "1 criatura ou objeto mundano Pequeno",
@@ -1908,7 +1917,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Despertar Consciência",
     descricao:
-      "Você desperta a consciência de um animal ou planta. O alvo se torna um parceiro veterano de um tipo a sua escolha entre ajudante, combatente, fortão, guardião, médico, perseguidor ou vigilante. Se usar esta magia em um parceiro que já possua, o nível de poder de um de seus tipos aumenta em um passo (iniciante para veterano, veterano para mestre). Se já for um parceiro mestre, recebe o bônus de outro tipo de parceiro iniciante (entre as escolhas acima).\nO alvo se torna uma criatura racional, com Inteligência –1, e pode falar.\n+4 PM: muda o alvo para 1 escultura mundana inanimada. Além do normal, o alvo tem as mesmas características de um construto.\n+4 PM: muda a duração para permanente e adiciona penalidade de –3 PM.",
+      "Você desperta a consciência de um animal ou planta. O alvo se torna um parceiro veterano de um tipo a sua escolha entre ajudante, combatente, fortão, guardião, médico, perseguidor ou vigilante. Se usar esta magia em um parceiro que já possua, o nível de poder de um de seus tipos aumenta em um passo (iniciante para veterano, veterano para mestre). Se já for um parceiro mestre, recebe o bônus de outro tipo de parceiro iniciante (entre as escolhas acima).\nO alvo se torna uma criatura racional, com Inteligência –1, e pode falar.",
     execucao: enumExecucao.completa,
     alcance: "toque",
     alvo: "1 animal ou planta",
@@ -1930,5 +1939,882 @@ export const TabelaMagias: Magia[] = [
     tipo: enumTipo.divina,
     circulo: 3,
   },
-  //cansei muito feitiço bixo vo me mata
+  {
+    nome: "Detectar Ameaças",
+    descricao:
+      "Você recebe uma intuição aguçada sobre perigos ao seu redor. Quando uma criatura hostil ou armadilha entra na área do efeito, você faz um teste de Percepção (CD determinada pelo mestre de acordo com a situação). Se passar, sabe a origem (criatura ou armadilha), direção e distância do perigo. Se falhar, sabe apenas que o perigo existe.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "esfera com 18m de raio",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Você descobre também a raça ou espécie e o poder da criatura detectada (determinado pela aura dela). Criaturas de 1º a 6º nível ou ND geram aura tênue, criaturas de 7º a 12º nível ou ND geram aura moderada e criaturas de 13º ao 20º nível ou ND geram aura poderosa. Criaturas acima do 20º nível ou ND geram aura avassaladora.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Além do normal, você não fica surpreso desprevenido contra perigos detectados com sucesso e recebe +5 em testes de resistência contra armadilhas. Requer 2º círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Dificultar Detecção",
+    descricao:
+      "Esta magia oculta a presença do alvo contra qualquer meio mágico de detecção, inclusive detectar magia. Um conjurador que lance uma magia de adivinhação para detectar a presença ou localização do alvo deve fazer um teste de Vontade. Se falhar, a magia não funciona, mas os PM são gastos mesmo assim. Se for lançada sobre uma criatura, Dificultar Detecção protege tanto a criatura quanto seu equipamento.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura ou objeto",
+    duracao: "1 dia",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda o alvo para área de cubo de 9m. Qualquer criatura ou objeto na área recebe o efeito da magia enquanto estiver dentro dela.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao: "Muda a duração para 1 semana.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Disfarce Ilusório",
+    descricao:
+      "Você muda a aparência do alvo, incluindo seu equipamento. Isso inclui altura, peso, tom de pele, cor de cabelo, timbre de voz etc. O alvo recebe +10 em testes de Enganação para disfarce. O alvo não recebe novas habilidades (você pode ficar parecido com outra raça, mas não ganhará as habilidades dela), nem modifica o equipamento (uma espada longa disfarçada de bordão continua funcionando e causando dano como uma espada).",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "cena",
+    resistencia: "Vontade desacredita",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao:
+          "Muda o alcance para toque, o alvo para 1 criatura e a duração para 1 semana. Em vez do normal, você faz uma pequena alteração na aparência do alvo, como deixar o nariz vermelho ou fazer brotar um gerânio no alto da cabeça. A mudança é inofensiva, mas persistente — se a flor for arrancada, por exemplo, outra nascerá no local.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Muda o alcance para curto e o alvo para 1 objeto. Você pode, por exemplo, transformar pedaços de ferro em moedas de ouro. Você recebe +10 em testes de Enganação para falsificação.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Muda o alcance para curto e o alvo para 1 criatura. Uma criatura involuntária pode anular o efeito com um teste de Vontade.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "A ilusão inclui odores e sensações. Isso muda o bônus em testes de Enganação para disfarce para +20.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao:
+          "Muda o alcance para curto e o alvo para criaturas escolhidas. Cada criatura pode ter uma aparência diferente. Criaturas involuntárias podem anular o efeito com um teste de Vontade. Requer 2o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Dispersar as Trevas",
+    descricao:
+      "Esta magia cria um forte brilho (multicolorido ou de uma cor que remeta a sua divindade) que causa diversos efeitos. Todas as magias de 3o círculo ou menor ativas na área são dissipadas se você passar num teste de Religião contra a CD de cada magia. Seus aliados na área recebem +4 em testes de resistência e redução de trevas 10 até o fim da cena, protegidos por uma aura sutil da mesma cor. Inimigos na área ficam cegos por 1d4 rodadas (apenas uma vez por cena). Dispersar as Trevas anula Anular a Luz (este efeito tem duração instantânea).",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "esfera com 6m de raio",
+    duracao: "veja texto",
+    resistencia: "Vontade desacredita",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o bônus nas resistências em +1.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda o círculo máximo de magias dissipadas para 4o. Requer 4o círculo.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao:
+          "Muda o círculo máximo de magias dissipadas para 5o. Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 3,
+  },
+  {
+    nome: "Dissipar Magia",
+    descricao:
+      "Você dissipa outras magias que estejam ativas, como se sua duração tivesse acabado. Note que efeitos de magias instantâneas não podem ser dissipados (não se pode dissipar uma Bola de Fogo ou Relâmpago depois que já causaram dano...). Se lançar essa magia em uma criatura ou área, faça um teste de Misti-cismo; você dissipa as magias com CD igual ou menor que o resultado do teste. Se lançada contra um item mágico, o transforma em um item mundano por 1d6 rodadas (Vontade anula).",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura ou 1 objeto mágico ou esfera com 3m de raio",
+    duracao: "instantânea",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 12,
+        descricao:
+          "Muda a área para esfera com 9m de raio. Em vez do normal, cria um efeito de disjunção. Todas as magias na área são automaticamente dissipadas e todos os itens mágicos na área, exceto aqueles que você estiver carregando, viram itens mundanos por uma cena (com direito a um teste de Vontade para evitar esse efeito). Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Duplicata Ilusória",
+    descricao:
+      "Você cria uma cópia ilusória semirreal de... você mesmo! Ela é idêntica em aparência, som e cheiro, mas é intangível. A cada turno, você escolhe se verá e ouvirá através da duplicata ou de seu corpo original. A cópia reproduz todas as suas ações, incluindo fala. Qualquer magia com alcance de toque ou maior que você lançar pode se originar da duplicata, em vez do seu corpo original. As magias afetam outros alvos normalmente, com a única diferença de se originarem da cópia, em vez de você. Se quiser que a duplicata faça algo diferente de você, você deve gastar uma ação de movimento. Qualquer criatura que interagir com a cópia tem direito a um teste de Vontade para perceber que é uma ilusão. As magias que se originam dela, no entanto, são reais. A cópia desaparece se sair do alcance.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "você",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "Cria uma cópia adicional.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Enfeitiçar",
+    descricao:
+      "O alvo fica enfeitiçado (veja a página 394). Um alvo hostil ou que esteja envolvido em um combate recebe +5 em seu teste de resistência. Se você ou seus aliados tomarem qualquer ação hostil contra o alvo, a magia é dissipada e o alvo retorna à atitude que tinha antes (ou piorada, de acordo com o mestre).",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 humanoide",
+    duracao: "cena",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Em vez do normal, você sugere uma ação para o alvo e ele obedece. A sugestão deve ser feita de modo que pareça aceitável, a critério do mestre. Pedir ao alvo que pule de um precipício, por exemplo, dissipa a magia. Já sugerir a um guarda que descanse um pouco, de modo que você e seus aliados passem por ele, é aceitável. Quando o alvo executa a ação, a magia termina. Você pode determinar uma condição específica para a sugestão: por exemplo, que um rico mercador doe suas moedas para o primeiro mendigo que encontrar.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "Muda o alvo para 1 espírito ou monstro. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "Afeta todos os alvos dentro do alcance.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Engenho de Mana",
+    descricao:
+      "Você cria um disco de energia que lembra uma roda de engenho e flutua no ponto em que foi conjurado. O disco é imune a dano, não pode ser movido e faz uma contramágica automática contra qualquer magia lançada em alcance médio dele (exceto as suas), usando seu teste de Misticismo. Caso vença o teste, o engenho não só anula a magia como absorve os PM usados para lançá-la, acumulando PM temporários. No seu turno, se estiver ao alcance do disco, você pode gastar PM nele para lançar magias.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "disco com 1,5m de diâmetro",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Em vez de flutuar no ponto em que foi conjurado, o disco flutua atrás de você, mantendo-se sempre adjacente.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao: "Muda a duração para um dia.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Enxame de Pestes",
+    descricao:
+      "Você conjura um enxame de criaturas a sua escolha, como besouros, gafanhotos, ratos, morcegos ou serpentes. O enxame pode passar pelo espaço de outras criaturas e não impede que outras criaturas entrem no espaço dele. No final de seus turnos, o enxame causa 2d12 pontos de dano de corte a qualquer criatura em seu espaço (Fortitude reduz à metade). Você pode gastar uma ação de movimento para mover o enxame 12m.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 enxame Médio (quadrado de 1,5m)",
+    duracao: "sustentada",
+    resistencia: "Fortitude reduz à metade",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o dano em +1d12.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao:
+          "Muda a resistência para Reflexos reduz à metade e o enxame para criaturas maiores, como gatos, guaxinins, compsognatos ou kobolds. Ele causa 3d12 pontos de dano (a sua escolha entre corte, impacto ou perfuração). O resto da magia segue normal.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Aumenta o número de enxames em +1. Eles não podem ocupar o mesmo espaço. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 7,
+        descricao:
+          "Muda a resistência para Reflexos reduz à metade e o enxame para criaturas elementais. Ele causa 5d12 pontos do dano (a sua escolha entre ácido, eletricidade, fogo ou frio). O resto da magia segue normal. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Enxame Rubro de Ichabod",
+    descricao:
+      "Você conjura um enxame de pequenas criaturas da Tormenta. O enxame pode passar pelo espaço de outras criaturas e não impede que outras criaturas entrem no espaço dele. No final de cada um de seus turnos, o enxame causa 4d12 pontos de dano de ácido a qualquer criatura em seu espaço (Reflexos reduz à metade). Você pode gastar uma ação de movimento para mover o enxame com deslocamento de 12m.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 enxame Grande (quadrado de 3m)",
+    duracao: "sustentada",
+    resistencia: "Reflexos reduz à metade",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Além do normal, uma criatura que falhe no teste de Reflexos fica agarrada (o enxame escala e cobre o corpo dela). A criatura pode gastar uma ação padrão e fazer um teste de Acrobacia ou Atletismo para escapar. Se você mover o enxame, a criatura fica livre.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o dano em +1d12.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Muda o dano para trevas.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "O enxame vira Enorme (quadrado de 6m de lado).",
+      },
+      {
+        pm_a_mais: 3,
+        descricao:
+          "O enxame ganha deslocamento de voo 18m e passa a ocupar um cubo ao invés de um quadrado. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao:
+          "o enxame inclui parasitas que explodem e criam novos enxames. No início de cada um de seus turnos, role 1d6. Em um resultado 5 ou 6, um novo enxame surge adjacente a um já existente à sua escolha. Você pode mover todos os enxames com uma única ação de movimento, mas eles não podem ocupar o mesmo espaço. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Erupção Glacial",
+    descricao:
+      "Estacas de gelo irrompem do chão, causando 3d8 pontos de dano de frio a todas as criaturas em uma área de 3m de raio (Fortitude reduz à metade). A área se torna terreno difícil até o fim da cena. Se a magia for lançada sobre uma superfície aquática, cria uma plataforma de gelo com 3m de raio que pode ser usada como terreno normal. A plataforma dura uma cena.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "esfera com 3m de raio",
+    duracao: "instantânea",
+    resistencia: "Fortitude reduz à metade",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "Aumenta o dano de frio em +2d6 e o dano de corte em +2d6.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda a área para cilindro com 6m de raio e 6m de altura e a duração para sustentada. Em vez do normal, a magia cria uma tempestade de granizo que causa 3d6 pontos de dano de impacto e 3d6 pontos de dano de frio em todas as criaturas na área (sem teste de resistência). A tempestade fornece camuflagem leve às criaturas dentro dela e deixa o piso escorregadio. Piso escorregadio conta como terreno difícil e obriga criaturas na área a fazer testes de Acrobacia para equilíbrio (veja o Capítulo 2). Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Escudo da Fé",
+    descricao:
+      "Um escudo místico se manifesta momentaneamente para bloquear um golpe. O alvo recebe +2 na Defesa",
+    execucao: enumExecucao.reacao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Muda a execução para ação padrão, o alcance para toque e a duração para cena.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Também fornece ao alvo camuflagem leve contra ataques à distância.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o bônus na Defesa em +1.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Muda a execução para ação padrão, o alcance para toque e a duração para cena. A magia cria uma conexão mística entre você e o alvo. Além do efeito normal, o alvo sofre metade do dano por ataques e efeitos; a outra metade do dano é transferida a você. Se o alvo sair de alcance curto de você, a magia é dissipada. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "Muda a duração para um dia. Requer 2o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Esculpir Sons",
+    descricao:
+      "Esta magia altera os sons emitidos pelo alvo. Ela não é capaz de criar sons, mas pode omiti-los (como fazer uma carroça ficar silenciosa) ou transformá-los (como fazer uma pessoa ficar com voz de passarinho). Você não pode criar sons que não conhece (não pode fazer uma criatura falar num idioma que não conheça). Uma vez que escolha a alteração, ela não pode ser mudada. Um conjurador que tenha a voz modificada drasticamente não poderá lançar magias.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura ou objeto",
+    duracao: "cena",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Aumenta o número de alvos em +1. Todas as criaturas e objetos devem ser afetadas da mesma forma.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Escuridão",
+    descricao:
+      "O alvo emana sombras em uma área com 6m de raio. Criaturas dentro da área recebem camuflagem leve por escuridão leve. As sombras não podem ser iluminadas por nenhuma fonte de luz natural. O objeto pode ser guardado (em um bolso, por exemplo) para interromper a escuridão, que voltará a funcionar caso o objeto seja revelado. Se lançar a magia num objeto de uma criatura involuntária, ela tem direito a um teste de Vontade para anulá-la. Escuridão anula Luz.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 objeto",
+    duracao: "cena",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "Aumenta a área em +1,5m de raio.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Muda o efeito para fornecer camuflagem total por escuridão total. As sombras bloqueiam a visão na área e através dela.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Muda o alvo para 1 criatura e a resistência para Fortitude parcial. Você lança a magia nos olhos do alvo, que fica cego pela cena. Se passar na resistência, fica cego por 1 rodada. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "Muda a duração para um dia.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Muda o alcance para pessoal e o alvo para você. Em vez do normal, você é coberto por sombras, recebendo +10 em testes de Furtividade e camuflagem leve. Requer 2o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Explosão Caleidoscópica",
+    descricao:
+      "Esta magia cria uma forte explosão de luzes estroboscópicas e sons cacofônicos que desorientam as criaturas atingidas. O efeito que cada criatura sofre depende do nível ou ND dela.\nNível ou ND 4 ou menor: se falhar no teste de resistência, fica inconsciente. Se passar, fica atordoada por 1d4 rodadas e enjoada pelo resto da cena.\nNível ou ND entre 5 e 9: se falhar no teste de resistência, fica atordoada por 1d4 rodadas e enjoada pelo resto da cena. Se passar, fica atordoada por 1 rodada e enjoada por 1d4 rodadas.\nNível ou ND 10 ou maior: se falhar no teste de resistência, fica atordoada por 1 rodada e enjoada por 1d4 rodadas. Se passar, fica desprevenida e enjoada por 1 rodada.\nUma criatura só pode ser atordoada por esta magia uma vez por cena.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "esfera com 6m de raio",
+    duracao: "instantânea",
+    resistencia: "Fortitude parcial",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Explosão de Chamas",
+    descricao:
+      "Uma explosão de chamas irrompe de suas mãos, causando 2d6 pontos de dano de fogo às criaturas na área. Explosão de Chamas ignora a RD de objetos. Você pode usar uma ação de movimento para mover a área de efeito 6m.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "cone com 6m de comprimento",
+    duracao: "instantânea",
+    resistencia: "Reflexos reduz à metade",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao: "Truque: muda o alcance para curto, a área para alvo de 1 objeto e a resis- tência para Reflexos anula. Você gera uma pequena explosão que não causa dano mas pode acender uma vela, to- cha ou fogueira. Também pode fazer um objeto inflamável com RD 0 (como uma corda ou pergaminho) ficar em chamas. Uma criatura em posse de um objeto pode evitar esse efeito se passar no teste de resistência.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao: "Aumenta o dano em +1d6.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Muda o alcance para curto, a área para alvo de 1 objeto e a resistência para Reflexos anula. Você gera uma pequena explosão que não causa dano mas pode acender uma vela, tocha ou fogueira. Também pode fazer um objeto inflamável com RD 0 (como uma corda ou pergaminho) ficar em chamas. Uma criatura em posse de um objeto pode evitar esse efeito se passar no teste de resistência.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Muda a resistência para Reflexos parcial. Se passar, a criatura reduz o dano à metade; se falhar, fica em chamas (veja Condições, na página 394).",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Ferver Sangue",
+    descricao:
+      "O sangue do alvo aquece até entrar em ebulição. Quando a magia é lançada, e no início de cada um de seus turnos, o alvo sofre 4d8 pontos de dano de fogo e fica enjoado por uma rodada (Fortitude reduz o dano à metade e evita a condição). Se o alvo passar em dois testes de Fortitude seguidos, dissipa a magia. Se o alvo for reduzido a 0 PV pelo dano desta magia, seu corpo explode, matando-o e causando 6d6 pontos de dano de fogo em todas as criaturas a até 3m (Reflexos reduz à metade). Essa magia não afeta criaturas sem sangue, como construtos ou mortos-vivos.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "sustentada",
+    resistencia: "Fortitude parcial",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o dano em +1d8.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "Muda alvo para criaturas escolhidas. Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Físico Divino",
+    descricao:
+      "Você fortalece o corpo do alvo. Ele recebe +2 em Força, Destreza ou Constituição, a sua escolha. Esse aumento não oferece PV ou PM adicionais.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.transmutacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao:
+          "Muda o alcance para curto e o alvo para criaturas escolhidas.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao:
+          "Em vez do normal, o alvo recebe +2 nos três atributos físicos. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 7,
+        descricao: "Em vez do normal, o alvo recebe +4 no atributo escolhido.",
+      },
+      {
+        pm_a_mais: 12,
+        descricao:
+          "Em vez do normal, o alvo recebe +4 nos três atributos físicos. Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Flecha Ácida",
+    descricao:
+      "Você dispara um projétil que causa 4d6 pontos de dano de ácido. Se falhar no teste de resistência, o alvo fica coberto por um muco corrosivo, sofrendo mais 2d6 de dano de ácido no início de seus dois próximos turnos. Se lançada contra um objeto que não esteja em posse de uma criatura a magia causa dano dobrado e ignora a RD do objeto.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura ou objeto",
+    duracao: "instantânea",
+    resistencia: "Reflexos parcial",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Além do normal, se o alvo coberto pelo muco ácido estiver usando armadura ou escudo, o item é corroído. Isso reduz o bônus na Defesa do item em 1 ponto permanentemente. O item pode ser consertado, restaurando seu bônus (veja Ofício, na página 121).",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta a redução na Defesa em +1.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o dano inicial e o dano por rodada em +1d6.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Forma Etérea",
+    descricao:
+      "Você e todo o equipamento que está com você são transportados para o plano etéreo, que existe paralelamente ao plano material (o mundo físico). Na prática, é como ser transformado em um fantasma (mas você ainda é considerado uma criatura viva). Uma criatura etérea é invisível (pode alterar entre visível e invisível como ação livre), incorpórea e capaz de se mover em qualquer direção, inclusive para cima e para baixo. Ela enxerga o plano material, mas tudo parece cinza e insubstancial, reduzindo o alcance da visão e audição para 18m. Magias de abjuração e essência afetam criaturas etéreas, mas outras magias, não. Da mesma forma, uma criatura etérea não pode atacar nem lançar magias contra criaturas no plano material. Duas criaturas etéreas podem se afetar normalmente. Uma criatura afetada pode se materializar como uma ação de movimento, encerrando a magia. Uma criatura etérea que se materialize em um espaço ocupado é jogada para o espaço não ocupado mais próximo e sofre 1d6 pontos de dano de impacto para cada 1,5m de deslocamento.",
+    execucao: enumExecucao.completa,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.transmutacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Muda o alcance para toque e o alvo para até 5 criaturas voluntárias que estejam de mãos dadas. Depois que a magia é lançada, as criaturas podem soltar as mãos. Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Fúria do Panteão",
+    descricao:
+      "Você cria uma nuvem de tempestade violenta. Os ventos tornam ataques à distância impossíveis e fazem a área contar como condição terrível para lançar magia. Além disso, inimigos na área têm a visibilidade reduzida (como a magia Névoa). Uma vez por turno, você pode gastar uma ação de movimento para gerar um dos efeitos a seguir.\nNevasca. Inimigos na área sofrem 10d6 pontos de dano de frio (Fortitude reduz à metade). A área fica coberta de neve, virando terreno difícil até o fim da cena ou até você usar siroco.\nRaios. Até 6 inimigos a sua escolha na área sofrem 10d8 pontos de dano de eletricidade (Reflexos reduz à metade).\nSiroco. Transforma a chuva em uma tempestade de areia escaldante. Inimigos na área sofrem 10d6 pontos de dano (metade corte, metade fogo) e ficam sangrando (Fortitude reduz o dano à metade e evita a condição).\nTrovões. Inimigos sofrem 10d6 pontos de dano de impacto e ficam desprevenidos por uma rodada (Fortitude reduz o dano à metade e evita a condição).",
+    execucao: enumExecucao.completa,
+    alcance: "longo",
+    alvo: "cubo de 90m",
+    duracao: "sustentada",
+    resistencia: "veja texto",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [],
+    tipo: enumTipo.divina,
+    circulo: 5,
+  },
+  {
+    nome: "Globo da Verdade de Gwen",
+    descricao:
+      "Cria um globo flutuante e intangível, com 50cm de diâmetro. O globo mostra uma cena vista até uma semana atrás por você ou por uma criatura que você toque ao lançar a magia (mediante uma pergunta; a criatura pode fazer um teste de Vontade para anular o efeito), permitindo que outras pessoas a vejam.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "1 globo",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "O globo mostra uma cena vista até um mês atrás.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Como acima, até um ano atrás.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Ao lançar a magia, você pode tocar um cadáver. O globo mostra a última cena vista por essa criatura.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda o alcance para longo e o efeito para 10 globos. Todos mostram a mesma cena.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Globo de Invulnerabilidade",
+    descricao:
+      "Você é envolto por uma esfera mágica brilhante com 3m de raio, que detém qualquer magia de 2º círculo ou menor. Nenhuma magia pode ser lançada contra um alvo dentro do globo e magias de área não o penetram. No entanto, magias ainda podem ser lançadas de dentro para fora. Uma magia que dissipe outras magias só dissipa o globo se for usada diretamente sobre você, não o afetando se usada em área. Efeitos mágicos não são dissipados quando entram na esfera, apenas suprimidos (voltam a funcionar fora do globo, caso sua duração não tenha acabado). O globo é imóvel e não tem efeito sobre criaturas ou objetos. Após lançá-lo, você pode entrar ou sair livremente.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda o efeito para afetar magias de até 3º círculo. Requer 4º círculo.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao:
+          "Muda o efeito para afetar magias de até 4º círculo. Requer 5º círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Guardião Divino",
+    descricao:
+      "A magia invoca um elemental Pequeno, com a forma de um orbe feito de luz divina. A criatura é incorpórea, imune a dano e ilumina como uma tocha. O elemental tem 100 pontos de luz. Uma vez por rodada, durante o seu turno, o elemental pode se movimentar (deslocamento de voo 18m) e gastar quantos pontos de luz quiser para curar dano ou condições de criaturas em alcance curto, à taxa de 1 PV por 1 ponto de luz ou uma condição por 3 pontos de luz (entre abalado, apavorado, alquebrado, atordoado, cego, confuso, debilitado, enjoado, esmorecido, exausto, fascinado, fatigado, fraco, frustrado, ofuscado, pasmo, sangrando, surdo ou vulnerável). A magia é encerrada quando o elemental fica sem pontos de luz.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [],
+    tipo: enumTipo.divina,
+    circulo: 4,
+  },
+  {
+    nome: "Heroísmo",
+    descricao:
+      "Esta magia imbui uma criatura com coragem e valentia. O alvo fica imune a medo e recebe 40 PV temporários e +4 em testes de ataque e rolagens de dano contra o inimigo de maior ND na cena.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "Muda o bônus para +6.",
+      }
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Hipnotismo",
+    descricao:
+      "Suas palavras e movimentos ritmados deixam o alvo fascinado. Esta magia só afeta criaturas que possam perceber você. Se usar esta magia em combate, o alvo recebe +5 em seu teste de resistência. Se a criatura passar, fica imune a este efeito por um dia.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 animal ou humanoide",
+    duracao: "instantânea",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Muda a duração para 1 rodada. Em vez de fascinado, o alvo fica pasmo (apenas uma vez por cena).",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Muda o alvo para animais ou humanoides escolhidos.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Muda a duração para sustentada.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Também afeta espíritos e monstros na área. Requer 2º círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Também afeta construtos, espíritos, monstros e mortos-vivos na área. Requer 3º círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Ilusão Lacerante",
+    descricao:
+      "Você cria uma ilusão de algum perigo mortal. Quando a magia é lançada, criaturas na área devem fazer um teste de Vontade; uma falha significa que a criatura acredita que a ilusão é real e sofre 3d6 pontos de dano psíquico não letal. Sempre que uma criatura iniciar seu turno dentro da área, deve repetir o teste de Vontade. Se falhar, sofre o dano novamente. Somente criaturas que falham veem a ilusão, e racionalizam o efeito sempre que falham no teste (por exemplo, acredita que o mesmo teto pode cair sobre ela várias vezes).",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "cubo de 9m",
+    duracao: "sustentada",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "Aumenta o dano em +2d6.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao: "Muda a área para um cubo de 90m. Requer 4º círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Imagem Espelhada",
+    descricao:
+      "Três cópias ilusórias suas aparecem. As duplicatas ficam ao seu redor e imitam suas ações, tornando difícil para um inimigo saber quem atacar. Você recebe +6 na Defesa. Cada vez que um ataque contra você erra, uma das imagens desaparece e o bônus na Defesa diminui em 2. Um oponente deve ver as cópias para ser confundido. Se você estiver invisível, ou o atacante fechar os olhos, você não recebe o bônus (mas o atacante ainda sofre penalidades normais por não enxergar).",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Aumenta o número de cópias em +1 (e o bônus na Defesa em +2).",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Além do normal, toda vez que uma cópia é destruída, emite um clarão de luz. A criatura que destruiu a cópia fica ofuscada por uma rodada. Requer 2º círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Imobilizar",
+    descricao:
+      "O alvo fica paralisado; se passar na resistência, em vez disso fica lento. A cada rodada, pode gastar uma ação completa para fazer um novo teste de Vontade. Se passar, se liberta do efeito.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 humanoide ou animal",
+    duracao: "cena",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "Muda o alvo para 1 espírito.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o número de alvos em +1.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "Muda o alvo para 1 criatura. Requer 4º círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Infligir Ferimentos",
+    descricao:
+      "Você canaliza energia negativa contra um alvo, causando 2d8+2 pontos de dano de trevas (ou curando 2d8+2 PV, se for um morto-vivo). Infligir Ferimentos anula Curar Ferimentos.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "Fortitude reduz à metade",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Além do normal, se falhar na resistência, o alvo fica fraco pela cena.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o dano em +1d8+1.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Muda a resistência para nenhum. Como parte da execução da magia, você pode fazer um ataque corpo a corpo contra o alvo. Se acertar, causa o dano do ataque e o efeito da magia.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Muda o alcance para curto e o alvo para criaturas escolhidas.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Intervenção Divina",
+    descricao:
+      "Você pede a sua divindade para interceder diretamente. Você pode:\n• Curar todos os PV e condições de até 10 criaturas em alcance longo (este efeito cura mortos-vivos, em vez de causar dano).\n• Dissipar os efeitos de qualquer magia de 4º círculo ou menor.\nVocê pode implorar por algo ainda mais poderoso. Nesse caso, a magia requer o sacrifício de 2 PM e pode fazer coisas como:\n• Criar um item mundano de até T$ 30.000.\n• Duplicar os efeitos de qualquer magia de até 4º círculo. Caso a magia precise de um componente material para ser lançada, ainda é necessário providenciar o componente.\n• Proteger uma cidade de um desastre, como uma erupção vulcânica, enchente ou terremoto.\n• Ressuscitar uma criatura em alcance longo que tenha morrido há até uma rodada. A criatura acorda com 1 PV.\n• Qualquer outra coisa que o mestre autorize, conforme os desejos e objetivos da divindade do conjurador.",
+    execucao: enumExecucao.completa,
+    alcance: "veja texto",
+    alvo: "veja texto",
+    duracao: "veja texto",
+    resistencia: "veja texto",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [],
+    tipo: enumTipo.divina,
+    circulo: 5,
+  },
+  {
+    nome: "Invisibilidade",
+    descricao:
+      "O alvo fica invisível (incluindo seu equipamento). Um personagem invisível recebe camuflagem total, +10 em testes de Furtividade contra ouvir e criaturas que não possam vê-lo ficam desprevenidas contra seus ataques. A magia termina se o alvo faz uma ação hostil contra uma criatura. Ações contra objetos livres não dissipam a Invisibilidade (você pode tocar ou apanhar objetos que não estejam sendo segurados por outras criaturas). Causar dano indiretamente — por exemplo, acendendo o pavio de um barril de pólvora que vai detonar mais tarde — não é considerado um ataque.",
+    execucao: enumExecucao.livre,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "1 rodada",
+    resistencia: "",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao:
+          "Muda a execução para ação padrão, o alcance para toque e o alvo para 1 criatura ou 1 objeto Grande ou menor.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "Muda a duração para cena.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao:
+          "Muda a duração para sustentada. Em vez do normal, o alvo gera uma esfera de invisibilidade. Não pode ser usado em conjunto com outros aprimoramentos. O alvo e todas as criaturas a até 3m dele se tornam invisíveis, como no efeito normal da magia (ainda ficam visíveis caso façam uma ação hostial). A esfera se move juntamente com o alvo; qualquer coisa que saia da esfera fica visível. Requer 3º círculo.",
+      },
+      {
+        pm_a_mais: 7,
+        descricao:
+          "Muda a execução para ação padrão, o alcance para toque e o alvo para 1 criatura. A magia não é dissipada caso o alvo faça uma ação hostil. Requer 4º círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Invulnerabilidade",
+    descricao:
+      "Esta magia cria uma barreira mágica impenetrável que protege você contra efeitos nocivos mentais ou físicos, a sua escolha.\nProteção mental: você fica imune às condições abalado, alquebrado, apavorado, atordoado, confuso, esmorecido, fascinado, frustrado e pasmo, além de efeitos de encantamento e ilusão.\nProteção física: você fica imune às condições atordoado, cego, debilitado, enjoado, envenenado, exausto, fatigado, fraco, lento, ofuscado e paralisado, além de acertos críticos, ataques furtivos e doenças.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Muda o alcance para curto e o alvo para 1 criatura. A magia não protege contra ataques furtivos.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 5,
+  },
+  
 ];
