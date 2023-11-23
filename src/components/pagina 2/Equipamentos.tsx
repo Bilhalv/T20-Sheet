@@ -12,8 +12,9 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
+  Tooltip,
 } from "@chakra-ui/react";
-import { 
+import {
   TabelasArmasSimles,
   tabelaArmaduras,
   tabelaArmas,
@@ -41,29 +42,30 @@ export default function Equipamentos({
   }
   const padrao = ["Mochila", "Saco de dormir", "Traje de viajante"];
   var classe = TabelaClasses.filter(
-  (x: Classe) => x.nome === localStorage.getItem("classe")
-);
-
-let marciais = true;
-let armadurasFiltradas: Armadura[] = [];
-if (classe && classe.length > 0) {
-  const filtroArmaduras = ["Couro batido", "Gibão de peles"];
-  if (classe[0].proficiencias.includes("Armaduras pesadas")) {
-    filtroArmaduras.push("Brunea");
-  }
-  armadurasFiltradas = tabelaArmaduras.filter((armadura: Armadura) =>
-    filtroArmaduras.includes(armadura.nome)
+    (x: Classe) => x.nome === localStorage.getItem("classe")
   );
-  if (classe[0].proficiencias.includes("Armas marciais")) {
-    marciais = false;
+
+  let marciais = true;
+  let armadurasFiltradas: Armadura[] = [];
+  if (classe && classe.length > 0) {
+    const filtroArmaduras = ["Couro batido", "Gibão de peles"];
+    if (classe[0].proficiencias.includes("Armaduras pesadas")) {
+      filtroArmaduras.push("Brunea");
+    }
+    armadurasFiltradas = tabelaArmaduras.filter((armadura: Armadura) =>
+      filtroArmaduras.includes(armadura.nome)
+    );
+    if (classe[0].proficiencias.includes("Armas marciais")) {
+      marciais = false;
+    }
+    if (
+      classe[0].proficiencias.includes("escudos") ||
+      classe[0].proficiencias.includes("Escudos")
+    ) {
+      padrao.push("Escudo Leve");
+    }
   }
-  if (
-    classe[0].proficiencias.includes("escudos") ||
-    classe[0].proficiencias.includes("Escudos")
-  ) {
-    padrao.push("Escudo Leve");
-  }
-}
+  let dados: number[] = [];
   const [armasSimples, setArmasSimples] = useState<string[]>([]);
   const [armasMarciais, setArmasMarciais] = useState<string[]>([]);
   const [armaduras, setArmaduras] = useState<string[]>([]);
@@ -73,8 +75,11 @@ if (classe && classe.length > 0) {
     const tabela = [300, 600, 1000, 2000];
     if (nivel === 1) {
       let tibas = 0;
+      dados = [];
       for (let i = 0; i < 4; i++) {
-        tibas += Math.floor(Math.random() * 6)+1;
+        let dado = Math.floor(Math.random() * 6) + 1;
+        tibas += dado;
+        dados.push(dado);
       }
       return tibas;
     } else {
@@ -86,7 +91,9 @@ if (classe && classe.length > 0) {
       <h1 className="text-center text-lg font-bold mb-3">
         Escolha seus Equipamentos
       </h1>
-      <i>T$ {tibares === undefined ? 0:tibares}</i>
+      <Tooltip isDisabled={dados.length < 1} label={"4d6 = "+dados.join(" + ")}>
+        <i>T$ {tibares === undefined ? 0 : tibares}</i>
+      </Tooltip>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
           <Accordion allowToggle>
@@ -249,7 +256,13 @@ if (classe && classe.length > 0) {
                 ))}
               </AccordionPanel>
             </AccordionItem>
-            <AccordionItem isDisabled={(classe && classe.length > 0) ? classe[0].nome === "Arcanista" : false}>
+            <AccordionItem
+              isDisabled={
+                classe && classe.length > 0
+                  ? classe[0].nome === "Arcanista"
+                  : false
+              }
+            >
               <AccordionButton className="flex justify-between">
                 <h2 className="text-lg font-bold">Armadura</h2>
                 <AccordionIcon />
