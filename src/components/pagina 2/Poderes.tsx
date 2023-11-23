@@ -29,11 +29,11 @@ import { PreRequisitos } from "../Geral/Prerequisitos";
 import { useEffect } from "react";
 
 interface PoderesProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-export default function Poderes({ setPagina, next }: PoderesProps) {
+export default function Poderes({ handleChange, next }: PoderesProps) {
   const totalPoderes = TabelaPoderes.filter(
     (poder) => poder.tipo !== TipoPoder.origem
   );
@@ -163,9 +163,9 @@ export default function Poderes({ setPagina, next }: PoderesProps) {
                   key={index}
                   className="flex border-b border-gray-300 items-center py-2 gap-2"
                 >
-                  <div className="w-3/5 flex justify-between items-center">
-                    <p className="w-2/3">{poder.nome}</p>
-                    <div className="w-1/3">
+                  <div className="w-3/5 flex justify-between items-center gap-1">
+                    <p className="desktop:w-2/3">{poder.nome}</p>
+                    <div className="desktop:w-1/3 w-1/2">
                       <Popover>
                         <PopoverTrigger>
                           <button className="rounded-lg bg-red-300 text-sm py-3 px-6 transition-all hover:transform hover:scale-110 hover:bg-red-500">

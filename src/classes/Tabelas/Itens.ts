@@ -1,4 +1,5 @@
 import { Arma } from "../Construtores/Arma";
+import { Armadura } from "../Construtores/Armadura";
 import { Item } from "../Construtores/Item";
 
 export const TabelasArmasSimles: Arma[] = [
@@ -176,7 +177,7 @@ export const TabelasArmasSimles: Arma[] = [
     descricao:
       "Uma arma antiga e comum, este arco é usado primariamente como ferramenta de caça, embora seja usado como arma de guerra por milícias, bandidos e exércitos menos equipados. Pode ser usado montado.",
   },
-]
+];
 
 export const tabelaArmas: Arma[] = [
   // Armas Simples
@@ -538,6 +539,130 @@ export const tabelaArmas: Arma[] = [
     proficiencia: "Armas de Fogo",
     descricao: "Arma de fogo de cano longo, o mosquete é uma arma de disparo.",
   },
+];
+
+export const tabelaArmaduras: Armadura[] = [
+  {
+    categoria: "Leve",
+    tipo: "Armadura",
+    nome: "Armadura acolchoada",
+    preco: 5,
+    defesa: 1,
+    penalidade: 0,
+    espacos: 2,
+    descricao:
+      "Uma túnica almofadada feita em linho ou lã. É a armadura mais leve, mas protege todo o corpo, fornecendo +2 em Fortitude.",
+  },
+  {
+    categoria: "Leve",
+    tipo: "Armadura",
+    nome: "Armadura de couro",
+    preco: 20,
+    defesa: 2,
+    penalidade: 0,
+    espacos: 2,
+    descricao:
+      "O peitoral desta armadura é feito de couro curtido em óleo fervente, para ficar mais rígido, enquanto as demais partes são feitas de couro flexível.",
+  },
+  {
+    categoria: "Leve",
+    tipo: "Armadura",
+    nome: "Couro batido",
+    preco: 35,
+    defesa: 3,
+    penalidade: -1,
+    espacos: 2,
+    descricao:
+      "Versão mais pesada da armadura de couro, reforçada com rebites de metal.",
+  },
+  {
+    categoria: "Leve",
+    tipo: "Armadura",
+    nome: "Gibão de peles",
+    preco: 25,
+    defesa: 4,
+    penalidade: -3,
+    espacos: 2,
+    descricao:
+      "Usada principalmente por bárbaros e selvagens, esta armadura é formada por várias camadas de peles e couro de animais.",
+  },
+  {
+    categoria: "Pesada",
+    tipo: "Armadura",
+    nome: "Brunea",
+    preco: 50,
+    defesa: 5,
+    penalidade: -2,
+    espacos: 5,
+    descricao:
+      "Colete de couro coberto com plaquetas de metal sobrepostas, como escamas de um peixe. Por ser barata de produzir, é a armadura mais utilizada no Reinado por soldados de infantaria e guardas de castelo.",
+  },
+  {
+    categoria: "Pesada",
+    tipo: "Armadura",
+    nome: "Cota de malha",
+    preco: 150,
+    defesa: 6,
+    penalidade: -2,
+    espacos: 5,
+    descricao:
+      "Longa veste de anéis metálicos interligados, formando uma malha flexível e resistente, que vai até os joelhos.",
+  },
+  {
+    categoria: "Pesada",
+    tipo: "Armadura",
+    nome: "Loriga segmentada",
+    preco: 250,
+    defesa: 7,
+    penalidade: -3,
+    espacos: 5,
+    descricao:
+      "Composta por tiras horizontais de metal, esta armadura pesada é muito utilizada por legionários do Império de Tauron.",
+  },
+  {
+    categoria: "Pesada",
+    tipo: "Armadura",
+    nome: "Meia armadura",
+    preco: 600,
+    defesa: 8,
+    penalidade: -4,
+    espacos: 5,
+    descricao:
+      "Uma cota de malha reforçada com placas de metal.",
+  },
+  {
+    categoria: "Pesada",
+    tipo: "Armadura",
+    nome: "Armadura completa",
+    preco: 3000,
+    defesa: 10,
+    penalidade: -5,
+    espacos: 5,
+    descricao:
+    "A mais forte e pesada das armaduras, formada por placas de metal forjadas e encaixadas de modo a cobrir o corpo inteiro. Inclui uma túnica acolchoada para ser usada sob as placas. Correias e fivelas distribuem o peso da armadura pelo corpo inteiro. Esta armadura precisa ser feita sob medida para cada usuário; um ferreiro cobra T$ 200 para adaptar uma armadura completa a um novo usuário.",
+  },
+  {
+    categoria: "Leve",
+    tipo: "Escudo",
+    nome: "Escudo leve",
+    preco: 5,
+    defesa: 1,
+    penalidade: -1,
+    espacos: 1,
+    descricao:
+      "Tipicamente feito de madeira, este escudo é amarrado no antebraço, deixando a mão livre. Você pode carregar um objeto na mão que empunha o escudo, mas não manusear uma arma.",
+  },
+  {
+    categoria: "Pesada",
+    tipo: "Escudo",
+    nome: "Escudo pesado",
+    preco: 15,
+    defesa: 2,
+    penalidade: -2,
+    espacos: 2,
+    descricao:
+      "Normalmente feito de aço, este escudo é preso ao antebraço e também deve ser empunhado com firmeza, impedindo o usuário de usar aquela mão.",
+  }
 ];
 
 export const tabelaItens: Item[] = [

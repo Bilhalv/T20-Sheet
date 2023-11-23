@@ -26,13 +26,14 @@ import SelectList from "../Geral/SelectList";
 import Botoes, { FecharOnModal, ConfirmarOnModal } from "../Geral/Botoes";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
+import { enumEscolas } from "../../classes/Construtores/Magia";
 
 interface ClassesProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 
-const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
+const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
   const { showCustomToast } = useCustomToast();
 
   const initialState = {
@@ -128,43 +129,43 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   const escolas = [
     {
       nome: "Abjuração",
-      valor: "abjur",
+      valor: enumEscolas.abjuracao,
       desc: "Magias de proteção, que anulam outras magias ou expulsam criaturas invocadas de volta a seus planos de existência nativos",
     },
     {
       nome: "Adivinhação",
-      valor: "adiv",
+      valor: enumEscolas.adivinhacao,
       desc: "Magias de detecção ou que vasculham passado e futuro.",
     },
     {
       nome: "Convocação",
-      valor: "conv",
+      valor: enumEscolas.convocacao,
       desc: "Magias que transportam matéria. Esse transporte é realizado através do Éter Entre Mundos; por isso, qualquer efeito que bloqueia viagens etéreas também impede convocações. Criaturas convocadas surgem em uma superfície desocupada e, quando destruídas, desaparecem e são devolvidas a seus mundos nativos.",
     },
     {
       nome: "Encantamento",
-      valor: "encan",
+      valor: enumEscolas.encantamento,
       desc: "Magias que afetam a mente. Todas as magias de encantamento são efeitos mentais.",
     },
     {
       nome: "Evocação",
-      valor: "evoc",
+      valor: enumEscolas.evocacao,
       desc: "Magias que manipulam ou geram energia pura. Ácido, eletricidade, fogo e frio são as energias geradas pelos quatro elementos, respectivamente terra, ar, fogo e água. Magias de fogo funcionam sob a água, mas criam vapor quente em vez de chamas abertas. Luz é energia positiva, cuja manifestação é capaz de iluminar, curar e causar dano de luz. Por fim, essência é energia mágica pura.",
     },
     {
       nome: "Ilusão",
-      valor: "ilusao",
+      valor: enumEscolas.ilusao,
       desc: "Essas magias fazem outros perceberem algo que não existe ou ignorarem algo real. Todas as magias de ilusão são efeitos mentais.",
     },
     {
       nome: "Necromancia",
-      valor: "necro",
+      valor: enumEscolas.necromancia,
       desc: "Magias que canalizam energia negativa, criando escuridão, drenando a força vital de criaturas vivas e criando mortos-vivos. Magias de necromancia são efeitos de trevas.",
     },
     {
       nome: "Transmutação",
-      valor: "trans",
-      desc: " Magias que alteram as propriedades físicas de uma criatura ou objeto.",
+      valor: enumEscolas.transmutacao,
+      desc: "Magias que alteram as propriedades físicas de uma criatura ou objeto.",
     },
   ];
 
@@ -196,7 +197,7 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
       localStorage.setItem("pericias", JSON.stringify(updatedPericias));
       dispatch({ type: "togglePericias" });
       localStorage.setItem("pagina", next);
-      setPagina(next);
+      handleChange(next);
     } else {
       showCustomToast({
         title: "Atenção",
@@ -231,7 +232,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
   ];
   return (
     <>
-      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">Escolha sua Classe</h1>
+      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
+        Escolha sua Classe
+      </h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">
         <section className="bg-gray-300 desktop:order-1 order-3 flex flex-col p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] h-fit desktop:w-[50%] w-full ">
           <div className="flex desktop:flex-row-reverse flex-col-reverse gap-1">
@@ -480,7 +483,9 @@ const Classes: React.FC<ClassesProps> = ({ setPagina, next }) => {
             </ModalBody>
             <ModalFooter>
               <FecharOnModal onClose={() => dispatch({ type: "toggleAlt" })} />
-              <ConfirmarOnModal onSelect={() => dispatch({ type: "togglePericias" })} />
+              <ConfirmarOnModal
+                onSelect={() => dispatch({ type: "togglePericias" })}
+              />
             </ModalFooter>
             <ModalCloseButton />
           </ModalContent>

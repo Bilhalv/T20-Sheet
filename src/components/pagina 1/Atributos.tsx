@@ -14,7 +14,7 @@ import Confirmar from "../Geral/Confirmar";
 import VerMais from "../Geral/VerMais";
 
 interface AtributosProps {
-  setPagina: (pagina: string) => void;
+  handleChange: (pagina: string) => void;
   next: string;
 }
 interface HookUsageProps {
@@ -139,7 +139,7 @@ function HookUsage({
   );
 }
 
-export default function Atributos({ setPagina, next }: AtributosProps) {
+export default function Atributos({ handleChange, next }: AtributosProps) {
   const atributosDefault = [
     { nome: "Força", valor: 0 },
     { nome: "Destreza", valor: 0 },
@@ -164,8 +164,24 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
   useEffect(() => {
     setAtributosRaca(JSON.parse(localStorage.getItem("atributos") ?? "[]"));
   }, []);
+  const [encorajamento, setEncorajamento] = useState("");
+  const definirEncorajamento = (rolagemNova: any) => {
+    let contadorzinho = 0;
+    rolagemNova.forEach((valor: number) => {
+      if (valor <= 0) {
+        contadorzinho++;
+      }
+    });
+    if (contadorzinho >= 2) {
+      setEncorajamento(
+        "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."
+      );
+    } else {
+      setEncorajamento("");
+    }
+  };
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeTipo = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setTipo(value);
     setPontos(10);
@@ -187,6 +203,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
         }
       });
       setRolagem(resultadoAtributos);
+      definirEncorajamento(resultadoAtributos);
       showCustomToast({
         title: "Rolagem de dados",
         desc: `Dados sendo rolados...`,
@@ -233,7 +250,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
       });
       localStorage.setItem("atributosFinais", JSON.stringify(atributos));
       localStorage.setItem("pagina", next);
-      setPagina(next);
+      handleChange(next);
       navigate("/criarpt2");
     } else {
       if (pontos === 0) {
@@ -248,11 +265,11 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
           desc: `Seus atributos finais são: ${atributos
             .map((atributo) => atributo.nome + ": " + atributo.valor)
             .join(" | ")}`,
-          });
-          localStorage.setItem("atributosFinais", JSON.stringify(atributos));
-          localStorage.setItem("pagina", next);
-          setPagina(next);
-          navigate("/criarpt2");
+        });
+        localStorage.setItem("atributosFinais", JSON.stringify(atributos));
+        localStorage.setItem("pagina", next);
+        handleChange(next);
+        navigate("/criarpt2");
       } else if (pontos > 0) {
         showCustomToast({
           title: "Você ainda tem pontos para distribuir",
@@ -307,7 +324,7 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
         <Select
           className="ml-3 mb-3"
           bgColor={"whiteAlpha.900"}
-          onChange={handleChange}
+          onChange={handleChangeTipo}
         >
           <option value={"Pontos"}>Pontos</option>
           <option value={"Rolagem"}>Rolagem</option>
@@ -320,8 +337,9 @@ export default function Atributos({ setPagina, next }: AtributosProps) {
               Pontos : {pontos}
             </h1>
           ) : (
-            <h1 className="text-center font-bold mb-3 text-red-900">
-              Rolagem : {rolagem.join(" | ")}
+            <h1 className="text-center font-bold mb-3 text-red-900 flex flex-col">
+              <p>Rolagem : {rolagem.join(" | ")}</p>
+              <i className="font-serif font-normal">{encorajamento}</i>
             </h1>
           )}
           <h1 className="text-center text-3xl mb-2">{destaque.nome}</h1>

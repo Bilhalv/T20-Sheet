@@ -25,11 +25,6 @@ const App: React.FC = () => {
   const paginas = ["Inicio", "Origens", "Racas", "Classes", "Atributos"];
   const [pag, setPag] = useState(localStorage.getItem("pagina") ?? paginas[0]);
   const [pagina, setPagina] = useState(pag);
-  useEffect(() => {
-    if (!paginas.includes(pag)) {
-      handleChange(paginas[0]);
-    }
-  }, [pag, paginas, setPagina]);
 
   const handleChange = (e: string) => {
     localStorage.setItem("pagina", e);
@@ -43,20 +38,22 @@ const App: React.FC = () => {
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-row-reverse mb-[-40px]">
             <InfoModal pagina={pagina} />
-            <FichaModal pagina={1} setPagina={setPagina} />
+            <FichaModal pagina={1} handleChange={handleChange} />
           </div>
-          {pagina === "Inicio" && (
-            <Inicio next="Origens" setPagina={setPagina} />
-          )}
+          {pagina === "Inicio" || !paginas.includes(pagina) ? (
+            <Inicio next="Origens" handleChange={handleChange} />
+          ) : null}
           {pagina === "Origens" && (
-            <Origens next="Racas" setPagina={setPagina} />
+            <Origens next="Racas" handleChange={handleChange} />
           )}
-          {pagina === "Racas" && <Racas next="Classes" setPagina={setPagina} />}
+          {pagina === "Racas" && (
+            <Racas next="Classes" handleChange={handleChange} />
+          )}
           {pagina === "Classes" && (
-            <Classes next="Atributos" setPagina={setPagina} />
+            <Classes next="Atributos" handleChange={handleChange} />
           )}
           {pagina === "Atributos" && (
-            <Atributos next="Divindades" setPagina={setPagina} />
+            <Atributos next="Divindades" handleChange={handleChange} />
           )}
           <Stepper
             colorScheme="red"
