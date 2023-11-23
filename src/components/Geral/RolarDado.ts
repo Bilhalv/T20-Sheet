@@ -1,4 +1,4 @@
-function RolarDado(
+export function RolarDado(
   qtd: number,
   lados: number,
   mod: number,
