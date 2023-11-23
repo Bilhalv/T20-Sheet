@@ -13,7 +13,7 @@ import {
   PopoverHeader,
   PopoverTrigger,
 } from "@chakra-ui/react";
-import {
+import { 
   TabelasArmasSimles,
   tabelaArmaduras,
   tabelaArmas,
@@ -21,6 +21,8 @@ import {
 import { Armadura } from "../../classes/Construtores/Armadura";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { useState } from "react";
+import { Classe } from "../../classes/Construtores/Classe";
+import { Arma } from "../../classes/Construtores/Arma";
 
 interface EquipamentosProps {
   handleChange: (pagina: string) => void;
@@ -31,40 +33,37 @@ export default function Equipamentos({
   handleChange,
   next,
 }: EquipamentosProps) {
+  if (localStorage.getItem("classe") === undefined) {
+    localStorage.setItem("classe", "Arcanista");
+  }
+  if (localStorage.getItem("lvl") === undefined) {
+    localStorage.setItem("lvl", "1");
+  }
   const padrao = ["Mochila", "Saco de dormir", "Traje de viajante"];
   var classe = TabelaClasses.filter(
-    (x: any) => x.nome === localStorage.getItem("classe")
-  );
-  if (classe === undefined) {
-    classe = [TabelaClasses[0]];
-  }
+  (x: Classe) => x.nome === localStorage.getItem("classe")
+);
+
+let marciais = true;
+let armadurasFiltradas: Armadura[] = [];
+if (classe && classe.length > 0) {
   const filtroArmaduras = ["Couro batido", "Gibão de peles"];
-  if (
-    classe !== undefined &&
-    classe.length > 0 &&
-    classe[0].proficiencias.includes("Armaduras pesadas")
-  ) {
+  if (classe[0].proficiencias.includes("Armaduras pesadas")) {
     filtroArmaduras.push("Brunea");
   }
-  const Armaduras = tabelaArmaduras.filter((armadura: Armadura) =>
+  armadurasFiltradas = tabelaArmaduras.filter((armadura: Armadura) =>
     filtroArmaduras.includes(armadura.nome)
   );
-  let marciais = true;
-  if (
-    classe !== undefined &&
-    classe.length > 0 &&
-    classe[0].proficiencias.includes("Armas marciais")
-  ) {
+  if (classe[0].proficiencias.includes("Armas marciais")) {
     marciais = false;
   }
   if (
-    classe !== undefined &&
-    classe.length > 0 &&
-    (classe[0].proficiencias.includes("escudos") ||
-      classe[0].proficiencias.includes("Escudos"))
+    classe[0].proficiencias.includes("escudos") ||
+    classe[0].proficiencias.includes("Escudos")
   ) {
     padrao.push("Escudo Leve");
   }
+}
   const [armasSimples, setArmasSimples] = useState<string[]>([]);
   const [armasMarciais, setArmasMarciais] = useState<string[]>([]);
   const [armaduras, setArmaduras] = useState<string[]>([]);
@@ -75,7 +74,7 @@ export default function Equipamentos({
     if (nivel === 1) {
       let tibas = 0;
       for (let i = 0; i < 4; i++) {
-        tibas += Math.floor(Math.random() * 6);
+        tibas += Math.floor(Math.random() * 6)+1;
       }
       return tibas;
     } else {
@@ -87,7 +86,7 @@ export default function Equipamentos({
       <h1 className="text-center text-lg font-bold mb-3">
         Escolha seus Equipamentos
       </h1>
-      <i>T$ {tibares}</i>
+      <i>T$ {tibares === undefined ? 0:tibares}</i>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
           <Accordion allowToggle>
@@ -107,7 +106,7 @@ export default function Equipamentos({
                 pb={4}
                 className="flex flex-col border-gray-100 border rounded-xl mb-2"
               >
-                {TabelasArmasSimles.map((arma: any) => (
+                {TabelasArmasSimles.map((arma: Arma) => (
                   <div className="flex justify-evenly align-middle border-b-gray-300 border-b py-2">
                     <p className="my-auto w-1/3">{arma.nome}</p>
                     <Popover>
@@ -183,7 +182,7 @@ export default function Equipamentos({
                 pb={4}
                 className="flex flex-col border-gray-100 border rounded-xl mb-2"
               >
-                {tabelaArmas.map((arma: any) => (
+                {tabelaArmas.map((arma: Arma) => (
                   <div className="flex justify-evenly align-middle border-b-gray-300 border-b py-2">
                     <p className="my-auto w-1/3">{arma.nome}</p>
                     <Popover>
@@ -250,7 +249,7 @@ export default function Equipamentos({
                 ))}
               </AccordionPanel>
             </AccordionItem>
-            <AccordionItem isDisabled={classe[0].nome === "Arcanista"}>
+            <AccordionItem isDisabled={(classe && classe.length > 0) ? classe[0].nome === "Arcanista" : false}>
               <AccordionButton className="flex justify-between">
                 <h2 className="text-lg font-bold">Armadura</h2>
                 <AccordionIcon />
@@ -259,7 +258,7 @@ export default function Equipamentos({
                 pb={4}
                 className="flex flex-col border-gray-100 border rounded-xl mb-2"
               >
-                {Armaduras.map((armadura: Armadura) => (
+                {armadurasFiltradas.map((armadura: Armadura) => (
                   <div className="flex justify-evenly align-middle border-b-gray-300 border-b py-2">
                     <p className="my-auto w-1/3">{armadura.nome}</p>
                     <Popover>
