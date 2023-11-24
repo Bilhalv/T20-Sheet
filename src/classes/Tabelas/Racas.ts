@@ -321,7 +321,7 @@ export const TabelaRacas: Raca[] = [
       "Constituição –1",
     ],
     escolhaAtributo: true,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/osteon.png",
     poderes: [
       {
         nome: "Armadura Óssea.",
@@ -347,10 +347,10 @@ export const TabelaRacas: Raca[] = [
   {
     nome: "Sereia/Tritão",
     descricao:
-      "Os sereias (femininas) e tritões (masculinos) têm forma híbrida, com torso humanoide e corpo de peixe, capazes de assumir forma bípede para andar em terra firme, o que fazem com maior frequência. Suas perspectivas sobre os humanos variam, alguns as veem com receio ou desprezo, enquanto outros enxergam Arton como um mundo misterioso, exótico e cheio de aventuras.",
+      "As sereias (femininas) e tritões (masculinos) têm forma híbrida, com torso humanoide e corpo de peixe, capazes de assumir forma bípede para andar em terra firme, o que fazem com maior frequência. Suas perspectivas sobre os humanos variam, alguns as veem com receio ou desprezo, enquanto outros enxergam Arton como um mundo misterioso, exótico e cheio de aventuras.",
     atributos: ["+1 em Três Atributos Diferentes."],
     escolhaAtributo: true,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/sereia.png",
     poderes: [
       {
         nome: "Canção dos Mares.",
@@ -375,7 +375,7 @@ export const TabelaRacas: Raca[] = [
       "As sílfides são fadas com asas delicadas e olhos grandes, conhecidas por sua curiosidade e travessuras. Apesar de sua natureza brincalhona, podem ser subestimadas em situações sérias. Gostam de usar magias e ilusões para pregar peças, tornando sua presença questionável em grupos de aventureiros.",
     atributos: ["Carisma +2", "Destreza +1", "Força –2"],
     escolhaAtributo: false,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/silfide.png",
     poderes: [
       {
         nome: "Asas de Borboleta.",
