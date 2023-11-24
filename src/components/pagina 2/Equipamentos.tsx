@@ -171,7 +171,6 @@ export default function Equipamentos({
                         armasSimples.length > 0 &&
                         !armasSimples.includes(arma.nome)
                       }
-                      className="w-fit"
                       onChange={(e) => {
                         if (
                           e.target.checked &&
@@ -184,6 +183,8 @@ export default function Equipamentos({
                           );
                         }
                       }}
+                      colorScheme="red"
+                      className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
                     />
                   </div>
                 ))}
@@ -199,13 +200,22 @@ export default function Equipamentos({
                 className="flex flex-col border-gray-100 border rounded-xl mb-2"
               >
                 {tabelaArmas.map((arma: Arma) => (
-                  <div className="flex justify-evenly align-middle border-b-gray-300 border-b py-2">
-                    <p className="my-auto w-1/3">{arma.nome}</p>
+                  <div className="flex justify-between align-middle border-b-gray-300 border-b py-2">
                     <Popover>
                       <PopoverTrigger>
-                        <button className="rounded-lg bg-red-300 text-sm py-3 px-6 transition-all hover:transform hover:scale-110 hover:bg-red-500 w-1/3">
-                          Ver descrição
-                        </button>
+                        <IconButton
+                          icon={<Eye />}
+                          aria-label={arma.nome + "-VerMais"}
+                          rounded={"full"}
+                          colorScheme="red"
+                          className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                          _hover={{
+                            bg: "transparent",
+                            border: "2px",
+                            borderColor: "red.500",
+                            color: "red.500",
+                          }}
+                        />
                       </PopoverTrigger>
                       <PopoverContent color="red.900">
                         <PopoverArrow />
@@ -238,6 +248,7 @@ export default function Equipamentos({
                         </PopoverBody>
                       </PopoverContent>
                     </Popover>
+                    <p className="my-auto w-1/3">{arma.nome}</p>
                     <p className="w-fit my-auto flex flex-col items-center">
                       <p>Espaços</p>
                       <p>{arma.espacos}</p>
@@ -247,7 +258,6 @@ export default function Equipamentos({
                         armasMarciais.length > 0 &&
                         !armasMarciais.includes(arma.nome)
                       }
-                      className="w-fit"
                       onChange={(e) => {
                         if (
                           e.target.checked &&
@@ -260,6 +270,8 @@ export default function Equipamentos({
                           );
                         }
                       }}
+                      colorScheme="red"
+                      className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
                     />
                   </div>
                 ))}
@@ -281,13 +293,22 @@ export default function Equipamentos({
                 className="flex flex-col border-gray-100 border rounded-xl mb-2"
               >
                 {armadurasFiltradas.map((armadura: Armadura) => (
-                  <div className="flex justify-evenly align-middle border-b-gray-300 border-b py-2">
-                    <p className="my-auto w-1/3">{armadura.nome}</p>
+                  <div className="flex justify-between align-middle border-b-gray-300 border-b py-2">
                     <Popover>
                       <PopoverTrigger>
-                        <button className="rounded-lg bg-red-300 text-sm py-3 px-6 transition-all hover:transform hover:scale-110 hover:bg-red-500 w-1/3">
-                          Ver descrição
-                        </button>
+                        <IconButton
+                          icon={<Eye />}
+                          aria-label={armadura.nome + "-VerMais"}
+                          rounded={"full"}
+                          colorScheme="red"
+                          className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                          _hover={{
+                            bg: "transparent",
+                            border: "2px",
+                            borderColor: "red.500",
+                            color: "red.500",
+                          }}
+                        />
                       </PopoverTrigger>
                       <PopoverContent color="red.900">
                         <PopoverArrow />
@@ -323,6 +344,7 @@ export default function Equipamentos({
                         </PopoverBody>
                       </PopoverContent>
                     </Popover>
+                    <p className="my-auto w-1/3">{armadura.nome}</p>
                     <p className="w-fit my-auto flex flex-col items-center">
                       <p>Espaços</p>
                       <p>{armadura.espacos}</p>
@@ -332,7 +354,6 @@ export default function Equipamentos({
                         armaduras.length > 0 &&
                         !armaduras.includes(armadura.nome)
                       }
-                      className="w-fit"
                       onChange={(e) => {
                         if (
                           e.target.checked &&
@@ -345,6 +366,8 @@ export default function Equipamentos({
                           );
                         }
                       }}
+                      colorScheme="red"
+                      className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
                     />
                   </div>
                 ))}
