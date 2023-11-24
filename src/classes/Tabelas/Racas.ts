@@ -183,7 +183,7 @@ export const TabelaRacas: Raca[] = [
       "Descendentes de poderosos gênios, os qareen são otimistas, generosos e prestativos, sempre ansiosos por ajudar. Consideram-se abençoados pela Deusa da Magia, exibindo como evidência a marca de Wynna em seus corpos. Sua magia é mais poderosa quando usada para realizar desejos de outros.",
     atributos: ["Carisma +2", "Inteligência +1", "Sabedoria –1"],
     escolhaAtributo: false,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/qareen.png",
     poderes: [
       {
         nome: "Desejos.",
@@ -263,7 +263,7 @@ export const TabelaRacas: Raca[] = [
       "Os kliren são uma mistura de humanos e gnomos, combinando inteligência e curiosidade. São engenhosos e criativos com dispositivos mecânicos, mas sua impulsividade pode impedir seu pleno potencial. A existência dos gnomos em Arton está relacionada ao envolvimento criminoso de seu deus Tilliann na criação da Tormenta.",
     atributos: ["Inteligência +2", "Carisma +1", "Força –1"],
     escolhaAtributo: false,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/kliren.png",
     poderes: [
       {
         nome: "Híbrido.",
@@ -293,7 +293,7 @@ export const TabelaRacas: Raca[] = [
       "As medusas, conhecidas por transformar vítimas em pedra com seus olhares, são antigas e poderosas. No entanto, as jovens medusas buscam aventuras no Reinado, até mesmo fazendo amigos e integrando equipes de heróis. Elas podem se disfarçar como mulheres humanas para esconderem suas cabeças de serpente, sendo excepcionalmente bem vistas pelos anões.",
     atributos: ["Destreza +2", "Carisma +1"],
     escolhaAtributo: false,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/medusa.png",
     poderes: [
       {
         nome: "Cria de Megalokk.",
