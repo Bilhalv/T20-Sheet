@@ -14,83 +14,31 @@ import Equipamento from "../components/Ficha/Equipamento";
 import Pericias from "../components/Ficha/Pericias";
 import Atributos from "../components/Ficha/Atributos";
 import Info from "../components/Ficha/Info";
+import Ataques from "../components/Ficha/Ataques";
+import { TabelasArmasSimles, tabelaArmaduras, tabelaArmas, tabelaItens } from "../classes/Tabelas/Itens";
+import { Arma } from "../classes/Construtores/Arma";
+import { Armadura } from "../classes/Construtores/Armadura";
+import { Item } from "../classes/Construtores/Item";
 
 const Ficha: React.FC = () => {
-  interface Item {
-    nome: string;
-    quantidade: number;
-    espacos: number;
-    desc: string;
-    isArma?: boolean;
-    isArmadura?: boolean;
-    isEscudo?: boolean;
-    bonusAtaque?: number;
-    Dano?: string;
-    crit?: string;
-    alcance?: string;
-    tipo?: string;
-    defesa?: number;
+  interface itemMochila{
+    nome: string,
+    quantidade: number,
+    tipo: "arma" | "armadura" | "item"
   }
-  const [itens, setItens] = useState<Item[]>([
-    {
-      nome: "Espada Longa",
-      quantidade: 1,
-      espacos: 2,
-      desc: "Uma espada longa afiada e poderosa.",
-      isArma: true,
-      bonusAtaque: 0,
-      Dano: "1d8",
-      crit: "19/x2",
-      alcance: "Pessoal",
-      tipo: "Corte",
-    },
-    {
-      nome: "Escudo",
-      quantidade: 1,
-      espacos: 1,
-      desc: "Um escudo resistente para proteção.",
-      isEscudo: true,
-      defesa: 1,
-    },
-    {
-      nome: "Armadura de Couro",
-      quantidade: 1,
-      espacos: 3,
-      desc: "Uma armadura de couro leve e flexível.",
-      isArmadura: true,
-      defesa: 2,
-    },
-    {
-      nome: "Poção de Cura",
-      quantidade: 3,
-      espacos: 1,
-      desc: "Uma poção mágica que restaura pontos de vida.",
-    },
-    {
-      nome: "Adaga",
-      quantidade: 2,
-      espacos: 1,
-      desc: "Uma adaga afiada e fácil de manusear.",
-      isArma: true,
-      bonusAtaque: 0,
-      Dano: "1d4",
-      crit: "19/x2",
-      alcance: "Curto",
-      tipo: "Perfuração",
-    },
-    {
-      nome: "Arco Longo",
-      quantidade: 1,
-      espacos: 2,
-      desc: "Um arco longo para ataques à distância.",
-      isArma: true,
-      bonusAtaque: 3,
-      Dano: "1d8",
-      crit: "20/x3",
-      alcance: "Curto",
-      tipo: "Perfuração",
-    },
-  ]);
+  const armas: itemMochila[] = [
+    {nome: "Espada curta", quantidade: 1, tipo: "arma"},
+    {nome: "Adaga", quantidade: 1, tipo: "arma"},
+  ]
+  const armaduras: itemMochila[] = [
+    {nome: "Gibão de peles", quantidade: 1, tipo: "armadura"},
+    {nome: "Escudo", quantidade: 1, tipo: "armadura"},
+  ]
+  const itens: itemMochila[] = [
+    {nome: "Algemas", quantidade: 1, tipo: "item"},
+    {nome: "Água benta", quantidade: 4, tipo: "item"},
+  ]
+  const [itensMochi, setItensMochi] = useState<itemMochila[]>([...armas, ...armaduras, ...itens]);
   const [personagem, setPersonagem] = useState<any>({
     nome: "Gladimir",
     raca: "Humano",
@@ -107,7 +55,7 @@ const Ficha: React.FC = () => {
       sabedoria: 1,
       carisma: 4,
     },
-    itens: itens,
+    mochila: [...armas, ...armaduras, ...itens],
   });
   return (
     <>
@@ -160,12 +108,12 @@ const Ficha: React.FC = () => {
                 </Tab>
               </TabList>
               <TabPanels className="bg-white">
-                <TabPanel>
+                <TabPanel className="flex flex-col gap-2">
                   <Info personagem={personagem} />
-                  <Equipamento personagem={personagem} setItens={setItens} />
+                  <Equipamento personagem={personagem} setItens={setItensMochi} />
                 </TabPanel>
                 <TabPanel>
-                  <p>two!</p>
+                  <Ataques personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
                   <p>three!</p>
@@ -176,7 +124,7 @@ const Ficha: React.FC = () => {
               </TabPanels>
             </Tabs>
           </div>
-          <article className="flex-col flex justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12"></article>
+          <article className="flex-col justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12 hidden desktop:flex"></article>
         </article>
       </body>
     </>
