@@ -120,7 +120,7 @@ const Origens: React.FC<OrigensProps> = ({ handleChange, next }) => {
   };
   return (
     <>
-      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
+      <h1 className="text-center text-3xl font-bold text-white drop-shadow-[0px_5px_rgba(7,7,7,7)] mb-14">
         Escolha sua Origem
       </h1>
       <main className="flex gap-5">

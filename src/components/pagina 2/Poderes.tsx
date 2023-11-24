@@ -18,8 +18,9 @@ import {
   useDisclosure,
   Input,
   Select,
+  Tooltip,
 } from "@chakra-ui/react";
-import { Filter } from "lucide-react";
+import { Eye, Filter } from "lucide-react";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { useState } from "react";
 import { TipoPoder } from "../../classes/Construtores/Poder";
@@ -127,7 +128,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
 
   return (
     <>
-      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
+      <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha seus Poderes
       </h1>
       <div className="flex gap-5">
@@ -154,93 +155,105 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
             <h1 className="w-1/5 text-center border-r border-gray-400 border-opacity-70">
               Tipo
             </h1>
-            <h1 className="w-1/5 text-center">Selecionar</h1>
+            <h1 className="w-1/5 text-center text-sm">Selecionar</h1>
           </div>
           <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg bg-gray-200">
             <div className="flex flex-col px-4 pt-2">
-              {array.map((poder, index) => (
-                <div
-                  key={index}
-                  className="flex border-b border-gray-300 items-center py-2 gap-2"
-                >
-                  <div className="w-3/5 flex justify-between items-center gap-1">
-                    <p className="desktop:w-2/3 w-1/2">{poder.nome}</p>
-                    <div className="desktop:w-1/3 w-1/2">
-                      <Popover>
-                        <PopoverTrigger>
-                          <button className="rounded-lg bg-red-300 text-sm py-3 px-6 transition-all hover:transform hover:scale-110 hover:bg-red-500">
-                            Ver descrição
-                          </button>
-                        </PopoverTrigger>
-                        <PopoverContent color="red.900">
-                          <PopoverArrow />
-                          <PopoverCloseButton />
-                          <PopoverHeader textAlign={"center"}>
-                            {poder.nome}
-                          </PopoverHeader>
-                          <PopoverBody className="font-serif text-justify">
-                            <p>&nbsp;&nbsp;&nbsp;{poder.descricao}</p>
-                            {poder.requisito.length > 0 && (
-                              <i className="text-sm">
-                                Pré-requisito: {poder.requisito.join(", ")}
-                              </i>
-                            )}
-                          </PopoverBody>
-                        </PopoverContent>
-                      </Popover>
+              {array.map((poder, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex border-b border-gray-300 items-center py-2 gap-2"
+                  >
+                    <div className="w-3/5 flex justify-between items-center gap-1">
+                      <div className="w-fit">
+                        <Popover>
+                          <PopoverTrigger>
+                            <IconButton
+                              icon={<Eye />}
+                              aria-label={poder.nome + "-VerMais"}
+                              rounded={"full"}
+                              colorScheme="red"
+                              className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                              _hover={{
+                                bg: "transparent",
+                                border: "2px",
+                                borderColor: "red.500",
+                                color: "red.500",
+                              }}
+                            />
+                          </PopoverTrigger>
+                          <PopoverContent color="red.900">
+                            <PopoverArrow />
+                            <PopoverCloseButton />
+                            <PopoverHeader textAlign={"center"}>
+                              {poder.nome}
+                            </PopoverHeader>
+                            <PopoverBody className="font-serif text-justify">
+                              <p>&nbsp;&nbsp;&nbsp;{poder.descricao}</p>
+                              {poder.requisito.length > 0 && (
+                                <i className="text-sm">
+                                  Pré-requisito: {poder.requisito.join(", ")}
+                                </i>
+                              )}
+                            </PopoverBody>
+                          </PopoverContent>
+                        </Popover>
+                      </div>
+                      <p className="text-center w-full">{poder.nome}</p>
                     </div>
-                  </div>
-                  <p className="w-1/5 text-center">
-                    <Badge
-                      colorScheme={renderSwitch(poder.tipo)}
-                      variant="solid"
-                      rounded={"lg"}
-                      p={1}
-                      fontSize={"md"}
-                    >
-                      {poder.tipo}
-                    </Badge>
-                  </p>
-                  <p className="w-1/5 text-center">
-                    <Checkbox
-                      isDisabled={
-                        (poderesSelecionados.length > limite &&
-                          !poder.selecionado) ||
-                        (poderesIndisponiveis.some(
-                          (poderIndisponivel) =>
-                            poder.nome === poderIndisponivel.nome
-                        ) &&
-                          !poder.selecionado)
-                      }
-                      onChange={(e) => {
-                        const isChecked = e.target.checked;
-                        let updatedPoderesSelecionados;
-
-                        if (isChecked) {
-                          updatedPoderesSelecionados = [
-                            ...poderesSelecionados,
-                            poder.nome,
-                          ];
-                        } else {
-                          updatedPoderesSelecionados =
-                            poderesSelecionados.filter(
-                              (poder1) => poder1 !== poder.nome
-                            );
+                    <p className="w-1/5 text-center">
+                      <Badge
+                        colorScheme={renderSwitch(poder.tipo)}
+                        variant="solid"
+                        rounded={"lg"}
+                        p={1}
+                        fontSize={"md"}
+                      >
+                        {poder.tipo}
+                      </Badge>
+                    </p>
+                    <p className="w-1/5 text-center">
+                      <Checkbox
+                        isDisabled={
+                          (poderesSelecionados.length > limite &&
+                            !poder.selecionado) ||
+                          (poderesIndisponiveis.some(
+                            (poderIndisponivel) =>
+                              poder.nome === poderIndisponivel.nome
+                          ) &&
+                            !poder.selecionado)
                         }
+                        onChange={(e) => {
+                          const isChecked = e.target.checked;
+                          let updatedPoderesSelecionados;
 
-                        setPoderesSelecionados(updatedPoderesSelecionados);
-                        localStorage.setItem(
-                          "poderes",
-                          JSON.stringify(updatedPoderesSelecionados)
-                        );
-                      }}
-                      defaultChecked={poder.selecionado ?? false}
-                      colorScheme="red"
-                      className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
-                    />
-                  </p>
-                </div>
-              ))}
+                          if (isChecked) {
+                            updatedPoderesSelecionados = [
+                              ...poderesSelecionados,
+                              poder.nome,
+                            ];
+                          } else {
+                            updatedPoderesSelecionados =
+                              poderesSelecionados.filter(
+                                (poder1) => poder1 !== poder.nome
+                              );
+                          }
+
+                          setPoderesSelecionados(updatedPoderesSelecionados);
+                          localStorage.setItem(
+                            "poderes",
+                            JSON.stringify(updatedPoderesSelecionados)
+                          );
+                        }}
+                        defaultChecked={poder.selecionado ?? false}
+                        colorScheme="red"
+                        className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
+                      />
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

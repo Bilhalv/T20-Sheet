@@ -171,10 +171,10 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
     setTipo(value);
     setPontos(10);
     if (value === "Rolagem") {
-      const resultado = [];
-      for (let i = 0; i < 6; i++) {
-        resultado.push(RolarDado({ qtd: 4, lados: 6, descarte: 1 }).total);
-      }
+      const resultado = Array.from(
+        { length: 6 },
+        () => RolarDado({ qtd: 4, lados: 6, descarte: 1 }).total
+      );
       const resultadoAtributos = resultado.map((valor: number) => {
         if (valor <= 9) {
           return -1;
@@ -315,7 +315,7 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
             <h1 className="text-center font-bold mb-3 text-red-900 flex flex-col">
               <p>Rolagem : {rolagem.join(" | ")}</p>
               <i className="font-serif font-normal">
-                {rolagem.reduce((x, y) => x + y)/6 > 1
+                {rolagem.reduce((x, y) => x + y) / 6 > 1
                   ? ""
                   : "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."}
               </i>

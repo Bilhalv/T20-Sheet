@@ -232,7 +232,7 @@ const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
   ];
   return (
     <>
-      <h1 className="text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
+      <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha sua Classe
       </h1>
       <div className="flex flex-col desktop:flex-row gap-4 w-full">

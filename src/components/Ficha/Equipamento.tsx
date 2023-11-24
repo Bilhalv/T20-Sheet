@@ -1,6 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { Edit, Plus, X } from "lucide-react";
 import { useState } from "react";
+import { TabelasArmasSimles, tabelaArmaduras, tabelaArmas, tabelaItens } from "../../classes/Tabelas/Itens";
 
 interface Props {
   personagem: any;
@@ -8,15 +9,14 @@ interface Props {
 }
 
 export default function Equipamento({ personagem, setItens }: Props) {
+  const todosItens = [...tabelaArmaduras, ...TabelasArmasSimles, ...tabelaArmas, ...tabelaItens];
   let toast = useToast();
   const [itemSelecionado, setItemSelecionado] = useState({
     nome: "",
     desc: "",
-    quantidade: 0,
-    espacos: 0,
   });
   const removeItem = (item: any) => {
-    let itens = personagem.itens;
+    let itens = personagem.mochila;
     let confirmar = prompt(
       `Digite o nome do item: ${item.nome} para confirmar exclusão.`
     );
@@ -62,7 +62,7 @@ export default function Equipamento({ personagem, setItens }: Props) {
                 <Edit />
               </div>
             </div>
-            {personagem.itens.map((item: any, index: number) => (
+            {personagem.mochila.map((item: any, index: number) => (
               <>
                 <div className="flex justify-between  my-2 w-full" key={index}>
                   <button
@@ -83,7 +83,14 @@ export default function Equipamento({ personagem, setItens }: Props) {
                   <button
                     className="hover:text-red-600 w-fit h-fit hover:bg-opacity-60 hover:tranform hover:scale-110 transition-all"
                     onClick={() => {
-                      setItemSelecionado(item);
+                      const x = todosItens.find((i) => i.nome === item.nome) || {
+                        nome: "",
+                        descricao: "",
+                      };
+                      setItemSelecionado({
+                        nome: x.nome,
+                        desc: x.descricao,
+                      });
                     }}
                   >
                     <Edit />
@@ -93,14 +100,13 @@ export default function Equipamento({ personagem, setItens }: Props) {
             ))}
           </section>
           <section className="font-serif h-full px-4 py-4">
-            <p className="text-left font-bold">Descrição</p>
             <div className="w-full flex gap-2">
               <div className="my-auto h-full w-full">
                 <h1 className="text-center font-bold text-xl">
-                  {itemSelecionado.nome}
+                  {itemSelecionado.nome||"Descrição"}
                 </h1>
-                <p className="text-justify w-full h-24 border rounded-lg border-black mt-4 p-2">
-                  {itemSelecionado.desc}
+                <p className="text-justify w-full min-h-[100px] border rounded-lg border-black mt-4 p-2">
+                  &nbsp;&nbsp;&nbsp;{itemSelecionado.desc}
                 </p>
               </div>
               <div className="flex justify-end pr-2 mt-auto">

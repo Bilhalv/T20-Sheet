@@ -54,7 +54,7 @@ export default function Inicio({ handleChange, next }: InicioProps) {
     <>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
         <form onSubmit={HandleClick}>
-          <div className="flex justify-between flex-col desktop:w-1/2 mx-auto mb-2">
+          <div className="flex justify-between flex-col desktop:w-1/2 mx-auto mb-2 mt-10">
             <h1 className="text-3xl text-center text-black">
               Escolha seu nome:
             </h1>
@@ -88,7 +88,7 @@ export default function Inicio({ handleChange, next }: InicioProps) {
               ))}
             </Select>
           </div>
-          <div className="desktop:w-1/2 mx-auto mt-5">
+          <div className="desktop:w-1/2 mx-auto mt-10">
             <Confirmar pagina="inicio" onSelect={() => {}} />
           </div>
         </form>
