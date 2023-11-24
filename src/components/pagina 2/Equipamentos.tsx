@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Checkbox,
+  IconButton,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -25,6 +26,7 @@ import { useState } from "react";
 import { Classe } from "../../classes/Construtores/Classe";
 import { Arma } from "../../classes/Construtores/Arma";
 import { RolarDado } from "../Geral/RolarDado";
+import { Eye } from "lucide-react";
 
 interface EquipamentosProps {
   handleChange: (pagina: string) => void;
@@ -75,7 +77,7 @@ export default function Equipamentos({
     const nivel = Number(localStorage.getItem("lvl"));
     const tabela = [300, 600, 1000, 2000];
     if (nivel === 1) {
-      return RolarDado({qtd:4, lados:6}).total;
+      return RolarDado({ qtd: 4, lados: 6 }).total;
     } else {
       return tabela[nivel - 2];
     }
@@ -111,13 +113,22 @@ export default function Equipamentos({
                 className="flex flex-col border-gray-100 border rounded-xl mb-2"
               >
                 {TabelasArmasSimles.map((arma: Arma) => (
-                  <div className="flex justify-evenly align-middle border-b-gray-300 border-b py-2">
-                    <p className="my-auto w-1/3">{arma.nome}</p>
+                  <div className="flex justify-between align-middle border-b-gray-300 border-b py-2">
                     <Popover>
                       <PopoverTrigger>
-                        <button className="rounded-lg bg-red-300 text-sm py-3 px-6 transition-all hover:transform hover:scale-110 hover:bg-red-500 w-1/3">
-                          Ver descrição
-                        </button>
+                        <IconButton
+                          icon={<Eye />}
+                          aria-label={arma.nome + "-VerMais"}
+                          rounded={"full"}
+                          colorScheme="red"
+                          className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                          _hover={{
+                            bg: "transparent",
+                            border: "2px",
+                            borderColor: "red.500",
+                            color: "red.500",
+                          }}
+                        />
                       </PopoverTrigger>
                       <PopoverContent color="red.900">
                         <PopoverArrow />
@@ -150,6 +161,7 @@ export default function Equipamentos({
                         </PopoverBody>
                       </PopoverContent>
                     </Popover>
+                    <p className="my-auto w-1/3">{arma.nome}</p>
                     <p className="w-fit my-auto flex flex-col items-center">
                       <p>Espaços</p>
                       <p>{arma.espacos}</p>

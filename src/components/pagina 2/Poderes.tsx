@@ -169,21 +169,19 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                       <div className="w-fit">
                         <Popover>
                           <PopoverTrigger>
-                            <Tooltip label="Ver mais" bgColor={"red.700"} colorScheme="red">
-                              <IconButton
-                                icon={<Eye />}
-                                aria-label={poder.nome + "-VerMais"}
-                                rounded={"full"}
-                                colorScheme="red"
-                                className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
-                                _hover={{
-                                  bg: "transparent",
-                                  border: "2px",
-                                  borderColor: "red.500",
-                                  color: "red.500",
-                                }}
-                              />
-                            </Tooltip>
+                            <IconButton
+                              icon={<Eye />}
+                              aria-label={poder.nome + "-VerMais"}
+                              rounded={"full"}
+                              colorScheme="red"
+                              className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                              _hover={{
+                                bg: "transparent",
+                                border: "2px",
+                                borderColor: "red.500",
+                                color: "red.500",
+                              }}
+                            />
                           </PopoverTrigger>
                           <PopoverContent color="red.900">
                             <PopoverArrow />
