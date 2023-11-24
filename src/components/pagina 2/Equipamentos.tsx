@@ -82,7 +82,7 @@ export default function Equipamentos({
   });
   return (
     <>
-      <h1 className="text-center text-lg font-bold mb-3">
+      <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha seus Equipamentos
       </h1>
       <Tooltip

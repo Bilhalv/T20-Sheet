@@ -139,7 +139,7 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
     <>
       <div className="flex flex-row-reverse justify-between">
         <div className="w-1/4"></div>
-        <h1 className="w-2/4 text-center text-3xl font-bold mb-4 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
+        <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
           Escolha sua divindade
         </h1>
         <div className="w-1/4">
