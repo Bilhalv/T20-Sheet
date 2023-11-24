@@ -38,6 +38,17 @@ const Ficha: React.FC = () => {
     {nome: "Algemas", quantidade: 1, tipo: "item"},
     {nome: "Água benta", quantidade: 4, tipo: "item"},
   ]
+  const todosataques = [...tabelaArmas, ...TabelasArmasSimles].map((arma:Arma) => {
+    return {
+      nome: arma.nome,
+      bonus: 0,
+      dano: arma.dano,
+      critico: arma.crit,
+      tipo: arma.tipo,
+      alcance: arma.alcance,
+    };
+  })
+  const ataques = todosataques.filter((ataque) => armas.some((arma) => arma.nome === ataque.nome));
   const [itensMochi, setItensMochi] = useState<itemMochila[]>([...armas, ...armaduras, ...itens]);
   const [personagem, setPersonagem] = useState<any>({
     nome: "Gladimir",
@@ -56,6 +67,7 @@ const Ficha: React.FC = () => {
       carisma: 4,
     },
     mochila: [...armas, ...armaduras, ...itens],
+    ataques: ataques,
   });
   return (
     <>

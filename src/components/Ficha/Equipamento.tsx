@@ -78,7 +78,7 @@ export default function Equipamento({ personagem, setItens }: Props) {
                     <h1>{item.quantidade}</h1>
                   </div>
                   <div className="w-1/3">
-                    <h1>{item.espacos}</h1>
+                    <h1>{todosItens.find((i)=> i.nome === item.nome)?.espacos||0}</h1>
                   </div>
                   <button
                     className="hover:text-red-600 w-fit h-fit hover:bg-opacity-60 hover:tranform hover:scale-110 transition-all"
