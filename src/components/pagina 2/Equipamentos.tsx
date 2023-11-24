@@ -24,6 +24,7 @@ import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { useState } from "react";
 import { Classe } from "../../classes/Construtores/Classe";
 import { Arma } from "../../classes/Construtores/Arma";
+import { RolarDado } from "../Geral/RolarDado";
 
 interface EquipamentosProps {
   handleChange: (pagina: string) => void;
@@ -74,14 +75,7 @@ export default function Equipamentos({
     const nivel = Number(localStorage.getItem("lvl"));
     const tabela = [300, 600, 1000, 2000];
     if (nivel === 1) {
-      let tibas = 0;
-      dados = [];
-      for (let i = 0; i < 4; i++) {
-        let dado = Math.floor(Math.random() * 6) + 1;
-        tibas += dado;
-        dados.push(dado);
-      }
-      return tibas;
+      return RolarDado({qtd:4, lados:6}).total;
     } else {
       return tabela[nivel - 2];
     }
@@ -91,7 +85,10 @@ export default function Equipamentos({
       <h1 className="text-center text-lg font-bold mb-3">
         Escolha seus Equipamentos
       </h1>
-      <Tooltip isDisabled={dados.length < 1} label={"4d6 = "+dados.join(" + ")}>
+      <Tooltip
+        isDisabled={dados.length < 1}
+        label={"4d6 = " + dados.join(" + ")}
+      >
         <i>T$ {tibares === undefined ? 0 : tibares}</i>
       </Tooltip>
       <div className="flex gap-5">

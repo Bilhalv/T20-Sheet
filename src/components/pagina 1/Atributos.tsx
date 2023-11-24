@@ -12,6 +12,7 @@ import useCustomToast from "../Geral/Toasted";
 import { useNavigate } from "react-router-dom";
 import Confirmar from "../Geral/Confirmar";
 import VerMais from "../Geral/VerMais";
+import { RolarDado } from "../Geral/RolarDado";
 
 interface AtributosProps {
   handleChange: (pagina: string) => void;
@@ -164,30 +165,17 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
   useEffect(() => {
     setAtributosRaca(JSON.parse(localStorage.getItem("atributos") ?? "[]"));
   }, []);
-  const [encorajamento, setEncorajamento] = useState("");
-  const definirEncorajamento = (rolagemNova: any) => {
-    let contadorzinho = 0;
-    rolagemNova.forEach((valor: number) => {
-      if (valor <= 0) {
-        contadorzinho++;
-      }
-    });
-    if (contadorzinho >= 2) {
-      setEncorajamento(
-        "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."
-      );
-    } else {
-      setEncorajamento("");
-    }
-  };
 
   const handleChangeTipo = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setTipo(value);
     setPontos(10);
     if (value === "Rolagem") {
-      const resultado = Array.from({ length: 6 }, () => dados());
-      const resultadoAtributos = resultado.map((valor) => {
+      const resultado = [];
+      for (let i = 0; i < 6; i++) {
+        resultado.push(RolarDado({ qtd: 4, lados: 6, descarte: 1 }).total);
+      }
+      const resultadoAtributos = resultado.map((valor: number) => {
         if (valor <= 9) {
           return -1;
         } else if (valor <= 11) {
@@ -203,7 +191,6 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
         }
       });
       setRolagem(resultadoAtributos);
-      definirEncorajamento(resultadoAtributos);
       showCustomToast({
         title: "Rolagem de dados",
         desc: `Dados sendo rolados...`,
@@ -286,18 +273,6 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
     }
   };
 
-  const dados = () => {
-    const rolls = Array.from(
-      { length: 4 },
-      () => Math.floor(Math.random() * 6) + 1
-    );
-    const lowestRoll = Math.min(...rolls);
-    return rolls.reduce(
-      (sum, roll) => sum + (roll === lowestRoll ? 0 : roll),
-      0
-    );
-  };
-
   const handleUp = (index: number) => {
     setRolagem((prevRolagem) => {
       const newState = [...prevRolagem];
@@ -339,7 +314,11 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
           ) : (
             <h1 className="text-center font-bold mb-3 text-red-900 flex flex-col">
               <p>Rolagem : {rolagem.join(" | ")}</p>
-              <i className="font-serif font-normal">{encorajamento}</i>
+              <i className="font-serif font-normal">
+                {rolagem.reduce((x, y) => x + y)/6 > 1
+                  ? ""
+                  : "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."}
+              </i>
             </h1>
           )}
           <h1 className="text-center text-3xl mb-2">{destaque.nome}</h1>

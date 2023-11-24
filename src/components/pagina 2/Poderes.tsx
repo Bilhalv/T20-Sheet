@@ -164,7 +164,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                   className="flex border-b border-gray-300 items-center py-2 gap-2"
                 >
                   <div className="w-3/5 flex justify-between items-center gap-1">
-                    <p className="desktop:w-2/3">{poder.nome}</p>
+                    <p className="desktop:w-2/3 w-1/2">{poder.nome}</p>
                     <div className="desktop:w-1/3 w-1/2">
                       <Popover>
                         <PopoverTrigger>
