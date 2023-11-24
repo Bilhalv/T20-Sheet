@@ -165,22 +165,6 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
   useEffect(() => {
     setAtributosRaca(JSON.parse(localStorage.getItem("atributos") ?? "[]"));
   }, []);
-  const [encorajamento, setEncorajamento] = useState("");
-  const definirEncorajamento = (rolagemNova: any) => {
-    let contadorzinho = 0;
-    rolagemNova.forEach((valor: number) => {
-      if (valor <= 0) {
-        contadorzinho++;
-      }
-    });
-    if (contadorzinho >= 2) {
-      setEncorajamento(
-        "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."
-      );
-    } else {
-      setEncorajamento("");
-    }
-  };
 
   const handleChangeTipo = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
@@ -189,9 +173,9 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
     if (value === "Rolagem") {
       const resultado = [];
       for (let i = 0; i < 6; i++) {
-        resultado.push(RolarDado({ qtd: 4, lados: 6, descarte: 1}).total);
+        resultado.push(RolarDado({ qtd: 4, lados: 6, descarte: 1 }).total);
       }
-      const resultadoAtributos = resultado.map((valor:number) => {
+      const resultadoAtributos = resultado.map((valor: number) => {
         if (valor <= 9) {
           return -1;
         } else if (valor <= 11) {
@@ -207,7 +191,6 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
         }
       });
       setRolagem(resultadoAtributos);
-      definirEncorajamento(resultadoAtributos);
       showCustomToast({
         title: "Rolagem de dados",
         desc: `Dados sendo rolados...`,
@@ -331,7 +314,11 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
           ) : (
             <h1 className="text-center font-bold mb-3 text-red-900 flex flex-col">
               <p>Rolagem : {rolagem.join(" | ")}</p>
-              <i className="font-serif font-normal">{encorajamento}</i>
+              <i className="font-serif font-normal">
+                {rolagem.reduce((x, y) => x + y)/6 > 1
+                  ? ""
+                  : "**Nós juramos que a rolagem foi justa, mas se você quiser, pode rolar novamente."}
+              </i>
             </h1>
           )}
           <h1 className="text-center text-3xl mb-2">{destaque.nome}</h1>
