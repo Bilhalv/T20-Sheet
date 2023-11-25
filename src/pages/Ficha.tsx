@@ -53,6 +53,12 @@ const Ficha: React.FC = () => {
   })
   const ataques = todosataques.filter((ataque) => armas.some((arma) => arma.nome === ataque.nome));
   const [itensMochi, setItensMochi] = useState<itemMochila[]>([...armas, ...armaduras, ...itens]);
+  const [status, setStatus] = useState<any>({
+    pv: 20,
+    pvMax: 20,
+    pm: 20,
+    pmMax: 20,
+  })
   const [personagem, setPersonagem] = useState<any>({
     nome: "Gladimir",
     raca: "Humano",
@@ -71,12 +77,7 @@ const Ficha: React.FC = () => {
     },
     mochila: [...armas, ...armaduras, ...itens],
     ataques: ataques,
-    status: {
-      pv: 20,
-      pvMax: 20,
-      pm: 20,
-      pmMax: 20
-    }
+    status: status,
   });
   return (
     <>
@@ -131,7 +132,7 @@ const Ficha: React.FC = () => {
               <TabPanels className="bg-white bg-opacity-60">
                 <TabPanel className="flex flex-col gap-4">
                   <Info personagem={personagem} />
-                  <Status personagem={personagem} />
+                  <Status personagem={personagem} setStatus={setStatus}/>
                   <Equipamento personagem={personagem} setItens={setItensMochi} />
                 </TabPanel>
                 <TabPanel className="flex flex-col gap-11">

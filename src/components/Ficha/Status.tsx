@@ -8,9 +8,15 @@ import {
 
 interface Props {
   personagem: any;
+  setStatus: any;
 }
 
-export default function Status({ personagem }: Props) {
+export default function Status({ personagem, setStatus }: Props) {
+  const handleChange = (value: number, type: string) => {
+    let status = { ...personagem.status };
+    status[type] = value;
+    setStatus(status);
+  };
   return (
     <>
       <div className="flex justify-between w-3/4 mx-auto">
@@ -29,6 +35,7 @@ export default function Status({ personagem }: Props) {
               className="w-20 mx-auto"
               size={"sm"}
               defaultValue={personagem.status.pv}
+              onChange={(e) => handleChange(Number(e), "pv")}
             >
               <NumberInputField />
               <NumberInputStepper>
@@ -54,6 +61,7 @@ export default function Status({ personagem }: Props) {
               className="w-20 mx-auto"
               size={"sm"}
               defaultValue={personagem.status.pm}
+              onChange={(e) => handleChange(Number(e), "pm")}
             >
               <NumberInputField />
               <NumberInputStepper>
@@ -64,7 +72,9 @@ export default function Status({ personagem }: Props) {
             <p className="text-center font-serif text-xs">Atuais</p>
           </div>
         </div>
-        <p className="absolute z-0 bg-red-600 w-3/5 ml-20 mt-4 rounded-2xl h-16"> </p>
+        <p className="absolute z-0 bg-red-600 w-3/5 ml-20 mt-4 rounded-2xl h-16">
+           
+        </p>
       </div>
     </>
   );
