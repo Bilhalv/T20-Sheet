@@ -20,6 +20,7 @@ import { Arma } from "../classes/Construtores/Arma";
 import { Armadura } from "../classes/Construtores/Armadura";
 import { Item } from "../classes/Construtores/Item";
 import Defesa from "../components/Ficha/Defesa";
+import Status from "../components/Ficha/Status";
 
 const Ficha: React.FC = () => {
   interface itemMochila{
@@ -70,6 +71,12 @@ const Ficha: React.FC = () => {
     },
     mochila: [...armas, ...armaduras, ...itens],
     ataques: ataques,
+    status: {
+      pv: 20,
+      pvMax: 20,
+      pm: 20,
+      pmMax: 20
+    }
   });
   return (
     <>
@@ -122,8 +129,9 @@ const Ficha: React.FC = () => {
                 </Tab>
               </TabList>
               <TabPanels className="bg-white bg-opacity-60">
-                <TabPanel className="flex flex-col gap-2">
+                <TabPanel className="flex flex-col gap-4">
                   <Info personagem={personagem} />
+                  <Status personagem={personagem} />
                   <Equipamento personagem={personagem} setItens={setItensMochi} />
                 </TabPanel>
                 <TabPanel className="flex flex-col gap-11">
@@ -139,7 +147,8 @@ const Ficha: React.FC = () => {
               </TabPanels>
             </Tabs>
           </div>
-          <article className="flex-col justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12 hidden desktop:flex"></article>
+          <article className="flex-col justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12 hidden desktop:flex">
+          </article>
         </article>
       </body>
     </>
