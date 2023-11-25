@@ -25,6 +25,7 @@ const Ficha: React.FC = () => {
     nome: string,
     quantidade: number,
     tipo: "arma" | "armadura" | "item"
+    pericia?: string[]
   }
   const armas: itemMochila[] = [
     {nome: "Espada curta", quantidade: 1, tipo: "arma"},
@@ -32,7 +33,7 @@ const Ficha: React.FC = () => {
   ]
   const armaduras: itemMochila[] = [
     {nome: "Gibão de peles", quantidade: 1, tipo: "armadura"},
-    {nome: "Escudo", quantidade: 1, tipo: "armadura"},
+    {nome: "Escudo leve", quantidade: 1, tipo: "armadura"},
   ]
   const itens: itemMochila[] = [
     {nome: "Algemas", quantidade: 1, tipo: "item"},
@@ -88,38 +89,38 @@ const Ficha: React.FC = () => {
               <TabList>
                 <Tab
                   roundedTop={"3xl"}
-                  _selected={{ color: "black", bg: "white" }}
-                  color={"white"}
                   bgColor={"red.600"}
+                  border={"none"}
+                  className="aria-selected:bg-black z-10 aria-selected:invert aria-selected:transition-none aria-selected:bg-opacity-60"
                 >
-                  <img src="./img/tabsFicha/ficha.svg" />
+                  <img className="transform hover:scale-150 transition-all scale-125" src="./img/tabsFicha/ficha.svg" />
                 </Tab>
                 <Tab
                   roundedTop={"3xl"}
-                  _selected={{ color: "black", bg: "white" }}
-                  color={"white"}
                   bgColor={"red.600"}
+                  border={"none"}
+                  className="aria-selected:bg-black z-10 aria-selected:invert aria-selected:transition-none aria-selected:bg-opacity-60"
                 >
-                  <img src="./img/tabsFicha/combate.svg" />
+                  <img className="transform hover:scale-150 transition-all scale-125" src="./img/tabsFicha/combate.svg" />
                 </Tab>
                 <Tab
                   roundedTop={"3xl"}
-                  _selected={{ color: "black", bg: "white" }}
-                  color={"white"}
                   bgColor={"red.600"}
+                  border={"none"}
+                  className="aria-selected:bg-black z-10 aria-selected:invert aria-selected:transition-none aria-selected:bg-opacity-60"
                 >
-                  Three
+                  <img className="transform hover:scale-150 transition-all scale-125" src="./img/tabsFicha/pericia.svg" />
                 </Tab>
                 <Tab
                   roundedTop={"3xl"}
-                  _selected={{ color: "black", bg: "white" }}
-                  color={"white"}
                   bgColor={"red.600"}
+                  border={"none"}
+                  className="aria-selected:bg-black z-10 aria-selected:invert aria-selected:transition-none aria-selected:bg-opacity-60"
                 >
-                  Four
+                  <img className="transform hover:scale-150 transition-all scale-125" src="./img/tabsFicha/ficha.svg" />
                 </Tab>
               </TabList>
-              <TabPanels className="bg-white">
+              <TabPanels className="bg-white bg-opacity-60">
                 <TabPanel className="flex flex-col gap-2">
                   <Info personagem={personagem} />
                   <Equipamento personagem={personagem} setItens={setItensMochi} />
