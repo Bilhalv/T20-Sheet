@@ -29,7 +29,7 @@ export default function Ataques({ personagem }: Props) {
   });
   return (
     <>
-      <div className="border border-black rounded-lg flex flex-col shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center">
+      <div className="border border-black rounded-lg flex flex-col shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
         <div className="grid desktop:grid-cols-7 grid-cols-4 mb-4">
           <h1 className=" text-red-900">Ataques</h1>
           <h1 className=" ">Bônus</h1>
@@ -41,13 +41,13 @@ export default function Ataques({ personagem }: Props) {
         </div>
         <div className="flex flex-col">
           {personagem.ataques.map((ataque: any) => (
-            <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b">
-              <p className="font-serif">{ataque.nome}</p>
-              <p className="font-serif">{ataque.bonus}</p>
-              <p className="font-serif">{ataque.dano}</p>
-              <p className="font-serif hidden desktop:block">{ataque.critico}</p>
-              <p className="font-serif hidden desktop:block">{ataque.tipo}</p>
-              <p className="font-serif hidden desktop:block">{ataque.alcance}</p>
+            <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b font-serif">
+              <p >{ataque.nome}</p>
+              <p >{ataque.bonus}</p>
+              <p >{ataque.dano}</p>
+              <p className="hidden desktop:block">{ataque.critico}</p>
+              <p className="hidden desktop:block">{ataque.tipo}</p>
+              <p className="hidden desktop:block">{ataque.alcance}</p>
               <IconButton
                 onClick={() => {
                   const novoataque = {
