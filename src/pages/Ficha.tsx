@@ -129,7 +129,7 @@ const Ficha: React.FC = () => {
                   <Ataques personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
-                  <p>three!</p>
+                  <Pericias personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
                   <p>four!</p>
