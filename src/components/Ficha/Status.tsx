@@ -19,7 +19,7 @@ export default function Status({ personagem, setStatus }: Props) {
   };
   return (
     <>
-      <div className="flex justify-between w-3/4 mx-auto">
+      <div className="flex justify-between w-3/4 mx-auto desktop:gap-6">
         <div className="flex">
           <div className="bg-white rounded-2xl border border-black flex flex-col gap-2 px-6 z-20">
             <h1 className="font-bold text-center text-lg">PV</h1>
@@ -72,7 +72,7 @@ export default function Status({ personagem, setStatus }: Props) {
             <p className="text-center font-serif text-xs">Atuais</p>
           </div>
         </div>
-        <p className="absolute z-0 bg-red-600 w-3/5 ml-20 mt-4 rounded-2xl h-16">
+        <p className="absolute z-0 bg-red-600 w-3/5 desktop:w-[320px] ml-20 mt-4 rounded-2xl h-16">
            
         </p>
       </div>

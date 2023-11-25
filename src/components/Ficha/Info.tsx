@@ -6,7 +6,7 @@ export default function Info({ personagem }: Props) {
   return (
     <>
       <div className="hidden desktop:block">
-        <section className="flex justify-between">
+        <section className="flex justify-between gap-3">
           {[
             { label: "Raça", value: personagem.raca },
             { label: "Origem", value: personagem.origem },
@@ -14,7 +14,7 @@ export default function Info({ personagem }: Props) {
             { label: "Nível", value: personagem.nivel },
             { label: "Divindade", value: personagem.divindade },
           ].map((item) => (
-            <div>
+            <div className="w-full">
               <h1 className="shadow-[5px_5px_0px_0px_rgba(155,0,0)] bg-white bg-opacity-80 rounded-md px-4 py-2 text-center text-md">
                 {item.value}
               </h1>

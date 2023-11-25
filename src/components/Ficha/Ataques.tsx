@@ -46,7 +46,7 @@ export default function Ataques({ personagem }: Props) {
               <p >{ataque.bonus}</p>
               <p >{ataque.dano}</p>
               <p className="hidden desktop:block">{ataque.critico}</p>
-              <p className="hidden desktop:block">{ataque.tipo}</p>
+              <p className="hidden desktop:block text-sm">{ataque.tipo}</p>
               <p className="hidden desktop:block">{ataque.alcance}</p>
               <IconButton
                 onClick={() => {

@@ -43,8 +43,8 @@ export default function Equipamento({ personagem, setItens }: Props) {
     <>
       <section className="w-full">
         <h1 className="text-center text-xl mb-4 text-red-900">Equipamento</h1>
-        <div className="bg-white bg-opacity-80 rounded-md px-4 py-2 text-center text-md border-black border flex flex-col w-full">
-          <section className="flex flex-col">
+        <div className="bg-white bg-opacity-80 rounded-md px-4 py-2 text-center text-md border-black border flex flex-col w-full desktop:flex-row">
+          <section className="flex flex-col w-full">
             <div className="flex justify-between my-2 w-full">
               <div className="text-transparent w-fit h-fit">
                 <X />
@@ -99,7 +99,7 @@ export default function Equipamento({ personagem, setItens }: Props) {
               </>
             ))}
           </section>
-          <section className="font-serif h-full px-4 py-4">
+          <section className="font-serif h-full px-4 py-4 w-full">
             <div className="w-full flex gap-2">
               <div className="my-auto h-full w-full">
                 <h1 className="text-center font-bold text-xl">

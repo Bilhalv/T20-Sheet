@@ -17,7 +17,7 @@ export default function Pericias({ personagem }: Props) {
         </h1>
         <div className="grid grid-cols-3 border-b border-b-red-500">
           <h1 className="text-red-900 drop-shadow-2xl text-xl text-left">Nome</h1>
-          <h1 className="text-red-500 drop-shadow-2xl text-xl text-left w-2/3 mx-auto">Atributo</h1>
+          <h1 className="text-red-500 drop-shadow-2xl text-xl text-left w-2/3 desktop:w-full mx-auto">Atributo</h1>
           <h1 className="text-red-900 drop-shadow-2xl text-xl text-right">Total</h1>
         </div>
         <div>
@@ -32,7 +32,7 @@ export default function Pericias({ personagem }: Props) {
                     {pericia.nome}
                   </h1>
                 </Tooltip>
-                <h1 className="text-red-500 drop-shadow-2xl text-md text-left w-2/3 mx-auto">
+                <h1 className="text-red-500 drop-shadow-2xl text-md text-left w-2/3 desktop:w-full mx-auto">
                   {pericia.atributo}
                 </h1>
                 <Tooltip
