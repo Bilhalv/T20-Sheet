@@ -19,6 +19,7 @@ import { TabelasArmasSimles, tabelaArmaduras, tabelaArmas, tabelaItens } from ".
 import { Arma } from "../classes/Construtores/Arma";
 import { Armadura } from "../classes/Construtores/Armadura";
 import { Item } from "../classes/Construtores/Item";
+import Defesa from "../components/Ficha/Defesa";
 
 const Ficha: React.FC = () => {
   interface itemMochila{
@@ -125,8 +126,9 @@ const Ficha: React.FC = () => {
                   <Info personagem={personagem} />
                   <Equipamento personagem={personagem} setItens={setItensMochi} />
                 </TabPanel>
-                <TabPanel>
+                <TabPanel className="flex flex-col gap-11">
                   <Ataques personagem={personagem} />
+                  <Defesa personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
                   <Pericias personagem={personagem} />
