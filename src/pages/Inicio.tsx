@@ -7,7 +7,7 @@ const Inicio: React.FC = () => {
   return (
     <>
       <Navbar back={"/"} />
-      <body className="bg-bgT20 bg-fixed bg-bottom min-h-screen w-full font-tormenta py-10">
+      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10">
         <article className="bg-gray-50 bg-opacity-30 w-3/4 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <article className="flex-col flex justify-center mx-auto rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 w-5/6 px-5 desktop:px-12">
             <h1 className="text-red-800 text-xl desktop:text-4xl text-center drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
