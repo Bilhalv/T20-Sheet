@@ -94,8 +94,8 @@ const Ficha: React.FC = () => {
   });
   return (
     <>
-      <body className="bg-bgT20 bg-cover bg-bottom min-h-screen w-full font-tormenta">
-        <Navbar back={"/"} />
+      <Navbar back={"/"} />
+      <body className="bg-bgT20 bg-fixed bg-bottom min-h-screen w-full font-tormenta py-10">
         <article className="bg-gray-50 bg-opacity-30 w-3/4 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <h1 className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             {personagem.nome}
@@ -188,10 +188,14 @@ const Ficha: React.FC = () => {
                     </div>
                     <div className="flex">
                       <Status personagem={personagem} setStatus={setStatus} />
-                      <div className="w-1/3">{/* pontos de xp e deslocamento */}</div>
+                      <div className="w-1/3">
+                        {/* pontos de xp e deslocamento */}
+                      </div>
                     </div>
                   </div>
-                  <div className="w-1/3">{/* proficiencias e outras categorias */}</div>
+                  <div className="w-1/3">
+                    {/* proficiencias e outras categorias */}
+                  </div>
                 </div>
                 <div className="flex gap-6">
                   <Ataques personagem={personagem} />
