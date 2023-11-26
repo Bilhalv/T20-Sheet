@@ -190,7 +190,7 @@ export default function Equipamentos({
                 ))}
               </AccordionPanel>
             </AccordionItem>
-            <AccordionItem isDisabled={marciais}>
+            <AccordionItem className={marciais ? "hidden" : "block"}>
               <AccordionButton className="flex justify-between">
                 <h2 className="text-lg font-bold">Arma Marcial</h2>
                 <AccordionIcon />
@@ -278,10 +278,12 @@ export default function Equipamentos({
               </AccordionPanel>
             </AccordionItem>
             <AccordionItem
-              isDisabled={
+              className={
                 classe && classe.length > 0
                   ? classe[0].nome === "Arcanista"
-                  : false
+                    ? "hidden"
+                    : "block"
+                  : "block"
               }
             >
               <AccordionButton className="flex justify-between">
