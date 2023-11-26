@@ -1,3 +1,5 @@
+A proposta do projeto consiste na criação de um site interativo dedicado à elaboração manual de fichas de personagem para o RPG(Role-playing game) brasileiro Tormenta 20. Este desafio envolve a aplicação prática e integrada das disciplinas de Banco de Dados I, Programação Web, Engenharia de Software, Programação Orientada a Objetos e Desenvolvimento Web para Dispositivos Móveis. A intenção é desenvolver uma plataforma que ofereça uma experiência intuitiva e eficiente na construção personalizada de fichas de personagens, combinando conhecimentos técnicos avançados para atender às necessidades específicas desse universo da Tormenta 20.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
