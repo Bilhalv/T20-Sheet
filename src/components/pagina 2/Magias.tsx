@@ -58,12 +58,22 @@ export default function Magias({ handleChange, next }: MagiasProps) {
           filtros.tipo === enumTipo.universal) &&
         filtros.tipo !== magia.tipo
       ) {
-        return false;
+        if (enumTipo.universal !== magia.tipo) {
+          return false;
+        }
       }
-      const niveis = [1, 5, 9, 13, 17]
+      const niveis = [1, 5, 9, 13, 17];
 
-      console.log(magia.nome, "nivelmin", niveis[magia.circulo-1], "nivel", magia.circulo, "nivelchar", Number(nivel));
-      if (Number(nivel)+1 <= niveis[magia.circulo-1]) {
+      console.log(
+        magia.nome,
+        "nivelmin",
+        niveis[magia.circulo - 1],
+        "nivel",
+        magia.circulo,
+        "nivelchar",
+        Number(nivel)
+      );
+      if (Number(nivel) + 1 <= niveis[magia.circulo - 1]) {
         return false;
       }
 
@@ -94,7 +104,7 @@ export default function Magias({ handleChange, next }: MagiasProps) {
         Escolha suas Magias
       </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
-        <MagiasCards magias={array}/>
+        <MagiasCards magias={array} />
       </section>
     </>
   );
