@@ -24,6 +24,7 @@ export enum RequisitoPoder {
   tipo_arcanista = "tipo_arcanista",
   magia = "magia",
   devoto = "devoto",
+  circulo = "circulo",
 }
 
 export class Poder extends infos{

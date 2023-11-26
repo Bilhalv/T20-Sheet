@@ -438,6 +438,62 @@ export const TabelaPoderes: Poder[] = [
         requisitos_descricao: ["Sabedoria 1"]
     },
     {
+        nome: "Celebrar Ritual",
+        descricao: "Você pode lançar magias como rituais. Isso dobra seu limite de PM, mas muda a execução para 1 hora (ou o dobro, o que for maior) e exige um gasto de T$ 10 por PM gasto (em incensos, oferendas...). Assim, um arcanista de 8o nível pode lançar uma magia de 16 PM gastando T$ 160.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.pericia, RequisitoPoder.nivel, RequisitoPoder.magia],
+        requisitos_descricao: ["Treinado em Misticismo ou Religião", "Nível 8", "Lançar magias"]
+    },
+    {
+        nome: "Escrever Pergaminho",
+        descricao: "Você pode usar a perícia Ofício (escriba) para fabricar pergaminhos com magias que conheça. Veja a página 121 para a regra de fabricar itens e as páginas 333 e 341 para as regras de pergaminhos. De acordo com o mestre, você pode usar objetos similares, como runas, tabuletas de argila etc.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.pericia, RequisitoPoder.magia],
+        requisitos_descricao: ["Treinado em Ofício (escriba)", "Lançar magias"]
+    },
+    {
+        nome: "Foco em Magia",
+        descricao: "Escolha uma magia que possa lançar. Seu custo diminui em –1 PM (cumulativo com outras reduções de custo). Você pode escolher este poder outras vezes para magias diferentes.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.magia],
+        requisitos_descricao: ["Lançar magias"]
+    },
+    {
+        nome: "Magia Acelerada",
+        descricao: "Muda a execução da magia para ação livre. Você só pode aplicar este aprimoramento em magias com execução de movimento, padrão ou completa e só pode lançar uma magia como ação livre por rodada. Custo: +4 PM.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.circulo, RequisitoPoder.magia],
+        requisitos_descricao: ["Lançar magias de 2º círculo", "Lançar magias"]
+    },
+    {
+        nome: "Magia Ampliada",
+        descricao: "Aumenta o alcance da magia em um passo (de curto para médio, de médio para longo) ou dobra a área de efeito da magia. Por exemplo, uma Bola de Fogo ampliada tem seu alcance aumentado para longo ou sua área aumentada para 12m de raio. Custo: +2 PM.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.magia],
+        requisitos_descricao: ["Lançar magias"]
+    },
+    {
+        nome: "Magia Discreta",
+        descricao: "Você lança a magia sem gesticular e falar, usando apenas concentração. Isso permite lançar magias com as mãos presas, amordaçado etc. Também permite lançar magias arcanas usando armadura sem teste de Misticismo. Outros personagens só percebem que você lançou uma magia se passarem num teste de Misticismo (CD 20). Custo: +2 PM.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.magia],
+        requisitos_descricao: ["Lançar magias"]
+    },
+    {
+        nome: "Magia Ilimitada",
+        descricao: "Você soma seu atributo-chave no limite de PM que pode gastar numa magia. Por exemplo, um arcanista de 5º nível com Int 4 e este poder pode gastar até 9 PM em cada magia.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.magia],
+        requisitos_descricao: ["Lançar magias"]
+    },
+    {
+        nome: "Preparar Poção",
+        descricao: "Você pode usar a perícia Ofício (alquimista) para fabricar poções com magias que conheça de 1º e 2º círculos. Veja a página 121 para a regra de fabricar itens e as páginas 333 e 341 para as regras de poções.",
+        tipo: TipoPoder.magia,
+        requisitos: [RequisitoPoder.pericia, RequisitoPoder.magia],
+        requisitos_descricao: ["Treinado em Ofício (alquimista)", "Lançar magias"]
+    },
+    {
         nome: "Anatomia Insana",
         descricao: "Você tem 25% de chance (resultado '1' em 1d4) de ignorar o dano adicional de um acerto crítico ou ataque furtivo. A chance aumenta em +25% para cada dois outros poderes da Tormenta que você possui.",
         tipo: TipoPoder.tormenta,
