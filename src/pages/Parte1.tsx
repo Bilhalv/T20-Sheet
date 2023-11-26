@@ -34,7 +34,7 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar back={"/"} />
-      <body className="bg-bgT20 bg-fixed bg-bottom min-h-screen w-full font-tormenta py-10">
+      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10">
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-col mb-[-80px] items-end ">
             <InfoModal pagina={pagina} />
