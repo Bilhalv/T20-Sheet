@@ -400,7 +400,7 @@ export const TabelaRacas: Raca[] = [
       "Os aggelus, conhecidos como suraggel quando combinam traços angelicais e demoníacos, são descendentes de seres extraplanares divinos. Representam as forças opostas da luz e das trevas, refletindo a ligação com a luz e a bondade quando orientados para seu lado celestial. Sua natureza geralmente reflete a ascendência divina, mas podem surpreender ao assumir papéis inesperados, como aggelus ladinos ou paladinos.",
     atributos: ["Sabedoria +2", "Carisma +1"],
     escolhaAtributo: false,
-    imagem: "./img/templates/Race.png",
+    imagem: "./img/racas/aggelus.png",
     poderes: [
       {
         nome: "Herança Divina.",
