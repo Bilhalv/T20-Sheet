@@ -8,6 +8,7 @@ import { TabelaMagias } from "../../classes/Tabelas/Magias";
 import MagiasCards from "../Geral/Magias";
 export interface ArrayMagias {
   nome: string;
+  execucao: string;
   descricao: string;
   circulo: number;
   alcance: string;
@@ -83,6 +84,7 @@ export default function Magias({ handleChange, next }: MagiasProps) {
       const selected = magiasSelecionadas.includes(magia.nome);
       return {
         nome: magia.nome,
+        execucao: magia.execucao,
         descricao: magia.descricao,
         circulo: magia.circulo,
         alcance: magia.alcance,
@@ -104,7 +106,7 @@ export default function Magias({ handleChange, next }: MagiasProps) {
         Escolha suas Magias
       </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
-        <MagiasCards magias={array} />
+        <MagiasCards magias={array} handleChange={handleChange} next={next}/>
       </section>
     </>
   );

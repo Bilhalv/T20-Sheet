@@ -633,6 +633,10 @@ html {
   margin: 0.5rem;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .mx-7 {
   margin-left: 1.75rem;
   margin-right: 1.75rem;
@@ -724,6 +728,10 @@ html {
   margin-right: 2rem;
 }
 
+.mr-auto {
+  margin-right: auto;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -758,6 +766,10 @@ html {
 
 .mt-auto {
   margin-top: auto;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .block {
@@ -922,6 +934,10 @@ html {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid-cols-3 {
@@ -1265,12 +1281,24 @@ html {
   --tw-bg-opacity: 0.9;
 }
 
+.bg-arcana {
+  background-image: url('/public/img/magias/classificacao/arcana.png');
+}
+
 .bg-bgT20 {
   background-image: url('/public/img/bgT20.jpg');
 }
 
 .bg-d20 {
   background-image: url('/public/img/d20.png');
+}
+
+.bg-divina {
+  background-image: url('/public/img/magias/classificacao/divina.png');
+}
+
+.bg-universal {
+  background-image: url('/public/img/magias/classificacao/universal.png');
 }
 
 .bg-cover {
@@ -1413,6 +1441,11 @@ html {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .text-lg {

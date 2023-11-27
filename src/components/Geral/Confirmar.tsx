@@ -1,6 +1,6 @@
 interface Props {
   onSelect: any;
-  pagina: string;
+  pagina?: string;
 }
 
 export default function Confirmar({ onSelect, pagina }: Props) {

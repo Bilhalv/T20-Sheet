@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 76.00 76.00">
-<path stroke="#d89598" stroke-width="2.00" fill="none" stroke-linecap="butt" vector-effect="non-scaling-stroke" d="
+<path stroke="#FFFFFF" stroke-width="2.00" fill="none" stroke-linecap="butt" vector-effect="non-scaling-stroke" d="
   M 38.13 24.40
   L 44.22 36.61
   Q 44.77 37.73 44.53 36.50
   Q 43.61 31.78 41.61 28.27"
 />
-<path fill="#b32e35" d="
+<path fill="#FFFFFF" d="
   M 38.13 24.40
   L 44.22 36.61
   Q 44.77 37.73 44.53 36.50
@@ -25,7 +25,7 @@
   Q 37.68 22.99 38.13 24.40
   Z"
 />
-<path fill="#fdfdfb" fill-opacity="0.996" d="
+<path fill="#FFFFFF" fill-opacity="0.996" d="
   M 38.13 24.40
   L 41.61 28.27
   Q 43.61 31.78 44.53 36.50
