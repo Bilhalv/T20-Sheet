@@ -39,20 +39,20 @@ const App: React.FC = () => {
             <InfoModal pagina={pagina} />
             <FichaModal pagina={2} handleChange={handleChange} />
           </div>
-          {pagina === "Divindades" && (
-            <Divindades handleChange={handleChange} next="Poderes" />
+          {pagina === paginas[0] && (
+            <Divindades handleChange={handleChange} next={paginas[1]} />
           )}
-          {pagina === "Poderes" && (
-            <Poderes handleChange={handleChange} next="Magias" />
+          {pagina === paginas[1] && (
+            <Poderes handleChange={handleChange} next={paginas[2]} />
           )}
-          {pagina === "Magias" && (
-            <Magias handleChange={handleChange} next="Equipamentos" />
+          {pagina === paginas[2] && (
+            <Equipamentos handleChange={handleChange} next={paginas[3]} />
           )}
-          {pagina === "Equipamentos" && (
-            <Equipamentos handleChange={handleChange} next="Alt" />
+          {pagina === paginas[3] && (
+            <Magias handleChange={handleChange} next={paginas[4]} />
           )}
-          {pagina === "Alt" && (
-            <Alt handleChange={handleChange} next="Confirmar" />
+          {pagina === paginas[4] && (
+            <Alt handleChange={handleChange} next={paginas[5]} />
           )}
 
           <Stepper

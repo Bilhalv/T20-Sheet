@@ -19,6 +19,7 @@ import {
   TabelasArmasSimles,
   tabelaArmaduras,
   tabelaArmas,
+  tabelaItens,
 } from "../../classes/Tabelas/Itens";
 import { Armadura } from "../../classes/Construtores/Armadura";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
@@ -27,6 +28,8 @@ import { Classe } from "../../classes/Construtores/Classe";
 import { Arma } from "../../classes/Construtores/Arma";
 import { RolarDado } from "../Geral/RolarDado";
 import { Eye } from "lucide-react";
+import Confirmar from "../Geral/Confirmar";
+import useCustomToast from "../Geral/Toasted";
 
 interface EquipamentosProps {
   handleChange: (pagina: string) => void;
@@ -65,14 +68,24 @@ export default function Equipamentos({
       classe[0].proficiencias.includes("escudos") ||
       classe[0].proficiencias.includes("Escudos")
     ) {
-      padrao.push("Escudo Leve");
+      padrao.push("Escudo leve");
     }
   }
   let dados: number[] = [];
   const [armasSimples, setArmasSimples] = useState<string[]>([]);
   const [armasMarciais, setArmasMarciais] = useState<string[]>([]);
   const [armaduras, setArmaduras] = useState<string[]>([]);
-  const [Itens, setItens] = useState(padrao);
+  const [Itens, setItens] = useState(
+    padrao.map((item) => {
+      let itemTabela;
+      if (item !== "Escudo leve") {
+        itemTabela = tabelaItens.filter((x) => x.nome === item);
+      } else {
+        itemTabela = tabelaArmaduras.filter((x) => x.nome === item);
+      }
+      return itemTabela[0]; // filter retorna um array, então pegamos o primeiro elemento
+    })
+  );
   const [tibares, setTibares] = useState<number>(() => {
     const nivel = Number(localStorage.getItem("lvl"));
     const tabela = [300, 600, 1000, 2000];
@@ -82,6 +95,46 @@ export default function Equipamentos({
       return tabela[nivel - 2];
     }
   });
+  const { showCustomToast } = useCustomToast();
+  
+  const handleSelect = () => {
+    if (armasSimples.length < 1) {
+      showCustomToast({
+        title: "Erro",
+        desc: "Você precisa escolher uma arma simples",
+        status: "error",
+      });
+      return;
+    } else if (armasMarciais.length < 1 && marciais) {
+      showCustomToast({
+        title: "Erro",
+        desc: "Você precisa escolher uma arma marcial",
+        status: "error",
+      });
+      return;
+    } else if (armaduras.length < 1 && classe && classe[0].nome !== "Arcanista") {
+      showCustomToast({
+        title: "Erro",
+        desc: "Você precisa escolher uma armadura",
+        status: "error",
+      });
+      return;
+    } else{
+      const equipamentos = {
+        armasSimples,
+        armasMarciais,
+        armaduras,
+        Itens,
+      };
+      localStorage.setItem("equipamentos", JSON.stringify(equipamentos));
+      handleChange(next);
+      showCustomToast({
+        title: "Sucesso",
+        desc: "Equipamentos salvos com sucesso",
+        status: "success",
+      });
+    }
+  }
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
@@ -96,13 +149,73 @@ export default function Equipamentos({
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
           <Accordion allowToggle>
-            <div className="flex justify-evenly">
-              {padrao.map((item: string) => (
-                <Checkbox isChecked isDisabled>
-                  {item}
-                </Checkbox>
-              ))}
-            </div>
+            <AccordionItem>
+              <AccordionButton className="flex justify-between">
+                <h2 className="text-lg font-bold">Equipamento Inicial</h2>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel
+                pb={4}
+                className="flex flex-col border-gray-100 bg-gray-100 border rounded-xl mb-2"
+              >
+                {Itens.map((item) => (
+                  <>
+                    <div className="flex justify-between border-b py-2">
+                      <Popover>
+                        <PopoverTrigger>
+                          <IconButton
+                            icon={<Eye />}
+                            aria-label={item.nome + "-VerMais"}
+                            rounded={"full"}
+                            colorScheme="red"
+                            className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                            _hover={{
+                              bg: "transparent",
+                              border: "2px",
+                              borderColor: "red.500",
+                              color: "red.500",
+                            }}
+                          />
+                        </PopoverTrigger>
+                        <PopoverContent color="red.900">
+                          <PopoverArrow />
+                          <PopoverCloseButton />
+                          <PopoverHeader className="text-center">
+                            {item.nome}
+                          </PopoverHeader>
+                          <PopoverBody className="font-serif flex flex-col">
+                            <p className="text-justify">
+                              &nbsp;&nbsp;&nbsp;{item.descricao}
+                            </p>
+                            <div className="flex flex-col">
+                              <p>
+                                <b>Preço: </b>
+                                {item.preco}
+                              </p>
+                              <p>
+                                <b>Espacos: </b>
+                                {item.espacos}
+                              </p>
+                            </div>
+                          </PopoverBody>
+                        </PopoverContent>
+                      </Popover>
+                      <p className="my-auto w-1/3">{item.nome}</p>
+                      <p className="w-fit my-auto flex flex-col items-center">
+                        <p>Espaços</p>
+                        <p>{item.espacos}</p>
+                      </p>
+                      <Checkbox
+                        isDisabled
+                        isChecked
+                        colorScheme="red"
+                        className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
+                      />
+                    </div>
+                  </>
+                ))}
+              </AccordionPanel>
+            </AccordionItem>
             <AccordionItem>
               <AccordionButton className="flex justify-between">
                 <h2 className="text-lg font-bold">Arma Simples</h2>
@@ -110,7 +223,7 @@ export default function Equipamentos({
               </AccordionButton>
               <AccordionPanel
                 pb={4}
-                className="flex flex-col border-gray-100 border rounded-xl mb-2"
+                className="flex flex-col border-gray-100 bg-gray-100 border rounded-xl mb-2"
               >
                 {TabelasArmasSimles.map((arma: Arma) => (
                   <div className="flex justify-between align-middle border-b-gray-300 border-b py-2">
@@ -197,7 +310,7 @@ export default function Equipamentos({
               </AccordionButton>
               <AccordionPanel
                 pb={4}
-                className="flex flex-col border-gray-100 border rounded-xl mb-2"
+                className="flex flex-col border-gray-100 bg-gray-100 border rounded-xl mb-2"
               >
                 {tabelaArmas.map((arma: Arma) => (
                   <div className="flex justify-between align-middle border-b-gray-300 border-b py-2">
@@ -292,7 +405,7 @@ export default function Equipamentos({
               </AccordionButton>
               <AccordionPanel
                 pb={4}
-                className="flex flex-col border-gray-100 border rounded-xl mb-2"
+                className="flex flex-col border-gray-100 bg-gray-100 border rounded-xl mb-2"
               >
                 {armadurasFiltradas.map((armadura: Armadura) => (
                   <div className="flex justify-between align-middle border-b-gray-300 border-b py-2">
@@ -376,6 +489,7 @@ export default function Equipamentos({
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
+          <Confirmar onSelect={handleSelect}/>
         </section>
       </div>
     </>
