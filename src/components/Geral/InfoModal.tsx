@@ -190,6 +190,7 @@ export default function InfoModal({ pagina }: Props) {
                       menos que especificado o contrário, você não pode escolher
                       um mesmo poder mais de uma vez. Você sempre pode
                       substituir um poder de classe por um poder geral.
+                      Você poderá escolher seus poderes mais tarde na criação do personagem.
                     </p>
                   </div>
                 </div>
