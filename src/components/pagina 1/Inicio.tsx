@@ -1,7 +1,8 @@
-import { Input, Select } from "@chakra-ui/react";
+import { Button, Input, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
+import { faker } from '@faker-js/faker';
 interface InicioProps {
   handleChange: (pagina: string) => void;
   next: string;
@@ -50,6 +51,12 @@ export default function Inicio({ handleChange, next }: InicioProps) {
     handleChange(next);
   }
 
+
+  function HandleRandomName() {
+    const nomeRandom = faker.person.firstName();
+    setNome(nomeRandom)
+  }
+
   return (
     <>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
@@ -66,6 +73,8 @@ export default function Inicio({ handleChange, next }: InicioProps) {
               type="text"
               defaultValue={localStorage.getItem("nome") ?? ""}
             />
+            <Button colorScheme="red" variant="ghost" size="xs" _hover={{ bgColor: "red.400" }}
+      textColor={"black"} className="hover:cursor-pointer duration-300 w-fit select-none mt-1" onClick={HandleRandomName}>Gerar nome aleatorio</Button>
           </div>
           <div className="flex desktop:mt-2 justify-between flex-col desktop:w-1/2 mx-auto">
             <h1 className="text-3xl text-center text-black">
