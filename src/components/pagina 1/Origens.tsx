@@ -37,6 +37,7 @@ const Origens: React.FC<OrigensProps> = ({ handleChange, next }) => {
 
   const handleSelect = () => {
       localStorage.setItem("pagina", next);
+      localStorage.setItem("origem", origem.nome);
       showCustomToast({
         title: "Origem escolhida com sucesso!",
         desc: `Você escolheu a origem ${origem.nome}`,
