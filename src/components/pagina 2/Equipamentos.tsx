@@ -71,7 +71,12 @@ export default function Equipamentos({
       padrao.push("Escudo leve");
     }
   }
-  let dados: number[] = [];
+  const [dados, setDados] = useState<number[]>([
+    RolarDado({ qtd: 1, lados: 6 }).total,
+    RolarDado({ qtd: 1, lados: 6 }).total,
+    RolarDado({ qtd: 1, lados: 6 }).total,
+    RolarDado({ qtd: 1, lados: 6 }).total,
+  ]);
   const [armasSimples, setArmasSimples] = useState<string[]>([]);
   const [armasMarciais, setArmasMarciais] = useState<string[]>([]);
   const [armaduras, setArmaduras] = useState<string[]>([]);
@@ -83,14 +88,14 @@ export default function Equipamentos({
       } else {
         itemTabela = tabelaArmaduras.filter((x) => x.nome === item);
       }
-      return itemTabela[0]; // filter retorna um array, então pegamos o primeiro elemento
+      return itemTabela[0];
     })
   );
   const [tibares, setTibares] = useState<number>(() => {
     const nivel = Number(localStorage.getItem("lvl"));
     const tabela = [300, 600, 1000, 2000];
     if (nivel === 1) {
-      return RolarDado({ qtd: 4, lados: 6 }).total;
+      return dados.reduce((a, b) => a + b, 0);
     } else {
       return tabela[nivel - 2];
     }
@@ -144,12 +149,6 @@ export default function Equipamentos({
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha seus Equipamentos
       </h1>
-      <Tooltip
-        isDisabled={dados.length < 1}
-        label={"4d6 = " + dados.join(" + ")}
-      >
-        <i>T$ {tibares === undefined ? 0 : tibares}</i>
-      </Tooltip>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
           <Accordion allowToggle>
@@ -162,6 +161,64 @@ export default function Equipamentos({
                 pb={4}
                 className="flex flex-col border-gray-100 bg-gray-100 border rounded-xl mb-2"
               >
+                <div className="flex justify-between border-b py-2">
+                  <Popover>
+                    <PopoverTrigger>
+                      <IconButton
+                        icon={<Eye />}
+                        aria-label={"Tibares-VerMais"}
+                        rounded={"full"}
+                        colorScheme="red"
+                        className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                        _hover={{
+                          bg: "transparent",
+                          border: "2px",
+                          borderColor: "red.500",
+                          color: "red.500",
+                        }}
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent color="red.900">
+                      <PopoverArrow />
+                      <PopoverCloseButton />
+                      <PopoverHeader className="text-center">
+                        Tibares
+                      </PopoverHeader>
+                      <PopoverBody className="font-serif flex flex-col">
+                        <p className="text-justify">
+                          &nbsp;&nbsp;&nbsp;O Tibar (T$) é a moeda principal do
+                          Reinado, uma peça de prata com o rosto de Tibar, Deus
+                          do Comércio. Criada por Quindogar Tolliannor,
+                          tornou-se popular a ponto de ele ser conhecido como
+                          Deus Menor do Comércio. Acredita-se que traz boa
+                          fortuna. Além do Tibar de prata, há variações como o
+                          Tibar de cobre (TC) e Tibar de Ouro (TO), valendo um
+                          décimo e dez vezes o T$, respectivamente. Em alguns
+                          reinos, a escassez de prata leva ao uso do Tibar de
+                          cobre, e flutuações de valor causam agitação entre
+                          guildas e contrabandistas. Os preços são exibidos em
+                          T$.
+                        </p>
+                        {Number(localStorage.getItem("lvl")) === 1 ? (
+                          <p>
+                            Seus dados foram: {"4d6 = " + dados.join(" + ")}
+                          </p>
+                        ) : null}
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Popover>
+                  <p className="my-auto w-1/3">Tibares: T$ {tibares}</p>
+                  <p className="w-fit my-auto flex flex-col items-center">
+                    <p>Espaços</p>
+                    <p>0</p>
+                  </p>
+                  <Checkbox
+                    isDisabled
+                    isChecked
+                    colorScheme="red"
+                    className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
+                  />
+                </div>
                 {Itens.map((item) => (
                   <>
                     <div className="flex justify-between border-b py-2">
