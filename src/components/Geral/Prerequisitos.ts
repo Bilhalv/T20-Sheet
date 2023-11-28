@@ -29,14 +29,9 @@ export function PreRequisitos(totalPoderes: Poder[]) {
       if (poder.requisitos.includes(RequisitoPoder.pericia)) {
         const desc = requisito.split("reinado em ")[1];
         const pericias = JSON.parse(localStorage.getItem("pericias") || "[]");
-        if (localStorage.getItem("beneficios") !== null) {
-          const periciasorigem = JSON.parse(
-            localStorage.getItem("beneficios") || "[]"
-          ).filter((beneficio: any) => beneficio.tipo === "Perícias");
-          pericias.push(...periciasorigem[0].beneficio);
+        if (!pericias.some((pericia: any) => pericia.nome === desc)) {
+          return true;
         }
-        console.log(pericias);
-        return pericias.includes(desc);
       }
 
       //filtro de poder
@@ -60,10 +55,31 @@ export function PreRequisitos(totalPoderes: Poder[]) {
 
       //filtro de magia
       if (poder.requisitos.includes(RequisitoPoder.magia)) {
-        const magias = JSON.parse(localStorage.getItem("magias") || "[]");
         const desc = poder.requisitos_descricao;
-        if (desc.some((requisito) => !magias.includes(requisito))) {
+        const classe = localStorage.getItem("classe");
+        if (
+          desc.some((requisito) => requisito.includes("magias")) &&
+          classe !== "Arcanista" &&
+          classe !== "Clérigo" &&
+          classe !== "Bardo" &&
+          classe !== "Druida"
+        ) {
           return true;
+        } else if (poder.requisitos.includes(RequisitoPoder.circulo)) {
+          let pertence = false;
+          const niveis = [1, 5, 9, 13, 17];
+          const nivel = Number(localStorage.getItem("lvl"));
+          desc.forEach((requisito) => {
+            if (requisito.includes("círculo")) {
+              const circulo = Number(
+                requisito.split("Lançar magias de ")[0].split("º ")[0]
+              );
+              if (nivel >= niveis[circulo + 1]) {
+                pertence = true;
+              }
+            }
+          });
+          return !pertence;
         }
       }
 

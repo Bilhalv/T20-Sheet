@@ -18,7 +18,6 @@ import {
   useDisclosure,
   Input,
   Select,
-  Tooltip,
 } from "@chakra-ui/react";
 import { Eye, Filter } from "lucide-react";
 import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
@@ -140,6 +139,26 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
       });
       return;
     } else {
+      let temIndisponivel = false;
+      poderesSelecionados.forEach((poder) => {
+        if (
+          poderesIndisponiveis.some(
+            (poderIndisponivel) => poderIndisponivel.nome === poder
+          )
+        ) {
+          showCustomToast({
+            title: "Poderes",
+            desc: `Você não pode escolher o poder ${poder} pois não possui os pré-requisitos.`,
+            status: "error",
+          });
+          setPoderesSelecionados(
+            poderesSelecionados.filter((poder1) => poder1 !== poder)
+          );
+          temIndisponivel = true;
+          return;
+        }
+      });
+      if (temIndisponivel) return;
       localStorage.setItem("poderes", JSON.stringify(poderesSelecionados));
       handleChange(next);
       showCustomToast({
@@ -238,6 +257,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                     </p>
                     <p className="w-1/5 text-center">
                       <Checkbox
+                        checked={poder.selecionado}
                         isDisabled={
                           (poderesSelecionados.length >= limite &&
                             !poderesSelecionados.includes(poder.nome)) ||
