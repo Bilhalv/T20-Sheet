@@ -28,6 +28,8 @@ import { ConfirmarOnModal, FecharOnModal } from "../Geral/Botoes";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { PreRequisitos } from "../Geral/Prerequisitos";
 import { useEffect } from "react";
+import useCustomToast from "../Geral/Toasted";
+import Confirmar from "../Geral/Confirmar";
 
 interface PoderesProps {
   handleChange: (pagina: string) => void;
@@ -126,6 +128,27 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
   }, [setPoderesSelecionados]);
   const poderesIndisponiveis = PreRequisitos(totalPoderes);
 
+  const { showCustomToast } = useCustomToast();
+  const handleSelect = () => {
+    if (poderesSelecionados.length < limite) {
+      showCustomToast({
+        title: "Poderes",
+        desc: `Você deve escolher mais ${
+          limite - poderesSelecionados.length
+        } poderes.`,
+        status: "error",
+      });
+      return;
+    } else {
+      localStorage.setItem("poderes", JSON.stringify(poderesSelecionados));
+      handleChange(next);
+      showCustomToast({
+        title: "Poderes",
+        desc: "Poderes escolhidos com sucesso.",
+        status: "success",
+      });
+    }
+  };
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
@@ -256,6 +279,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
               })}
             </div>
           </div>
+          <Confirmar onSelect={handleSelect} />
         </section>
       </div>
       <Modal onClose={onClose} isOpen={isOpen}>

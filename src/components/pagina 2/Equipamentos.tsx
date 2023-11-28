@@ -96,7 +96,7 @@ export default function Equipamentos({
     }
   });
   const { showCustomToast } = useCustomToast();
-  
+
   const handleSelect = () => {
     if (armasSimples.length < 1) {
       showCustomToast({
@@ -112,14 +112,18 @@ export default function Equipamentos({
         status: "error",
       });
       return;
-    } else if (armaduras.length < 1 && classe && classe[0].nome !== "Arcanista") {
+    } else if (
+      armaduras.length < 1 &&
+      classe &&
+      classe[0].nome !== "Arcanista"
+    ) {
       showCustomToast({
         title: "Erro",
         desc: "Você precisa escolher uma armadura",
         status: "error",
       });
       return;
-    } else{
+    } else {
       const equipamentos = {
         armasSimples,
         armasMarciais,
@@ -134,7 +138,7 @@ export default function Equipamentos({
         status: "success",
       });
     }
-  }
+  };
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
@@ -489,7 +493,7 @@ export default function Equipamentos({
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-          <Confirmar onSelect={handleSelect}/>
+          <Confirmar onSelect={handleSelect} />
         </section>
       </div>
     </>

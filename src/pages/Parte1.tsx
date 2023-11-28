@@ -38,7 +38,7 @@ const App: React.FC = () => {
         <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
           <div className="flex flex-col mb-[-80px] items-end ">
             <InfoModal pagina={pagina} />
-            <FichaModal pagina={1} handleChange={handleChange} />
+            <FichaModal pagina={1} handleChange={handleChange} paginaAtual={pagina}/>
           </div>
           {pagina === "Inicio" || !paginas.includes(pagina) ? (
             <Inicio next="Origens" handleChange={handleChange} />
@@ -65,7 +65,14 @@ const App: React.FC = () => {
                 <Step key={index}>
                   <StepIndicator
                     className="hover:cursor-pointer hover:transform hover:scale-110 transition-all ease-in-out"
-                    onClick={() => handleChange(pagina)}
+                    onClick={() => {
+                      if (
+                        index <
+                        paginas.indexOf(localStorage.getItem("pagina") || "")
+                      ) {
+                        handleChange(pagina);
+                      }
+                    }}
                   >
                     <StepStatus
                       complete={<StepIcon color="white" />}

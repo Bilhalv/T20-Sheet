@@ -23,9 +23,14 @@ import { useNavigate } from "react-router-dom";
 interface Props {
   handleChange: any;
   pagina: number;
+  paginaAtual?: string;
 }
 
-export default function FichaModal({ handleChange, pagina }: Props) {
+export default function FichaModal({
+  handleChange,
+  pagina,
+  paginaAtual,
+}: Props) {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null);
@@ -157,7 +162,10 @@ export default function FichaModal({ handleChange, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          onClick={() => trocarPagina("Origens")}
+                          isDisabled={paginaAtual !== "Origens"}
+                          onClick={() => {
+                            trocarPagina("Origens");
+                          }}
                           _hover={{
                             bg: "transparent",
                             color: "gray.200",
@@ -181,7 +189,10 @@ export default function FichaModal({ handleChange, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          onClick={() => trocarPagina("Racas")}
+                          isDisabled={paginaAtual !== "Racas"}
+                          onClick={() => {
+                            trocarPagina("Racas");
+                          }}
                           _hover={{
                             bg: "transparent",
                             color: "gray.200",
@@ -205,9 +216,8 @@ export default function FichaModal({ handleChange, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
+                          isDisabled={paginaAtual !== "Classes"}
                           onClick={() => {
-                            if (pagina === 2) {
-                            }
                             trocarPagina("Classes");
                           }}
                           _hover={{
@@ -240,7 +250,10 @@ export default function FichaModal({ handleChange, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          onClick={() => trocarPagina("Racas")}
+                          isDisabled={paginaAtual !== "Atributos"}
+                          onClick={() => {
+                            trocarPagina("Racas");
+                          }}
                           _hover={{
                             bg: "transparent",
                             color: "gray.200",
@@ -272,7 +285,10 @@ export default function FichaModal({ handleChange, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          onClick={() => trocarPagina("Origens")}
+                          isDisabled={paginaAtual !== "Origens"}
+                          onClick={() => {
+                            trocarPagina("Origens");
+                          }}
                           _hover={{
                             bg: "transparent",
                             color: "gray.200",
@@ -308,7 +324,10 @@ export default function FichaModal({ handleChange, pagina }: Props) {
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          onClick={() => trocarPagina("Classes")}
+                          isDisabled={paginaAtual !== "Classes"}
+                          onClick={() => {
+                            trocarPagina("Classes");
+                          }}
                           _hover={{
                             bg: "transparent",
                             color: "gray.200",

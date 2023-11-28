@@ -65,7 +65,14 @@ const App: React.FC = () => {
                 <Step key={index}>
                   <StepIndicator
                     className="hover:cursor-pointer hover:transform hover:scale-110 transition-all ease-in-out"
-                    onClick={() => handleChange(pagina)}
+                    onClick={() => {
+                      if (
+                        index <
+                        paginas.indexOf(localStorage.getItem("pagina") || "")
+                      ) {
+                        handleChange(pagina);
+                      }
+                    }}
                   >
                     <StepStatus
                       complete={<StepIcon color="white" />}
@@ -87,7 +94,6 @@ const App: React.FC = () => {
                     >
                       {pagina}
                     </StepTitle>
-                    <StepDescription></StepDescription>
                   </Box>
                   <StepSeparator />
                 </Step>

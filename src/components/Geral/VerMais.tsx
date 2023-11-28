@@ -272,7 +272,7 @@ export default function VerMais({
                         pb={4}
                       >
                         &nbsp;&nbsp;{poder.descricao}
-                        <small>{poder.tipo}</small>
+                        <small>{poder.requisitos_descricao.join(", ")}</small>
                       </AccordionPanel>
                     </AccordionItem>
                   ))}
