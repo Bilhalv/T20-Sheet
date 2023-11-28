@@ -68,6 +68,18 @@ export default function FichaModal({
     }
     onClose();
   };
+  const paginas = [
+    "Inicio",
+    "Origens",
+    "Racas",
+    "Classes",
+    "Atributos",
+    "Divindades",
+    "Equipamentos",
+    "Magias",
+    "Alt",
+    "Poderes",
+  ];
   return (
     <>
       <Tooltip bg={"red.800"} label="Ficha">
@@ -162,12 +174,7 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={
-                            paginaAtual !== "Origens" &&
-                            paginaAtual !== "Racas" &&
-                            paginaAtual !== "Classes" &&
-                            paginaAtual !== "Atributos"
-                          }
+                          isDisabled={paginas.indexOf(paginaAtual || "") < 1}
                           onClick={() => {
                             trocarPagina("Origens");
                           }}
@@ -194,11 +201,7 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={
-                            paginaAtual !== "Racas" &&
-                            paginaAtual !== "Classes" &&
-                            paginaAtual !== "Atributos"
-                          }
+                          isDisabled={paginas.indexOf(paginaAtual || "") < 2}
                           onClick={() => {
                             trocarPagina("Racas");
                           }}
@@ -225,10 +228,7 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={
-                            paginaAtual !== "Classes" &&
-                            paginaAtual !== "Atributos"
-                          }
+                          isDisabled={paginas.indexOf(paginaAtual || "") < 3}
                           onClick={() => {
                             trocarPagina("Classes");
                           }}
@@ -262,7 +262,7 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={paginaAtual !== "Atributos"}
+                          isDisabled={paginas.indexOf(paginaAtual || "") < 2}
                           onClick={() => {
                             trocarPagina("Racas");
                           }}
@@ -297,12 +297,7 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={
-                            paginaAtual !== "Origens" &&
-                            paginaAtual !== "Racas" &&
-                            paginaAtual !== "Classes" &&
-                            paginaAtual !== "Atributos"
-                          }
+                          isDisabled={paginas.indexOf(paginaAtual || "") < 1}
                           onClick={() => {
                             trocarPagina("Origens");
                           }}
@@ -341,10 +336,7 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={
-                            paginaAtual !== "Classes" &&
-                            paginaAtual !== "Atributos"
-                          }
+                          isDisabled={paginas.indexOf(paginaAtual || "") < 3}
                           onClick={() => {
                             trocarPagina("Classes");
                           }}
