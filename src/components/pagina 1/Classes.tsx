@@ -118,6 +118,7 @@ const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
     if (setPericias.length > 1) {
       reset();
     }
+    setContador(0);
     dispatch({ type: "togglePericias" });
   };
 
@@ -170,7 +171,7 @@ const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
   ];
 
   const handlePericias = () => {
-    if (contador >= selectedClass.periciasescolhanum) {
+    if (pericias.length >= selectedClass.periciasescolhanum) {
       console.log(`Classe Selecionada: ${selectedClass.nome}`);
       localStorage.setItem("classe", selectedClass.nome);
       showCustomToast({
@@ -202,7 +203,7 @@ const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
       showCustomToast({
         title: "Atenção",
         desc: `Escolha mais ${
-          selectedClass.periciasescolhanum - contador
+          selectedClass.periciasescolhanum - pericias.length
         } pericia${contador === 2 ? "" : "s"}`,
         status: "warning",
       });
@@ -307,26 +308,22 @@ const Classes: React.FC<ClassesProps> = ({ handleChange, next }) => {
                           <Checkbox
                             onChange={(pericia) => {
                               let newPericias = [...pericias];
-                              let newContador = contador;
                               if (
                                 pericia.target.checked &&
                                 !pericias.includes(pericia.target.value)
                               ) {
                                 newPericias.push(pericia.target.value);
-                                newContador = newContador + 1;
                               } else if (!pericia.target.checked) {
                                 newPericias.splice(
                                   newPericias.indexOf(pericia.target.value),
                                   1
                                 );
-                                newContador = newContador - 1;
                               }
-                              setContador(newContador);
                               setPericias(newPericias);
                             }}
                             value={pericia}
                             isDisabled={
-                              contador >= selectedClass.periciasescolhanum &&
+                              pericias.length >= selectedClass.periciasescolhanum &&
                               !pericias.includes(pericia)
                             }
                           />
