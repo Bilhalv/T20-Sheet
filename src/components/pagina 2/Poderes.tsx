@@ -48,7 +48,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const nivel = Number(localStorage.getItem("lvl"));
-  const [limite, setLimite] = useState(nivel - 1);
+  const [limite, setLimite] = useState(nivel);
   const [poderesSelecionados, setPoderesSelecionados] = useState<string[]>(
     JSON.parse(localStorage.getItem("poderes") || "[]") as string[]
   );

@@ -69,7 +69,12 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
   const [contador, setContador] = useState(0);
   const [bencao, setBencao] = useState([""]);
   const [limite, setLimite] = useState(1);
-  const [alternativo, setAlternativo] = useState(false);
+  const [alternativo, setAlternativo] = useState(
+    localStorage.getItem("divindade") === "Clérigo do Panteão" ||
+      localStorage.getItem("divindade") === "Paladino do bem" ||
+      localStorage.getItem("divindade") === "Nenhuma" ||
+      localStorage.getItem("divindade") === "Todas"
+  );
   const [classe, setClasse] = useState(localStorage.getItem("classe"));
   const [escolhas, setEscolhas] = useState<string[]>([]);
 
@@ -161,7 +166,10 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
           {classe !== "Druida" &&
             classe !== "Clérigo" &&
             classe !== "Paladino" && (
-              <Checkbox onChange={handleCheckboxChange("Nenhuma")}>
+              <Checkbox
+                isChecked={alternativo}
+                onChange={handleCheckboxChange("Nenhuma")}
+              >
                 Nenhuma
               </Checkbox>
             )}

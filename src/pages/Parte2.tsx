@@ -22,7 +22,7 @@ import InfoModal from "../components/Geral/InfoModal";
 import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
-  const paginas = ["Divindades", "Poderes", "Equipamentos", "Magias", "Alt"];
+  const paginas = ["Divindades", "Equipamentos", "Magias", "Alt", "Poderes"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
   const handleChange = (e: string) => {
@@ -43,16 +43,16 @@ const App: React.FC = () => {
             <Divindades handleChange={handleChange} next={paginas[1]} />
           )}
           {pagina === paginas[1] && (
-            <Poderes handleChange={handleChange} next={paginas[2]} />
+            <Equipamentos handleChange={handleChange} next={paginas[2]} />
           )}
           {pagina === paginas[2] && (
-            <Equipamentos handleChange={handleChange} next={paginas[3]} />
+            <Magias handleChange={handleChange} next={paginas[3]} />
           )}
           {pagina === paginas[3] && (
-            <Magias handleChange={handleChange} next={paginas[4]} />
+            <Alt handleChange={handleChange} next={paginas[4]} />
           )}
           {pagina === paginas[4] && (
-            <Alt handleChange={handleChange} next={paginas[5]} />
+            <Poderes handleChange={handleChange} next={paginas[5]} />
           )}
 
           <Stepper
