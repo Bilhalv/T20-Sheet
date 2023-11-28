@@ -239,8 +239,8 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                     <p className="w-1/5 text-center">
                       <Checkbox
                         isDisabled={
-                          (poderesSelecionados.length > limite &&
-                            !poder.selecionado) ||
+                          (poderesSelecionados.length >= limite &&
+                            !poderesSelecionados.includes(poder.nome)) ||
                           (poderesIndisponiveis.some(
                             (poderIndisponivel) =>
                               poder.nome === poderIndisponivel.nome

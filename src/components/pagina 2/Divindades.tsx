@@ -299,7 +299,7 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
                           <Checkbox
                             checked={bencao.includes(poder.nome)}
                             disabled={
-                              contador >= limite && !bencao.includes(poder.nome)
+                              (contador >= limite && !bencao.includes(poder.nome)) || (poder.nome === "Dom da Imortalidade" && classe !== "Paladino") || (poder.nome === "Dom da Ressurreição" && classe !== "Clérigo")
                             }
                             onChange={(e) => {
                               if (e.target.checked) {
@@ -323,7 +323,6 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
                       pb={4}
                     >
                       &nbsp;&nbsp;{poder.descricao}
-                      <small>{poder.tipo}</small>
                     </AccordionPanel>
                   </AccordionItem>
                 ))}
