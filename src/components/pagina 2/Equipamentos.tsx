@@ -251,7 +251,7 @@ export default function Equipamentos({
                             <div className="flex flex-col">
                               <p>
                                 <b>Preço: </b>
-                                {item.preco}
+                                T${item.preco}
                               </p>
                               <p>
                                 <b>Espacos: </b>
@@ -317,7 +317,7 @@ export default function Equipamentos({
                           <div className="flex flex-col">
                             <p>
                               <b>Preço: </b>
-                              {arma.preco}
+                              T${arma.preco}
                             </p>
                             <p>
                               <b>Dano: </b>
@@ -404,7 +404,7 @@ export default function Equipamentos({
                           <div className="flex flex-col">
                             <p>
                               <b>Preço: </b>
-                              {arma.preco}
+                              T${arma.preco}
                             </p>
                             <p>
                               <b>Dano: </b>
@@ -506,7 +506,7 @@ export default function Equipamentos({
                             </p>
                             <p>
                               <b>Preço: </b>
-                              {armadura.preco}
+                              T${armadura.preco}
                             </p>
                             <p>
                               <b>Defesa: </b>
