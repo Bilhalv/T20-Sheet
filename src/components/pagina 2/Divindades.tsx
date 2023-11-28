@@ -135,6 +135,21 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
     }
     handleChange(next);
   };
+  const classes = [
+    { name: "Clérigo", label: "Clérigo do Panteão", selectedValue: "Todas" },
+    { name: "Paladino", label: "Paladino do bem", selectedValue: "Todas" },
+  ];
+
+  const handleCheckboxChange =
+    (selectedValue: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.checked) {
+        setAlternativo(true);
+        setSelected(selectedValue);
+      } else {
+        setAlternativo(false);
+        setSelected(escolhas[0]);
+      }
+    };
   return (
     <>
       <div className="flex flex-row-reverse justify-between">
@@ -143,50 +158,19 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
           Escolha sua divindade
         </h1>
         <div className="w-1/4">
-          {classe !== "Clérigo" && classe !== "Paladino" ? (
-            classe !== "Druida" ?? (
-              <Checkbox
-                onChange={(e) => {
-                  if (e.target.checked) {
-                    setAlternativo(true);
-                    setSelected("Nenhuma");
-                  } else {
-                    setAlternativo(false);
-                    setSelected(escolhas[0]);
-                  }
-                }}
-              >
+          {classe !== "Druida" &&
+            classe !== "Clérigo" &&
+            classe !== "Paladino" && (
+              <Checkbox onChange={handleCheckboxChange("Nenhuma")}>
                 Nenhuma
               </Checkbox>
-            )
-          ) : classe === "Paladino" ? (
-            <Checkbox
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setAlternativo(true);
-                  setSelected("Todas");
-                } else {
-                  setAlternativo(false);
-                  setSelected(escolhas[0]);
-                }
-              }}
-            >
-              Paladino do bem
-            </Checkbox>
-          ) : (
-            <Checkbox
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setAlternativo(true);
-                  setSelected("Todas");
-                } else {
-                  setAlternativo(false);
-                  setSelected(escolhas[0]);
-                }
-              }}
-            >
-              Clérigo do Panteão
-            </Checkbox>
+            )}
+          {classes.map((cl) =>
+            classe === cl.name ? (
+              <Checkbox onChange={handleCheckboxChange(cl.selectedValue)}>
+                {cl.label}
+              </Checkbox>
+            ) : null
           )}
         </div>
       </div>
@@ -299,7 +283,12 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
                           <Checkbox
                             checked={bencao.includes(poder.nome)}
                             disabled={
-                              (contador >= limite && !bencao.includes(poder.nome)) || (poder.nome === "Dom da Imortalidade" && classe !== "Paladino") || (poder.nome === "Dom da Ressurreição" && classe !== "Clérigo")
+                              (contador >= limite &&
+                                !bencao.includes(poder.nome)) ||
+                              (poder.nome === "Dom da Imortalidade" &&
+                                classe !== "Paladino") ||
+                              (poder.nome === "Dom da Ressurreição" &&
+                                classe !== "Clérigo")
                             }
                             onChange={(e) => {
                               if (e.target.checked) {
