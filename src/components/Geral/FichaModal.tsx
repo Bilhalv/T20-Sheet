@@ -162,7 +162,12 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={paginaAtual !== "Origens"}
+                          isDisabled={
+                            paginaAtual !== "Origens" &&
+                            paginaAtual !== "Racas" &&
+                            paginaAtual !== "Classes" &&
+                            paginaAtual !== "Atributos"
+                          }
                           onClick={() => {
                             trocarPagina("Origens");
                           }}
@@ -189,7 +194,11 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={paginaAtual !== "Racas"}
+                          isDisabled={
+                            paginaAtual !== "Racas" &&
+                            paginaAtual !== "Classes" &&
+                            paginaAtual !== "Atributos"
+                          }
                           onClick={() => {
                             trocarPagina("Racas");
                           }}
@@ -216,7 +225,10 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={paginaAtual !== "Classes"}
+                          isDisabled={
+                            paginaAtual !== "Classes" &&
+                            paginaAtual !== "Atributos"
+                          }
                           onClick={() => {
                             trocarPagina("Classes");
                           }}
@@ -285,7 +297,12 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={paginaAtual !== "Origens"}
+                          isDisabled={
+                            paginaAtual !== "Origens" &&
+                            paginaAtual !== "Racas" &&
+                            paginaAtual !== "Classes" &&
+                            paginaAtual !== "Atributos"
+                          }
                           onClick={() => {
                             trocarPagina("Origens");
                           }}
@@ -324,7 +341,10 @@ export default function FichaModal({
                           borderRadius={"full"}
                           aria-label="Ir até a pagina"
                           bg={"transparent"}
-                          isDisabled={paginaAtual !== "Classes"}
+                          isDisabled={
+                            paginaAtual !== "Classes" &&
+                            paginaAtual !== "Atributos"
+                          }
                           onClick={() => {
                             trocarPagina("Classes");
                           }}
