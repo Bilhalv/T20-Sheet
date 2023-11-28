@@ -34,11 +34,15 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar back={"/"} />
-      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10">
-        <article className="bg-gray-50 bg-opacity-30 w-[75%] mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
+      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
+        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
           <div className="flex flex-col mb-[-80px] items-end ">
             <InfoModal pagina={pagina} />
-            <FichaModal pagina={1} handleChange={handleChange} paginaAtual={pagina}/>
+            <FichaModal
+              pagina={1}
+              handleChange={handleChange}
+              paginaAtual={pagina}
+            />
           </div>
           {pagina === "Inicio" || !paginas.includes(pagina) ? (
             <Inicio next="Origens" handleChange={handleChange} />
