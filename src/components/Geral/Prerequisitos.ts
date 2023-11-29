@@ -82,7 +82,6 @@ export function PreRequisitos(totalPoderes: Poder[]) {
           return !pertence;
         }
       }
-
       return false;
     });
   });

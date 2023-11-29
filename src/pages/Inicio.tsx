@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "../components/Geral/Navbar";
 import { UserPlus, Plus } from "lucide-react";
 import { Link } from "react-router-dom";

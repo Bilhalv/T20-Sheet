@@ -3,9 +3,7 @@ import Navbar from "../components/Geral/Navbar";
 import Divindades from "../components/pagina 2/Divindades";
 import {
   Box,
-  Button,
   Step,
-  StepDescription,
   StepIcon,
   StepIndicator,
   StepNumber,

@@ -13,7 +13,6 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
-  Tooltip,
 } from "@chakra-ui/react";
 import {
   TabelasArmasSimles,
@@ -110,7 +109,7 @@ export default function Equipamentos({
         status: "error",
       });
       return;
-    } else if (armasMarciais.length < 1 && marciais) {
+    } else if (armasMarciais.length < 1 && !marciais) {
       showCustomToast({
         title: "Erro",
         desc: "Você precisa escolher uma arma marcial",

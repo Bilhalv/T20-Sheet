@@ -28,7 +28,7 @@ interface MagiasProps {
 
 export default function Magias({ handleChange, next }: MagiasProps) {
   const classe = localStorage.getItem("classe");
-  const nivel = localStorage.getItem("lvl");
+  const nivel = Number(localStorage.getItem("lvl"));
   const escolas = JSON.parse(localStorage.getItem("alt") || "[]");
   let filtros = {
     tipo: "" as enumTipo,
@@ -99,14 +99,73 @@ export default function Magias({ handleChange, next }: MagiasProps) {
     });
     return newArray;
   });
+  const calculateMaximoPrimeiro = (
+    classe: string,
+    alt: string,
+    nivel: number
+  ) => {
+    if (classe === "Bardo" || classe === "Druida") {
+      return 2 + Math.floor(nivel / 2);
+    } else if (classe === "Arcanista" || classe === "Clérigo") {
+      if (alt === "Mago") {
+        return 4 + (nivel >= 5 ? nivel + 1 : nivel);
+      } else if (alt === "Feiticeiro") {
+        return 3 + Math.floor((nivel - 1) / 2);
+      } else {
+        return 3 + nivel - 1;
+      }
+    }
+    return 0;
+  };
+  const alt = JSON.parse(localStorage.getItem("alt") || "[]");
 
+  const [maximoPrimeiro, setMaximoPrimeiro] = useState<number>(
+    calculateMaximoPrimeiro(classe || "", alt, nivel)
+  );
+  const calculateMaximoSegundo = (
+    classe: string,
+    alt: string,
+    nivel: number
+  ) => {
+    if (classe === "Bardo" || classe === "Druida") {
+      if (nivel >= 6) {
+        return Math.floor(nivel / 2) - 1;
+      }
+    } else if (classe === "Arcanista" || classe === "Clérigo") {
+      if (alt === "Mago") {
+        if (nivel >= 5) {
+          return nivel - 4 + 1;
+        }
+      } else if (alt === "Feiticeiro") {
+        if (nivel >= 5) {
+          return Math.floor((nivel - 1) / 2) - 1;
+        }
+      } else {
+        if (nivel >= 5) {
+          return nivel - 4;
+        }
+      }
+    }
+    return 0;
+  };
+
+  const [maximoSegundo, setMaximoSegundo] = useState<number>(
+    calculateMaximoSegundo(classe || "", alt, nivel)
+  );
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha suas Magias
       </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
-        <MagiasCards magias={array} handleChange={handleChange} next={next}/>
+        <p className="flex flex-col">
+          <p>Magias Para escolher:</p>
+          <p className="ml-2 italic">
+            {`Primeiro: ${maximoPrimeiro}`}
+            {` Segundo: ${maximoSegundo}`}
+          </p>
+        </p>
+        <MagiasCards magias={array} handleChange={handleChange} setMaximoPrimeiro={setMaximoPrimeiro} maximoPrimeiro={maximoPrimeiro} setMaximoSegundo={setMaximoSegundo} maximoSegundo={maximoSegundo} next={next} />
       </section>
     </>
   );

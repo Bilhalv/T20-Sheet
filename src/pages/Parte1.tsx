@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
 import Racas from "../components/pagina 1/Racas";
 import Inicio from "../components/pagina 1/Inicio";
@@ -7,7 +7,6 @@ import Origens from "../components/pagina 1/Origens";
 import Atributos from "../components/pagina 1/Atributos";
 import {
   Box,
-  Button,
   Step,
   StepDescription,
   StepIcon,
