@@ -17,68 +17,23 @@ interface MagiasProps {
   magias: ArrayMagias[];
   handleChange: (pagina: string) => void;
   next: string;
+  maximoPrimeiro: number;
+  maximoSegundo: number
+  setMaximoPrimeiro: any;
+  setMaximoSegundo: any;
 }
 
 export default function MagiasCards({
   magias,
   handleChange,
   next,
+  maximoPrimeiro,
+  maximoSegundo,
+  setMaximoPrimeiro,
+  setMaximoSegundo
 }: MagiasProps) {
-  const classe = localStorage.getItem("classe");
-  const alt = JSON.parse(localStorage.getItem("alt") || "[]");
-  const nivel = Number(localStorage.getItem("lvl"));
-  const calculateMaximoPrimeiro = (
-    classe: string,
-    alt: string,
-    nivel: number
-  ) => {
-    if (classe === "Bardo" || classe === "Druida") {
-      return 2 + Math.floor(nivel / 2);
-    } else if (classe === "Arcanista" || classe === "Clérigo") {
-      if (alt === "Mago") {
-        return 4 + (nivel >= 5 ? nivel + 1 : nivel);
-      } else if (alt === "Feiticeiro") {
-        return 3 + Math.floor((nivel - 1) / 2);
-      } else {
-        return 3 + nivel - 1;
-      }
-    }
-    return 0;
-  };
-
-  const [maximoPrimeiro, setMaximoPrimeiro] = useState<number>(
-    calculateMaximoPrimeiro(classe || "", alt, nivel)
-  );
-  const calculateMaximoSegundo = (
-    classe: string,
-    alt: string,
-    nivel: number
-  ) => {
-    if (classe === "Bardo" || classe === "Druida") {
-      if (nivel >= 6) {
-        return Math.floor(nivel / 2) - 1;
-      }
-    } else if (classe === "Arcanista" || classe === "Clérigo") {
-      if (alt === "Mago") {
-        if (nivel >= 5) {
-          return nivel - 4 + 1;
-        }
-      } else if (alt === "Feiticeiro") {
-        if (nivel >= 5) {
-          return Math.floor((nivel - 1) / 2) - 1;
-        }
-      } else {
-        if (nivel >= 5) {
-          return nivel - 4;
-        }
-      }
-    }
-    return 0;
-  };
-
-  const [maximoSegundo, setMaximoSegundo] = useState<number>(
-    calculateMaximoSegundo(classe || "", alt, nivel)
-  );
+  
+  
   const [selecionadas, setSelecionadas] = useState<string[]>([]);
 
   const imagens = magias.map(
@@ -116,13 +71,7 @@ export default function MagiasCards({
   };
   return (
     <>
-      <p className="flex flex-col">
-        <p>Magias Para escolher:</p>
-        <p className="ml-2 italic">
-          {`Primeiro: ${maximoPrimeiro}`}
-          {` Segundo: ${maximoSegundo}`}
-        </p>
-      </p>
+      
       <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg p-2">
         <Accordion allowToggle className="flex flex-col gap-3">
           {magias.map((magia: ArrayMagias, index) => (
