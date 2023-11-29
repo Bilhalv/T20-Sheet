@@ -13,7 +13,6 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
-  Tooltip,
 } from "@chakra-ui/react";
 import {
   TabelasArmasSimles,

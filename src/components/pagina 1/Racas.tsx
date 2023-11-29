@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import {
-  Button,
   Checkbox,
   Modal,
   ModalBody,

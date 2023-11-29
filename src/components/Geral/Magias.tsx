@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrayMagias } from "../pagina 2/Magias";
 import { enumTipo } from "../../classes/Construtores/Magia";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Confirmar from "./Confirmar";
 import useCustomToast from "./Toasted";
 

@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import { X, Edit, Plus } from "lucide-react";
-import { TabelaPericias } from "../classes/Tabelas/Pericias";
 import {
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Tooltip,
 } from "@chakra-ui/react";
 import Equipamento from "../components/Ficha/Equipamento";
 import Pericias from "../components/Ficha/Pericias";
@@ -17,13 +14,9 @@ import Info from "../components/Ficha/Info";
 import Ataques from "../components/Ficha/Ataques";
 import {
   TabelasArmasSimles,
-  tabelaArmaduras,
   tabelaArmas,
-  tabelaItens,
 } from "../classes/Tabelas/Itens";
 import { Arma } from "../classes/Construtores/Arma";
-import { Armadura } from "../classes/Construtores/Armadura";
-import { Item } from "../classes/Construtores/Item";
 import Defesa from "../components/Ficha/Defesa";
 import Status from "../components/Ficha/Status";
 

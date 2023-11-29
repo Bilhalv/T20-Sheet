@@ -1,4 +1,3 @@
-import React from "react";
 import { useToast, Button } from "@chakra-ui/react";
 
 interface ToastProps {
