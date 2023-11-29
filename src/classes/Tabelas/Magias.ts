@@ -1,5 +1,6 @@
 import {
   Magia,
+  aprimoramentos,
   enumEscolas,
   enumExecucao,
   enumTipo,
@@ -2371,7 +2372,7 @@ export const TabelaMagias: Magia[] = [
     aprimoramentos: [
       {
         pm_a_mais: 0,
-        descricao: "Truque: muda o alcance para curto, a área para alvo de 1 objeto e a resis- tência para Reflexos anula. Você gera uma pequena explosão que não causa dano mas pode acender uma vela, to- cha ou fogueira. Também pode fazer um objeto inflamável com RD 0 (como uma corda ou pergaminho) ficar em chamas. Uma criatura em posse de um objeto pode evitar esse efeito se passar no teste de resistência.",
+        descricao: "Truque: muda o alcance para curto, a área para alvo de 1 objeto e a resistência para Reflexos anula. Você gera uma pequena explosão que não causa dano mas pode acender uma vela, tocha ou fogueira. Também pode fazer um objeto inflamável com RD 0 (como uma corda ou pergaminho) ficar em chamas. Uma criatura em posse de um objeto pode evitar esse efeito se passar no teste de resistência.",
       },
       {
         pm_a_mais: 1,
@@ -2816,5 +2817,1046 @@ export const TabelaMagias: Magia[] = [
     tipo: enumTipo.divina,
     circulo: 5,
   },
+  {
+    nome: "Lágrimas de Wynna",
+    descricao:
+      "Se falhar no teste de resistência, o alvo perde a habilidade de lançar magias arcanas até o fim da cena. Se passar, perde a habilidade por uma rodada.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Muda a área para esfera com 6m de raio e o alvo para criaturas escolhidas.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Muda a execução para um dia e adiciona custo adicional (sacrifício de 1 PM). O alvo da magia precisa ser mantido em alcance curto do conjurador durante toda a execução. Ao término, faz um teste de Vontade. Se falhar, perde a habilidade de lançar magias arcanas permanentemente. Se passar, resiste, mas ainda pode ser alvo da magia no dia seguinte. Nenhum poder mortal é capaz de reverter essa perda. Os clérigos de Wynna dizem que a deusa chora cada vez que este ritual é realizado.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Lança Ígnea de Aleph",
+    descricao:
+      "Esta magia foi desenvolvida pelo mago imortal Aleph Olhos Vermelhos, um entusiasta dos estudos vulcânicos. Ela dispara um projétil de magma contra o alvo, que sofre 4d6 pontos de dano de fogo e 4d6 pontos de dano de perfuração e fica em chamas. As chamas causam 2d6 pontos de dano por rodada, em vez do dano normal. Se passar no teste de resistência, o alvo sofre metade do dano e não fica em chamas. Respingos de rocha incandescente se espalham com a explosão, atingindo todas as criaturas adjacentes ao alvo, que devem fazer um teste de Reflexos. Se falharem, ficam em chamas, como descrito acima.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "Reflexos parcial",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "Aumenta o dano inicial em +2d6 e o dano do efeito em chamas em +1d6.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda a duração para cena ou até ser descarregada. Em vez do efeito normal, a magia cria quatro dardos de lava que flutuam ao lado do conjurador. Uma vez por rodada, como uma ação livre, você pode disparar um dos dardos em uma criatura, causando o efeito normal da magia. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Legião",
+    descricao:
+      "Você domina a mente dos alvos. Os alvos obedecem cegamente a seus comandos, exceto ordens claramente suicidas. Um alvo tem direito a um teste no final de cada um de seus turnos para se livrar do efeito. Alvos que passarem no teste ficam abalados por 1 rodada enquanto recuperam a consciência.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "até 10 criaturas na área",
+    duracao: "sustentada",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "Aumenta o número de alvos em +1.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Lendas e Histórias",
+    descricao:
+      "Você descobre informações sobre uma criatura, objeto ou local que esteja tocando. O que exatamente você descobre depende do mestre: talvez você não descubra tudo que há para saber, mas ganhe pistas para continuar a investigação. A cada rodada que mantiver a magia, você descobre:\n• Todas as informações sobre o alvo, como se tivesse passado em todos os testes de Conhecimento para tal.\n• Todas as habilidades do alvo. Se for uma criatura, você sabe suas estatísticas de jogo como raça, classe, nível, atributos, magias, talentos e assim por diante.\n• Todas as informações sobre o alvo, como se tivesse passado em todos os testes de Conhecimento para tal.\n• Todas as habilidades do alvo. Se for uma criatura, você sabe suas estatísticas de jogo como raça, classe, nível, atributos, magias, talentos e assim por diante.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura, objeto ou local",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao:
+          "Muda a execução para um dia, o alcance para ilimitado e adiciona componente material (cuba de ouro cheia d’água e ingredientes mágicos, no valor de T$ 1.000). Você ainda precisa ter alguma informação sobre o alvo, como um nome, descrição ou localização.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 3,
+  },
+  {
+    nome: "Leque Cromático",
+    descricao:
+      "Um cone de luzes brilhantes surge das suas mãos, deixando os animais e humanoides na área atordoados por 1 rodada (apenas uma vez por cena, Vontade anula) e ofuscados pela cena.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "cone de 4,5m",
+    duracao: "instantânea",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Além do normal, as criaturas afetadas ficam vulneráveis pela cena.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Também afeta espíritos e monstros na área. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Também afeta construtos, espíritos, monstros e mortos-vivos na área. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Libertação",
+    descricao:
+      "O alvo fica imune a efeitos de movimento e ignora qualquer efeito que impeça ou restrinja seu deslocamento. Por fim, pode usar habilidades que exigem liberdade de movimentos mesmo se estiver usando armadura ou escudo.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Além do normal, o alvo pode caminhar sobre a água ou outros líquidos com seu deslocamento normal. Entretanto, isso não protege contra qualquer efeito que o líquido possa causar (o alvo pode andar sobre lava, mas ainda vai sofrer dano).",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Além do normal, o alvo pode escolher 20 em todos os testes de Atletismo.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao:
+          "Além do normal, o alvo pode escolher 20 em todos os testes de Acrobacia e pode fazer todas as manobras desta perícia mesmo sem treinamento.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "Muda o alcance para curto e o alvo para até 5 criaturas.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao:
+          "Muda o alcance para curto e o alvo para até 5 criaturas. Requer 4º círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 4,
+  },
+  {
+    nome: "Ligação Sombria",
+    descricao:
+      "Cria uma conexão entre seu corpo e o da criatura alvo, deixando uma marca idêntica na pele de ambos. Enquanto a magia durar, sempre que você sofrer qualquer dano ou condição, o alvo desta magia deve fazer um teste de Fortitude; se falhar, sofre o mesmo dano que você ou adquire a mesma condição. A magia termina se o alvo chegar a 0 pontos de vida.",
+    execucao: enumExecucao.padrao,
+    alcance: "longo",
+    alvo: "1 criatura",
+    duracao: "1 dia",
+    resistencia: "Fortitude anula",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 5,
+        descricao:
+          "A magia não termina se o alvo chegar a 0 PV (o que significa que dano causado por essa magia pode matá-lo).",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 4,
+  },
+  {
+    nome: "Ligação Telepática",
+    descricao:
+      "Você cria um elo mental entre duas criaturas com Inteligência 3 ou maior (você pode ser uma delas). As criaturas podem se comunicar independentemente de idioma ou distância, mas não em mundos diferentes.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "2 criaturas voluntárias",
+    duracao: "1 dia",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "Aumenta o número de alvos em +1.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "Muda o alvo para 1 criatura. Em vez do normal, você cria um elo mental que permite que você veja e ouça pelos sentidos da criatura, se gastar uma ação de movimento. Uma criatura involuntária pode fazer um teste de Vontade para suprimir a magia por uma hora. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Localização",
+    descricao:
+      "Esta magia pode encontrar uma criatura ou objeto a sua escolha. Você pode pensar em termos gerais (“um elfo”, “algo de metal”) ou específicos (“Gwen, a elfa”, “uma espada longa”). A magia indica a direção e distância da criatura ou objeto mais próximo desse tipo, caso esteja ao alcance. Você pode movimentar-se para continuar procurando. Procurar algo muito específico (“a espada longa encantada do Barão Rulyn”) exige que você tenha em mente uma imagem precisa do objeto; caso a imagem não seja muito próxima da verdade, a magia falha, mas você gasta os PM mesmo assim. Esta magia pode ser bloqueada por uma fina camada de chumbo.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao: "muda a área para alvo você. Em vez do normal, você sabe onde fica o norte e recebe +5 em testes de Sobrevivência para se orientar.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "Aumenta a área em um fator de 10 (90m para 900m, 900m para 9km e assim por diante).",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 2,
+  },
+  {
+    nome: "Luz",
+    descricao:
+      "O alvo emite luz (mas não produz calor) em uma área com 6m de raio. O objeto pode ser guardado (em um bolso, por exemplo) para interromper a luz, que voltará a funcionar caso o objeto seja revelado. Se lançar a magia num objeto de uma criatura involuntária, ela tem direito a um teste de Vontade para anulá-la. Luz anula Escuridão.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 objeto",
+    duracao: "cena",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "Aumenta a área iluminada em +3m de raio.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Muda a duração para um dia.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "Muda a duração para permanente e adiciona componente material (pó de rubi no valor de T$ 50). Não pode ser usado em conjunto com outros aprimoramentos. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 0,
+        descricao: "(Apenas Arcanos) muda o alvo para 1 criatura. Você lança a magia nos olhos do alvo, que fica ofuscado pela cena. Não afeta criaturas cegas",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "(Apenas Arcanos) muda o alcance para longo e o efeito para cria 4 pequenos globos de luz. Você pode posicionar os globos onde quiser dentro do alcance. Você pode enviar um à frente, outra para trás, outra para cima e manter um perto de você, por exemplo. Uma vez por rodada, você pode mover os globos com uma ação livre. Cada um ilumina como uma tocha, mas não produz calor. Se um globo ocupar o espaço de uma criatura, ela fica ofuscada e sua silhueta pode ser vista claramente (ela não recebe camuflagem por escuridão ou invisibilidade). Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "(Apenas Divinos) a luz é cálida como a do sol. Criaturas que sofrem penalidades e dano pela luz solar sofrem seus efeitos como se estivessem expostos à luz solar real. Seus aliados na área estabilizam automaticamente e ficam imunes à condição sangrando, e seus inimigos ficam ofuscados. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "(Apenas Divinos) muda o alcance para toque e o alvo para 1 criatura. Em vez do normal, o alvo é envolto por um halo de luz, recebendo +10 em testes de Diplomacia e redução de trevas 10. Requer 2o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 1,
+  },
+  {
+    nome: "Manto de Sombras",
+    descricao:
+      "Você fica coberto por um manto de energia sombria. Nesta forma, torna-se incorpóreo (inclui seu equipamento): só pode ser afetado por armas e habilidades mágicas, ou por outras criaturas incorpóreas, e pode atravessar objetos sólidos, mas não manipulá-los. Também não pode atacar criaturas normais (mas ainda pode lançar magias nelas). Além disso, se torna vulnerável à luz direta: se exposto a uma fonte de luz, sofre 1 ponto de dano por rodada. Você pode gastar uma ação de movimento e 1 PM para “entrar” em uma sombra do seu tamanho ou maior e se teletransportar para outra sombra, também do seu tamanho ou maior, em alcance médio.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao: "Muda o alcance para toque e o alvo para 1 criatura. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 3,
+  },
+  {
+    nome: "Manto do Cruzado",
+    descricao:
+      "Você invoca o poder de sua divindade na forma de um manto de energia que reveste seu corpo. Esta magia tem duas versões. Você escolhe qual versão pode lançar quando aprende a magia. Ela não pode ser mudada. \nManto de Luz: um manto dourado e luminoso. No início de cada um de seus turnos, você e todos os seus aliados em alcance curto recuperam 2d8 PV. Você recebe imunidade a dano de trevas e seus ataques corpo a corpo causam +2d8 pontos de dano de luz.\nManto de Trevas: um manto negro como a noite. No início de cada um de seus turnos, todos os inimigos em alcance curto sofrem 4d8 pontos de dano de trevas. Você cura metade de todo o dano causado pela magia.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [],
+    tipo: enumTipo.divina,
+    circulo: 4,
+  },
+  {
+    nome: "Mão Poderosa de Talude",
+    descricao:
+      "Esta magia cria uma mão flutuante Grande que sempre se posiciona entre você e um oponente a sua escolha. A mão fornece cobertura leve (+5 na Defesa) contra esse oponente. Nada é capaz de enganar a mão — coisas como escuridão, invisibilidade, metamorfose e disfarces mundanos não a impedem de protegê-lo. A mão tem Defesa 20 e PV e resistências iguais aos seus. Com uma ação de movimento, você pode comandar a mão para que o proteja de outro oponente ou para que realize uma das ações a seguir.\nAgarrar: a mão usa uma manobra agarrar contra o oponente, usando o seu Misticismo com um bônus adicional de +10. A mão mantém o oponente agarrado, mas não causa dano.\nEsmagar: a mão esmaga um oponente agarrado, causando 2d6+10 pontos de dano de impacto.\nEmpurrar: a mão afasta o oponente (manobra empurrar usando o seu Misticismo com um bônus adicional de +10). A mão acompanha o oponente para empurrá-lo o máximo que conseguir, dentro do alcance da magia.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "você",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano em +1d6+5."
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda o bônus adicional em Misticismo para +20. Requer 5o círculo."
+      }
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Mapear",
+    descricao:
+      "Uma fagulha percorre a superfície afetada, queimando-a enquanto esboça um mapa da região onde o conjurador está. Se você conhece o lugar, o mapa será completo. Caso contrário, apresentará apenas um esboço geral, além de um ponto de referência (para possibilitar localização) e um lugar de interesse, ambos definidos pelo mestre. A região representada no mapa tem tamanho máximo de um quadrado de 10km de lado. Caso você esteja dentro de uma construção, o mapa mostrará o andar no qual você se encontra.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "superfície ou objeto plano, como uma mesa ou papel",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "muda o alvo para 1 criatura e a duração para 1 hora. Em vez do normal, a criatura tocada descobre o caminho mais direto para entrar ou sair de um lugar. Assim, a magia pode ser usada para descobrir a rota até o relicário de uma catedral ou a saída mais próxima de uma masmorra (mas não para encontrar a localização de uma criatura ou objeto; a magia funciona apenas em relação a lugares). Caso a criatura demore mais de uma hora para percorrer o caminho, o conhecimento se perde.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Marca da Obediência",
+    descricao:
+      "Você toca uma criatura, gravando uma marca mística no corpo dela enquanto profere uma ordem, como “não ataque a mim ou meus aliados”, “siga-me” ou “não saia desta sala”. A criatura deve seguir essa ordem, gastando todas as ações de seu turno para isso. A ordem não pode ser genérica demais (como “ajude-me”, por exemplo), nem forçar o alvo a atos suicidas. A cada rodada, o alvo pode fazer um teste de Vontade. Se passar, a magia é dissipada.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "muda a duração para um dia. Se não estiver em combate, a criatura só pode fazer o teste de Vontade a cada hora. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "sempre que o alvo fizer o teste de Vontade e falhar, a marca causa 3d6 pontos de dano psíquico no alvo. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 2,
+  },
+  {
+    nome: "Marionete",
+    descricao:
+      "Esta magia manipula o sistema nervoso do alvo. Ao sofrer a magia, e no início de cada um de seus turnos, o alvo deve fazer um teste de Fortitude. Se passar, a magia é anulada. Se falhar, todas as suas ações físicas naquele turno estarão sob controle do conjurador. A vítima ainda tem consciência de tudo que acontece à sua volta, podendo ver, ouvir e até falar com certo esforço (mas não para lançar magias). Contudo, seu corpo realiza apenas os movimentos que o conjurador deseja. A vítima pode ser manipulada para se movimentar, lutar, usar habilidades de combate... Enfim, qualquer coisa de que seja fisicamente capaz.\nVocê precisa de linha de efeito para controlar a vítima. Se perder o contato, não poderá controlá-la — mas ela estará paralisada até que o conjurador recupere o controle ou a magia termine.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura",
+    duracao: "sustentada",
+    resistencia: "Fortitude anula",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Mata-Dragão",
+    descricao:
+      "Esta é uma das mais poderosas magias de destruição existentes. Após entoar longos cânticos, o conjurador dispara uma carga de energia que varre uma enorme área à sua frente, causando 20d12 pontos de dano de essência em todas as criaturas, construções e objetos livres atingidos. Sempre que rolar um resultado 12 em um dado de dano, a magia causa +1d12 pontos de dano. Apesar de seu poder destrutivo, esta magia é lenta, tornando seu uso difícil em combate.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "cone de 30m",
+    duracao: "instantânea",
+    resistencia: "Reflexos reduz à metade",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "aumenta o dano em +1d12.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Mente Divina",
+    descricao:
+      "Você fortalece a mente do alvo. Ele recebe +2 em Inteligência, Sabedoria ou Carisma, a sua escolha. Esse aumento não oferece PV, PM ou perícias adicionais.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "muda o alcance para curto e o alvo para criaturas escolhidas.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "em vez do normal, o alvo recebe +2 nos três atributos mentais. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 7,
+        descricao: "em vez do normal, o alvo recebe +4 no atributo escolhido. Requer 4o círculo."
+      },
+      {
+        pm_a_mais: 12,
+        descricao: "em vez do normal, o alvo recebe +4 nos três atributos mentais. Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Metamorfose",
+    descricao:
+      "Você muda sua aparência e forma — incluindo seu equipamento — para qualquer outra criatura, existente ou imaginada. Independentemente da forma escolhida, você recebe +20 em testes de Enganação para disfarce. Características não mencionadas não mudam.\nSe mudar para uma forma humanóide, pode mudar o tipo de dano (entre corte, impacto e perfuração) de suas armas (se usa uma maça e transformá-la em espada longa, ela pode causar dano de corte, por exemplo). Se quiser, pode assumir uma forma humanóide com uma categoria de tamanho acima ou abaixo da sua; nesse caso aplique os modificadores em Furtividade e testes de manobra.\nSe mudar para outras formas, você pode escolher uma Forma Selvagem do druida (veja no Capítulo 1). Nesse caso você não pode atacar com suas armas, falar ou lançar magias até voltar ao normal, mas recebe uma ou mais armas naturais e os bônus da forma selvagem escolhida.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.transmutacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "a forma escolhida recebe uma habilidade de sentidos entre faro, visão na penumbra e visão no escuro.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "a forma escolhida recebe percepção às cegas. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "muda o alcance para médio, o alvo para 1 criatura e a resistência para Vontade anula. Em vez do normal, transforma o alvo em uma criatura ou objeto inofensivo (ovelha, sapo, galinha, pudim de ameixa etc.). A criatura não pode atacar, falar e lançar magias; seu deslocamento vira 3m e sua Defesa vira 10. Suas outras características não mudam. No início de seus turnos, o alvo pode fazer um teste de Vontade; se passar, retorna à sua forma normal e a magia termina. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "se mudar para formas não humanóides, pode escolher uma Forma Selvagem Aprimorada. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "se mudar para formas não humanóides, pode escolher uma Forma Selvagem Superior. Requer 4o círculo.",
+      },
+      {
+        pm_a_mais: 12,
+        descricao: "além do normal, no início de seus turnos o alvo pode mudar de forma novamente, como uma ação livre, fazendo novas escolhas. Requer 5o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Miasma Mefítico",
+    descricao:
+      "A área é coberta por emanações letais. Criaturas na área sofrem 5d6 pontos de dano de ácido e ficam enjoadas por 1 rodada. Se passarem na resistência, sofrem metade do dano e não ficam enjoadas.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "nuvem com 6m de raio",
+    duracao: "instantânea",
+    resistencia: "Fortitude (veja texto)",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "Truque: muda o alcance para toque, a área para alvo (1 criatura com 0 PV ou menos), a duração para instantânea, a resistência para Fortitude anula e adiciona componente material (pó de ônix no valor de T$ 10). Em vez do normal, você canaliza o Miasma contra uma vítima. Se falhar na resistência, ela morre e você recebe +2 na CD de suas magias por um dia. Se passar, fica imune a este truque por um dia.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano em +1d6.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "muda o alcance para médio, o alvo para 1 criatura e a resistência para Vontade anula. Em vez do normal, você canaliza o Miasma contra uma vítima. Se falhar na resistência, ela morre e você recebe +2 na CD de suas magias por um dia. Se passar, fica imune a este truque por um dia.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Miragem",
+    descricao:
+      "Você faz um terreno parecer outro, incluindo sons e cheiros. Uma planície pode parecer um pântano, uma floresta pode parecer uma montanha etc. Esta magia pode ser usada para criar armadilhas: areia movediça pode parecer terra firme ou um precipício pode parecer um lago. Você pode alterar, incluir e esconder estruturas dentro da área, mas não criaturas (embora elas possam se esconder nas estruturas ilusórias).",
+    execucao: enumExecucao.padrao,
+    alcance: "longo",
+    alvo: "cubo de até 90m de lado",
+    duracao: "1 dia",
+    resistencia: "Vontade desacredita",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao: "Além do normal, pode alterar a aparência de criaturas escolhidas na área, como se usando Disfarce Ilusório.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "muda a duração para permanente e adiciona componente material (pó de diamante no valor de T$ 1.000). Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Missão Divina",
+    descricao:
+      "Esta magia obriga o alvo a cumprir uma tarefa a sua escolha. Ela dura uma semana ou até o alvo cumprir a tarefa, o que vier primeiro. O alvo pode recusar a missão — mas, no fim de cada dia em que não se esforçar para cumprir a tarefa, deve fazer um teste de Vontade; se falhar, sofre uma penalidade cumulativa de –2 em todos os testes e rolagens. A Missão Divina não pode forçar um ato suicida, nem uma missão impossível (como matar um ser que não existe).",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "1 semana ou até ser descarregada",
+    resistencia: "Vontade anula (veja texto)",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alcance para toque, a duração para permanente e adiciona penalidade de –1 PM. Em vez do normal, você inscreve uma marca (como uma tatuagem) na pele do alvo e escolhe um tipo de ação que ativará a marca. Normalmente, será cometer um crime (roubar, matar...) ou outra coisa contrária às Obrigações & Restrições de sua divindade. Sempre que a marca é ativada, o alvo recebe uma penalidade cumulativa de –2 em todos os testes. Muitas vezes, portar essa marca é um estigma por si só, já que esta magia normalmente é lançada em criminosos ou traidores. Uma magia que dissipe outras suprime a marca e suas penalidades por um dia; elas só podem ser totalmente removidas pelo conjurador original ou pela magia Purificação.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao: "aumenta a duração para 1 ano ou até ser descarregada.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 3,
+  },
+  {
+    nome: "Montaria Arcana",
+    descricao: "Esta magia convoca um parceiro cavalo (ou pônei) de guerra veterano. Sua aparência é de um animal negro com crina e cauda cinzentas e cascos feitos de fumaça, mas você pode mudá-la se quiser. Além dos benefícios normais, a Montaria Arcana pode atravessar terreno difícil sem redução em seu deslocamento. Você pode usar Misticismo no lugar de Cavalgar para efeitos desta montaria (incluindo ser considerado treinado).",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "criatura conjurada",
+    duracao: "1 dia",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "além do normal, criaturas do tipo animal em alcance curto da montaria devem fazer um teste de Vontade. Se passarem, ficam abaladas pela cena; se falharem, ficam apavoradas por 1d4 rodadas, depois abaladas pela cena.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "muda a duração para permanente e adiciona penalidade de –3 PM."
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "aumenta o tamanho da montaria em uma categoria. Isso também aumenta o número de criaturas que ela pode carregar — duas para uma criatura Enorme, seis para Colossal. Uma única criatura controla a montaria; as outras apenas são deslocadas."
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "muda o nível do parceiro para mestre. Requer 3o círculo."
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Muralha de Ossos",
+    descricao:
+      "Uma parede de ossos se eleva da terra. A parede tem 15m de comprimento, 9m de altura e 1,5m de espessura. Ela pode ter qualquer forma — não precisa ser uma linha reta —, mas sua base precisa estar sempre tocando o solo. Quando a parede surge, criaturas na área ocupada ou adjacentes sofrem 4d8 pontos de dano de corte e precisam fazer um teste de Reflexos para não ficarem presas no emaranhado de ossos. Uma criatura presa dessa maneira fica agarrada, e pode gastar uma ação padrão para fazer um teste de Atletismo para se soltar. Se passar no teste, sai da muralha para um dos lados adjacentes. Se falhar, sofre 4d8 pontos de dano de corte.\nÉ possível destruir o muro para atravessá-lo ou libertar uma criatura agarrada. Cada trecho de 3m do muro tem Defesa 8, 40 PV e redução de corte, frio e perfuração 10. Também é possível escalar a parede. Isso exige um teste de Atletismo e causa 4d8 pontos de dano de corte para cada 3m escalados.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "muro de ossos",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "aumenta o comprimento em +15m e a altura em +3m.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "o muro é feito de uma massa de esqueletos animados. Sempre que uma criatura iniciar seu turno adjacente ou escalando a muralha, deve fazer um teste de Reflexos. Se falhar fica agarrada, sofrendo os efeitos normais de estar agarrada pela magia.",
+      }
+    ],
+    tipo: enumTipo.universal,
+    circulo: 4,
+  },
+  {
+    nome: "Muralha Elemental",
+    descricao:
+      "Uma muralha de um elemento a sua escolha se eleva da terra. Ela pode ser um muro de até 30m de comprimento e 3m de altura (ou o contrário) ou uma cúpula de 3m de raio. Os efeitos variam conforme o elemento escolhido.\nFogo. Faz surgir uma violenta cortina de chamas. Um lado da muralha (a sua escolha) emite ondas de calor, que causam 2d6 pontos de dano de fogo em criaturas a até 6m quando você lança a magia e no início de seus turnos. Atravessar a muralha causa 8d6 pontos de dano de fogo. Caso seja criada em uma área onde existem criaturas, elas sofrem dano como se estivessem atravessando a muralha, mas podem fazer um teste de Reflexos para reduzir o dano à metade e escapar para um lado (a criatura escolhe, mas se escapar para o lado quente sofrerá mais 2d6 pontos de dano).\nGelo. Evoca uma parede grossa de gelo denso com 15cm de espessura. Na forma de cúpula, pode prender uma ou mais criaturas, mas elas têm direito a um teste de Reflexos para escapar antes que a cúpula se forme. Cada trecho de 3m da muralha tem Defesa 8, 40 PV e redução de corte e frio 5. Um trecho da muralha que atinja 0 PV será rompido. Qualquer efeito de fogo causa dano dobrado à muralha. Uma criatura que atravessar um trecho rompido da muralha sofre 4d6 pontos de dano de frio.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "muralha de energia",
+    duracao: "cena",
+    resistencia: "veja texto",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano por atravessar a muralha em +2d6.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o comprimento em +15m e altura em +3m, até 60m de comprimento e 9m de altura.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao: "muda a duração para sustentada e adiciona uma nova escolha, Essência. A muralha é invisível e indestrutível — imune a qualquer forma de dano e não afetada por nenhuma magia. Ela não pode ser atravessada nem mesmo por criaturas incorpóreas. No entanto, magias que teletransportam criaturas, como Salto Dimensional, podem atravessá-la. Magias e efeitos de dano, como Bola de Fogo e o sopro de um dragão, não vencem a muralha, mas magias lançadas diretamente sobre uma criatura ou área, como Sono, podem ser lançadas contra alvos que estejam no outro lado como se tivessem linha de efeito.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Névoa",
+    descricao:
+      "Uma névoa espessa eleva-se de um ponto a sua escolha, obscurecendo toda a visão — criaturas a até 1,5m têm camuflagem leve e criaturas a partir de 3m têm camuflagem total. Um vento forte dispersa a névoa em 4 rodadas e um vendaval a dispersa em 1 rodada. Esta magia não funciona sob a água.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "nuvem com 6m de raio e 6m de altura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "a magia também funciona sob a água, criando uma nuvem de tinta.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "você pode escolher criaturas no alcance ao lançar a magia; elas enxergam através do efeito. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "a nuvem tem um cheiro horrível. No início de seus turnos, qualquer criatura dentro dela, ou qualquer criatura com faro em alcance curto da nuvem, deve fazer um teste de Fortitude. Se falhar, fica enjoada por uma rodada.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "a nuvem tem um tom esverdeado e se torna cáustica. No início de seus turnos, criaturas dentro dela sofrem 2d4 pontos de dano de ácido.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "aumenta o dano de ácido em +2d4.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "além do normal, a nuvem fica espessa, quase sólida. Qualquer criatura dentro dela tem seu deslocamento reduzido a 1,5m.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Oração",
+    descricao:
+      "Você e os seus aliados no alcance recebem +2 em testes de perícia e rolagens de dano, e todos os seus inimigos no alcance sofrem –2 em testes de perícia e rolagens de dano. Esse efeito é cumulativo com outras magias. Componente material: T$ 25 por PM gasto em incensos ou outras oferendas.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "todas as criaturas (veja texto)",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta os bônus em +1 (bônus máximo limitado pelo círculo máximo de magia que você pode lançar).",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta as penalidades em –1 (penalidade máxima limitada pelo círculo máximo de magia que você pode lançar).",
+      },
+      {
+        pm_a_mais: 7,
+        descricao: "muda o alcance para médio. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 12,
+        descricao: "muda a duração para cena. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Orientação",
+    descricao:
+      "Em seu próximo teste de perícia, o alvo pode rolar dois dados e ficar com o melhor resultado.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "1 rodada",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "muda a duração para cena. Em vez do normal, escolha um atributo. Sempre que o alvo fizer um teste de perícia baseado no atributo escolhido, pode rolar dois dados e ficar com o melhor resultado. Não se aplica a testes de ataque ou resistência. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "como acima, mas, em vez de um atributo, escolha entre atributos físicos (Força, Destreza e Constituição) ou mentais (Inteligência, Sabedoria e Carisma). Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda o alvo para criaturas escolhidas. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Palavra Primordial",
+    descricao:
+      "Você pronuncia uma palavra do idioma primordial da Criação, que causa um dos efeitos abaixo, a sua escolha.\nAtordoar: a cria- tura fica atordoada por 1d4+1 rodadas (apenas uma vez por cena). Se passar no teste de resistência, ou se já foi atordoada por esta magia, fica desprevenida por 1d4 rodadas.\nCegar: a criatura fica cega. Se passar no teste de resistência, fica ofuscada por 1d4 rodadas.\nMatar: a criatura morre. Além do teste de Vontade, a criatura tem direito a um teste de Fortitude se tiver mais da metade de seus PV. Se passar em qualquer um deles, em vez de morrer perde 10d8 pontos de vida e fica sangrando.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura com menos níveis que você",
+    duracao: "instantânea ou veja texto",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "sempre que o alvo fizer o teste de Vontade e falhar, a marca causa 3d6 pontos de dano psíquico no alvo. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 5,
+  },
+  {
+    nome: "Perdição",
+    descricao:
+      "Amaldiçoa os alvos, que recebem –1 em testes de ataque e rolagens de dano. Perdição anula Bênção.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "criaturas escolhidas",
+    duracao: "cena",
+    resistencia: "nenhuma",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta as penalidades em –1 (bônus máximo limitado pelo círculo máximo de magia que você pode lançar).",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Poeira da Podridão",
+    descricao:
+      "Você manifesta uma nuvem de poeira carregada de energia negativa, que apodrece lentamente as criaturas na área. Ao lançar a magia, e no início de seus turnos, criaturas na área sofrem 2d8+8 pontos de dano de trevas (Fortitude reduz à metade). Alvos que falharem no teste não podem recuperar PV por uma rodada.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "nuvem com 6m de raio",
+    duracao: "cena",
+    resistencia: "Fortitude (veja texto)",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano em 1d8+4.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Possessão",
+    descricao:
+      "Você projeta sua consciência no corpo do alvo. Enquanto possuir uma criatura, você assume o controle total do corpo dela. O seu próprio corpo fica inconsciente e a consciência do alvo fica inerte. Em termos de jogo, você continua usando a sua ficha, mas com os atributos físicos e deslocamento da criatura. Se o alvo passar no teste de resistência, sabe que você tentou possuí-lo e fica imune a esta magia por um dia. Caso o corpo da criatura morra enquanto você a possui, a criatura morre e você deve fazer um teste de Vontade contra a CD da sua própria magia. Se passar, sua consciência retorna para o seu corpo (contanto que esteja dentro do alcance). Do contrário, você também morre. Retornar para o seu corpo voluntariamente é uma ação livre.",
+    execucao: enumExecucao.padrao,
+    alcance: "longo",
+    alvo: "1 criatura",
+    duracao: "1 dia",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 5,
+        descricao: "você ganha acesso às habilidades de raça e classe da criatura.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "enquanto a magia durar e você estiver dentro do alcance do seu corpo original, pode “saltar” de uma criatura possuída para outra. O novo alvo tem direito a um teste de Vontade. Se falhar, você assume o controle do corpo dele e o alvo anterior recobra a consciência.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda a duração para permanente, mas destrói seu corpo original no processo. Uma criatura possuída pode fazer um teste de Vontade no começo do dia para retomar seu corpo. Se passar, recobra a consciência (e a sua própria consciência fica inerte). O teste se repete no início de cada dia. Se o corpo de uma criatura possuída morrer e houver outra criatura em alcance curto, você pode tentar possuí-la. Enquanto houver novos corpos para possuir, você é imortal!",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Potência Divina",
+    descricao:
+      "Você canaliza o poder de sua divindade. Você aumenta uma categoria de tamanho (seu equipamento muda de acordo) e recebe Força +4 e RD 10. Você não pode lançar magias enquanto estiver sob efeito de Potência Divina.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.transmutacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o bônus de Força em +1.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "aumenta a RD em +5.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alcance para toque e o alvo para 1 criatura. A magia falha se você e o alvo não forem devotos da mesma divindade.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 3,
+  },
+  {
+    nome: "Premonição",
+    descricao:
+      "Vislumbres do futuro permitem que você reavalie suas ações. Uma vez por rodada, você pode rolar novamente um teste recém realizado, mas deve aceitar o resultado da nova rolagem.",
+    execucao: enumExecucao.padrao,
+    alcance: "pessoal",
+    alvo: "você",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "muda a execução para reação, o alcance para curto, o alvo para 1 criatura e a resistência para Vontade anula. Em vez do normal, você pode rolar novamente um teste de resistência recém realizado por uma criatura. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 4,
+  },
   
+
+
 ];
+
+// Perdição
+// Divina 1 (Necromancia)
+// Execução: padrão; Alcance: curto;
+// Alvos: criaturas escolhidas; Duração:
+// cena; Resistência: nenhuma.
+// Amaldiçoa os alvos, que recebem –1
+// em testes de ataque e rolagens de
+// dano. Perdição anula Bênção.
+// +2 PM: aumenta as penalidades em –1
+// (bônus máximo limitado pelo círculo
+// máximo de magia que você pode lançar).
+// Poeira da Podridão
+// Divina 3 (Necromancia)
+// Execução: padrão; Alcance: médio;
+
+// Área: nuvem com 6m de raio; Dura-
+// ção: cena; Resistência: Fortitude (veja
+
+// texto).
+
+// Você manifesta uma nuvem de poei-
+// ra carregada de energia negativa, que
+
+// apodrece lentamente as criaturas na
+// área. Ao lançar a magia, e no início de
+// seus turnos, criaturas na área sofrem
+
+// 2d8+8 pontos de dano de trevas (For-
+// titude reduz à metade). Alvos que fa-
+// lharem no teste não podem recuperar
+
+// PV por uma rodada.
+// +2 PM: aumenta o dano em 1d8+4.
+
+// Possessão
+// Arcana 5 (Encantamento)
+// Execução: padrão; Alcance: longo;
+
+// Alvo: 1 criatura; Duração: 1 dia; Re-
+// sistência: Vontade anula.
+
+// Você projeta sua consciência no corpo
+
+// do alvo. Enquanto possuir uma criatu-
+// ra, você assume o controle total do cor-
+// po dela. O seu próprio corpo fica in-
+// consciente e a consciência do alvo fica
+
+// inerte. Em termos de jogo, você con-
+// tinua usando a sua ficha, mas com os
+
+// atributos físicos e deslocamento da
+// criatura. Se o alvo passar no teste de
+
+// resistência, sabe que você tentou pos-
+// suí-lo e fica imune a esta magia por um
+
+// dia. Caso o corpo da criatura morra en-
+// quanto você a possui, a criatura morre
+
+// e você deve fazer um teste de Vontade
+// contra a CD da sua própria magia. Se
+// passar, sua consciência retorna para o
+// seu corpo (contanto que esteja dentro
+
+// do alcance). Do contrário, você tam-
+// bém morre. Retornar para o seu cor-
+// po voluntariamente é uma ação livre.
+
+// +5 PM: você ganha acesso às habilida-
+// des de raça e classe da criatura.
+
+// +5 PM: enquanto a magia durar e você
+// estiver dentro do alcance do seu corpo
+// original, pode “saltar” de uma criatura
+// possuída para outra. O novo alvo tem
+// direito a um teste de Vontade. Se falhar,
+// você assume o controle do corpo dele
+// e o alvo anterior recobra a consciência.
+
+// +5 PM: muda a duração para perma-
+// nente, mas destrói seu corpo original
+
+// no processo. Uma criatura possuída
+
+// pode fazer um teste de Vontade no co-
+// meço do dia para retomar seu corpo.
+
+// Se passar, recobra a consciência (e a
+// sua própria consciência fica inerte). O
+// teste se repete no início de cada dia. Se
+
+// o corpo de uma criatura possuída mor-
+// rer e houver outra criatura em alcance
+
+// curto, você pode tentar possuí-la. En-
+// quanto houver novos corpos para pos-
+// suir, você é imortal!
+
+// Potência Divina
+// Divina 3 (Transmutação)
+// Execução: padrão; Alcance: pessoal;
+// Alvo: você; Duração: sustentada.
+
+// Você canaliza o poder de sua divinda-
+// de. Você aumenta uma categoria de ta-
+// manho (seu equipamento muda de
+
+// acordo) e recebe Força +4 e RD 10.
+
+// Você não pode lançar magias enquan-
+// to estiver sob efeito de Potência Divina.
+
+// +2 PM: aumenta o bônus de Força
+// em +1.
+// +5 PM: aumenta a RD em +5.
+
+// +2 PM: muda o alcance para toque e
+// o alvo para 1 criatura. A magia falha
+// se você e o alvo não forem devotos da
+// mesma divindade.
+// Premonição
+// Divina 4 (Adivinhação)
+// Execução: padrão; Alcance: pessoal;
+// Alvo: você; Duração: cena.
+// Vislumbres do futuro permitem que
+// você reavalie suas ações. Uma vez por
+// rodada, você pode rolar novamente um
+// teste recém realizado, mas deve aceitar
+// o resultado da nova rolagem.
+// +3 PM: muda a execução para reação,
+
+// o alcance para curto, o alvo para 1 cria-
+// tura e a duração para instantânea. Esta
+
+// magia só pode ser usada em uma criatu-
+// ra que tenha acabado de fazer um teste.
+
+// Obriga a criatura a fazer uma nova rola-
+// gem de dados e aceitar o novo resulta-
+// do, seja ele um sucesso ou falha. Cria-
+// turas involuntárias têm direito a um
+
+// teste de Vontade para negar o efeito.
+// +10 PM: muda a duração para um dia.
+// Primor Atlético
+// Arcana 1 (Transmutação)
+// Execução: padrão; Alcance: toque;
+// Alvo: 1 criatura; Duração: cena.
+// Você modifica os limites físicos do
+// alvo, que recebe deslocamento +9m e
+// +10 em testes de Atletismo.
+
+// +1 PM: além do normal, o alvo rece-
+// be um bônus adicional de +20 em tes-
+// tes de Atletismo para saltar (para um
+
+// bônus total de +30).
+// +1 PM: além do normal, o alvo pode
+// escalar paredes e tetos sem precisar
+// fazer testes de Atletismo. Para isso,
+// precisa estar com as mãos livres, mas
+
+// pode usar uma única mão se ficar para-
+// do no lugar. O alvo não fica despreve-
+// nido enquanto escala.
+
+// +1 PM: muda a execução para ação de
+// movimento, o alcance para pessoal, o
+
+// alvo para você e a duração para instan-
+// tânea. Você salta muito alto e pousa
+
+// em alcance corpo a corpo de uma cria-
+// tura em alcance curto. Se fizer um ata-
+// que corpo a corpo contra essa criatura
+
+// neste turno, recebe os benefícios e pe-
+// nalidades de uma investida e sua arma
+
+// causa um dado extra de dano do mes-
+// mo tipo durante este ataque.
+
+// +3 PM: além do normal, ao fazer tes-
+// tes de perícias baseadas em Força,
+
+// Destreza ou Constituição, o alvo pode
+// rolar dois dados e escolher o melhor.
+
+// Não afeta testes de ataque ou resistên-
+// cia. Requer 2o círculo.
