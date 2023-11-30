@@ -5,7 +5,9 @@ import {
   enumTipo,
 } from "../../classes/Construtores/Magia";
 import { TabelaMagias } from "../../classes/Tabelas/Magias";
-import MagiasCards from "../Geral/Magias";
+import MagiasCards from "../Geral/MagiasCards";
+import Confirmar from "../Geral/Confirmar";
+import useCustomToast from "../Geral/Toasted";
 export interface ArrayMagias {
   nome: string;
   execucao: string;
@@ -149,23 +151,72 @@ export default function Magias({ handleChange, next }: MagiasProps) {
     return 0;
   };
 
+  const [selecionadas, setSelecionadas] = useState<string[]>([]);
+
   const [maximoSegundo, setMaximoSegundo] = useState<number>(
     calculateMaximoSegundo(classe || "", alt, nivel)
   );
+  const { showCustomToast } = useCustomToast();
+  const onSelect = () => {
+    if (maximoPrimeiro !== 0 || maximoSegundo !== 0) {
+      if (maximoPrimeiro !== 0) {
+        showCustomToast({
+          title: "Você ainda tem magias para escolher!",
+          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo para escolher!`,
+          status: "warning",
+        });
+      } else {
+        showCustomToast({
+          title: "Você ainda tem magias para escolher!",
+          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo e ${maximoSegundo} magias de segundo círculo para escolher!`,
+          status: "warning",
+        });
+      }
+    } else {
+      showCustomToast({
+        title: "Magias selecionadas!",
+        desc: `Você selecionou ${selecionadas.length} magias!`,
+        status: "success",
+      });
+      localStorage.setItem("magias", JSON.stringify(selecionadas));
+      handleChange(next);
+    }
+  };
+  let padrao = maximoPrimeiro;
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha suas Magias
       </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
-        <p className="flex flex-col">
-          <p>Magias Para escolher:</p>
-          <p className="ml-2 italic">
-            {`Primeiro: ${maximoPrimeiro}`}
-            {` Segundo: ${maximoSegundo}`}
-          </p>
-        </p>
-        <MagiasCards magias={array} handleChange={handleChange} setMaximoPrimeiro={setMaximoPrimeiro} maximoPrimeiro={maximoPrimeiro} setMaximoSegundo={setMaximoSegundo} maximoSegundo={maximoSegundo} next={next} />
+        {padrao !== 0 ? (
+          <>
+            <p className="flex flex-col">
+              <p>Magias Para escolher:</p>
+              <p className="ml-2 italic">
+                {`Primeiro: ${maximoPrimeiro}`}
+                {` Segundo: ${maximoSegundo}`}
+              </p>
+            </p>
+            <MagiasCards
+              magias={array}
+              setMaximoPrimeiro={setMaximoPrimeiro}
+              maximoPrimeiro={maximoPrimeiro}
+              setMaximoSegundo={setMaximoSegundo}
+              maximoSegundo={maximoSegundo}
+              selecionadas={selecionadas}
+              setSelecionadas={setSelecionadas}
+            />
+          </>
+        ) : (
+          <>
+            <h1 className="text-center text-3xl font-bold my-10 text-red-900">
+              Você não tem <span className="text-red-500">nenhuma</span> magia para escolher, clique em <span className="text-red-500">confirmar</span> para
+              continuar
+            </h1>
+          </>
+        )}
+        <Confirmar onSelect={onSelect} />
       </section>
     </>
   );
