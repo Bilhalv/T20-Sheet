@@ -11,6 +11,8 @@ import { Arma } from "../classes/Construtores/Arma";
 import Defesa from "../components/Ficha/Defesa";
 import Status from "../components/Ficha/Status";
 import { TabelaClasses } from "../classes/Tabelas/Classes";
+import Tamanho from "../components/Ficha/Tamanho";
+import Exp from "../components/Ficha/Exp-Deslocamento";
 
 const Ficha: React.FC = () => {
   interface itemMochila {
@@ -168,26 +170,24 @@ const Ficha: React.FC = () => {
             <Info personagem={personagem} />
             <section className="flex gap-6">
               <div className="flex flex-col w-2/3 gap-2">
-                <div className="flex">
-                  {/* <div className="flex flex-col items-center"> */}
-                  <div className="flex flex-col pl-24 gap-2 justify-start">
-                    {/*^^^^^^Outra Alternativa^^^^^^ */}
-                    <div className="flex items-center">
+                <div className="flex gap-4">
+                  <div className="flex flex-col items-start gap-4">
+                    <div className="flex items-center justify-between w-full gap-4">
                       <Atributos personagem={personagem} />
-                      <div className="w-1/5">{/* tamanho */}</div>
+                      <Tamanho personagem={personagem} />
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                       <Status personagem={personagem} setStatus={setStatus} />
                       <div className="w-1/3">
-                        {/* pontos de xp e deslocamento */}
+                        <Exp personagem={personagem} />
                       </div>
                     </div>
                   </div>
-                  <div className="w-1/3 bg-white px-5 py-2 rounded-xl border border-black">
-                    <h1 className="text-center text-xl font-bold">
+                  <div className=" bg-white px-2 py-2 rounded-xl border border-black">
+                    <h1 className="text-center text-red-900 text-xs font-bold">
                       Proficiencias e outras categorias
                     </h1>
-                    <ul className="list-disc px-5">
+                    <ul className="list-disc pl-4">
                       {classe?.proficiencias.map((proficiencia) => {
                         return <li className="text-xs">{proficiencia}</li>;
                       })}

@@ -28,11 +28,11 @@ export default function Pericias({ personagem }: Props) {
             return (
               <div className="grid grid-cols-5 hover:border-red-950 rounded hover:transform hover:scale-110 transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
                 <Tooltip bgColor={"red.700"} label={`${pericia.descricao}`}>
-                  <h1 className="text-red-900 drop-shadow-2xl text-md text-left col-span-2">
+                  <h1 className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-left col-span-2">
                     {pericia.nome}
                   </h1>
                 </Tooltip>
-                <h1 className="text-red-500 drop-shadow-2xl text-md text-right w-full mx-auto col-span-2">
+                <h1 className="text-red-500 drop-shadow-2xl text-md desktop:text-sm text-right w-full mx-auto col-span-2">
                   {pericia.atributo}
                 </h1>
                 <Tooltip
@@ -41,7 +41,7 @@ export default function Pericias({ personagem }: Props) {
                     personagem.atributos[pericia.atributo]
                   }) + metade do nivel(${Math.floor(personagem.nivel / 2)})`}
                 >
-                  <h1 className="text-red-900 drop-shadow-2xl text-md text-right">
+                  <h1 className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-right">
                     {(treinada ? 5 : 0) +
                       personagem.atributos[pericia.atributo] +
                       Math.floor(personagem.nivel / 2)}
