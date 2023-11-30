@@ -7,7 +7,7 @@
 <p align="center"> The project’s proposal consists of creating an interactive website dedicated to the manual creation of character sheets for the Brazilian RPG(Role-playing game) Tormenta 20. This challenge involves the practical and integrated application of the disciplines of Database I, Web Programming , Software Engineering I, Object Oriented Programming and Web Development for Mobile Devices. The intention is to develop a platform that offers an intuitive and efficient experience in the personalized construction of character sheets, combining advanced technical knowledge to meet the specific needs of the Tormenta 20 universe. </p>
 
 <p align="center">
- <a href="https://github.com/debsscc">Débora Carvalho</a> •
+ • <a href="https://github.com/debsscc">Débora Carvalho</a> •
  <a href="https://github.com/DiegoNachtigall">Diego Nachtigall</a> • 
  <a href="https://github.com/Bilhalv">Pedro Bilhalva</a> • 
 </p>
