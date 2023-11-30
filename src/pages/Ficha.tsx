@@ -1,24 +1,16 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import {
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import Equipamento from "../components/Ficha/Equipamento";
 import Pericias from "../components/Ficha/Pericias";
 import Atributos from "../components/Ficha/Atributos";
 import Info from "../components/Ficha/Info";
 import Ataques from "../components/Ficha/Ataques";
-import {
-  TabelasArmasSimles,
-  tabelaArmas,
-} from "../classes/Tabelas/Itens";
+import { TabelasArmasSimles, tabelaArmas } from "../classes/Tabelas/Itens";
 import { Arma } from "../classes/Construtores/Arma";
 import Defesa from "../components/Ficha/Defesa";
 import Status from "../components/Ficha/Status";
+import { TabelaClasses } from "../classes/Tabelas/Classes";
 
 const Ficha: React.FC = () => {
   interface itemMochila {
@@ -85,6 +77,9 @@ const Ficha: React.FC = () => {
     ataques: ataques,
     status: status,
   });
+  const classe = TabelaClasses.find(
+    (classe) => classe.nome === personagem.classe
+  );
   return (
     <>
       <Navbar back={"/"} />
@@ -173,10 +168,10 @@ const Ficha: React.FC = () => {
             <Info personagem={personagem} />
             <section className="flex gap-6">
               <div className="flex flex-col w-2/3 gap-2">
-                <div className="flex flex-col items-center">
-                {/* <div className="flex flex-col pl-24"> */}
-                {/*^^^^^^Outra Alternativa^^^^^^ */}
-                  <div className="flex-col flex w-1/3 gap-2 items-center">
+                <div className="flex">
+                  {/* <div className="flex flex-col items-center"> */}
+                  <div className="flex flex-col pl-24 gap-2 justify-start">
+                    {/*^^^^^^Outra Alternativa^^^^^^ */}
                     <div className="flex items-center">
                       <Atributos personagem={personagem} />
                       <div className="w-1/5">{/* tamanho */}</div>
@@ -188,8 +183,15 @@ const Ficha: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="w-1/3">
-                    {/* proficiencias e outras categorias */}
+                  <div className="w-1/3 bg-white px-5 py-2 rounded-xl border border-black">
+                    <h1 className="text-center text-xl font-bold">
+                      Proficiencias e outras categorias
+                    </h1>
+                    <ul className="list-disc px-5">
+                      {classe?.proficiencias.map((proficiencia) => {
+                        return <li className="text-xs">{proficiencia}</li>;
+                      })}
+                    </ul>
                   </div>
                 </div>
                 <div className="flex flex-col-reverse gap-6">
