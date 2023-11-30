@@ -9,32 +9,28 @@ import {
 } from "@chakra-ui/react";
 import { ArrayMagias } from "../pagina 2/Magias";
 import { enumTipo } from "../../classes/Construtores/Magia";
-import { useState } from "react";
-import Confirmar from "./Confirmar";
-import useCustomToast from "./Toasted";
 
 interface MagiasProps {
   magias: ArrayMagias[];
-  handleChange: (pagina: string) => void;
-  next: string;
   maximoPrimeiro: number;
   maximoSegundo: number
   setMaximoPrimeiro: any;
   setMaximoSegundo: any;
+  selecionadas: any;
+  setSelecionadas: any;
 }
 
 export default function MagiasCards({
   magias,
-  handleChange,
-  next,
   maximoPrimeiro,
   maximoSegundo,
   setMaximoPrimeiro,
-  setMaximoSegundo
+  setMaximoSegundo,
+  selecionadas,
+  setSelecionadas,
 }: MagiasProps) {
   
   
-  const [selecionadas, setSelecionadas] = useState<string[]>([]);
 
   const imagens = magias.map(
     (magia: ArrayMagias) =>
@@ -42,33 +38,6 @@ export default function MagiasCards({
       magia.escola.toLowerCase().replace(/ç/g, "c").replace(/ã/g, "a") +
       ".svg"
   );
-
-  const { showCustomToast } = useCustomToast();
-  const onSelect = () => {
-    if (maximoPrimeiro !== 0 || maximoSegundo !== 0) {
-      if (maximoPrimeiro !== 0) {
-        showCustomToast({
-          title: "Você ainda tem magias para escolher!",
-          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo para escolher!`,
-          status: "warning",
-        });
-      } else {
-        showCustomToast({
-          title: "Você ainda tem magias para escolher!",
-          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo e ${maximoSegundo} magias de segundo círculo para escolher!`,
-          status: "warning",
-        });
-      }
-    } else {
-      showCustomToast({
-        title: "Magias selecionadas!",
-        desc: `Você selecionou ${selecionadas.length} magias!`,
-        status: "success",
-      });
-      localStorage.setItem("magias", JSON.stringify(selecionadas));
-      handleChange(next);
-    }
-  };
   return (
     <>
       
@@ -86,7 +55,7 @@ export default function MagiasCards({
                     _expanded={{ bgColor: "red.600", roundedBottom: "none" }}
                     _hover={{ bgColor: "red.600" }}
                     rounded={"xl"}
-                    className="flex flex-col text-white bg-red-800 font-bold text-xl"
+                    className="flex flex-col text-white bg-bgT20 font-bold text-xl bg-cover bg-top "
                   >
                     <div className="flex justify-between w-full">
                       <p className="text-left my-auto">
@@ -108,7 +77,7 @@ export default function MagiasCards({
                             } else {
                               setSelecionadas(
                                 selecionadas.filter(
-                                  (nome) => nome !== magia.nome
+                                  (nome: string) => nome !== magia.nome
                                 )
                               );
                               setMaximoPrimeiro(maximoPrimeiro + 1);
@@ -223,7 +192,6 @@ export default function MagiasCards({
           ))}
         </Accordion>
       </div>
-      <Confirmar onSelect={onSelect} />
     </>
   );
 }
