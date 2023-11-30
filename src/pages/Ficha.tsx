@@ -89,7 +89,7 @@ const Ficha: React.FC = () => {
     <>
       <Navbar back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
-        <article className="bg-gray-50 bg-opacity-30 w-3/4 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
+        <article className="bg-gray-50 bg-opacity-30 w-11/12 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <h1 className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             {personagem.nome}
           </h1>
@@ -173,13 +173,15 @@ const Ficha: React.FC = () => {
             <Info personagem={personagem} />
             <section className="flex gap-6">
               <div className="flex flex-col w-2/3 gap-2">
-                <div className="flex">
-                  <div className="flex-col flex w-1/3">
-                    <div className="flex">
+                <div className="flex flex-col items-center">
+                {/* <div className="flex flex-col pl-24"> */}
+                {/*^^^^^^Outra Alternativa^^^^^^ */}
+                  <div className="flex-col flex w-1/3 gap-2 items-center">
+                    <div className="flex items-center">
                       <Atributos personagem={personagem} />
                       <div className="w-1/5">{/* tamanho */}</div>
                     </div>
-                    <div className="flex">
+                    <div className="flex items-center">
                       <Status personagem={personagem} setStatus={setStatus} />
                       <div className="w-1/3">
                         {/* pontos de xp e deslocamento */}
@@ -190,7 +192,7 @@ const Ficha: React.FC = () => {
                     {/* proficiencias e outras categorias */}
                   </div>
                 </div>
-                <div className="flex gap-6">
+                <div className="flex flex-col-reverse gap-6">
                   <Ataques personagem={personagem} />
                   <Defesa personagem={personagem} />
                 </div>
