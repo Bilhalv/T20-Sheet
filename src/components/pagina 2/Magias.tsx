@@ -8,6 +8,7 @@ import { TabelaMagias } from "../../classes/Tabelas/Magias";
 import MagiasCards from "../Geral/MagiasCards";
 import Confirmar from "../Geral/Confirmar";
 import useCustomToast from "../Geral/Toasted";
+import { TabelaClasses } from "../../classes/Tabelas/Classes";
 export interface ArrayMagias {
   nome: string;
   execucao: string;
@@ -48,7 +49,6 @@ export default function Magias({ handleChange, next }: MagiasProps) {
   const magiasSelecionadas = JSON.parse(localStorage.getItem("magias") || "[]");
   const [array, setArray] = useState<ArrayMagias[]>(() => {
     const magias = TabelaMagias.filter((magia) => {
-      const selected = magiasSelecionadas.includes(magia.nome);
       if (
         (classe === "Bardo" || classe === "Druida") &&
         !filtros.escolas.includes(magia.escola)
@@ -182,14 +182,29 @@ export default function Magias({ handleChange, next }: MagiasProps) {
       handleChange(next);
     }
   };
-  let padrao = maximoPrimeiro;
+  function handleChangeCheckbox(e: boolean, nome: string, circulo: number) {
+    if (e) {
+      setSelecionadas([...selecionadas, nome]);
+      setMaximoPrimeiro(maximoPrimeiro - 1);
+      if (circulo === 2) {
+        setMaximoSegundo(maximoSegundo - 1);
+      }
+    } else {
+      setSelecionadas(selecionadas.filter((nome: string) => nome !== nome));
+      setMaximoPrimeiro(maximoPrimeiro + 1);
+      if (circulo === 2) {
+        setMaximoSegundo(maximoSegundo + 1);
+      }
+    }
+  }
+  const cl = TabelaClasses.find((c) => c.nome === classe);
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha suas Magias
       </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
-        {padrao !== 0 ? (
+        {cl?.conjurador ? (
           <>
             <p className="flex flex-col">
               <p>Magias Para escolher:</p>
@@ -200,19 +215,19 @@ export default function Magias({ handleChange, next }: MagiasProps) {
             </p>
             <MagiasCards
               magias={array}
-              setMaximoPrimeiro={setMaximoPrimeiro}
               maximoPrimeiro={maximoPrimeiro}
-              setMaximoSegundo={setMaximoSegundo}
               maximoSegundo={maximoSegundo}
               selecionadas={selecionadas}
-              setSelecionadas={setSelecionadas}
+              handleChangeCheckbox={handleChangeCheckbox}
+              tipo="criar"
             />
           </>
         ) : (
           <>
             <h1 className="text-center text-3xl font-bold my-10 text-red-900">
-              Você não tem <span className="text-red-500">nenhuma</span> magia para escolher, clique em <span className="text-red-500">confirmar</span> para
-              continuar
+              Você não tem <span className="text-red-500">nenhuma</span> magia
+              para escolher, clique em{" "}
+              <span className="text-red-500">confirmar</span> para continuar
             </h1>
           </>
         )}

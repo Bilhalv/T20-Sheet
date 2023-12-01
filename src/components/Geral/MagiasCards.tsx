@@ -12,26 +12,21 @@ import { enumTipo } from "../../classes/Construtores/Magia";
 
 interface MagiasProps {
   magias: ArrayMagias[];
-  maximoPrimeiro: number;
-  maximoSegundo: number
-  setMaximoPrimeiro: any;
-  setMaximoSegundo: any;
-  selecionadas: any;
-  setSelecionadas: any;
+  maximoPrimeiro?: number;
+  maximoSegundo?: number;
+  selecionadas?: any;
+  handleChangeCheckbox?: any;
+  tipo: "criar" | "ficha";
 }
 
 export default function MagiasCards({
   magias,
-  maximoPrimeiro,
-  maximoSegundo,
-  setMaximoPrimeiro,
-  setMaximoSegundo,
+  maximoPrimeiro = 0,
+  maximoSegundo = 0,
   selecionadas,
-  setSelecionadas,
+  handleChangeCheckbox,
+  tipo,
 }: MagiasProps) {
-  
-  
-
   const imagens = magias.map(
     (magia: ArrayMagias) =>
       "./img/magias/escolas/" +
@@ -40,55 +35,62 @@ export default function MagiasCards({
   );
   return (
     <>
-      
       <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg p-2">
         <Accordion allowToggle className="flex flex-col gap-3">
           {magias.map((magia: ArrayMagias, index) => (
             <AccordionItem
               border={"solid"}
-              borderColor={"red.900"}
               borderRadius={"2xl"}
+              className="bg-bgT20 pb-2 px-2 rounded-xl"
             >
               {({ isExpanded }) => (
                 <>
                   <AccordionButton
-                    _expanded={{ bgColor: "red.600", roundedBottom: "none" }}
-                    _hover={{ bgColor: "red.600" }}
-                    rounded={"xl"}
-                    className="flex flex-col text-white bg-bgT20 font-bold text-xl bg-cover bg-top "
+                    _expanded={{
+                      transform: "scale(1.03)",
+                    }}
+                    display="flex"
+                    flexDirection="column"
+                    color="white"
+                    bg="transparent"
+                    fontWeight="bold"
+                    fontSize="xl"
+                    bgImage="url('/path/to/your/image')"
+                    bgPosition="top"
+                    _hover={{
+                      transform: "scale(1.03)",
+                    }}
+                    transition="all 0.5s ease"
                   >
                     <div className="flex justify-between w-full">
                       <p className="text-left my-auto">
-                        <Checkbox
-                          colorScheme="red"
-                          isDisabled={
-                            ((magia.circulo === 1 && maximoPrimeiro <= 0) ||
-                              (magia.circulo === 2 && maximoSegundo <= 0)) &&
-                            !selecionadas.includes(magia.nome)
-                          }
-                          isChecked={selecionadas.includes(magia.nome)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelecionadas([...selecionadas, magia.nome]);
-                              setMaximoPrimeiro(maximoPrimeiro - 1);
-                              if (magia.circulo === 2) {
-                                setMaximoSegundo(maximoSegundo - 1);
+                        {tipo === "criar" ? (
+                          <>
+                            <Checkbox
+                              colorScheme="red"
+                              isDisabled={
+                                ((magia.circulo === 1 && maximoPrimeiro <= 0) ||
+                                  (magia.circulo === 2 &&
+                                    maximoSegundo <= 0)) &&
+                                !selecionadas.includes(magia.nome)
                               }
-                            } else {
-                              setSelecionadas(
-                                selecionadas.filter(
-                                  (nome: string) => nome !== magia.nome
-                                )
-                              );
-                              setMaximoPrimeiro(maximoPrimeiro + 1);
-                              if (magia.circulo === 2) {
-                                setMaximoSegundo(maximoSegundo + 1);
-                              }
-                            }
-                          }}
-                          className="mr-2 mt-1"
-                        />
-                        {magia.nome}
+                              isChecked={selecionadas.includes(magia.nome)}
+                              onChange={(e) => {
+                                handleChangeCheckbox(
+                                  e.target.checked,
+                                  magia.nome,
+                                  magia.circulo
+                                );
+                              }}
+                              className="mr-2 mt-1"
+                              size={"lg"}
+                            >
+                            </Checkbox>
+                              {magia.nome}
+                          </>
+                        ) : (
+                          <></>
+                        )}
                       </p>
                       <Tooltip
                         label={
@@ -121,7 +123,7 @@ export default function MagiasCards({
                       </Tooltip>
                     </div>
                     {isExpanded ? (
-                      <p className="desktop:flex gap-4 grid grid-cols-2 desktop:flex-row mr-auto">
+                      <p className="flex justify-evenly flex-wrap w-full">
                         <p className="flex text-base">
                           <img
                             src="./img/magias/dados/execucao.svg"
@@ -162,7 +164,10 @@ export default function MagiasCards({
                       </p>
                     ) : null}
                   </AccordionButton>
-                  <AccordionPanel pb={4} className="font-serif text-justify">
+                  <AccordionPanel
+                    pb={4}
+                    className="font-serif text-justify bg-white bg-opacity-75 rounded-xl"
+                  >
                     &nbsp;&nbsp;&nbsp;{magia.descricao}
                     <br />
                     <Accordion allowToggle>
