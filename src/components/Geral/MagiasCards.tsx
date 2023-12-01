@@ -5,10 +5,12 @@ import {
   AccordionItem,
   AccordionPanel,
   Checkbox,
+  IconButton,
   Tooltip,
 } from "@chakra-ui/react";
 import { ArrayMagias } from "../pagina 2/Magias";
 import { enumTipo } from "../../classes/Construtores/Magia";
+import { XCircle } from "lucide-react";
 
 interface MagiasProps {
   magias: ArrayMagias[];
@@ -17,6 +19,7 @@ interface MagiasProps {
   selecionadas?: any;
   handleChangeCheckbox?: any;
   tipo: "criar" | "ficha";
+  removerMagia?: any;
 }
 
 export default function MagiasCards({
@@ -26,6 +29,7 @@ export default function MagiasCards({
   selecionadas,
   handleChangeCheckbox,
   tipo,
+  removerMagia,
 }: MagiasProps) {
   const imagens = magias.map(
     (magia: ArrayMagias) =>
@@ -39,7 +43,6 @@ export default function MagiasCards({
         <Accordion allowToggle className="flex flex-col gap-3">
           {magias.map((magia: ArrayMagias, index) => (
             <AccordionItem
-              border={"solid"}
               borderRadius={"2xl"}
               className="bg-bgT20 pb-2 px-2 rounded-xl"
             >
@@ -61,6 +64,7 @@ export default function MagiasCards({
                       transform: "scale(1.03)",
                     }}
                     transition="all 0.5s ease"
+                    paddingX={5}
                   >
                     <div className="flex justify-between w-full">
                       <p className="text-left my-auto">
@@ -84,12 +88,30 @@ export default function MagiasCards({
                               }}
                               className="mr-2 mt-1"
                               size={"lg"}
-                            >
-                            </Checkbox>
-                              {magia.nome}
+                            ></Checkbox>
+                            {magia.nome}
                           </>
                         ) : (
-                          <></>
+                          <>
+                            <IconButton
+                              colorScheme="red"
+                              aria-label="Remover magia"
+                              icon={<XCircle size={25} />}
+                              onClick={() => {
+                                removerMagia(magia.nome);
+                              }}
+                              rounded={"full"}
+                              padding={0}
+                              bg={"transparent"}
+                              _hover={{
+                                bg: "white",
+                                color: "red.500",
+                              }}
+                              size={"sm"}
+                              className="mr-2 mt-1"
+                            />
+                              {magia.nome}
+                          </>
                         )}
                       </p>
                       <Tooltip
@@ -166,12 +188,12 @@ export default function MagiasCards({
                   </AccordionButton>
                   <AccordionPanel
                     pb={4}
-                    className="font-serif text-justify bg-white bg-opacity-75 rounded-xl"
+                    className="font-serif text-justify bg-gray-200 rounded-xl"
                   >
                     &nbsp;&nbsp;&nbsp;{magia.descricao}
                     <br />
                     <Accordion allowToggle>
-                      <AccordionItem>
+                      <AccordionItem borderColor={"gray.400"}>
                         <AccordionButton className="flex justify-between font-bold text-xl font-tormenta">
                           <p className="text-left my-auto">Aprimoramentos</p>
                           <AccordionIcon />
