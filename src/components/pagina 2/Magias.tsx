@@ -5,7 +5,10 @@ import {
   enumTipo,
 } from "../../classes/Construtores/Magia";
 import { TabelaMagias } from "../../classes/Tabelas/Magias";
-import MagiasCards from "../Geral/Magias";
+import MagiasCards from "../Geral/MagiasCards";
+import Confirmar from "../Geral/Confirmar";
+import useCustomToast from "../Geral/Toasted";
+import { TabelaClasses } from "../../classes/Tabelas/Classes";
 export interface ArrayMagias {
   nome: string;
   execucao: string;
@@ -28,7 +31,7 @@ interface MagiasProps {
 
 export default function Magias({ handleChange, next }: MagiasProps) {
   const classe = localStorage.getItem("classe");
-  const nivel = localStorage.getItem("lvl");
+  const nivel = Number(localStorage.getItem("lvl"));
   const escolas = JSON.parse(localStorage.getItem("alt") || "[]");
   let filtros = {
     tipo: "" as enumTipo,
@@ -46,7 +49,6 @@ export default function Magias({ handleChange, next }: MagiasProps) {
   const magiasSelecionadas = JSON.parse(localStorage.getItem("magias") || "[]");
   const [array, setArray] = useState<ArrayMagias[]>(() => {
     const magias = TabelaMagias.filter((magia) => {
-      const selected = magiasSelecionadas.includes(magia.nome);
       if (
         (classe === "Bardo" || classe === "Druida") &&
         !filtros.escolas.includes(magia.escola)
@@ -99,14 +101,137 @@ export default function Magias({ handleChange, next }: MagiasProps) {
     });
     return newArray;
   });
+  const calculateMaximoPrimeiro = (
+    classe: string,
+    alt: string,
+    nivel: number
+  ) => {
+    if (classe === "Bardo" || classe === "Druida") {
+      return 2 + Math.floor(nivel / 2);
+    } else if (classe === "Arcanista" || classe === "Clérigo") {
+      if (alt === "Mago") {
+        return 4 + (nivel >= 5 ? nivel + 1 : nivel);
+      } else if (alt === "Feiticeiro") {
+        return 3 + Math.floor((nivel - 1) / 2);
+      } else {
+        return 3 + nivel - 1;
+      }
+    }
+    return 0;
+  };
+  const alt = JSON.parse(localStorage.getItem("alt") || "[]");
 
+  const [maximoPrimeiro, setMaximoPrimeiro] = useState<number>(
+    calculateMaximoPrimeiro(classe || "", alt, nivel)
+  );
+  const calculateMaximoSegundo = (
+    classe: string,
+    alt: string,
+    nivel: number
+  ) => {
+    if (classe === "Bardo" || classe === "Druida") {
+      if (nivel >= 6) {
+        return Math.floor(nivel / 2) - 1;
+      }
+    } else if (classe === "Arcanista" || classe === "Clérigo") {
+      if (alt === "Mago") {
+        if (nivel >= 5) {
+          return nivel - 4 + 1;
+        }
+      } else if (alt === "Feiticeiro") {
+        if (nivel >= 5) {
+          return Math.floor((nivel - 1) / 2) - 1;
+        }
+      } else {
+        if (nivel >= 5) {
+          return nivel - 4;
+        }
+      }
+    }
+    return 0;
+  };
+
+  const [selecionadas, setSelecionadas] = useState<string[]>([]);
+
+  const [maximoSegundo, setMaximoSegundo] = useState<number>(
+    calculateMaximoSegundo(classe || "", alt, nivel)
+  );
+  const { showCustomToast } = useCustomToast();
+  const onSelect = () => {
+    if (maximoPrimeiro !== 0 || maximoSegundo !== 0) {
+      if (maximoPrimeiro !== 0) {
+        showCustomToast({
+          title: "Você ainda tem magias para escolher!",
+          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo para escolher!`,
+          status: "warning",
+        });
+      } else {
+        showCustomToast({
+          title: "Você ainda tem magias para escolher!",
+          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo e ${maximoSegundo} magias de segundo círculo para escolher!`,
+          status: "warning",
+        });
+      }
+    } else {
+      showCustomToast({
+        title: "Magias selecionadas!",
+        desc: `Você selecionou ${selecionadas.length} magias!`,
+        status: "success",
+      });
+      localStorage.setItem("magias", JSON.stringify(selecionadas));
+      handleChange(next);
+    }
+  };
+  function handleChangeCheckbox(e: boolean, nome: string, circulo: number) {
+    if (e) {
+      setSelecionadas([...selecionadas, nome]);
+      setMaximoPrimeiro(maximoPrimeiro - 1);
+      if (circulo === 2) {
+        setMaximoSegundo(maximoSegundo - 1);
+      }
+    } else {
+      setSelecionadas(selecionadas.filter((nome: string) => nome !== nome));
+      setMaximoPrimeiro(maximoPrimeiro + 1);
+      if (circulo === 2) {
+        setMaximoSegundo(maximoSegundo + 1);
+      }
+    }
+  }
+  const cl = TabelaClasses.find((c) => c.nome === classe);
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
         Escolha suas Magias
       </h1>
       <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)]">
-        <MagiasCards magias={array} handleChange={handleChange} next={next}/>
+        {cl?.conjurador ? (
+          <>
+            <p className="flex flex-col">
+              <p>Magias Para escolher:</p>
+              <p className="ml-2 italic">
+                {`Primeiro: ${maximoPrimeiro}`}
+                {` Segundo: ${maximoSegundo}`}
+              </p>
+            </p>
+            <MagiasCards
+              magias={array}
+              maximoPrimeiro={maximoPrimeiro}
+              maximoSegundo={maximoSegundo}
+              selecionadas={selecionadas}
+              handleChangeCheckbox={handleChangeCheckbox}
+              tipo="criar"
+            />
+          </>
+        ) : (
+          <>
+            <h1 className="text-center text-3xl font-bold my-10 text-red-900">
+              Você não tem <span className="text-red-500">nenhuma</span> magia
+              para escolher, clique em{" "}
+              <span className="text-red-500">confirmar</span> para continuar
+            </h1>
+          </>
+        )}
+        <Confirmar onSelect={onSelect} />
       </section>
     </>
   );

@@ -21,6 +21,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import useCustomToast from "../Geral/Toasted";
+import { CircleSlash2 } from "lucide-react";
 
 interface DivindadesProps {
   handleChange: (pagina: string) => void;
@@ -155,6 +156,7 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
         setSelected(escolhas[0]);
       }
     };
+
   return (
     <>
       <div className="flex flex-row-reverse justify-between">
@@ -163,19 +165,39 @@ export default function Divindades({ handleChange, next }: DivindadesProps) {
           Escolha sua divindade
         </h1>
         <div className="w-1/4">
-          {classe !== "Druida" &&
-            classe !== "Clérigo" &&
-            classe !== "Paladino" && (
-              <Checkbox
-                isChecked={alternativo}
-                onChange={handleCheckboxChange("Nenhuma")}
-              >
-                Nenhuma
-              </Checkbox>
-            )}
+          <Checkbox
+            onChange={handleCheckboxChange("Nenhuma")}
+            isDisabled={
+              classe === "Druida" ||
+              classe === "Paladino" ||
+              classe === "Clérigo"
+            }
+            icon={alternativo ? <CircleSlash2 size={24} /> : <></>}
+            colorScheme="red"
+            size={"lg"}
+            isChecked={alternativo && selected === "Nenhuma"}
+            className={`${
+              alternativo && selected === "Nenhuma"
+                ? "bg-red-950 text-red-200"
+                : "bg-gray-200 hover:bg-gray-300"
+            } p-2 rounded-lg shadow-lx my-2 cursor-pointer w-full hover:shadow-[0px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all ease-in-out hover:scale-105 bg-opacity-90 disabled:opacity-70 disabled:cursor-not-allowed`}
+          >
+            Nenhuma
+          </Checkbox>
           {classes.map((cl) =>
             classe === cl.name ? (
-              <Checkbox onChange={handleCheckboxChange(cl.selectedValue)}>
+              <Checkbox
+                onChange={handleCheckboxChange(cl.selectedValue)}
+                icon={alternativo ? <CircleSlash2 size={24} /> : <></>}
+                colorScheme="red"
+                size={"lg"}
+                isChecked={alternativo && selected === cl.selectedValue}
+                className={`${
+                  alternativo && selected === cl.selectedValue
+                    ? "bg-red-950 text-red-200"
+                    : "bg-gray-200 hover:bg-gray-300"
+                } p-2 rounded-lg shadow-lx my-2 cursor-pointer w-full hover:shadow-[0px_5px_4px_0px_rgba(0,0,0,0.25)] transition-all ease-in-out hover:scale-105 bg-opacity-90 disabled:opacity-70 disabled:cursor-not-allowed`}
+              >
                 {cl.label}
               </Checkbox>
             ) : null

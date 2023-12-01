@@ -19,7 +19,6 @@ import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { tabelaDivindades } from "../../classes/Tabelas/Divindades";
-import { MinusIcon, PlusIcon } from "lucide-react";
 import { TabelaAtributos } from "../../classes/Tabelas/Atributos";
 import { ConfirmarOnModal, FecharOnModal } from "./Botoes";
 

@@ -3,7 +3,7 @@ import Navbar from "../components/Geral/Navbar";
 import { UserPlus, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Inicio: React.FC = () => {
+const Personagens: React.FC = () => {
   return (
     <>
       <Navbar back={"/"} />
@@ -40,4 +40,4 @@ const Inicio: React.FC = () => {
   );
 };
 
-export default Inicio;
+export default Personagens;

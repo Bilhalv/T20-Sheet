@@ -3,9 +3,7 @@ import Navbar from "../components/Geral/Navbar";
 import Divindades from "../components/pagina 2/Divindades";
 import {
   Box,
-  Button,
   Step,
-  StepDescription,
   StepIcon,
   StepIndicator,
   StepNumber,
@@ -22,7 +20,7 @@ import InfoModal from "../components/Geral/InfoModal";
 import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
-  const paginas = ["Divindades", "Equipamentos", "Magias", "Alt", "Poderes"];
+  const paginas = ["Divindades", "Equipamentos", "Magias", "Especificações", "Poderes"];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
   const handleChange = (e: string) => {

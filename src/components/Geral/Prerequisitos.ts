@@ -1,4 +1,5 @@
 import { Poder, RequisitoPoder } from "../../classes/Construtores/Poder";
+import { TabelaPoderes } from "../../classes/Tabelas/Poderes";
 
 export function PreRequisitos(totalPoderes: Poder[]) {
   const Indisponiveis = totalPoderes.filter((poder) => {
@@ -81,8 +82,20 @@ export function PreRequisitos(totalPoderes: Poder[]) {
           });
           return !pertence;
         }
-      }
 
+        //filtro tormenta
+        // if (poder.requisitos.includes(RequisitoPoder.poder_tormenta)) {
+        //   const desc = poder.requisitos_descricao;
+        //   const poderesSelecionados = TabelaPoderes.find((e) =>
+        //     JSON.parse(localStorage.getItem("poderes") || "[]").some(
+        //       (poder: any) => poder === e.nome
+        //     )
+        //   );
+        //   for (let index = 0; index < poderesSelecionados.length; index++) {
+        //     const element = poderesSelecionados[index];
+        //   }
+        // }
+      }
       return false;
     });
   });

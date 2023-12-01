@@ -19,7 +19,7 @@ export default function Status({ personagem, setStatus }: Props) {
   };
   return (
     <>
-      <div className="flex justify-between w-3/4 mx-auto desktop:gap-6">
+      <div className="flex justify-center w-fit mx-auto gap-6">
         <div className="flex">
           <div className="bg-white rounded-2xl border border-black flex flex-col gap-2 px-6 z-20">
             <h1 className="font-bold text-center text-lg">PV</h1>

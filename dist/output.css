@@ -629,12 +629,12 @@ html {
   order: 3;
 }
 
-.m-2 {
-  margin: 0.5rem;
+.col-span-2 {
+  grid-column: span 2 / span 2;
 }
 
-.m-auto {
-  margin: auto;
+.m-2 {
+  margin: 0.5rem;
 }
 
 .mx-7 {
@@ -732,6 +732,10 @@ html {
   margin-right: auto;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -766,10 +770,6 @@ html {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mt-1 {
-  margin-top: 0.25rem;
 }
 
 .block {
@@ -830,6 +830,10 @@ html {
   height: 100%;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .max-h-\[500px\] {
   max-height: 500px;
 }
@@ -858,6 +862,10 @@ html {
   width: 20%;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-16 {
   width: 4rem;
 }
@@ -880,6 +888,10 @@ html {
 
 .w-3\/5 {
   width: 60%;
+}
+
+.w-4\/5 {
+  width: 80%;
 }
 
 .w-5\/6 {
@@ -920,6 +932,10 @@ html {
   width: 100%;
 }
 
+.w-5 {
+  width: 1.25rem;
+}
+
 .scale-125 {
   --tw-scale-x: 1.25;
   --tw-scale-y: 1.25;
@@ -936,6 +952,15 @@ html {
   cursor: pointer;
 }
 
+.select-none {
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -950,10 +975,6 @@ html {
 
 .grid-cols-5 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.flex-row {
-  flex-direction: row;
 }
 
 .flex-row-reverse {
@@ -976,12 +997,20 @@ html {
   place-items: center;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-end {
   align-items: flex-end;
 }
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-end {
@@ -1030,6 +1059,10 @@ html {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.divide-dotted > :not([hidden]) ~ :not([hidden]) {
+  border-style: dotted;
 }
 
 .overflow-y-scroll {
@@ -1201,6 +1234,11 @@ html {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .bg-gray-200 {
@@ -1389,8 +1427,17 @@ html {
   padding-bottom: 2rem;
 }
 
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
+}
+
+.pl-24 {
+  padding-left: 6rem;
 }
 
 .pl-6 {
@@ -1609,6 +1656,10 @@ html {
 
 .delay-100 {
   transition-delay: 100ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
 }
 
 .ease-in {
@@ -1902,10 +1953,6 @@ html {
 
   .desktop\:flex-col {
     flex-direction: column;
-  }
-
-  .desktop\:gap-6 {
-    gap: 1.5rem;
   }
 
   .desktop\:p-5 {

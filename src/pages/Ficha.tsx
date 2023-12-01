@@ -1,31 +1,18 @@
 import React, { useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import { X, Edit, Plus } from "lucide-react";
-import { TabelaPericias } from "../classes/Tabelas/Pericias";
-import {
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import Equipamento from "../components/Ficha/Equipamento";
 import Pericias from "../components/Ficha/Pericias";
 import Atributos from "../components/Ficha/Atributos";
 import Info from "../components/Ficha/Info";
 import Ataques from "../components/Ficha/Ataques";
-import {
-  TabelasArmasSimles,
-  tabelaArmaduras,
-  tabelaArmas,
-  tabelaItens,
-} from "../classes/Tabelas/Itens";
+import { TabelasArmasSimles, tabelaArmas } from "../classes/Tabelas/Itens";
 import { Arma } from "../classes/Construtores/Arma";
-import { Armadura } from "../classes/Construtores/Armadura";
-import { Item } from "../classes/Construtores/Item";
 import Defesa from "../components/Ficha/Defesa";
 import Status from "../components/Ficha/Status";
+import { TabelaClasses } from "../classes/Tabelas/Classes";
+import Tamanho from "../components/Ficha/Tamanho";
+import Exp from "../components/Ficha/Exp-Deslocamento";
 
 const Ficha: React.FC = () => {
   interface itemMochila {
@@ -92,11 +79,14 @@ const Ficha: React.FC = () => {
     ataques: ataques,
     status: status,
   });
+  const classe = TabelaClasses.find(
+    (classe) => classe.nome === personagem.classe
+  );
   return (
     <>
       <Navbar back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
-        <article className="bg-gray-50 bg-opacity-30 w-3/4 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
+        <article className="bg-gray-50 bg-opacity-30 w-11/12 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <h1 className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             {personagem.nome}
           </h1>
@@ -180,24 +170,31 @@ const Ficha: React.FC = () => {
             <Info personagem={personagem} />
             <section className="flex gap-6">
               <div className="flex flex-col w-2/3 gap-2">
-                <div className="flex">
-                  <div className="flex-col flex w-1/3">
-                    <div className="flex">
+                <div className="flex gap-4">
+                  <div className="flex flex-col items-start gap-4">
+                    <div className="flex items-center justify-between w-full gap-4">
                       <Atributos personagem={personagem} />
-                      <div className="w-1/5">{/* tamanho */}</div>
+                      <Tamanho personagem={personagem} />
                     </div>
-                    <div className="flex">
+                    <div className="flex items-center gap-2">
                       <Status personagem={personagem} setStatus={setStatus} />
                       <div className="w-1/3">
-                        {/* pontos de xp e deslocamento */}
+                        <Exp personagem={personagem} />
                       </div>
                     </div>
                   </div>
-                  <div className="w-1/3">
-                    {/* proficiencias e outras categorias */}
+                  <div className=" bg-white px-2 py-2 rounded-xl border border-black">
+                    <h1 className="text-center text-red-900 text-xs font-bold">
+                      Proficiencias e outras categorias
+                    </h1>
+                    <ul className="list-disc pl-4">
+                      {classe?.proficiencias.map((proficiencia) => {
+                        return <li className="text-xs">{proficiencia}</li>;
+                      })}
+                    </ul>
                   </div>
                 </div>
-                <div className="flex gap-6">
+                <div className="flex flex-col-reverse gap-6">
                   <Ataques personagem={personagem} />
                   <Defesa personagem={personagem} />
                 </div>

@@ -5,172 +5,114 @@ import {
   AccordionItem,
   AccordionPanel,
   Checkbox,
+  IconButton,
   Tooltip,
 } from "@chakra-ui/react";
 import { ArrayMagias } from "../pagina 2/Magias";
 import { enumTipo } from "../../classes/Construtores/Magia";
-import { useState, useEffect } from "react";
-import Confirmar from "./Confirmar";
-import useCustomToast from "./Toasted";
+import { XCircle } from "lucide-react";
 
 interface MagiasProps {
   magias: ArrayMagias[];
-  handleChange: (pagina: string) => void;
-  next: string;
+  maximoPrimeiro?: number;
+  maximoSegundo?: number;
+  selecionadas?: any;
+  handleChangeCheckbox?: any;
+  tipo: "criar" | "ficha";
+  removerMagia?: any;
 }
 
 export default function MagiasCards({
   magias,
-  handleChange,
-  next,
+  maximoPrimeiro = 0,
+  maximoSegundo = 0,
+  selecionadas,
+  handleChangeCheckbox,
+  tipo,
+  removerMagia,
 }: MagiasProps) {
-  const classe = localStorage.getItem("classe");
-  const alt = JSON.parse(localStorage.getItem("alt") || "[]");
-  const nivel = Number(localStorage.getItem("lvl"));
-  const calculateMaximoPrimeiro = (
-    classe: string,
-    alt: string,
-    nivel: number
-  ) => {
-    if (classe === "Bardo" || classe === "Druida") {
-      return 2 + Math.floor(nivel / 2);
-    } else if (classe === "Arcanista" || classe === "Clérigo") {
-      if (alt === "Mago") {
-        return 4 + (nivel >= 5 ? nivel + 1 : nivel);
-      } else if (alt === "Feiticeiro") {
-        return 3 + Math.floor((nivel - 1) / 2);
-      } else {
-        return 3 + nivel - 1;
-      }
-    }
-    return 0;
-  };
-
-  const [maximoPrimeiro, setMaximoPrimeiro] = useState<number>(
-    calculateMaximoPrimeiro(classe || "", alt, nivel)
-  );
-  const calculateMaximoSegundo = (
-    classe: string,
-    alt: string,
-    nivel: number
-  ) => {
-    if (classe === "Bardo" || classe === "Druida") {
-      if (nivel >= 6) {
-        return Math.floor(nivel / 2) - 1;
-      }
-    } else if (classe === "Arcanista" || classe === "Clérigo") {
-      if (alt === "Mago") {
-        if (nivel >= 5) {
-          return nivel - 4 + 1;
-        }
-      } else if (alt === "Feiticeiro") {
-        if (nivel >= 5) {
-          return Math.floor((nivel - 1) / 2) - 1;
-        }
-      } else {
-        if (nivel >= 5) {
-          return nivel - 4;
-        }
-      }
-    }
-    return 0;
-  };
-
-  const [maximoSegundo, setMaximoSegundo] = useState<number>(
-    calculateMaximoSegundo(classe || "", alt, nivel)
-  );
-  const [selecionadas, setSelecionadas] = useState<string[]>([]);
-
   const imagens = magias.map(
     (magia: ArrayMagias) =>
       "./img/magias/escolas/" +
       magia.escola.toLowerCase().replace(/ç/g, "c").replace(/ã/g, "a") +
       ".svg"
   );
-
-  const { showCustomToast } = useCustomToast();
-  const onSelect = () => {
-    if (maximoPrimeiro !== 0 || maximoSegundo !== 0) {
-      if (maximoPrimeiro !== 0) {
-        showCustomToast({
-          title: "Você ainda tem magias para escolher!",
-          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo para escolher!`,
-          status: "warning",
-        });
-      } else {
-        showCustomToast({
-          title: "Você ainda tem magias para escolher!",
-          desc: `Você ainda tem ${maximoPrimeiro} magias de primeiro círculo e ${maximoSegundo} magias de segundo círculo para escolher!`,
-          status: "warning",
-        });
-      }
-    } else {
-      showCustomToast({
-        title: "Magias selecionadas!",
-        desc: `Você selecionou ${selecionadas.length} magias!`,
-        status: "success",
-      });
-      localStorage.setItem("magias", JSON.stringify(selecionadas));
-      handleChange(next);
-    }
-  };
   return (
     <>
-      <p className="flex flex-col">
-        <p>Magias Para escolher:</p>
-        <p className="ml-2 italic">
-          {`Primeiro: ${maximoPrimeiro}`}
-          {` Segundo: ${maximoSegundo}`}
-        </p>
-      </p>
       <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg p-2">
         <Accordion allowToggle className="flex flex-col gap-3">
           {magias.map((magia: ArrayMagias, index) => (
             <AccordionItem
-              border={"solid"}
-              borderColor={"red.900"}
               borderRadius={"2xl"}
+              className="bg-bgT20 pb-2 px-2 rounded-xl"
             >
               {({ isExpanded }) => (
                 <>
                   <AccordionButton
-                    _expanded={{ bgColor: "red.600", roundedBottom: "none" }}
-                    _hover={{ bgColor: "red.600" }}
-                    rounded={"xl"}
-                    className="flex flex-col text-white bg-red-800 font-bold text-xl"
+                    _expanded={{
+                      transform: "scale(1.03)",
+                    }}
+                    display="flex"
+                    flexDirection="column"
+                    color="white"
+                    bg="transparent"
+                    fontWeight="bold"
+                    fontSize="xl"
+                    bgImage="url('/path/to/your/image')"
+                    bgPosition="top"
+                    _hover={{
+                      transform: "scale(1.03)",
+                    }}
+                    transition="all 0.5s ease"
+                    paddingX={5}
                   >
                     <div className="flex justify-between w-full">
                       <p className="text-left my-auto">
-                        <Checkbox
-                          colorScheme="red"
-                          isDisabled={
-                            ((magia.circulo === 1 && maximoPrimeiro <= 0) ||
-                              (magia.circulo === 2 && maximoSegundo <= 0)) &&
-                            !selecionadas.includes(magia.nome)
-                          }
-                          isChecked={selecionadas.includes(magia.nome)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelecionadas([...selecionadas, magia.nome]);
-                              setMaximoPrimeiro(maximoPrimeiro - 1);
-                              if (magia.circulo === 2) {
-                                setMaximoSegundo(maximoSegundo - 1);
+                        {tipo === "criar" ? (
+                          <>
+                            <Checkbox
+                              colorScheme="red"
+                              isDisabled={
+                                ((magia.circulo === 1 && maximoPrimeiro <= 0) ||
+                                  (magia.circulo === 2 &&
+                                    maximoSegundo <= 0)) &&
+                                !selecionadas.includes(magia.nome)
                               }
-                            } else {
-                              setSelecionadas(
-                                selecionadas.filter(
-                                  (nome) => nome !== magia.nome
-                                )
-                              );
-                              setMaximoPrimeiro(maximoPrimeiro + 1);
-                              if (magia.circulo === 2) {
-                                setMaximoSegundo(maximoSegundo + 1);
-                              }
-                            }
-                          }}
-                          className="mr-2 mt-1"
-                        />
-                        {magia.nome}
+                              isChecked={selecionadas.includes(magia.nome)}
+                              onChange={(e) => {
+                                handleChangeCheckbox(
+                                  e.target.checked,
+                                  magia.nome,
+                                  magia.circulo
+                                );
+                              }}
+                              className="mr-2 mt-1"
+                              size={"lg"}
+                            ></Checkbox>
+                            {magia.nome}
+                          </>
+                        ) : (
+                          <>
+                            <IconButton
+                              colorScheme="red"
+                              aria-label="Remover magia"
+                              icon={<XCircle size={25} />}
+                              onClick={() => {
+                                removerMagia(magia.nome);
+                              }}
+                              rounded={"full"}
+                              padding={0}
+                              bg={"transparent"}
+                              _hover={{
+                                bg: "white",
+                                color: "red.500",
+                              }}
+                              size={"sm"}
+                              className="mr-2 mt-1"
+                            />
+                              {magia.nome}
+                          </>
+                        )}
                       </p>
                       <Tooltip
                         label={
@@ -203,7 +145,7 @@ export default function MagiasCards({
                       </Tooltip>
                     </div>
                     {isExpanded ? (
-                      <p className="desktop:flex gap-4 grid grid-cols-2 desktop:flex-row mr-auto">
+                      <p className="flex justify-evenly flex-wrap w-full">
                         <p className="flex text-base">
                           <img
                             src="./img/magias/dados/execucao.svg"
@@ -244,11 +186,14 @@ export default function MagiasCards({
                       </p>
                     ) : null}
                   </AccordionButton>
-                  <AccordionPanel pb={4} className="font-serif text-justify">
+                  <AccordionPanel
+                    pb={4}
+                    className="font-serif text-justify bg-gray-200 rounded-xl"
+                  >
                     &nbsp;&nbsp;&nbsp;{magia.descricao}
                     <br />
                     <Accordion allowToggle>
-                      <AccordionItem>
+                      <AccordionItem borderColor={"gray.400"}>
                         <AccordionButton className="flex justify-between font-bold text-xl font-tormenta">
                           <p className="text-left my-auto">Aprimoramentos</p>
                           <AccordionIcon />
@@ -274,7 +219,6 @@ export default function MagiasCards({
           ))}
         </Accordion>
       </div>
-      <Confirmar onSelect={onSelect} />
     </>
   );
 }

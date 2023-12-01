@@ -8,6 +8,7 @@ import Parte2 from "./pages/Parte2";
 import Ficha from "./pages/Ficha";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Personagens from "./pages/Personagens";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,6 +22,7 @@ root.render(
           <Route path="/criarpt1" element={<Parte1 />} />
           <Route path="/criarpt2" element={<Parte2 />} />
           <Route path="/ficha" element={<Ficha />} />
+          <Route path="/personagens" element={<Personagens />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

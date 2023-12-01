@@ -66,6 +66,7 @@ export default function Inicio({ handleChange, next }: InicioProps) {
             </h1>
             <Input
               value={nome}
+              maxLength={30}
               onChange={(event) => setNome(event.target.value)}
               placeholder={localStorage.getItem("nome") ?? "Insira seu nome"}
               className="text-center text-red-800 rounded-lg w-full transition-all ease-in-out font-serif"
