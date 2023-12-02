@@ -67,7 +67,7 @@ export default function InfoModal({ pagina }: Props) {
                     <h1 className="font-bold">Nivel</h1>
                     <p className="italic font-serif">
                       Determina o quão experiente é o seu personagem. Para
-                      personagens iniciantes recomendasse escolher o nivel 1.
+                      personagens iniciantes recomenda-se escolher o nivel 1.
                     </p>
                   </div>
                 </div>
