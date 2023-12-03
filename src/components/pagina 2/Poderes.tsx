@@ -129,7 +129,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
 
   const { showCustomToast } = useCustomToast();
   const handleSelect = () => {
-    if (poderesSelecionados.length < limite) {
+    if (poderesSelecionados.length-(JSON.parse(localStorage.getItem("poderes") ?? "[]").length) < limite) {
       showCustomToast({
         title: "Poderes",
         desc: `Você deve escolher mais ${
@@ -171,7 +171,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
-        Escolha seus Poderes
+        Escolha seus Poderes {poderesSelecionados.length-(JSON.parse(localStorage.getItem("poderes") ?? "[]").length)}
       </h1>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
@@ -259,7 +259,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                       <Checkbox
                         checked={poder.selecionado}
                         isDisabled={
-                          (poderesSelecionados.length >= limite &&
+                          (poderesSelecionados.length-((JSON.parse(localStorage.getItem("poderes") ?? "[]").length)) >= limite &&
                             !poderesSelecionados.includes(poder.nome)) ||
                           (poderesIndisponiveis.some(
                             (poderIndisponivel) =>
@@ -284,10 +284,6 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                           }
 
                           setPoderesSelecionados(updatedPoderesSelecionados);
-                          localStorage.setItem(
-                            "poderes",
-                            JSON.stringify(updatedPoderesSelecionados)
-                          );
                         }}
                         defaultChecked={poder.selecionado ?? false}
                         colorScheme="red"
