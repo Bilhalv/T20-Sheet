@@ -31,22 +31,32 @@ export class Mochila {
   armas: armaFicha[] = [];
   armaduras: armaduraFicha[] = [];
 }
-export class Ficha {
+
+export class PericiasFicha {
+  nome: string = "";
+  treinada: number = 0;
+  bonus: number = 0;
+}
+export default class Ficha {
   id: number;
   nome: string;
   classe: Classe;
+  raca: string;
+  origem: string;
   nivel: number;
   pv: number;
   pm: number;
   atributos: { atributo: Atributo; valor: number }[];
-  pericias: Pericia[];
-  magias: Magia[];
-  poderes: Poder[];
+  pericias: PericiasFicha[];
+  magias: string[];
+  poderes: string[];
   mochila: Mochila;
 
   constructor() {
     this.id = 0;
     this.nome = "";
+    this.raca = "";
+    this.origem = "";
     this.classe = new Classe();
     this.nivel = 0;
     this.pv = 0;
@@ -61,37 +71,3 @@ export class Ficha {
     this.mochila = new Mochila();
   }
 }
-
-const personagem2 = new Ficha();
-const atributos = [
-  {
-    atributo: Atributo.forca,
-    valor: 15,
-  },
-  {
-    atributo: Atributo.destreza,
-    valor: 10,
-  },
-  {
-    atributo: Atributo.constituicao,
-    valor: 10,
-  },
-  {
-    atributo: Atributo.inteligencia,
-    valor: 10,
-  },
-  {
-    atributo: Atributo.sabedoria,
-    valor: 10,
-  },
-  {
-    atributo: Atributo.carisma,
-    valor: 10,
-  },
-];
-personagem2.atributos.map((atributo) => {
-  atributo.valor =
-    atributos.find((a) => a.atributo === atributo.atributo)?.valor ?? 0;
-});
-
-export default personagem2;

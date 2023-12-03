@@ -93,11 +93,8 @@ function BotaoLista({
 
 export default function Alt({ handleChange, next }: AltProps) {
   /*## Classes
-- [ ]  Caminho do cavalheiro
 - [ ]  Fabricar item superior do inventor
-- [ ]  Especialista do Ladino
-- [ ]  Espólio de Nobre
-- [ ]  Benção da justiça do Paladino*/
+- [ ]  Espólio de Nobre*/
   const [especificasOrigem, setEspecificasOrigem] = useState<string[]>([]);
   const [especificasRaca, setEspecificasRaca] = useState<string[]>([]);
   const [especificasClasse, setEspecificasClasse] = useState<string[]>([]);

@@ -29,6 +29,13 @@ import { RolarDado } from "../Geral/RolarDado";
 import { Eye } from "lucide-react";
 import Confirmar from "../Geral/Confirmar";
 import useCustomToast from "../Geral/Toasted";
+import {
+  Mochila,
+  armaFicha,
+  armaduraFicha,
+  itemFicha,
+} from "../../classes/Construtores/Ficha";
+import { Item } from "../../classes/Construtores/Item";
 
 interface EquipamentosProps {
   handleChange: (pagina: string) => void;
@@ -128,11 +135,83 @@ export default function Equipamentos({
       });
       return;
     } else {
-      const equipamentos = {
-        armasSimples,
-        armasMarciais,
-        armaduras,
-        Itens,
+      const armaspraFicha: armaFicha[] = [];
+      armasSimples.forEach((arma) => {
+        const armaTabela = TabelasArmasSimles.find((x) => x.nome === arma);
+        if (armaTabela === undefined) return;
+        armaspraFicha.push({
+          nome: armaTabela.nome,
+          dano: armaTabela.dano,
+          crit: armaTabela.crit,
+          alcance: armaTabela.alcance,
+          tipo: armaTabela.tipo,
+          categoria: armaTabela.categoria,
+          descricao: armaTabela.descricao,
+          preco: armaTabela.preco,
+          descUnica: armaTabela.descricao,
+          espacos: armaTabela.espacos,
+          proficiencia: armaTabela.proficiencia,
+          quantidade: 1,
+        });
+      });
+      armasMarciais.forEach((arma) => {
+        const armaTabela = tabelaArmas.find((x) => x.nome === arma);
+        if (armaTabela === undefined) return;
+        armaspraFicha.push({
+          nome: armaTabela.nome,
+          dano: armaTabela.dano,
+          crit: armaTabela.crit,
+          alcance: armaTabela.alcance,
+          tipo: armaTabela.tipo,
+          categoria: armaTabela.categoria,
+          descricao: armaTabela.descricao,
+          preco: armaTabela.preco,
+          descUnica: armaTabela.descricao,
+          espacos: armaTabela.espacos,
+          proficiencia: armaTabela.proficiencia,
+          quantidade: 1,
+        });
+      });
+      const armaduraspraFicha: armaduraFicha[] = [];
+      armaduras.forEach((armadura) => {
+        const armaduraTabela = tabelaArmaduras.find((x) => x.nome === armadura);
+        if (armaduraTabela === undefined) return;
+        armaduraspraFicha.push({
+          nome: armaduraTabela.nome,
+          defesa: armaduraTabela.defesa,
+          penalidade: armaduraTabela.penalidade,
+          descricao: armaduraTabela.descricao,
+          preco: armaduraTabela.preco,
+          descUnica: armaduraTabela.descricao,
+          espacos: armaduraTabela.espacos,
+          categoria: armaduraTabela.categoria,
+          tipo: armaduraTabela.tipo,
+          quantidade: 1,
+        });
+      });
+      const itenspraFicha: itemFicha[] = [];
+      Itens.forEach((item) => {
+        const itemTabela = tabelaItens.find((x) => x.nome === item.nome);
+        if (itemTabela === undefined) return;
+        itenspraFicha.push({
+          nome: itemTabela.nome,
+          descricao: itemTabela.descricao,
+          preco: itemTabela.preco,
+          descUnica: itemTabela.descricao,
+          espacos: itemTabela.espacos,
+          categoria: itemTabela.categoria,
+          quantidade: 1,
+        });
+      });
+      const equipamentos: Mochila = {
+        armas: armaspraFicha,
+        armaduras: armaduraspraFicha,
+        itens: itenspraFicha,
+        tibares: {
+          TibaresCobre: 0,
+          TibaresNormal: tibares,
+          TibaresOuro: 0,
+        },
       };
       localStorage.setItem("equipamentos", JSON.stringify(equipamentos));
       handleChange(next);
