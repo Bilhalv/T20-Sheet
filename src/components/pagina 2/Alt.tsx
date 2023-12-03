@@ -211,7 +211,6 @@ export default function Alt({ handleChange, next }: AltProps) {
               <AccordionPanel className="bg-white bg-opacity-20">
                 <CheckboxGroup>
                   <div>
-                    {especificasOrigem.join(", ")}
                     <p className="font-bold text-center text-lg">Poderes</p>
                     <div className="flex flex-col">
                       {origem.beneficios.poderes.map((beneficio) => (
