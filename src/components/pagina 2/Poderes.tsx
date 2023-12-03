@@ -29,6 +29,8 @@ import { PreRequisitos } from "../Geral/Prerequisitos";
 import { useEffect } from "react";
 import useCustomToast from "../Geral/Toasted";
 import Confirmar from "../Geral/Confirmar";
+import addFichaToLocalStorage from "../Geral/addFicha";
+import { useNavigate } from "react-router-dom";
 
 interface PoderesProps {
   handleChange: (pagina: string) => void;
@@ -128,8 +130,13 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
   const poderesIndisponiveis = PreRequisitos(totalPoderes);
 
   const { showCustomToast } = useCustomToast();
+  const navigate = useNavigate();
   const handleSelect = () => {
-    if (poderesSelecionados.length-(JSON.parse(localStorage.getItem("poderes") ?? "[]").length) < limite) {
+    if (
+      poderesSelecionados.length -
+        JSON.parse(localStorage.getItem("poderes") ?? "[]").length <
+      limite
+    ) {
       showCustomToast({
         title: "Poderes",
         desc: `Você deve escolher mais ${
@@ -160,18 +167,28 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
       });
       if (temIndisponivel) return;
       localStorage.setItem("poderes", JSON.stringify(poderesSelecionados));
-      handleChange(next);
+      const temCerteza = window.confirm(
+        "Você tem certeza que deseja continuar?"
+      );
+      if (!temCerteza) return;
       showCustomToast({
         title: "Poderes",
         desc: "Poderes escolhidos com sucesso.",
         status: "success",
       });
+      const poderesAntigos = JSON.parse(
+        localStorage.getItem("poderes") ?? "[]"
+      );
+      poderesAntigos.push(...poderesSelecionados);
+      localStorage.setItem("poderes", JSON.stringify(poderesAntigos));
+      addFichaToLocalStorage();
+      navigate("/ficha");
     }
   };
   return (
     <>
       <h1 className="text-center text-3xl font-bold mb-14 text-white drop-shadow-[0px_5px_rgba(7,7,7,7)]">
-        Escolha seus Poderes {poderesSelecionados.length-(JSON.parse(localStorage.getItem("poderes") ?? "[]").length)}
+        Escolha seus Poderes
       </h1>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
@@ -259,7 +276,10 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                       <Checkbox
                         checked={poder.selecionado}
                         isDisabled={
-                          (poderesSelecionados.length-((JSON.parse(localStorage.getItem("poderes") ?? "[]").length)) >= limite &&
+                          (poderesSelecionados.length -
+                            JSON.parse(localStorage.getItem("poderes") ?? "[]")
+                              .length >=
+                            limite &&
                             !poderesSelecionados.includes(poder.nome)) ||
                           (poderesIndisponiveis.some(
                             (poderIndisponivel) =>

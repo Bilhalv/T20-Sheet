@@ -1,9 +1,10 @@
 import React from "react";
 import Navbar from "../components/Geral/Navbar";
 import { UserPlus, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Inicio: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar back={"/"} />
@@ -20,13 +21,21 @@ const Inicio: React.FC = () => {
               pericias e os auxiliando nas rolagens de dados.
             </p>
             <div className="flex flex-col w-full justify-center gap-5 desktop:flex-row">
-              <Link to="/criarpt1">
-                <button className="mx-auto desktop:mx-0 bg-gray-50 bg-opacity-50 p-5 text-red-950 font-bold rounded-lg hover:bg-opacity-70 transition-all ease-in-out flex flex-col desktop:flex-row items-center desktop:text-base text-sm gap-1">
-                  <Plus /> Novo Personagem
-                </button>
-              </Link>
               <button
-                disabled
+                onClick={() => {
+                  navigate("/criarpt1");
+                }}
+                className="mx-auto desktop:mx-0 bg-gray-50 bg-opacity-50 p-5 text-red-950 font-bold rounded-lg hover:bg-opacity-70 transition-all ease-in-out flex flex-col desktop:flex-row items-center desktop:text-base text-sm gap-1"
+              >
+                <Plus /> Novo Personagem
+              </button>
+              <button
+                disabled={
+                  localStorage.getItem("fichas") === null ? true : false
+                }
+                onClick={() => {
+                  navigate("/personagens");
+                }}
                 className="mx-auto desktop:mx-0 bg-gray-50 bg-opacity-50 p-5 text-red-950 font-bold rounded-lg hover:bg-opacity-70 transition-all ease-in-out flex flex-col desktop:flex-row items-center desktop:text-base text-sm gap-1 disabled:cursor-not-allowed disabled:opacity-30"
               >
                 <UserPlus />
