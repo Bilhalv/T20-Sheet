@@ -3199,7 +3199,7 @@ export const TabelaMagias: Magia[] = [
     nome: "Mata-Dragão",
     descricao:
       "Esta é uma das mais poderosas magias de destruição existentes. Após entoar longos cânticos, o conjurador dispara uma carga de energia que varre uma enorme área à sua frente, causando 20d12 pontos de dano de essência em todas as criaturas, construções e objetos livres atingidos. Sempre que rolar um resultado 12 em um dado de dano, a magia causa +1d12 pontos de dano. Apesar de seu poder destrutivo, esta magia é lenta, tornando seu uso difícil em combate.",
-    execucao: enumExecucao.padrao,
+    execucao: enumExecucao.outra,
     alcance: "pessoal",
     alvo: "cone de 30m",
     duracao: "instantânea",
@@ -3537,7 +3537,7 @@ export const TabelaMagias: Magia[] = [
   {
     nome: "Palavra Primordial",
     descricao:
-      "Você pronuncia uma palavra do idioma primordial da Criação, que causa um dos efeitos abaixo, a sua escolha.\nAtordoar: a cria- tura fica atordoada por 1d4+1 rodadas (apenas uma vez por cena). Se passar no teste de resistência, ou se já foi atordoada por esta magia, fica desprevenida por 1d4 rodadas.\nCegar: a criatura fica cega. Se passar no teste de resistência, fica ofuscada por 1d4 rodadas.\nMatar: a criatura morre. Além do teste de Vontade, a criatura tem direito a um teste de Fortitude se tiver mais da metade de seus PV. Se passar em qualquer um deles, em vez de morrer perde 10d8 pontos de vida e fica sangrando.",
+      "Você pronuncia uma palavra do idioma primordial da Criação, que causa um dos efeitos abaixo, a sua escolha.\nAtordoar: a criatura fica atordoada por 1d4+1 rodadas (apenas uma vez por cena). Se passar no teste de resistência, ou se já foi atordoada por esta magia, fica desprevenida por 1d4 rodadas.\nCegar: a criatura fica cega. Se passar no teste de resistência, fica ofuscada por 1d4 rodadas.\nMatar: a criatura morre. Além do teste de Vontade, a criatura tem direito a um teste de Fortitude se tiver mais da metade de seus PV. Se passar em qualquer um deles, em vez de morrer perde 10d8 pontos de vida e fica sangrando.",
     execucao: enumExecucao.padrao,
     alcance: "curto",
     alvo: "1 criatura com menos níveis que você",
@@ -3664,199 +3664,777 @@ export const TabelaMagias: Magia[] = [
     tipo: enumTipo.divina,
     circulo: 4,
   },
-  
-
-
+  {
+    nome: "Primor Atlético",
+    descricao:
+      "Você modifica os limites físicos do alvo, que recebe deslocamento +9m e +10 em testes de Atletismo.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.transmutacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "além do normal, o alvo recebe um bônus adicional de +20 em testes de Atletismo para saltar (para um bônus total de +30).",
+      },
+      {
+        pm_a_mais: 1,
+        descricao: "além do normal, o alvo pode escalar paredes e tetos sem precisar fazer testes de Atletismo. Para isso, precisa estar com as mãos livres, mas pode usar uma única mão se ficar parado no lugar. O alvo não fica desprevenido enquanto escala.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao: "muda a execução para ação de movimento, o alcance para pessoal, o alvo para você e a duração para instantânea. Você salta muito alto e pousa em alcance corpo a corpo de uma criatura em alcance curto. Se fizer um ataque corpo a corpo contra essa criatura neste turno, recebe os benefícios e penalidades de uma investida e sua arma causa um dado extra de dano do mesmo tipo durante este ataque.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "além do normal, ao fazer testes de perícias baseadas em Força, Destreza ou Constituição, o alvo pode rolar dois dados e escolher o melhor. Não afeta testes de ataque ou resistência. Requer 2o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Profanar",
+    descricao:
+      "Você enche a área com energia negativa. Dano causado por efeitos de trevas é maximizado dentro da área. Isso também afeta PV curados em mortos-vivos por esses efeitos. Esta magia não pode ser lançada em uma área contendo um símbolo visível dedicado a uma divindade que não a sua. Profanar anula Consagrar.",
+    execucao: enumExecucao.padrao,
+    alcance: "longo",
+    alvo: "esfera com 9m de raio",
+    duracao: "1 dia",
+    resistencia: "",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "além do normal, mortos-vivos na área recebem +2 na Defesa e +2 em todos os testes.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta os bônus para mortos-vivos em +1.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "muda a execução para 1 hora, a duração para permanente e adiciona componente material (incenso e óleos no valor de T$ 1.000). Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Projetar Consciência",
+    descricao:
+      "Esta magia faz com que sua consciência deixe seu corpo e se transporte instantaneamente para um local ou para perto de uma criatura alvo. Se escolher um local, ele precisa ser conhecido por você. Se escolher uma criatura, você transporta sua consciência até onde a criatura estiver, contanto que estejam no mesmo plano.\nVocê adquire uma forma fantasmagórica invisível, mas pode se mostrar usando uma ação de movimento. Pode se mover em qualquer direção com deslocamento igual ao seu deslocamento normal. Você pode atravessar objetos sólidos, mas não pode terminar seu turno dentro de um objeto sólido. Seu deslocamento não precisa ser em linha reta. Você pode abrir portas e gavetas, acender velas, falar, ouvir, cheirar e sentir o gosto de comidas e bebidas. Você não pode atacar ou lançar magias, mas pode usar magias que já estejam ativas. Você não pode interagir com criaturas ou objetos físicos de nenhuma outra forma.\nVocê pode terminar a magia voluntariamente como uma ação livre.",
+    execucao: enumExecucao.padrao,
+    alcance: "ilimitado (veja texto)",
+    alvo: "local ou criatura conhecidos",
+    duracao: "sustentada",
+    resistencia: "",
+    escola: enumEscolas.adivinhacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 10,
+        descricao: "além do normal, sua projeção é capaz de lançar magias que não precisem de componentes materiais e tenham duração diferente de sustentada. Sua forma fantasmagórica funciona como na magia Forma Etérea, sendo afetada por magias de abjuração e essência, mas as magias que ela lança podem afetar criaturas corpóreas.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 5,
+  },
+  {
+    nome: "Proteção contra Magia",
+    descricao:
+      "Você protege o alvo contra efeitos mágicos nocivos. O alvo recebe +5 em testes de resistência contra magias.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao: "muda o bônus para +10. Requer 4o círculo.",
+      },
+      {
+        pm_a_mais: 4,
+        descricao: "em vez do normal, o alvo fica imune a uma escola de magia a sua escolha. Requer 4o Círculo.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "em vez do normal, o alvo fica imune a duas escolas de magia a sua escolha. Requer 5o Círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 3,
+  },
+  {
+    nome: "Proteção Divina",
+    descricao:
+      "Esta magia cria uma barreira mística invisível que fornece ao alvo +2 em testes de resistência.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o bônus concedido em +1.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda a execução para reação, o alcance para curto e a duração para 1 rodada. Em vez do normal, o alvo recebe +5 no próximo teste de resistência que fizer (cumulativo com o efeito básico desta magia).",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alvo para área de esfera com 3m de raio. Todos os aliados dentro do círculo recebem o bônus da magia. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "torna o alvo imune a efeitos mentais e de medo. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Purificação",
+    descricao:
+      "Você purifica a criatura tocada, removendo uma condição dela entre abalado, apavorado, alquebrado, atordoado, cego, confuso, debilitado, enjoado, envenenado, esmorecido, exausto, fascinado, fatigado, fraco, frustrado, lento, ofuscado, paralisado, pasmo ou surdo.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "também recupera todos os PV perdidos por veneno.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "em vez de uma, remove todas as condições listadas.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "também permite que o alvo solte qualquer item amaldiçoado que esteja segurando (mas não remove a maldição do item em si).",
+      },
+      {
+        pm_a_mais: 7,
+        descricao: "também dissipa magias e efeitos mágicos que causem uma das condições listadas.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Queda Suave",
+    descricao:
+      "O alvo cai lentamente. A velocidade da queda é reduzida para 18m por rodada — o suficiente para não causar dano. Como lançar esta magia é uma reação, você pode lançá-la rápido o bastante para salvar a si ou um aliado de quedas inesperadas. Lançada sobre um projétil, a magia faz com que ele caia lentamente, mas não afeta seu dano.",
+    execucao: enumExecucao.reacao,
+    alcance: "curto",
+    alvo: "1 criatura ou objeto Grande ou menor",
+    duracao: "até chegar ao solo ou cena, o que vier primeiro",
+    resistencia: "",
+    escola: enumEscolas.transmutacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alvo para 1 criatura ou objeto de tamanho Enorme ou menor.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alvo para 1 criatura ou objeto de tamanho Colossal ou menor.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alvo para 1 criatura ou objeto de tamanho Gigantesco ou menor.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Raio de Enfraquecimento",
+    descricao:
+      "Um raio de energia negativa enfraquece o alvo. Ele recebe –2 em testes de ataque e rolagens de dano. Um alvo que falhar no teste de resistência também fica fatigado. Um alvo que já esteja fatigado fica exausto. Um alvo que já esteja exausto fica inconsciente. Esta magia não pode ser usada para causar dano.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "Fortitude parcial",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao: "Muda o alcance para toque e a resistência para Fortitude anula. Em vez do normal, sua mão emana um brilho púrpura e, ao tocar o alvo, ele fica fatigado.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "em vez do normal, se falhar na resistência o alvo fica exausto. Se passar, fica fatigado. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "como acima, mas muda o alvo para criaturas escolhidas. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 1,
+  },
+  {
+    nome: "Raio Polar",
+    descricao:
+      "Você dispara um raio azul esbranquiçado de gelo e ar congelante. O alvo sofre 10d8 pontos de dano de frio e fica preso em um bloco de gelo (paralisado). Se passar no teste de resistência, sofre metade do dano e, em vez de paralisado, fica lento por uma rodada.\nÉ possível quebrar o gelo para libertar uma criatura presa: o bloco tem 20 PV, RD 10 e é vulnerável a fogo. Uma criatura presa pode gastar uma ação completa para fazer um teste de Atletismo e se libertar do gelo; cada vez que passar no teste causa 10 pontos de dano ao bloco, ignorando a RD.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "Fortitude parcial",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "aumenta o dano em +2d8.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda o alvo para área de esfera com 6m de raio. Em vez de um raio, você dispara uma bola de gelo que explode, causando o efeito da magia em todas as criaturas na área.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Raio Solar",
+    descricao:
+      "Você canaliza uma poderosa rajada de energia positiva que ilumina o campo de batalha. Criaturas na área sofrem 4d8 pontos de dano de luz (ou 4d12, se forem mortos-vivos) e ficam ofuscadas por uma rodada. Se passarem na resistência, sofrem metade do dano e não ficam ofuscadas.",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "linha",
+    duracao: "instantânea",
+    resistencia: "Reflexos (veja texto)",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 0,
+        descricao: "muda a duração para cena e a resistência para nenhuma. Em vez do normal, cria um facho de luz que ilumina a área da magia. Uma vez por rodada, você pode mudar a direção do facho como uma ação livre.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano ou cura em +1d8 (ou +1d12 em mortos-vivos).",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "em vez do normal, criaturas vivas a sua escolha na área curam 4d8 pontos de vida; o restante sofre o dano normalmente.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "criaturas que falhem na resistência ficam cegas por 1d4 rodadas.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Reanimação Impura",
+    descricao:
+      "Você reanima uma criatura morta recentemente (dentro da mesma cena), trazendo sua alma de volta ao corpo de forma forçada. O tipo da criatura muda para morto-vivo, mas ela retém suas memórias e habilidades de quando estava viva, podendo inclusive lançar magias. A criatura pode pensar e falar livremente, mas obedece cegamente a você. Ela não é afetada por magias que afetem apenas mortos-vivos, mas é afetada por magias que afetem apenas criaturas vivas.\nA criatura reanimada tem 1d6 pontos de vida temporários por nível de magia que você gastou para lançar esta magia. Quando esses pontos de vida temporários acabarem, a criatura morre de novo. Você pode reanimar uma criatura morta apenas uma vez. Se ela morrer de novo, não pode ser reanimada novamente.",
+    execucao: enumExecucao.completa,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [],
+    tipo: enumTipo.divina,
+    circulo: 5,
+  },
+  {
+    nome: "Refúgio",
+    descricao:
+      "Esta magia cria um domo imóvel e quase opaco por fora, mas transparente pelo lado de dentro. Ele protege contra calor, frio e forças pequenas, mas não contra qualquer coisa capaz de causar dano. Assim, o domo protege contra neve e vento comuns, mas não contra uma flecha ou Bola de Fogo.\nPorém, como o domo é quase opaco, qualquer criatura dentro dele tem camuflagem total contra ataques vindos de fora. Criaturas podem entrar e sair do domo livremente. Descansar dentro do Refúgio concede recuperação normal de PV e PM.",
+    execucao: enumExecucao.completa,
+    alcance: "curto",
+    alvo: "esfera com 6m de raio",
+    duracao: "1 dia",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "além do normal, os limites do domo são envoltos por uma fumaça escura e espessa, que impede criaturas do lado de fora de enxergar ou ouvir o que está dentro. Criaturas do lado de dentro enxergam e ouvem normalmente o que está do lado de fora. A fumaça também bloqueia magias de adivinhação.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "em vez do normal, cria uma cabana que comporta até 10 criaturas Médias. Descansar nesse espaço concede recuperação confortável (recupera PV e PM igual ao dobro do nível). Para todos os efeitos é uma cabana normal, com paredes de madeira, telhado, uma porta, duas janelas e alguma mobília (camas, uma mesa com bancos e uma lareira). A porta e as janelas têm 15 PV, RD 5 e são protegidas por um efeito idêntico à magia Tranca Arcana. As paredes têm 200 PV e RD 5.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "em vez do normal, cria um espaço extradimensional, similar a uma caverna vazia e escura, que comporta até 10 criaturas Médias. A entrada para o espaço precisa estar desenhada em um objeto fixo como uma grande pedra ou árvore. Qualquer criatura que atravesse a entrada consegue entrar no espaço. Nenhum efeito a partir do mundo real afeta o espaço e vice-versa, mas aqueles que estiverem dentro podem observar o mundo real como se uma janela de 1m estivesse centrada na entrada. Qualquer coisa que esteja no espaço extradimensional surge no mundo real na área vazia mais próxima da entrada quando a duração da magia acaba. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "em vez do normal, cria uma mansão extradimensional que comporta até 100 criaturas Médias, com quartos luxuosos, comida e bebida e dez servos fantasmagóricos (como na magia Servos Invisíveis). Descansar na mansão concede recuperação luxuosa (recupera PV e PM igual ao triplo do nível). A mansão tem uma única entrada, uma porta feita de luz. Você pode deixá-la visível ou invisível como uma ação livre e apenas criaturas escolhidas por você podem passar. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Relâmpago",
+    descricao:
+      "Você dispara um raio de eletricidade que causa 1d8 pontos de dano elétrico por nível de magia (máximo 10d8).",
+    execucao: enumExecucao.padrao,
+    alcance: "médio",
+    alvo: "linha",
+    duracao: "instantânea",
+    resistencia: "Reflexos (veja texto)",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano em +1d8.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alvo para área de esfera com 6m de raio. Em vez de um raio, você dispara uma bola de eletricidade que explode, causando o efeito da magia em todas as criaturas na área.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 3,
+  },
+  {
+    nome: "Relâmpago flamejante de Reynard",
+    descricao:
+      "Esta é uma magia poderosa, desenvolvida pelo metódico e impassível arquimago Reynard. Você invoca as energias elementais do fogo e do relâmpago, fazendo com que uma de suas mãos fique em chamas e a outra mão eletrificada. Pela duração da magia, você pode gastar uma ação de movimento para disparar uma bola de fogo (10d6 pontos de dano de fogo numa esfera com 6m de raio) ou um relâmpago (10d6 pontos de dano de eletricidade numa linha). Você também pode, como uma ação padrão, usar as duas mãos num ataque de energia mista (20d12 pontos de dano, metade de fogo e metade de eletricidade, numa esfera com 9m de raio). Você precisa estar com as duas mãos livres para invocar o efeito misto e isso consome toda a energia da magia, terminando-a imediatamente. Por se tratar de um ritual complexo, o tempo de execução dessa magia não pode ser reduzido.",
+    execucao: enumExecucao.outra,
+    alcance: "médio",
+    alvo: "bolas de fogo e relâmpagos",
+    duracao: "sustentada",
+    resistencia: "Reflexos reduz à metade",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta o dano das rajadas em +1d6 e o dano da rajada mista em +2d12.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 4,
+  },
+  {
+    nome: "Réquiem",
+    descricao:
+      "Esta magia cria uma ilusão particular para cada uma das criaturas que atingir. Enquanto a magia durar, no início de cada um de seus turnos, cada criatura afetada deve fazer um teste de Vontade; se falhar, acha que não tomou as ações que realmente fez no turno anterior e é obrigada a repetir as mesmas ações neste turno, com uma penalidade cumulativa de –5 em todos os testes para cada vez que se repetir (a penalidade não se aplica ao teste de Vontade contra esta magia). Por exemplo, se a criatura se aproximou de um alvo e o atacou, precisa se aproximar desse mesmo alvo e atacar novamente. A ação repetida consome PM e recursos normalmente e, caso exija um teste de resistência, qualquer alvo faz esse teste com um bônus igual ao da penalidade desta magia.",
+    execucao: enumExecucao.completa,
+    alcance: "curto",
+    alvo: "criaturas escolhidas",
+    duracao: "sustentada",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.ilusao,
+    aprimoramentos: [],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Resistência a Energia",
+    descricao:
+      "Ao lançar esta magia, escolha entre ácido, eletricidade, fogo, frio, luz ou trevas. O alvo recebe redução de dano 10 contra o tipo de dano escolhido.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "aumenta a redução de dano em +5.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda a duração para um dia. Requer 2o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda o alcance para curto e o alvo para criaturas escolhidas. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda o efeito para redução de dano contra todos os tipos listados na magia. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "muda o efeito para imunidade a um tipo listado na magia. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 1,
+  },
+  {
+    nome: "Rogar Maldição",
+    descricao:
+      "Você entoa cânticos maléficos que amaldiçoam uma vítima, criando efeitos variados. Ao lançar a magia, escolha entre os seguintes.\nDebilidade: o alvo fica esmorecido e não pode se comunicar ou lançar magias. Ainda reconhece seus aliados e pode segui-los e ajudá-los, mas sempre de maneira simplória.\nDoença: muda a duração para instantânea. O alvo contrai uma doença a sua escolha, que o afeta imediatamente (sem período de incubação).\nFraqueza: o alvo fica debilitado e lento.\nIsolamento: o alvo perde o uso de um de seus cinco sentidos a sua escolha. Se perder a visão, fica cego. Se perder a audição, fica surdo. Se perder o olfato ou paladar, não pode usar a habilidade faro. Se perder o tato, fica caído e não pode se levantar.\nVocê também pode inventar sua própria maldição, usando esses exemplos como sugestões, mas o mestre tem a palavra final sobre o efeito.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "sustentada",
+    resistencia: "Fortitude anula",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "aumenta o número de efeitos que você pode escolher em +1. Requer 3o círculo.",
+      },
+      {
+        pm_a_mais: 7,
+        descricao: "muda a duração para permanente e resistência para Fortitude parcial. Se passar, a criatura ainda sofre os efeitos da maldição, mas por 1 rodada. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 2,
+  },
+  {
+    nome: "Roubar a Alma",
+    descricao:
+      "Você rouba a alma da vítima, armazenando-a em um objeto. Se o alvo passar no teste de resistência, sente o impacto de sua alma ser puxada para fora do corpo e fica abalado por 1 rodada. Se falhar, seu corpo fica caído, inconsciente e inerte, enquanto sua alma é transportada para dentro do objeto. O corpo não envelhece nem se decompõe, permanecendo em estase. Ele pode ser atacado e destruído normalmente. O objeto escolhido deve custar T$ 1.000 por nível ou ND da criatura e não possuir uma alma presa ou se quebrará quando a magia for lançada (embora personagens não conheçam o conceito de “nível” dentro do mundo de jogo, podem ter noção do poder geral de uma criatura, estimando assim o valor do objeto). Se o objeto for destruído, a magia se esvai. Se o corpo ainda estiver disponível, a alma retorna para ele. Caso contrário, escapa para os Mundos dos Deuses.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "1 criatura",
+    duracao: "permanente",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 5,
+        descricao: "o objeto que abriga a alma detém os mesmos PM totais que o alvo. Se estiver empunhando o objeto, você pode usar esses PM para lançar magias no lugar dos seus. O objeto recupera PM por dia como se o personagem estivesse em descanso normal.",
+      },
+      {
+        pm_a_mais: 10,
+        descricao: "como uma reação ao lançar esta magia, você possui o corpo sem alma do alvo, como na magia Possessão (mesmo que não conheça a magia).",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 5,
+  },
+  {
+    nome: "Runa de Proteção",
+    descricao:
+      "Você escreve uma runa pessoal em uma superfície fixa, como uma parede ou o chão, que protege uma pequena área ao redor. Quando uma criatura entra na área afetada a runa explode, causando 6d6 pontos de dano em todos os alvos a até 6m. A criatura que ativa a runa não tem direito a teste de resistência; outras criaturas na área têm direito a um teste de Reflexos para reduzir o dano à metade. Quando lança a magia, você escolhe o tipo de dano, entre ácido, eletricidade, fogo, frio, luz ou trevas.\nVocê pode determinar que a runa se ative apenas em condições específicas — por exemplo, apenas por goblins ou apenas por mortos-vivos. Você também pode criar uma palavra mágica que impeça a runa de se ativar.\nUm personagem pode encontrar a runa com um teste de Investigação e desarmá-la com um teste de Ladinagem.",
+    execucao: enumExecucao.outra,
+    alcance: "toque",
+    alvo: "uma área de 6m de raio",
+    duracao: "permanente até ser descarregada",
+    resistencia: "varia (veja o texto)",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "aumenta o dano em +2d6.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao: "muda o alvo para “você” e o alcance para “pessoal”. Ao invés do normal, escolha uma magia de 1o círculo que você conhece e pode lançar, com tempo de execução de uma ação padrão ou menor. Você escreve a runa em seu corpo e especifica uma condição de ativação como, por exemplo, “quando eu for alvo de um ataque” ou “quando for alvo de uma magia”. Quando a condição for cumprida, você pode ativar a runa e lançar a magia escolhida como uma reação. Você só pode escrever uma runa em seu corpo ao mesmo tempo.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "como o aprimoramento anterior, mas você pode escolher magias de 2o círculo. Requer 3o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 2,
+  },
+  {
+    nome: "Salto Dimensional",
+    descricao:
+      "Esta magia transporta você para outro lugar dentro do alcance. Você não precisa perceber nem ter linha de efeito ao seu destino, podendo simplesmente imaginá-lo. Por exemplo, pode se transportar 3m adiante para ultrapassar uma porta fechada. Uma vez transportadas, criaturas não podem agir até a rodada seguinte. Esta magia não permite que você apareça dentro de um corpo sólido; se o ponto de chegada não tem espaço livre, você ressurge na área vazia mais próxima.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "você",
+    duracao: "instantânea",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "muda o alcance para médio.",
+      },
+      {
+        pm_a_mais: 1,
+        descricao: "muda o alvo para você e uma criatura voluntária. Você pode escolher este aprimoramento mais vezes para aumentar o número de alvos adicionais em +1, mas deve estar tocando todos os alvos.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda a execução para reação. Em vez do normal, você recebe +5 na Defesa e em testes de Reflexos contra um ataque ou efeito que esteja prestes a atingi-lo. Após a resolução do efeito, salta para um espaço adjacente (1,5m).",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "muda o alcance para longo.",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 2,
+  },
+  {
+    nome: "Santuário",
+    descricao:
+      "Qualquer criatura que tente fazer uma ação hostil contra o alvo deve fazer um teste de Vontade. Se falhar, não consegue, perde a ação e não pode tentar novamente até o fim da cena. Santuário não protege o alvo de efeitos de área.\nAlém disso, o próprio alvo também não pode fazer ações hostis (incluindo forçar outras criaturas a atacá-lo), ou a magia é dissipada — mas pode usar habilidades e magias de cura e suporte, como Curar Ferimentos e Bênção.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "Vontade anula",
+    escola: enumEscolas.abjuracao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "além do normal, escolha um tipo de criatura entre animal, construto ou morto-vivo. Você não pode ser percebido por criaturas não inteligentes (Int –4 ou menor) do tipo escolhido.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "também protege o alvo contra efeitos de área. Uma criatura que tente atacar uma área que inclua o alvo deve fazer o teste de Vontade; se falhar, não consegue e perde a ação. Ela só pode tentar novamente se o alvo sair da área.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 1,
+  },
+  {
+    nome: "Segunda Chance",
+    descricao:
+      "Um brilho de luz, na forma de asas de fênix, emana do alvo. Ele recupera 200 pontos de vida e se cura de qualquer das seguintes condições: abalado, apavorado, alquebrado, atordoado, cego, confuso, debilitado, enjoado, envenenado, esmorecido, exausto, fascinado, fatigado, fraco, frustrado, lento, ofuscado, paralisado, pasmo ou surdo.",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "instantânea",
+    resistencia: "",
+    escola: enumEscolas.evocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 1,
+        descricao: "aumenta a cura em +20 PV.",
+      },
+      {
+        pm_a_mais: 2,
+        descricao: "muda o alcance para curto e o alvo para até 5 criaturas.",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda o alvo para uma criatura que tenha morrido há até uma rodada. Esta magia pode curá-la.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 5,
+  },
+  {
+    nome: "Selo de Mana",
+    descricao:
+      "Seu toque manifesta um selo mágico na pele do alvo, que atrapalha o fluxo de mana. Pela duração da magia, sempre que o alvo realizar qualquer ação que gaste PM, deve fazer um teste de Vontade; se passar, faz a ação normalmente. Se falhar, a ação não tem efeito (mas os PM são gastos mesmo assim).",
+    execucao: enumExecucao.padrao,
+    alcance: "toque",
+    alvo: "1 criatura",
+    duracao: "cena",
+    resistencia: "Vontade parcial",
+    escola: enumEscolas.encantamento,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao: "muda o alcance para curto e o alvo para criaturas escolhidas dentro do alcance. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 3,
+  },
+  {
+    nome: "Semiplano",
+    descricao:
+      "Você cria uma dimensão particular. Você pode entrar no semiplano gastando uma ação padrão e 10 PM, desaparecendo do plano material como se tivesse se teletransportado. Você pode levar criaturas voluntárias que esteja tocando, ao custo de 1 PM por criatura extra. Você também pode levar objetos que esteja tocando, ao custo de 1 PM por objeto Médio ou menor, 2 PM por objeto Grande, 5 PM por Enorme e 10 PM por Colossal. Uma vez no semiplano, pode gastar uma ação completa para voltar ao plano material, no mesmo local onde estava. Caso conheça a magia Viagem Planar, pode lançá-la para voltar ao plano material em outro local.\nVocê escolhe a forma e a aparência do semiplano — uma caverna, um asteroide que singra o éter, um palacete de cristal etc. Ele contém ar, luz e calor, mas além disso é vazio. Entretanto, você pode levar itens (mobília, ferramentas etc.) a cada viagem.",
+    execucao: enumExecucao.completa,
+    alcance: "curto",
+    alvo: "semiplano com 30m de lado",
+    duracao: "1 dia",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 2,
+        descricao: "adiciona alvo (1 criatura).",
+      },
+      {
+        pm_a_mais: 5,
+        descricao: "muda a duração para permanente e adiciona componente material (maquete do semiplano feita de materiais preciosos no valor de T$ 5.000).",
+      },
+    ],
+    tipo: enumTipo.arcana,
+    circulo: 5,
+  },
+  {
+    nome: "Servo Divino",
+    descricao:
+      "Você pede a sua divindade que envie um espírito para ajudá-lo. Esse espírito realiza uma tarefa a sua escolha que possa ser cumprida em até uma hora — desde algo simples como “use suas asas para nos levar até o topo da montanha” até algo complexo como “escolte esses camponeses até o castelo”. A magia é descarregada quando a criatura cumpre a tarefa, retornando a seu plano natal. O tipo de criatura é escolhido pelo mestre, de acordo com as necessidades da tarefa.",
+    execucao: enumExecucao.padrao,
+    alcance: "curto",
+    alvo: "Criatura conjurada",
+    duracao: "cena ou até ser descarregada",
+    resistencia: "",
+    escola: enumEscolas.convocacao,
+    aprimoramentos: [
+      {
+        pm_a_mais: 4,
+        descricao: "muda a duração para um dia ou até ser descarregada. O espírito realiza uma tarefa a sua escolha que exija até um dia. O custo do pagamento aumenta para T$ 500. O resto segue normal.",
+      },
+      {
+        pm_a_mais: 9,
+        descricao: "muda a duração para 1 semana ou até ser descarregada. O espírito realiza uma tarefa que exija até uma semana. O custo do pagamento aumenta para T$ 1.000. O resto segue normal.",
+      },
+    ],
+    tipo: enumTipo.divina,
+    circulo: 3,
+  },
+  {
+    nome: "Servo Morto-Vivo",
+    descricao:
+      "Esta magia transforma o cadáver de um humanoide, animal ou monstro em um esqueleto ou zumbi (conforme o estado de conservação do corpo). O morto-vivo então obedece a todos os seus comandos, mesmo suicidas. Se quiser que o morto-vivo o acompanhe, ele funciona como um parceiro iniciante, de um tipo a sua escolha entre ajudante, atirador, combatente, fortão, guardião ou montaria.\nUma vez por rodada, quando sofre dano, você pode sacrificar um servo morto-vivo e evitar esse dano. O servo é destruído no processo e não pode ser reanimado.",
+    execucao: enumExecucao.completa,
+    alcance: "toque",
+    alvo: "1 cadáver",
+    duracao: "instantânea",
+    resistencia: "",
+    escola: enumEscolas.necromancia,
+    aprimoramentos: [
+      {
+        pm_a_mais: 3,
+        descricao: "muda o componente material para pó de ônix negro (T$ 500). Em vez de um zumbi ou esqueleto, cria um carniçal. Ele pode funcionar como um parceiro veterano, escolhido entre ajudante, atirador, combatente, fortão ou guardião. O resto segue normal.",
+      },
+      {
+        pm_a_mais: 3,
+        descricao: "muda o componente material para pó de ônix negro (T$ 500). Em vez de um zumbi ou esqueleto, cria uma sombra. Ela pode funcionar como um parceiro veterano, escolhido entre assassino, combatente ou perseguidor. O restante da magia segue normal.",
+      },
+      {
+        pm_a_mais: 7,
+        descricao: "muda o componente material para ferramentas de embalsamar (T$ 1.000). Em vez de um zumbi ou esqueleto, cria uma múmia. Ela pode funcionar como um parceiro mestre, escolhido entre ajudante, destruidor, guardião ou médico. O restante da magia segue normal. Requer 4o círculo.",
+      },
+    ],
+    tipo: enumTipo.universal,
+    circulo: 3,
+  }
 ];
 
-// Perdição
-// Divina 1 (Necromancia)
-// Execução: padrão; Alcance: curto;
-// Alvos: criaturas escolhidas; Duração:
-// cena; Resistência: nenhuma.
-// Amaldiçoa os alvos, que recebem –1
-// em testes de ataque e rolagens de
-// dano. Perdição anula Bênção.
-// +2 PM: aumenta as penalidades em –1
-// (bônus máximo limitado pelo círculo
-// máximo de magia que você pode lançar).
-// Poeira da Podridão
-// Divina 3 (Necromancia)
-// Execução: padrão; Alcance: médio;
-
-// Área: nuvem com 6m de raio; Dura-
-// ção: cena; Resistência: Fortitude (veja
-
-// texto).
-
-// Você manifesta uma nuvem de poei-
-// ra carregada de energia negativa, que
-
-// apodrece lentamente as criaturas na
-// área. Ao lançar a magia, e no início de
-// seus turnos, criaturas na área sofrem
-
-// 2d8+8 pontos de dano de trevas (For-
-// titude reduz à metade). Alvos que fa-
-// lharem no teste não podem recuperar
-
-// PV por uma rodada.
-// +2 PM: aumenta o dano em 1d8+4.
-
-// Possessão
-// Arcana 5 (Encantamento)
+// Servos Invisíveis
+// Arcana 2 (Convocação)
 // Execução: padrão; Alcance: longo;
 
-// Alvo: 1 criatura; Duração: 1 dia; Re-
-// sistência: Vontade anula.
+// Efeito: criaturas conjuradas; Dura-
+// ção: 1 cena.
 
-// Você projeta sua consciência no corpo
+// Você cria até três servos invisíveis e
 
-// do alvo. Enquanto possuir uma criatu-
-// ra, você assume o controle total do cor-
-// po dela. O seu próprio corpo fica in-
-// consciente e a consciência do alvo fica
+// silenciosos, capazes de realizar tare-
+// fas simples como apanhar lenha, co-
+// lher frutos, varrer o chão ou alimentar
 
-// inerte. Em termos de jogo, você con-
-// tinua usando a sua ficha, mas com os
+// um cavalo. Os servos podem ser usa-
+// dos para manter arrumada e organiza-
+// da uma mansão ou pequena torre ou
 
-// atributos físicos e deslocamento da
-// criatura. Se o alvo passar no teste de
+// para preparar um acampamento nos
+// ermos para você e seus aliados (veja a
+// perícia Sobrevivência, na página 123).
 
-// resistência, sabe que você tentou pos-
-// suí-lo e fica imune a esta magia por um
+// Eles também podem ajudá-lo em tare-
+// fas mais complexas, como fazer uma
 
-// dia. Caso o corpo da criatura morra en-
-// quanto você a possui, a criatura morre
+// pesquisa ou preparar uma poção, mas
+// isso consome sua energia mágica. Você
+// pode “gastar” um servo para receber
+// um bônus não cumulativo de +2 em
+// um teste de perícia (exceto testes de
+// ataque e resistência). Os servos não
+// são criaturas reais; não podem lutar,
 
-// e você deve fazer um teste de Vontade
-// contra a CD da sua própria magia. Se
-// passar, sua consciência retorna para o
-// seu corpo (contanto que esteja dentro
+// nem resistir a qualquer dano ou efei-
+// to que exija um teste de resistência ou
 
-// do alcance). Do contrário, você tam-
-// bém morre. Retornar para o seu cor-
-// po voluntariamente é uma ação livre.
+// teste oposto — falharão automatica-
+// mente no teste e serão destruídos.
 
-// +5 PM: você ganha acesso às habilida-
-// des de raça e classe da criatura.
+// +2 PM: aumenta o número de servos
+// conjurados em 1.
+// +3 PM: você pode comandar os servos
+// para realizar uma única tarefa no seu
+// lugar. Em termos de jogo, eles passam
 
-// +5 PM: enquanto a magia durar e você
-// estiver dentro do alcance do seu corpo
-// original, pode “saltar” de uma criatura
-// possuída para outra. O novo alvo tem
-// direito a um teste de Vontade. Se falhar,
-// você assume o controle do corpo dele
-// e o alvo anterior recobra a consciência.
+// automaticamente em um teste de perí-
+// cia com CD máxima igual ao seu nível,
 
-// +5 PM: muda a duração para perma-
-// nente, mas destrói seu corpo original
+// +2 para cada servo conjurado. O tem-
+// po necessário para realizar a tarefa é o
 
-// no processo. Uma criatura possuída
+// tempo do uso da perícia em questão.
+// Requer 3o círculo.
+// Seta Infalível
+// de Talude
+// Arcana 1 (Evocação)
+// Execução: padrão; Alcance: médio;
+// Alvos: criaturas escolhidas; Duração:
+// instantânea.
+// Favorita entre arcanistas iniciantes,
+// esta magia lança duas setas de energia
 
-// pode fazer um teste de Vontade no co-
-// meço do dia para retomar seu corpo.
+// que causam 1d4+1 pontos de dano de
 
-// Se passar, recobra a consciência (e a
-// sua própria consciência fica inerte). O
-// teste se repete no início de cada dia. Se
+// essência cada. Você pode lançar as se-
+// tas em alvos diferentes ou concentrá-las
 
-// o corpo de uma criatura possuída mor-
-// rer e houver outra criatura em alcance
+// num mesmo alvo. Caso você possua um
+// bônus no dano de magias, como pelo
+// poder Arcano de Batalha, ele é aplicado
+// em apenas uma seta (o bônus vale para
+// a magia, não cada alvo).
+// +2 PM: muda as setas para lanças de
+// energia que surgem e caem do céu.
+// Cada lança causa 1d8+1 pontos de
+// dano de essência. Requer 2o círculo.
 
-// curto, você pode tentar possuí-la. En-
-// quanto houver novos corpos para pos-
-// suir, você é imortal!
+// +2 PM: muda o número de setas/lan-
+// ças para três.
 
-// Potência Divina
-// Divina 3 (Transmutação)
-// Execução: padrão; Alcance: pessoal;
-// Alvo: você; Duração: sustentada.
+// +4 PM: muda o número de setas/lan-
+// ças para cinco. Requer 2o círculo.
 
-// Você canaliza o poder de sua divinda-
-// de. Você aumenta uma categoria de ta-
-// manho (seu equipamento muda de
+// +9 PM: muda o número de setas/lan-
+// ças para dez. Requer 4o círculo.
 
-// acordo) e recebe Força +4 e RD 10.
+// Silêncio
+// Divina 2 (Ilusão)
+// Execução: padrão; Alcance: médio;
 
-// Você não pode lançar magias enquan-
-// to estiver sob efeito de Potência Divina.
+// Área: esfera com 6m de raio; Dura-
+// ção: sustentada.
 
-// +2 PM: aumenta o bônus de Força
-// em +1.
-// +5 PM: aumenta a RD em +5.
+// Um silêncio sepulcral recai sobre a
+// área e nenhum som é produzido nela.
+// Enquanto estiverem na área, todas as
+// criaturas ficam surdas. Além disso,
 
-// +2 PM: muda o alcance para toque e
-// o alvo para 1 criatura. A magia falha
-// se você e o alvo não forem devotos da
-// mesma divindade.
-// Premonição
-// Divina 4 (Adivinhação)
-// Execução: padrão; Alcance: pessoal;
-// Alvo: você; Duração: cena.
-// Vislumbres do futuro permitem que
-// você reavalie suas ações. Uma vez por
-// rodada, você pode rolar novamente um
-// teste recém realizado, mas deve aceitar
-// o resultado da nova rolagem.
-// +3 PM: muda a execução para reação,
+// como lançar magias exige palavras má-
+// gicas, normalmente nenhuma magia
 
-// o alcance para curto, o alvo para 1 cria-
-// tura e a duração para instantânea. Esta
+// pode ser lançada dentro da área.
 
-// magia só pode ser usada em uma criatu-
-// ra que tenha acabado de fazer um teste.
+// +1 PM: muda a área para alvo de 1 ob-
+// jeto. Em vez do normal, o alvo emana
 
-// Obriga a criatura a fazer uma nova rola-
-// gem de dados e aceitar o novo resulta-
-// do, seja ele um sucesso ou falha. Cria-
-// turas involuntárias têm direito a um
+// uma área de silêncio com 3m de raio.
+// Se lançar a magia num objeto de uma
+// criatura involuntária, ela tem direito a
+// um teste de Vontade para anulá-la.
+// +2 PM: muda a duração para cena. Em
 
-// teste de Vontade para negar o efeito.
-// +10 PM: muda a duração para um dia.
-// Primor Atlético
-// Arcana 1 (Transmutação)
-// Execução: padrão; Alcance: toque;
-// Alvo: 1 criatura; Duração: cena.
-// Você modifica os limites físicos do
-// alvo, que recebe deslocamento +9m e
-// +10 em testes de Atletismo.
+// vez do normal, nenhum som pode dei-
+// xar a área, mas criaturas dentro da área
 
-// +1 PM: além do normal, o alvo rece-
-// be um bônus adicional de +20 em tes-
-// tes de Atletismo para saltar (para um
-
-// bônus total de +30).
-// +1 PM: além do normal, o alvo pode
-// escalar paredes e tetos sem precisar
-// fazer testes de Atletismo. Para isso,
-// precisa estar com as mãos livres, mas
-
-// pode usar uma única mão se ficar para-
-// do no lugar. O alvo não fica despreve-
-// nido enquanto escala.
-
-// +1 PM: muda a execução para ação de
-// movimento, o alcance para pessoal, o
-
-// alvo para você e a duração para instan-
-// tânea. Você salta muito alto e pousa
-
-// em alcance corpo a corpo de uma cria-
-// tura em alcance curto. Se fizer um ata-
-// que corpo a corpo contra essa criatura
-
-// neste turno, recebe os benefícios e pe-
-// nalidades de uma investida e sua arma
-
-// causa um dado extra de dano do mes-
-// mo tipo durante este ataque.
-
-// +3 PM: além do normal, ao fazer tes-
-// tes de perícias baseadas em Força,
-
-// Destreza ou Constituição, o alvo pode
-// rolar dois dados e escolher o melhor.
-
-// Não afeta testes de ataque ou resistên-
-// cia. Requer 2o círculo.
+// podem falar, ouvir e lançar magias com
+// palavras mágicas normalmente.
