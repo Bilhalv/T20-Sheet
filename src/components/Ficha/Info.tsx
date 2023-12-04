@@ -1,5 +1,7 @@
+import Ficha from "../../classes/Construtores/Ficha";
+
 interface Props {
-  personagem: any;
+  personagem: Ficha;
 }
 
 export default function Info({ personagem }: Props) {
@@ -10,7 +12,7 @@ export default function Info({ personagem }: Props) {
           {[
             { label: "Raça", value: personagem.raca },
             { label: "Origem", value: personagem.origem },
-            { label: "Classe", value: personagem.classe },
+            { label: "Classe", value: personagem.classe.nome },
             { label: "Nível", value: personagem.nivel },
             { label: "Divindade", value: personagem.divindade },
           ].map((item) => (
@@ -30,9 +32,9 @@ export default function Info({ personagem }: Props) {
         {[
           { label: "Raça", value: personagem.raca },
           { label: "Origem", value: personagem.origem },
-          { label: "Classe", value: personagem.classe },
+          { label: "Classe", value: personagem.classe.nome },
           { label: "Nível", value: personagem.nivel },
-          { label: "Divindade", value: personagem.divindade },
+          { label: "Divindade", value: personagem.divindade ??"Nenhuma" },
         ].map((item, index) => (
           <div
             className={

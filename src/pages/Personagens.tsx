@@ -235,11 +235,13 @@ const Personagens: React.FC = () => {
       const racaImg = `./img/racas/perfil/${personagem.raca
         .toLowerCase()
         .replace(/ç/g, "c")
-        .replace(/ã/g, "a")}.png`;
+        .replace(/ã/g, "a")
+        .replace(/é/g, "e")}.png`;
       const classeImg = `./img/classes/${personagem.classe.nome
         .toLowerCase()
         .replace(/ç/g, "c")
-        .replace(/ã/g, "a")}.png`;
+        .replace(/ã/g, "a")
+        .replace(/é/g, "e")}.png`;
       return {
         nome: personagem.nome,
         raca: personagem.raca,
@@ -288,7 +290,7 @@ const Personagens: React.FC = () => {
     });
     localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));
     navigate("/ficha");
-  }
+  };
 
   const FichasShown: React.FC = () => {
     return (

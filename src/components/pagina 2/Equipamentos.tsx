@@ -191,6 +191,24 @@ export default function Equipamentos({
       });
       const itenspraFicha: itemFicha[] = [];
       Itens.forEach((item) => {
+        const armaduraTabela = tabelaArmaduras.find(
+          (x) => x.nome === item.nome
+        );
+        if (armaduraTabela !== undefined) {
+          armaduraspraFicha.push({
+            nome: armaduraTabela.nome,
+            defesa: armaduraTabela.defesa,
+            penalidade: armaduraTabela.penalidade,
+            descricao: armaduraTabela.descricao,
+            preco: armaduraTabela.preco,
+            descUnica: armaduraTabela.descricao,
+            espacos: armaduraTabela.espacos,
+            categoria: armaduraTabela.categoria,
+            tipo: armaduraTabela.tipo,
+            quantidade: 1,
+          });
+          return;
+        }
         const itemTabela = tabelaItens.find((x) => x.nome === item.nome);
         if (itemTabela === undefined) return;
         itenspraFicha.push({

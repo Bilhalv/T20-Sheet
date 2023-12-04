@@ -1,26 +1,56 @@
 import { useToast } from "@chakra-ui/react";
 import { Edit, Plus, X } from "lucide-react";
 import { useState } from "react";
-import { TabelasArmasSimles, tabelaArmaduras, tabelaArmas, tabelaItens } from "../../classes/Tabelas/Itens";
+import {
+  TabelasArmasSimles,
+  tabelaArmaduras,
+  tabelaArmas,
+  tabelaItens,
+} from "../../classes/Tabelas/Itens";
+import Ficha, {
+  Mochila,
+  armaFicha,
+  armaduraFicha,
+  itemFicha,
+} from "../../classes/Construtores/Ficha";
+import React from "react";
 
 interface Props {
-  personagem: any;
-  setItens: any;
+  personagem: Ficha;
+  setPersonagem: (personagem: Ficha) => void;
 }
 
-export default function Equipamento({ personagem, setItens }: Props) {
-  const todosItens = [...tabelaArmaduras, ...TabelasArmasSimles, ...tabelaArmas, ...tabelaItens];
+export default function Equipamento({ personagem, setPersonagem }: Props) {
+  const todosItens = [
+    ...tabelaArmaduras,
+    ...TabelasArmasSimles,
+    ...tabelaArmas,
+    ...tabelaItens,
+  ];
   let toast = useToast();
   const [itemSelecionado, setItemSelecionado] = useState({
     nome: "",
     desc: "",
   });
-  const removeItem = (item: any) => {
-    let itens = personagem.mochila;
+  function typeFicha(item: armaFicha | armaduraFicha | itemFicha) {
+    if ("dano" in item) {
+      return "arma";
+    } else if ("defesa" in item) {
+      return "armadura";
+    } else {
+      return "item";
+    }
+  }
+  let mochila = [
+    ...personagem.mochila.armas,
+    ...personagem.mochila.armaduras,
+    ...personagem.mochila.itens,
+  ];
+  const removeItem = (item: string) => {
     let confirmar = prompt(
-      `Digite o nome do item: ${item.nome} para confirmar exclusão.`
+      `Digite o nome do item: ${item} para confirmar exclusão.`
     );
-    if (confirmar !== item.nome) {
+    if (confirmar !== item) {
       toast({
         title: "Item não deletado.",
         description: "O nome digitado não corresponde ao nome do item.",
@@ -29,8 +59,28 @@ export default function Equipamento({ personagem, setItens }: Props) {
       });
       return;
     } else {
-      itens.splice(itens.indexOf(item), 1);
-      setItens(itens);
+      let index = mochila.findIndex((i) => i.nome === item);
+      if (index !== -1) {
+        mochila.splice(index, 1);
+      }
+      const itens = mochila.filter(
+        (e): e is itemFicha => typeFicha(e) === "item"
+      );
+      const armas = mochila.filter(
+        (e): e is armaFicha => typeFicha(e) === "arma"
+      );
+      const armaduras = mochila.filter(
+        (e): e is armaduraFicha => typeFicha(e) === "armadura"
+      );
+      setPersonagem({
+        ...personagem,
+        mochila: {
+          ...personagem.mochila,
+          armas: armas,
+          armaduras: armaduras,
+          itens: itens,
+        },
+      });
       toast({
         title: "Item deletado.",
         description: "O item foi deletado com sucesso.",
@@ -62,7 +112,7 @@ export default function Equipamento({ personagem, setItens }: Props) {
                 <Edit />
               </div>
             </div>
-            {personagem.mochila.map((item: any, index: number) => (
+            {mochila.map((item: any, index: number) => (
               <>
                 <div className="flex justify-between  my-2 w-full" key={index}>
                   <button
@@ -78,12 +128,17 @@ export default function Equipamento({ personagem, setItens }: Props) {
                     <h1>{item.quantidade}</h1>
                   </div>
                   <div className="w-1/3">
-                    <h1>{todosItens.find((i)=> i.nome === item.nome)?.espacos||0}</h1>
+                    <h1>
+                      {todosItens.find((i) => i.nome === item.nome)?.espacos ||
+                        0}
+                    </h1>
                   </div>
                   <button
                     className="hover:text-red-600 w-fit h-fit hover:bg-opacity-60 hover:tranform hover:scale-110 transition-all"
                     onClick={() => {
-                      const x = todosItens.find((i) => i.nome === item.nome) || {
+                      const x = todosItens.find(
+                        (i) => i.nome === item.nome
+                      ) || {
                         nome: "",
                         descricao: "",
                       };
@@ -103,7 +158,7 @@ export default function Equipamento({ personagem, setItens }: Props) {
             <div className="w-full flex gap-2">
               <div className="my-auto h-full w-full">
                 <h1 className="text-center font-bold text-xl">
-                  {itemSelecionado.nome||"Descrição"}
+                  {itemSelecionado.nome || "Descrição"}
                 </h1>
                 <p className="text-justify w-full min-h-[100px] border rounded-lg border-black mt-4 p-2">
                   &nbsp;&nbsp;&nbsp;{itemSelecionado.desc}

@@ -5,17 +5,29 @@ import {
   NumberInputField,
   NumberInputStepper,
 } from "@chakra-ui/react";
+import Ficha from "../../classes/Construtores/Ficha";
 
 interface Props {
-  personagem: any;
-  setStatus: any;
+  personagem: Ficha;
+  setPersonagem: (personagem: Ficha) => void;
 }
 
-export default function Status({ personagem, setStatus }: Props) {
+export default function Status({ personagem, setPersonagem }: Props) {
   const handleChange = (value: number, type: string) => {
-    let status = { ...personagem.status };
-    status[type] = value;
-    setStatus(status);
+    let pm = personagem.pm;
+    let pv = personagem.pv;
+    let personagemAtualizado = personagem;
+    if (type === "pm") {
+      pm = value;
+    } else {
+      pv = value;
+    }
+    personagemAtualizado = {
+      ...personagemAtualizado,
+      pv: pv,
+      pm: pm,
+    };
+    setPersonagem(personagemAtualizado);
   };
   return (
     <>
@@ -23,9 +35,7 @@ export default function Status({ personagem, setStatus }: Props) {
         <div className="flex">
           <div className="bg-white rounded-2xl border border-black flex flex-col gap-2 px-6 z-20">
             <h1 className="font-bold text-center text-lg">PV</h1>
-            <p className="font-bold text-center text-2xl">
-              {personagem.status.pvMax}
-            </p>
+            <p className="font-bold text-center text-2xl">{personagem.pvMax}</p>
             <p className="text-center font-serif text-xs">Máx.</p>
           </div>
           <div className="bg-white my-auto rounded-r-2xl border-l-transparent h-fit px-2 border border-black pl-6 ml-[-15px] z-10 flex flex-col gap-1">
@@ -34,7 +44,7 @@ export default function Status({ personagem, setStatus }: Props) {
               rounded={"full"}
               className="w-20 mx-auto"
               size={"sm"}
-              defaultValue={personagem.status.pv}
+              defaultValue={personagem.pv}
               onChange={(e) => handleChange(Number(e), "pv")}
             >
               <NumberInputField />
@@ -49,9 +59,7 @@ export default function Status({ personagem, setStatus }: Props) {
         <div className="flex mr-8">
           <div className="bg-white rounded-2xl border border-black flex flex-col gap-2 px-6 z-20">
             <h1 className="font-bold text-center text-lg">PM</h1>
-            <p className="font-bold text-center text-2xl">
-              {personagem.status.pmMax}
-            </p>
+            <p className="font-bold text-center text-2xl">{personagem.pmMax}</p>
             <p className="text-center font-serif text-xs">Máx.</p>
           </div>
           <div className="bg-white my-auto rounded-r-2xl border-l-transparent h-fit px-2 border border-black pl-6 ml-[-15px] z-10 flex flex-col gap-1">
@@ -60,7 +68,7 @@ export default function Status({ personagem, setStatus }: Props) {
               rounded={"full"}
               className="w-20 mx-auto"
               size={"sm"}
-              defaultValue={personagem.status.pm}
+              defaultValue={personagem.pm}
               onChange={(e) => handleChange(Number(e), "pm")}
             >
               <NumberInputField />

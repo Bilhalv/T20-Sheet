@@ -13,75 +13,104 @@ import Status from "../components/Ficha/Status";
 import { TabelaClasses } from "../classes/Tabelas/Classes";
 import Tamanho from "../components/Ficha/Tamanho";
 import Exp from "../components/Ficha/Exp-Deslocamento";
+import FichaConstructor, {
+  Ataque,
+  Mochila,
+  armaFicha,
+  armaduraFicha,
+  itemFicha,
+} from "../classes/Construtores/Ficha";
+import { RolarDado } from "../components/Geral/RolarDado";
 
+const fichaSelecionada = JSON.parse(
+  localStorage.getItem("fichaSelecionada") || "[]"
+);
 const Ficha: React.FC = () => {
-  interface itemMochila {
-    nome: string;
-    quantidade: number;
-    tipo: "arma" | "armadura" | "item";
-    pericia?: string[];
-  }
-  const armas: itemMochila[] = [
-    { nome: "Espada curta", quantidade: 1, tipo: "arma" },
-    { nome: "Adaga", quantidade: 1, tipo: "arma" },
-  ];
-  const armaduras: itemMochila[] = [
-    { nome: "Gibão de peles", quantidade: 1, tipo: "armadura" },
-    { nome: "Escudo leve", quantidade: 1, tipo: "armadura" },
-  ];
-  const itens: itemMochila[] = [
-    { nome: "Algemas", quantidade: 1, tipo: "item" },
-    { nome: "Água benta", quantidade: 4, tipo: "item" },
-  ];
-  const todosataques = [...tabelaArmas, ...TabelasArmasSimles].map(
-    (arma: Arma) => {
-      return {
-        nome: arma.nome,
-        bonus: 0,
-        dano: arma.dano,
-        critico: arma.crit,
-        tipo: arma.tipo,
-        alcance: arma.alcance,
-      };
+  const [ficha, setFicha] = useState<FichaConstructor>(fichaSelecionada);
+  const mochila: Mochila = ficha.mochila;
+  const armas: armaFicha[] = mochila.armas;
+  const armaduras: armaduraFicha[] = mochila.armaduras;
+  const itens: itemFicha[] = mochila.itens;
+  const tibares = mochila.tibares;
+  const ataques: Ataque[] = armas.map((arma: armaFicha) => {
+    const tabela = [...TabelasArmasSimles, ...tabelaArmas].find((tabela) => {
+      return tabela.nome === arma.nome;
+    });
+
+    if (!tabela) {
+      throw new Error(`No table found for weapon ${arma.nome}`);
     }
-  );
-  const ataques = todosataques.filter((ataque) =>
-    armas.some((arma) => arma.nome === ataque.nome)
-  );
-  const [itensMochi, setItensMochi] = useState<itemMochila[]>([
-    ...armas,
-    ...armaduras,
-    ...itens,
-  ]);
-  const [status, setStatus] = useState<any>({
-    pv: 20,
-    pvMax: 20,
-    pm: 20,
-    pmMax: 20,
+
+    const ataque: Ataque = {
+      nome: arma.nome,
+      bonus: 0,
+      dano: tabela.dano,
+      critico: tabela.crit,
+      tipo: tabela.tipo,
+      alcance: tabela.alcance,
+      observacao: tabela.descricao,
+      ataque() {
+        const dano = tabela.dano.split("d");
+        const vantagemdesvantagem = prompt(
+          "Você tem vantagem ou desvantagem? (v/d)"
+        );
+        const bonus = Number(prompt("Qual o bônus?"));
+        let total = 0;
+        let acerto = 0;
+        let dados;
+        if (vantagemdesvantagem === "v") {
+          const rolagem = RolarDado({
+            qtd: 1,
+            lados: 20,
+            rerola: "adv",
+            mod: bonus,
+          });
+          total = rolagem.total;
+          dados = rolagem.reroll;
+        } else if (vantagemdesvantagem === "d") {
+          const rolagem = RolarDado({
+            qtd: 1,
+            lados: 20,
+            rerola: "des",
+            mod: bonus,
+          });
+          total = rolagem.total;
+          dados = rolagem.reroll;
+        } else {
+          const rolagem = RolarDado({
+            qtd: 1,
+            lados: 20,
+            mod: bonus,
+          });
+          total = rolagem.total;
+          dados = rolagem.reroll;
+        }
+        const danoRolado = RolarDado({
+          qtd: parseInt(dano[0]),
+          lados: parseInt(dano[1]),
+          mod: bonus,
+        });
+        const danoRoladoTotal = danoRolado.total;
+        const danoRoladoDados = danoRolado.reroll;
+        alert(
+          `Você rolou ${total}(${dados.join(", ")}) no dado de ataque e ${danoRoladoTotal}(${tabela.dano+" = "+danoRoladoDados.join(", ")}) no dado de dano`
+        );
+        return danoRoladoTotal;
+      },
+    };
+    return ataque;
   });
-  const [personagem, setPersonagem] = useState<any>({
-    nome: "Gladimir",
-    raca: "Humano",
-    origem: "Professor",
-    classe: "Paladino",
-    nivel: 5,
-    divindade: "Arsenal",
-    periciasTreinadas: ["Atletismo", "Intimidação", "Percepção", "Religião"],
-    atributos: {
-      forca: 1,
-      destreza: -1,
-      constituicao: 1,
-      inteligencia: 3,
-      sabedoria: 1,
-      carisma: 4,
-    },
-    mochila: [...armas, ...armaduras, ...itens],
+  const [personagem, setPersonagem] = useState<FichaConstructor>({
+    ...ficha,
     ataques: ataques,
-    status: status,
+    mochila: {
+      armas: armas,
+      armaduras: armaduras,
+      itens: itens,
+      tibares: tibares,
+    },
   });
-  const classe = TabelaClasses.find(
-    (classe) => classe.nome === personagem.classe
-  );
+  const classe = personagem.classe;
   return (
     <>
       <Navbar back={"/"} />
@@ -147,10 +176,13 @@ const Ficha: React.FC = () => {
               <TabPanels className="bg-white bg-opacity-60">
                 <TabPanel className="flex flex-col gap-4">
                   <Info personagem={personagem} />
-                  <Status personagem={personagem} setStatus={setStatus} />
+                  <Status
+                    personagem={personagem}
+                    setPersonagem={setPersonagem}
+                  />
                   <Equipamento
                     personagem={personagem}
-                    setItens={setItensMochi}
+                    setPersonagem={setPersonagem}
                   />
                 </TabPanel>
                 <TabPanel className="flex flex-col gap-11">
@@ -177,7 +209,10 @@ const Ficha: React.FC = () => {
                       <Tamanho personagem={personagem} />
                     </div>
                     <div className="flex items-center gap-2">
-                      <Status personagem={personagem} setStatus={setStatus} />
+                      <Status
+                        personagem={personagem}
+                        setPersonagem={setPersonagem}
+                      />
                       <div className="w-1/3">
                         <Exp personagem={personagem} />
                       </div>
@@ -201,7 +236,7 @@ const Ficha: React.FC = () => {
                 <div>
                   <Equipamento
                     personagem={personagem}
-                    setItens={setItensMochi}
+                    setPersonagem={setPersonagem}
                   />
                 </div>
               </div>

@@ -10,14 +10,17 @@ import {
   NumberInputStepper,
   Select,
 } from "@chakra-ui/react";
+import Ficha, { armaduraFicha } from "../../classes/Construtores/Ficha";
 
 interface Props {
-  personagem: any;
+  personagem: Ficha;
 }
 
 export default function Defesa({ personagem }: Props) {
   const armaduras = tabelaArmaduras.filter((armadura) =>
-    personagem.mochila.some((item: any) => item.nome === armadura.nome)
+    personagem.mochila.armaduras.some(
+      (item: armaduraFicha) => item.nome === armadura.nome
+    )
   );
   const [armadurasEquipadas, setArmadurasEquipadas] = useState<Armadura[]>([
     ...armaduras,
@@ -37,7 +40,7 @@ export default function Defesa({ personagem }: Props) {
     0
   );
   const [totalOutros, setTotalOutros] = useState(0);
-  const [atributo, setAtributo] = useState(personagem.atributos.destreza);
+  const [atributo, setAtributo] = useState(personagem.atributos[1].valor);
   return (
     <>
       <div className="border border-black rounded-lg flex flex-col shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
@@ -158,7 +161,7 @@ export default function Defesa({ personagem }: Props) {
                 <h1>{totalArmadura}</h1>
                 <h1>{totalEscudo}</h1>
                 <NumberInput
-                  onChange={(value) => (setTotalOutros(Number(value)))}
+                  onChange={(value) => setTotalOutros(Number(value))}
                   defaultValue={totalOutros}
                   rounded={"full"}
                   className="w-16 mx-auto"
@@ -170,29 +173,16 @@ export default function Defesa({ personagem }: Props) {
                   </NumberInputStepper>
                 </NumberInput>
                 <Select
-                  defaultValue={personagem.atributos.destreza}
+                  defaultValue={personagem.atributos[1].valor}
                   onChange={(e) => {
                     setAtributo(Number(e.target.value));
                   }}
                 >
-                  <option value={personagem.atributos.forca}>
-                    For ({personagem.atributos.forca})
-                  </option>
-                  <option value={personagem.atributos.destreza}>
-                    Des ({personagem.atributos.destreza})
-                  </option>
-                  <option value={personagem.atributos.constituicao}>
-                    Con ({personagem.atributos.constituicao})
-                  </option>
-                  <option value={personagem.atributos.inteligencia}>
-                    Int ({personagem.atributos.inteligencia})
-                  </option>
-                  <option value={personagem.atributos.sabedoria}>
-                    Sab ({personagem.atributos.sabedoria})
-                  </option>
-                  <option value={personagem.atributos.carisma}>
-                    Car ({personagem.atributos.carisma})
-                  </option>
+                  {personagem.atributos.map((atributo) => (
+                    <option value={atributo.valor}>
+                      {atributo.atributo} ({atributo.valor})
+                    </option>
+                  ))}
                 </Select>
               </div>
             </div>

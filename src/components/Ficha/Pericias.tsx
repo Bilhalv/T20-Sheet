@@ -1,8 +1,10 @@
 import { Tooltip } from "@chakra-ui/react";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
+import Ficha, { PericiasFicha } from "../../classes/Construtores/Ficha";
+import { Pericia } from "../../classes/Construtores/Pericia";
 
 interface Props {
-  personagem: any;
+  personagem: Ficha;
 }
 
 export default function Pericias({ personagem }: Props) {
@@ -16,35 +18,53 @@ export default function Pericias({ personagem }: Props) {
           Perícias
         </h1>
         <div className="grid grid-cols-5 border-b border-b-red-500">
-          <h1 className="text-red-900 drop-shadow-2xl text-xl text-left col-span-2">Nome</h1>
-          <h1 className="text-red-500 drop-shadow-2xl text-xl text-right w-2/3 desktop:w-full mx-auto col-span-2">Atributo</h1>
-          <h1 className="text-red-900 drop-shadow-2xl text-l text-right">Total</h1>
+          <h1 className="text-red-900 drop-shadow-2xl text-xl text-left col-span-2">
+            Nome
+          </h1>
+          <h1 className="text-red-500 drop-shadow-2xl text-xl text-right w-2/3 desktop:w-full mx-auto col-span-2">
+            Atributo
+          </h1>
+          <h1 className="text-red-900 drop-shadow-2xl text-l text-right">
+            Total
+          </h1>
         </div>
         <div>
-          {TabelaPericias.map((pericia) => {
-            const treinada = personagem.periciasTreinadas.includes(
-              pericia.nome
-            );
+          {personagem.pericias.map((pericia: PericiasFicha) => {
+            const treinada = pericia.treinada;
+            const metadeNivel = Math.floor(personagem.nivel / 2);
+            const atributo = TabelaPericias.find(
+              (e) => e.nome.toLowerCase() === pericia.nome.toLowerCase()
+            )?.atributo;
+            const atributoNum = personagem.atributos.find(
+              (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
+            )?.valor || 0;
             return (
               <div className="grid grid-cols-5 hover:border-red-950 rounded hover:transform hover:scale-110 transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
-                <Tooltip bgColor={"red.700"} label={`${pericia.descricao}`}>
+                <Tooltip
+                  bgColor={"red.700"}
+                  label={`${
+                    TabelaPericias.find(
+                      (e) => e.nome.toLowerCase() === pericia.nome.toLowerCase()
+                    )?.descricao
+                  }`}
+                >
                   <h1 className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-left col-span-2">
                     {pericia.nome}
                   </h1>
                 </Tooltip>
                 <h1 className="text-red-500 drop-shadow-2xl text-md desktop:text-sm text-right w-full mx-auto col-span-2">
-                  {pericia.atributo}
+                  {
+                    TabelaPericias.find(
+                      (e) => e.nome.toLowerCase() === pericia.nome.toLowerCase()
+                    )?.atributo
+                  }
                 </h1>
                 <Tooltip
                   bgColor={"red.700"}
-                  label={`${treinada ? 5 : 0} + ${pericia.atributo}(${
-                    personagem.atributos[pericia.atributo]
-                  }) + metade do nivel(${Math.floor(personagem.nivel / 2)})`}
+                  label={`${atributo}(${atributoNum}) + metade do nivel(${metadeNivel}) ${treinada}`}
                 >
                   <h1 className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-right">
-                    {(treinada ? 5 : 0) +
-                      personagem.atributos[pericia.atributo] +
-                      Math.floor(personagem.nivel / 2)}
+                    {atributoNum + metadeNivel + treinada}
                   </h1>
                 </Tooltip>
               </div>

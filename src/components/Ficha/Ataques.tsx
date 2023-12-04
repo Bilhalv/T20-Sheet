@@ -11,9 +11,10 @@ import {
 import { Eye } from "lucide-react";
 import { EntendiOnModal } from "../Geral/Botoes";
 import { useState } from "react";
+import Ficha, { Ataque } from "../../classes/Construtores/Ficha";
 
 interface Props {
-  personagem: any;
+  personagem: Ficha;
 }
 
 export default function Ataques({ personagem }: Props) {
@@ -40,9 +41,9 @@ export default function Ataques({ personagem }: Props) {
           <h1 className="">Info</h1>
         </div>
         <div className="flex flex-col">
-          {personagem.ataques.map((ataque: any) => (
+          {personagem.ataques.map((ataque: Ataque) => (
             <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b font-serif">
-              <p >{ataque.nome}</p>
+              <a onClick={ataque.ataque} className="text-red-900 hover:no-underline underline hover:cursor-pointer">{ataque.nome}</a>
               <p >{ataque.bonus}</p>
               <p >{ataque.dano}</p>
               <p className="hidden desktop:block">{ataque.critico}</p>
@@ -57,7 +58,7 @@ export default function Ataques({ personagem }: Props) {
                     critico: ataque.critico,
                     tipo: ataque.tipo,
                     alcance: ataque.alcance,
-                    descricao: ataque.descricao,
+                    descricao: ataque.observacao,
                   };
                   setAtaqueModal(novoataque);
                   setIsOpen(true);
