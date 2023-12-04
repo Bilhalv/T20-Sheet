@@ -7,6 +7,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Select,
 } from "@chakra-ui/react";
 import { Eye } from "lucide-react";
 import { EntendiOnModal } from "../Geral/Botoes";
@@ -15,9 +16,10 @@ import Ficha, { Ataque } from "../../classes/Construtores/Ficha";
 
 interface Props {
   personagem: Ficha;
+  setPersonagem: (personagem: Ficha) => void;
 }
 
-export default function Ataques({ personagem }: Props) {
+export default function Ataques({ personagem, setPersonagem }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [ataqueModal, setAtaqueModal] = useState({
     nome: "",
@@ -28,9 +30,36 @@ export default function Ataques({ personagem }: Props) {
     alcance: "",
     descricao: "",
   });
+  const handleChangeBonus = (e: Ataque, bonusNovo: number) => {
+    const ataquesnovos = personagem.ataques.map((ataque: Ataque) => {
+      if (ataque.nome === e.nome) {
+        return { ...ataque, bonus: bonusNovo, ataque: ataque.ataque };
+      } else {
+        return ataque;
+      }
+    });
+    setPersonagem({ ...personagem, ataques: ataquesnovos });
+  };
+  const [vantagem, setVantagem] = useState<"adv" | "des" | undefined>(
+    undefined
+  );
+  const handleChangeVantagem = (vantagem: "adv" | "des" | undefined) => {
+    setVantagem(vantagem as "adv" | "des" | undefined);
+  };
   return (
     <>
       <div className="border border-black rounded-lg flex flex-col shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
+        <Select
+          className="font-serif"
+          placeholder={undefined}
+          onChange={(e) =>
+            handleChangeVantagem(e.target.value as "adv" | "des" | undefined)
+          }
+        >
+          <option value={undefined}>Normal</option>
+          <option value="adv">Vantagem</option>
+          <option value="des">Desvantagem</option>
+        </Select>
         <div className="grid desktop:grid-cols-7 grid-cols-4 mb-4">
           <h1 className=" text-red-900">Ataques</h1>
           <h1 className=" ">Bônus</h1>
@@ -43,9 +72,21 @@ export default function Ataques({ personagem }: Props) {
         <div className="flex flex-col">
           {personagem.ataques.map((ataque: Ataque) => (
             <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b font-serif">
-              <a onClick={ataque.ataque} className="text-red-900 hover:no-underline underline hover:cursor-pointer">{ataque.nome}</a>
-              <p >{ataque.bonus}</p>
-              <p >{ataque.dano}</p>
+              <a
+                onClick={() => ataque.ataque(ataque.bonus, vantagem)}
+                className="text-red-900 hover:no-underline underline hover:cursor-pointer"
+              >
+                {ataque.nome}
+              </a>
+              <input
+                type="number"
+                onChange={(e) =>
+                  handleChangeBonus(ataque, Number(e.target.value))
+                }
+                className="text-center rounded-md border border-red-800 w-16 mx-auto"
+                value={ataque.bonus}
+              />
+              <p>{ataque.dano}</p>
               <p className="hidden desktop:block">{ataque.critico}</p>
               <p className="hidden desktop:block text-sm">{ataque.tipo}</p>
               <p className="hidden desktop:block">{ataque.alcance}</p>
@@ -87,16 +128,19 @@ export default function Ataques({ personagem }: Props) {
             <div className="flex flex-col gap-2 text-center">
               <div>
                 <h1 className="text-xl">Descrição</h1>
-                <Input className="font-serif" contentEditable onChange={
-                  (e) => {
+                <Input
+                  className="font-serif"
+                  contentEditable
+                  onChange={(e) => {
                     const changedesc = e.target.value;
                     personagem.ataques.map((ataque: any) => {
                       if (ataque.nome === ataqueModal.nome) {
                         ataque.descricao = changedesc;
                       }
                     });
-                  }
-                } placeholder={ataqueModal.descricao||"Adicione a descrição"}/>
+                  }}
+                  placeholder={ataqueModal.descricao || "Adicione a descrição"}
+                />
               </div>
               <div>
                 <h1 className="text-xl">Bônus</h1>

@@ -21,6 +21,8 @@ import FichaConstructor, {
   itemFicha,
 } from "../classes/Construtores/Ficha";
 import { RolarDado } from "../components/Geral/RolarDado";
+import useCustomToast from "../components/Geral/Toasted";
+import { useEffect } from "react";
 
 const fichaSelecionada = JSON.parse(
   localStorage.getItem("fichaSelecionada") || "[]"
@@ -28,6 +30,7 @@ const fichaSelecionada = JSON.parse(
 const Ficha: React.FC = () => {
   const [ficha, setFicha] = useState<FichaConstructor>(fichaSelecionada);
   const mochila: Mochila = ficha.mochila;
+  const { showCustomToast } = useCustomToast();
   const armas: armaFicha[] = mochila.armas;
   const armaduras: armaduraFicha[] = mochila.armaduras;
   const itens: itemFicha[] = mochila.itens;
@@ -49,52 +52,45 @@ const Ficha: React.FC = () => {
       tipo: tabela.tipo,
       alcance: tabela.alcance,
       observacao: tabela.descricao,
-      ataque() {
-        const dano = tabela.dano.split("d");
-        const vantagemdesvantagem = prompt(
-          "Você tem vantagem ou desvantagem? (v/d)"
-        );
-        const bonus = Number(prompt("Qual o bônus?"));
-        let total = 0;
-        let acerto = 0;
-        let dados;
-        if (vantagemdesvantagem === "v") {
-          const rolagem = RolarDado({
-            qtd: 1,
-            lados: 20,
-            rerola: "adv",
-            mod: bonus,
-          });
-          total = rolagem.total;
-          dados = rolagem.reroll;
-        } else if (vantagemdesvantagem === "d") {
-          const rolagem = RolarDado({
-            qtd: 1,
-            lados: 20,
-            rerola: "des",
-            mod: bonus,
-          });
-          total = rolagem.total;
-          dados = rolagem.reroll;
-        } else {
-          const rolagem = RolarDado({
-            qtd: 1,
-            lados: 20,
-            mod: bonus,
-          });
-          total = rolagem.total;
-          dados = rolagem.reroll;
+      ataque(bonus: number, adv: "adv" | "des" | undefined) {
+        if (!tabela || !tabela.dano) {
+          throw new Error("tabela or tabela.dano is undefined");
         }
+        const dano = tabela.dano.split("d");
+        if (
+          dano.length !== 2 ||
+          isNaN(parseInt(dano[0])) ||
+          isNaN(parseInt(dano[1]))
+        ) {
+          throw new Error("tabela.dano is not in the correct format");
+        }
+        if (this.bonus === undefined || isNaN(this.bonus)) {
+          throw new Error("this.bonus is undefined or not a number");
+        }
+        const rolagem = RolarDado({
+          qtd: 1,
+          lados: 20,
+          rerola: adv,
+          mod: bonus,
+        });
+        const total = rolagem.total;
+        const dados = [...rolagem.dados];
+        adv !== undefined && dados.push(...rolagem.reroll);
         const danoRolado = RolarDado({
           qtd: parseInt(dano[0]),
           lados: parseInt(dano[1]),
-          mod: bonus,
         });
         const danoRoladoTotal = danoRolado.total;
-        const danoRoladoDados = danoRolado.reroll;
-        alert(
-          `Você rolou ${total}(${dados.join(", ")}) no dado de ataque e ${danoRoladoTotal}(${tabela.dano+" = "+danoRoladoDados.join(", ")}) no dado de dano`
-        );
+        const danoRoladoDados = danoRolado.dados;
+        showCustomToast({
+          title: "Ataque",
+          desc: `Você rolou ${total} (${dados.join(
+            ", "
+          )}) no dado de ataque e ${danoRoladoTotal} (${
+            tabela.dano
+          } = ${danoRoladoDados.join(", ")}) no dado de dano`,
+          status: "success",
+        });
         return danoRoladoTotal;
       },
     };
@@ -111,6 +107,9 @@ const Ficha: React.FC = () => {
     },
   });
   const classe = personagem.classe;
+  useEffect(() => {
+    localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));
+  }, [personagem]);
   return (
     <>
       <Navbar back={"/"} />
@@ -186,7 +185,10 @@ const Ficha: React.FC = () => {
                   />
                 </TabPanel>
                 <TabPanel className="flex flex-col gap-11">
-                  <Ataques personagem={personagem} />
+                  <Ataques
+                    personagem={personagem}
+                    setPersonagem={setPersonagem}
+                  />
                   <Defesa personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
@@ -230,7 +232,10 @@ const Ficha: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex flex-col-reverse gap-6">
-                  <Ataques personagem={personagem} />
+                  <Ataques
+                    personagem={personagem}
+                    setPersonagem={setPersonagem}
+                  />
                   <Defesa personagem={personagem} />
                 </div>
                 <div>

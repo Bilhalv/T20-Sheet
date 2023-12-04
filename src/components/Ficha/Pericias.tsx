@@ -2,12 +2,34 @@ import { Tooltip } from "@chakra-ui/react";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import Ficha, { PericiasFicha } from "../../classes/Construtores/Ficha";
 import { Pericia } from "../../classes/Construtores/Pericia";
+import useCustomToast from "../Geral/Toasted";
+import { RolarDado } from "../Geral/RolarDado";
 
 interface Props {
   personagem: Ficha;
 }
 
 export default function Pericias({ personagem }: Props) {
+  const { showCustomToast } = useCustomToast();
+  const rolarPericia = (e: number) => {
+    const dado = RolarDado({
+      lados: 20,
+      qtd: 1,
+      mod: e,
+    });
+    showCustomToast({
+      title: `Rolando...`,
+      desc: `1d20 = ${e}`,
+      status: "loading",
+      duration: 3000,
+      onCloseComplete() {
+        showCustomToast({
+          title: `Rolado!`,
+          desc: `Resultado: ${dado.total}`,
+        });
+      },
+    });
+  };
   return (
     <>
       <h1 className="text-center drop-shadow-2xl text-3xl desktop:hidden">
@@ -35,9 +57,10 @@ export default function Pericias({ personagem }: Props) {
             const atributo = TabelaPericias.find(
               (e) => e.nome.toLowerCase() === pericia.nome.toLowerCase()
             )?.atributo;
-            const atributoNum = personagem.atributos.find(
-              (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
-            )?.valor || 0;
+            const atributoNum =
+              personagem.atributos.find(
+                (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
+              )?.valor || 0;
             return (
               <div className="grid grid-cols-5 hover:border-red-950 rounded hover:transform hover:scale-110 transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
                 <Tooltip
@@ -60,6 +83,9 @@ export default function Pericias({ personagem }: Props) {
                   }
                 </h1>
                 <Tooltip
+                  onClick={() =>
+                    rolarPericia(atributoNum + metadeNivel + treinada)
+                  }
                   bgColor={"red.700"}
                   label={`${atributo}(${atributoNum}) + metade do nivel(${metadeNivel}) ${treinada}`}
                 >

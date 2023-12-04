@@ -60,11 +60,11 @@ export default function addFichaToLocalStorage() {
   }
   const pvInicial =
     classe.vidainicial +
-    (classe.vidapnivel + atributosLocais[2].valor) *
-      ((Number(localStorage.getItem("lvl")) || 0) - 1);
+    atributosLocais[2].valor(classe.vidapnivel + atributosLocais[2].valor) *
+      ((Number(localStorage.getItem("lvl")) || 1) - 1);
   const pmInicial =
     (classe.manapnivel + atributoConjurador) *
-    (Number(localStorage.getItem("lvl")) || 0);
+    (Number(localStorage.getItem("lvl")) || 1);
   const ficha: Ficha = {
     id: fichasArray.length,
     origem: localStorage.getItem("origem") || "",

@@ -56,12 +56,11 @@ export class Ataque {
     this.alcance = "";
     this.observacao = "";
   }
-  ataque() {
+  ataque(bonus: number, adv: "adv" | "des" | undefined) {
     const dano = this.dano.split("d");
     const vantagemdesvantagem = prompt(
       "Você tem vantagem ou desvantagem? (v/d)"
     );
-    const bonus = this.bonus+Number(prompt("Qual o bônus?"));
     let total = 0;
     if (vantagemdesvantagem === "v") {
       total = RolarDado({
@@ -84,7 +83,7 @@ export class Ataque {
         mod: bonus,
       }).total;
     }
-    return(total);
+    return total;
   }
 }
 
