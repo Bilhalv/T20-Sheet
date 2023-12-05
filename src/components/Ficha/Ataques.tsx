@@ -12,7 +12,10 @@ import {
 import { Eye } from "lucide-react";
 import { EntendiOnModal } from "../Geral/Botoes";
 import { useState } from "react";
-import Ficha, { Ataque } from "../../classes/Construtores/Ficha";
+import Ficha, { Ataque, armaFicha } from "../../classes/Construtores/Ficha";
+import { TabelasArmasSimles, tabelaArmas } from "../../classes/Tabelas/Itens";
+import { RolarDado } from "../Geral/RolarDado";
+import useCustomToast from "../Geral/Toasted";
 
 interface Props {
   personagem: Ficha;
@@ -46,6 +49,74 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
   const handleChangeVantagem = (vantagem: "adv" | "des" | undefined) => {
     setVantagem(vantagem as "adv" | "des" | undefined);
   };
+  const { showCustomToast } = useCustomToast();
+  var ataques: Ataque[] = personagem.mochila.armas.map((arma: armaFicha) => {
+    const tabela = [...TabelasArmasSimles, ...tabelaArmas].find((tabela) => {
+      return tabela.nome === arma.nome;
+    });
+
+    if (!tabela) {
+      throw new Error(`No table found for weapon ${arma.nome}`);
+    }
+
+    const ataque: Ataque = {
+      nome: arma.nome,
+      bonus: 0,
+      dano: tabela.dano,
+      critico: tabela.crit,
+      tipo: tabela.tipo,
+      alcance: tabela.alcance,
+      observacao: tabela.descricao,
+      ataque(bonus: number, adv: "adv" | "des" | undefined) {
+        if (!tabela || !tabela.dano) {
+          throw new Error("tabela or tabela.dano is undefined");
+        }
+        const duasMaos = tabela.dano.split("/");
+        let dano
+        if (duasMaos.length > 1) {
+          dano = duasMaos[1].split("d");
+        } else {
+          dano = tabela.dano.split("d");
+        }
+        if (
+          dano.length !== 2 ||
+          isNaN(parseInt(dano[0])) ||
+          isNaN(parseInt(dano[1]))
+        ) {
+          throw new Error("tabela.dano is not in the correct format");
+        }
+        if (this.bonus === undefined || isNaN(this.bonus)) {
+          throw new Error("this.bonus is undefined or not a number");
+        }
+        const rolagem = RolarDado({
+          qtd: 1,
+          lados: 20,
+          rerola: adv,
+          mod: bonus,
+        });
+        const total = rolagem.total;
+        const dados = [...rolagem.dados];
+        adv !== undefined && dados.push(...rolagem.reroll);
+        const danoRolado = RolarDado({
+          qtd: parseInt(dano[0]),
+          lados: parseInt(dano[1]),
+        });
+        const danoRoladoTotal = danoRolado.total;
+        const danoRoladoDados = danoRolado.dados;
+        showCustomToast({
+          title: "Ataque",
+          desc: `Você rolou ${total} (${dados.join(
+            ", "
+          )}) no dado de ataque e ${danoRoladoTotal} (${
+            dano.join("d")
+          } = ${danoRoladoDados.join(", ")}) no dado de dano`,
+          status: "success",
+        });
+        return danoRoladoTotal;
+      },
+    };
+    return ataque;
+  });
   return (
     <>
       <div className="border border-black rounded-lg flex flex-col shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
@@ -70,7 +141,7 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
           <h1 className="">Info</h1>
         </div>
         <div className="flex flex-col">
-          {personagem.ataques.map((ataque: Ataque) => (
+          {ataques.map((ataque: Ataque) => (
             <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b font-serif">
               <a
                 onClick={() => ataque.ataque(ataque.bonus, vantagem)}

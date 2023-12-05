@@ -24,81 +24,20 @@ import { RolarDado } from "../components/Geral/RolarDado";
 import useCustomToast from "../components/Geral/Toasted";
 import { useEffect } from "react";
 
-const fichaSelecionada = JSON.parse(
+const fichaSelecionada: FichaConstructor = JSON.parse(
   localStorage.getItem("fichaSelecionada") || "[]"
 );
 const Ficha: React.FC = () => {
   const [ficha, setFicha] = useState<FichaConstructor>(fichaSelecionada);
-  const mochila: Mochila = ficha.mochila;
+  const mochila: Mochila = ficha?.mochila;
+  const armas: armaFicha[] = mochila?.armas || [];
   const { showCustomToast } = useCustomToast();
-  const armas: armaFicha[] = mochila.armas;
   const armaduras: armaduraFicha[] = mochila.armaduras;
   const itens: itemFicha[] = mochila.itens;
   const tibares = mochila.tibares;
-  const ataques: Ataque[] = armas.map((arma: armaFicha) => {
-    const tabela = [...TabelasArmasSimles, ...tabelaArmas].find((tabela) => {
-      return tabela.nome === arma.nome;
-    });
-
-    if (!tabela) {
-      throw new Error(`No table found for weapon ${arma.nome}`);
-    }
-
-    const ataque: Ataque = {
-      nome: arma.nome,
-      bonus: 0,
-      dano: tabela.dano,
-      critico: tabela.crit,
-      tipo: tabela.tipo,
-      alcance: tabela.alcance,
-      observacao: tabela.descricao,
-      ataque(bonus: number, adv: "adv" | "des" | undefined) {
-        if (!tabela || !tabela.dano) {
-          throw new Error("tabela or tabela.dano is undefined");
-        }
-        const dano = tabela.dano.split("d");
-        if (
-          dano.length !== 2 ||
-          isNaN(parseInt(dano[0])) ||
-          isNaN(parseInt(dano[1]))
-        ) {
-          throw new Error("tabela.dano is not in the correct format");
-        }
-        if (this.bonus === undefined || isNaN(this.bonus)) {
-          throw new Error("this.bonus is undefined or not a number");
-        }
-        const rolagem = RolarDado({
-          qtd: 1,
-          lados: 20,
-          rerola: adv,
-          mod: bonus,
-        });
-        const total = rolagem.total;
-        const dados = [...rolagem.dados];
-        adv !== undefined && dados.push(...rolagem.reroll);
-        const danoRolado = RolarDado({
-          qtd: parseInt(dano[0]),
-          lados: parseInt(dano[1]),
-        });
-        const danoRoladoTotal = danoRolado.total;
-        const danoRoladoDados = danoRolado.dados;
-        showCustomToast({
-          title: "Ataque",
-          desc: `Você rolou ${total} (${dados.join(
-            ", "
-          )}) no dado de ataque e ${danoRoladoTotal} (${
-            tabela.dano
-          } = ${danoRoladoDados.join(", ")}) no dado de dano`,
-          status: "success",
-        });
-        return danoRoladoTotal;
-      },
-    };
-    return ataque;
-  });
+  
   const [personagem, setPersonagem] = useState<FichaConstructor>({
     ...ficha,
-    ataques: ataques,
     mochila: {
       armas: armas,
       armaduras: armaduras,
@@ -107,9 +46,6 @@ const Ficha: React.FC = () => {
     },
   });
   const classe = personagem.classe;
-  useEffect(() => {
-    localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));
-  }, [personagem]);
   return (
     <>
       <Navbar back={"/"} />

@@ -4,220 +4,8 @@ import { IconButton } from "@chakra-ui/react";
 import { Eye, Trash } from "lucide-react";
 import useCustomToast from "../components/Geral/Toasted";
 import { useNavigate } from "react-router-dom";
-
-const personagem = [
-  {
-    nome: "pseudopseudohypoparathyroidism",
-    raca: "Minotauro",
-    racaImg: `./img/racas/perfil/minotauro.png`,
-    classe: "Guerreiro",
-    classeImg: `./img/classes/guerreiro.png`,
-    origem: "Assistente de laboratorio",
-    nivel: 1,
-    divindade: "Tanna-Toh",
-    atributos: {
-      forca: 18,
-      destreza: 16,
-      constituicao: 14,
-      inteligencia: 12,
-      sabedoria: 10,
-      carisma: 8,
-    },
-    pericias: [
-      "Acrobacia",
-      "Atletismo",
-      "Cavalgar",
-      "Conhecimento (Guerra)",
-      "Diplomacia",
-      "Fortitude",
-      "Furtividade",
-      "Iniciativa",
-      "Intuição",
-      "Intimidação",
-      "Ladinagem",
-      "Luta",
-      "Ofício",
-      "Percepção",
-      "Pontaria",
-      "Reflexos",
-      "Sobrevivência",
-      "Vontade",
-    ],
-    itens: [
-      { nome: "Espada curta", quantidade: 1, tipo: "arma" },
-      { nome: "Adaga", quantidade: 1, tipo: "arma" },
-      { nome: "Gibão de peles", quantidade: 1, tipo: "armadura" },
-      { nome: "Escudo leve", quantidade: 1, tipo: "armadura" },
-      { nome: "Algemas", quantidade: 1, tipo: "item" },
-      { nome: "Água benta", quantidade: 4, tipo: "item" },
-    ],
-    ataques: [
-      {
-        nome: "Espada curta",
-        bonus: 5,
-        dano: "1d6+4",
-        critico: "19-20/x2",
-        tipo: "Corte",
-        alcance: "Corpo a corpo",
-      },
-      {
-        nome: "Adaga",
-        bonus: 5,
-        dano: "1d4+4",
-        critico: "19-20/x2",
-        tipo: "Perfuração",
-        alcance: "Corpo a corpo",
-      },
-    ],
-    status: {
-      pv: 20,
-      pvMax: 20,
-      pm: 20,
-      pmMax: 20,
-    },
-  },
-  {
-    nome: "Gladimir",
-    raca: "Humano",
-    racaImg: `./img/racas/perfil/humano.png`,
-    classe: "Paladino",
-    classeImg: `./img/classes/paladino.png`,
-    origem: "Professor",
-    nivel: 5,
-    divindade: "Arsenal",
-    atributos: {
-      forca: 1,
-      destreza: -1,
-      constituicao: 1,
-      inteligencia: 3,
-      sabedoria: 1,
-      carisma: 4,
-    },
-    pericias: [
-      "Acrobacia",
-      "Atletismo",
-      "Cavalgar",
-      "Conhecimento (Guerra)",
-      "Diplomacia",
-      "Fortitude",
-      "Furtividade",
-      "Iniciativa",
-      "Intuição",
-      "Intimidação",
-      "Ladinagem",
-      "Luta",
-      "Ofício",
-      "Percepção",
-      "Pontaria",
-      "Reflexos",
-      "Sobrevivência",
-      "Vontade",
-    ],
-    itens: [
-      { nome: "Espada curta", quantidade: 1, tipo: "arma" },
-      { nome: "Adaga", quantidade: 1, tipo: "arma" },
-      { nome: "Gibão de peles", quantidade: 1, tipo: "armadura" },
-      { nome: "Escudo leve", quantidade: 1, tipo: "armadura" },
-      { nome: "Algemas", quantidade: 1, tipo: "item" },
-      { nome: "Água benta", quantidade: 4, tipo: "item" },
-    ],
-    ataques: [
-      {
-        nome: "Espada curta",
-        bonus: 5,
-        dano: "1d6+4",
-        critico: "19-20/x2",
-        tipo: "Corte",
-        alcance: "Corpo a corpo",
-      },
-      {
-        nome: "Adaga",
-        bonus: 5,
-        dano: "1d4+4",
-        critico: "19-20/x2",
-        tipo: "Perfuração",
-        alcance: "Corpo a corpo",
-      },
-    ],
-    status: {
-      pv: 20,
-      pvMax: 20,
-      pm: 20,
-      pmMax: 20,
-    },
-  },
-  {
-    nome: "Gladimiro",
-    raca: "Humano",
-    racaImg: `./img/racas/perfil/humano.png`,
-    classe: "Paladino",
-    classeImg: `./img/classes/paladino.png`,
-    origem: "Professor",
-    nivel: 5,
-    divindade: "Arsenal",
-    atributos: {
-      forca: 1,
-      destreza: -1,
-      constituicao: 1,
-      inteligencia: 3,
-      sabedoria: 1,
-      carisma: 4,
-    },
-    pericias: [
-      "Acrobacia",
-      "Atletismo",
-      "Cavalgar",
-      "Conhecimento (Guerra)",
-      "Diplomacia",
-      "Fortitude",
-      "Furtividade",
-      "Iniciativa",
-      "Intuição",
-      "Intimidação",
-      "Ladinagem",
-      "Luta",
-      "Ofício",
-      "Percepção",
-      "Pontaria",
-      "Reflexos",
-      "Sobrevivência",
-      "Vontade",
-    ],
-    itens: [
-      { nome: "Espada curta", quantidade: 1, tipo: "arma" },
-      { nome: "Adaga", quantidade: 1, tipo: "arma" },
-      { nome: "Gibão de peles", quantidade: 1, tipo: "armadura" },
-      { nome: "Escudo leve", quantidade: 1, tipo: "armadura" },
-      { nome: "Algemas", quantidade: 1, tipo: "item" },
-      { nome: "Água benta", quantidade: 4, tipo: "item" },
-    ],
-    ataques: [
-      {
-        nome: "Espada curta",
-        bonus: 5,
-        dano: "1d6+4",
-        critico: "19-20/x2",
-        tipo: "Corte",
-        alcance: "Corpo a corpo",
-      },
-      {
-        nome: "Adaga",
-        bonus: 5,
-        dano: "1d4+4",
-        critico: "19-20/x2",
-        tipo: "Perfuração",
-        alcance: "Corpo",
-      },
-    ],
-    status: {
-      pv: 20,
-      pvMax: 20,
-      pm: 20,
-      pmMax: 20,
-    },
-  },
-];
-const fichas = JSON.parse(localStorage.getItem("fichas") || "[]");
+import Ficha from "../classes/Construtores/Ficha";
+const fichas: Ficha[] = JSON.parse(localStorage.getItem("fichas") || "[]");
 
 const Personagens: React.FC = () => {
   interface mostrandoPersonagem {
@@ -231,22 +19,30 @@ const Personagens: React.FC = () => {
     id: number;
   }
   const [mostrandoPersonagem, setMostrandoPersonagem] = React.useState(() => {
-    return fichas.map((personagem: any) => {
-      const racaImg = `./img/racas/perfil/${personagem.raca
-        .toLowerCase()
-        .replace(/ç/g, "c")
-        .replace(/ã/g, "a")
-        .replace(/é/g, "e")}.png`;
-      const classeImg = `./img/classes/${personagem.classe.nome
-        .toLowerCase()
-        .replace(/ç/g, "c")
-        .replace(/ã/g, "a")
-        .replace(/é/g, "e")}.png`;
+    return fichas.map((personagem: Ficha) => {
+      const racaImg = personagem.raca
+        ? `./img/racas/perfil/${personagem.raca
+            .toLowerCase()
+            .replace(/ç/g, "c")
+            .replace(/ã/g, "a")
+            .replace(/á/g, "a")
+            .replace(/é/g, "e")}.png`
+        : "";
+
+      const classeImg =
+        personagem.classe && personagem.classe.nome
+          ? `./img/classes/${personagem.classe.nome
+              .toLowerCase()
+              .replace(/ç/g, "c")
+              .replace(/ã/g, "a")
+              .replace(/á/g, "a")
+              .replace(/é/g, "e")}.png`
+          : "";
       return {
         nome: personagem.nome,
         raca: personagem.raca,
         racaImg: racaImg,
-        classe: personagem.classe.nome,
+        classe: personagem.classe ? personagem.classe.nome : "",
         classeImg: classeImg,
         origem: personagem.origem,
         nivel: personagem.nivel,
@@ -273,10 +69,10 @@ const Personagens: React.FC = () => {
       return personagem.id !== id;
     });
     setMostrandoPersonagem(novoMostrando);
-    const novaFicha = fichas.filter((personagem: any) => {
+    const novaFicha: Ficha | undefined = fichas.find((personagem: Ficha) => {
       return personagem.id !== id;
     });
-    localStorage.setItem("fichas", novaFicha);
+    localStorage.setItem("fichas", JSON.stringify(novaFicha));
     showCustomToast({
       title: "Sucesso",
       desc: `Personagem: ${nome} excluido com sucesso`,
@@ -285,7 +81,7 @@ const Personagens: React.FC = () => {
     });
   };
   const verMais = (id: number) => {
-    const personagem = fichas.find((personagem: any) => {
+    const personagem: Ficha | undefined = fichas.find((personagem: Ficha) => {
       return personagem.id === id;
     });
     localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));

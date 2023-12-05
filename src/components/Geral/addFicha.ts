@@ -1,5 +1,5 @@
 import { Arma } from "../../classes/Construtores/Arma";
-import Ficha, { Ataque } from "../../classes/Construtores/Ficha";
+import Ficha, { Ataque, Mochila, armaFicha } from "../../classes/Construtores/Ficha";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 
@@ -9,21 +9,13 @@ export default function addFichaToLocalStorage() {
     TabelaClasses.find(
       (e) => e.nome === (localStorage.getItem("classe") || "")
     ) || TabelaClasses[0];
-  const atributosLocais = JSON.parse(
-    localStorage.getItem("atributosFinais") || "[]"
-  );
+  const atributosLocais: {
+    atributo: string;
+    valor: number;
+  }[] = JSON.parse(localStorage.getItem("atributosFinais") || "[]");
   var atributoConjurador = 0;
-  const equipamentos = JSON.parse(localStorage.getItem("equipamentos") || "[]");
-  const armas = equipamentos.arma || [];
-  const ataques: Ataque[] = armas.map((arma: Arma) => ({
-    nome: arma.nome,
-    dano: arma.dano,
-    crit: arma.crit,
-    alcance: arma.alcance,
-    tipo: arma.tipo,
-    proficiencia: arma.proficiencia,
-    bonus: 0,
-  }));
+  const equipamentos: Mochila = JSON.parse(localStorage.getItem("equipamentos") || "[]");
+  const ataques: Ataque[] = [];
 
   const pericias = TabelaPericias
     ? TabelaPericias.map((pericia) => {
@@ -60,7 +52,8 @@ export default function addFichaToLocalStorage() {
   }
   const pvInicial =
     classe.vidainicial +
-    atributosLocais[2].valor(classe.vidapnivel + atributosLocais[2].valor) *
+    atributosLocais[2].valor +
+    (classe.vidapnivel + atributosLocais[2].valor) *
       ((Number(localStorage.getItem("lvl")) || 1) - 1);
   const pmInicial =
     (classe.manapnivel + atributoConjurador) *
@@ -85,7 +78,7 @@ export default function addFichaToLocalStorage() {
     pericias: pericias,
     magias: JSON.parse(localStorage.getItem("magias") || "[]"),
     poderes: JSON.parse(localStorage.getItem("poderes") || "[]"),
-    mochila: JSON.parse(localStorage.getItem("equipamentos") || "[]"),
+    mochila: equipamentos,
   };
   fichasArray.push(ficha);
   localStorage.clear();

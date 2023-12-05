@@ -11,7 +11,7 @@ interface Props {
 
 export default function Pericias({ personagem }: Props) {
   const { showCustomToast } = useCustomToast();
-  const rolarPericia = (e: number) => {
+  const rolarPericia = (e: number, nome: string) => {
     const dado = RolarDado({
       lados: 20,
       qtd: 1,
@@ -19,13 +19,13 @@ export default function Pericias({ personagem }: Props) {
     });
     showCustomToast({
       title: `Rolando...`,
-      desc: `1d20 = ${e}`,
+      desc: `${nome} = ${e}`,
       status: "loading",
-      duration: 3000,
+      duration: 1000,
       onCloseComplete() {
         showCustomToast({
           title: `Rolado!`,
-          desc: `Resultado: ${dado.total}`,
+          desc: `${nome}: ${dado.total} (${dado.dados}+${e})`,
         });
       },
     });
@@ -83,15 +83,20 @@ export default function Pericias({ personagem }: Props) {
                   }
                 </h1>
                 <Tooltip
-                  onClick={() =>
-                    rolarPericia(atributoNum + metadeNivel + treinada)
-                  }
                   bgColor={"red.700"}
                   label={`${atributo}(${atributoNum}) + metade do nivel(${metadeNivel}) ${treinada}`}
                 >
-                  <h1 className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-right">
+                  <button
+                    onClick={() =>
+                      rolarPericia(
+                        atributoNum + metadeNivel + treinada,
+                        pericia.nome
+                      )
+                    }
+                    className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-right "
+                  >
                     {atributoNum + metadeNivel + treinada}
-                  </h1>
+                  </button>
                 </Tooltip>
               </div>
             );
