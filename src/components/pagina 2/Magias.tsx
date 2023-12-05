@@ -21,7 +21,7 @@ export interface ArrayMagias {
   escola: enumEscolas;
   aprimoramentos: aprimoramentos[];
   tipo: enumTipo;
-  selecionado: boolean;
+  selecionado?: boolean;
 }
 
 interface MagiasProps {

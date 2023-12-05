@@ -17,6 +17,7 @@ import FichaConstructor, {
   itemFicha,
 } from "../classes/Construtores/Ficha";
 import useCustomToast from "../components/Geral/Toasted";
+import Magias from "../components/Ficha/Magias";
 
 const Ficha: React.FC = () => {
   const fichaSelecionada: FichaConstructor = JSON.parse(
@@ -98,7 +99,7 @@ const Ficha: React.FC = () => {
                 >
                   <img
                     className="transform hover:scale-150 transition-all scale-125"
-                    src="./img/tabsFicha/ficha.svg"
+                    src="./img/tabsFicha/magia.svg"
                   />
                 </Tab>
               </TabList>
@@ -125,7 +126,7 @@ const Ficha: React.FC = () => {
                   <Pericias personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
-                  <p>four!</p>
+                  <Magias personagem={personagem} />
                 </TabPanel>
               </TabPanels>
             </Tabs>
@@ -177,6 +178,7 @@ const Ficha: React.FC = () => {
               </div>
               <div className="w-1/3">
                 <Pericias personagem={personagem} />
+                <Magias personagem={personagem} />
               </div>
             </section>
           </article>

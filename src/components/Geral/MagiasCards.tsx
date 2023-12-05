@@ -93,23 +93,6 @@ export default function MagiasCards({
                           </>
                         ) : (
                           <>
-                            <IconButton
-                              colorScheme="red"
-                              aria-label="Remover magia"
-                              icon={<XCircle size={25} />}
-                              onClick={() => {
-                                removerMagia(magia.nome);
-                              }}
-                              rounded={"full"}
-                              padding={0}
-                              bg={"transparent"}
-                              _hover={{
-                                bg: "white",
-                                color: "red.500",
-                              }}
-                              size={"sm"}
-                              className="mr-2 mt-1"
-                            />
                               {magia.nome}
                           </>
                         )}
