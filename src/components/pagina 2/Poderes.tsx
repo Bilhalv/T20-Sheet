@@ -182,7 +182,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
       poderesAntigos.push(...poderesSelecionados);
       localStorage.setItem("poderes", JSON.stringify(poderesAntigos));
       addFichaToLocalStorage();
-      navigate("/ficha");
+      navigate("/personagens");
     }
   };
   return (

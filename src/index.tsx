@@ -9,12 +9,26 @@ import Ficha from "./pages/Ficha";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Personagens from "./pages/Personagens";
+import { extendTheme } from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const theme = extendTheme({
+  components: {
+    Toast: {
+      variants: {
+        loading: {
+          bgColor: "red",
+        },
+      },
+    },
+  },
+});
+
 root.render(
-  <ChakraProvider>
+  <ChakraProvider theme={theme}>
     <React.StrictMode>
       <BrowserRouter>
         <Routes>

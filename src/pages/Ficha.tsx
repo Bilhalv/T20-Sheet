@@ -6,28 +6,22 @@ import Pericias from "../components/Ficha/Pericias";
 import Atributos from "../components/Ficha/Atributos";
 import Info from "../components/Ficha/Info";
 import Ataques from "../components/Ficha/Ataques";
-import { TabelasArmasSimles, tabelaArmas } from "../classes/Tabelas/Itens";
-import { Arma } from "../classes/Construtores/Arma";
 import Defesa from "../components/Ficha/Defesa";
 import Status from "../components/Ficha/Status";
-import { TabelaClasses } from "../classes/Tabelas/Classes";
 import Tamanho from "../components/Ficha/Tamanho";
 import Exp from "../components/Ficha/Exp-Deslocamento";
 import FichaConstructor, {
-  Ataque,
   Mochila,
   armaFicha,
   armaduraFicha,
   itemFicha,
 } from "../classes/Construtores/Ficha";
-import { RolarDado } from "../components/Geral/RolarDado";
 import useCustomToast from "../components/Geral/Toasted";
-import { useEffect } from "react";
 
-const fichaSelecionada: FichaConstructor = JSON.parse(
-  localStorage.getItem("fichaSelecionada") || "[]"
-);
 const Ficha: React.FC = () => {
+  const fichaSelecionada: FichaConstructor = JSON.parse(
+    localStorage.getItem("fichaSelecionada") || "[]"
+  );
   const [ficha, setFicha] = useState<FichaConstructor>(fichaSelecionada);
   const mochila: Mochila = ficha?.mochila;
   const armas: armaFicha[] = mochila?.armas || [];
@@ -35,7 +29,7 @@ const Ficha: React.FC = () => {
   const armaduras: armaduraFicha[] = mochila.armaduras;
   const itens: itemFicha[] = mochila.itens;
   const tibares = mochila.tibares;
-  
+
   const [personagem, setPersonagem] = useState<FichaConstructor>({
     ...ficha,
     mochila: {

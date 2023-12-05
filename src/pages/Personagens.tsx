@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Geral/Navbar";
 import { IconButton } from "@chakra-ui/react";
 import { Eye, Trash } from "lucide-react";
 import useCustomToast from "../components/Geral/Toasted";
 import { useNavigate } from "react-router-dom";
 import Ficha from "../classes/Construtores/Ficha";
-const fichas: Ficha[] = JSON.parse(localStorage.getItem("fichas") || "[]");
+const fichasData = JSON.parse(localStorage.getItem("fichas") || "[]");
 
 const Personagens: React.FC = () => {
+  const [fichas, setFichas] = useState(
+    Array.isArray(fichasData) ? fichasData : []
+  );
   interface mostrandoPersonagem {
     nome: string;
     raca: string;
@@ -81,7 +84,7 @@ const Personagens: React.FC = () => {
     });
   };
   const verMais = (id: number) => {
-    const personagem: Ficha | undefined = fichas.find((personagem: Ficha) => {
+    const personagem: Ficha = fichas.find((personagem: Ficha) => {
       return personagem.id === id;
     });
     localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));

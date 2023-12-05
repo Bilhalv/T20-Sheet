@@ -34,9 +34,18 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
     descricao: "",
   });
   const handleChangeBonus = (e: Ataque, bonusNovo: number) => {
-    const ataquesnovos = personagem.ataques.map((ataque: Ataque) => {
-      if (ataque.nome === e.nome) {
-        return { ...ataque, bonus: bonusNovo, ataque: ataque.ataque };
+    const ataquesnovos: Ataque[] = personagem.ataques.map((ataque: Ataque) => {
+      if (ataque === e) {
+        return {
+          nome: ataque.nome,
+          alcance: ataque.alcance,
+          bonus: bonusNovo,
+          critico: ataque.critico,
+          dano: ataque.dano,
+          tipo: ataque.tipo,
+          observacao: ataque.observacao,
+          ataque: ataque.ataque,
+        };
       } else {
         return ataque;
       }
@@ -72,7 +81,7 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
           throw new Error("tabela or tabela.dano is undefined");
         }
         const duasMaos = tabela.dano.split("/");
-        let dano
+        let dano: any;
         if (duasMaos.length > 1) {
           dano = duasMaos[1].split("d");
         } else {
@@ -104,14 +113,31 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
         const danoRoladoTotal = danoRolado.total;
         const danoRoladoDados = danoRolado.dados;
         showCustomToast({
-          title: "Ataque",
-          desc: `Você rolou ${total} (${dados.join(
-            ", "
-          )}) no dado de ataque e ${danoRoladoTotal} (${
-            dano.join("d")
-          } = ${danoRoladoDados.join(", ")}) no dado de dano`,
-          status: "success",
+          title: "Rolando...",
+          desc: `Rolando um ataque com ${arma.nome}`,
+          status: "loading",
+          duration: 1000,
         });
+        setTimeout(() => {
+          showCustomToast({
+            title: "Ataque",
+            desc: `Você rolou ${total} (${dados.join(
+              ", "
+            )}) no dado de ataque e ${danoRoladoTotal} (${dano.join(
+              "d"
+            )} = ${danoRoladoDados.join(", ")}) no dado de dano`,
+            status: "success",
+          });
+        }, 1000);
+        // showCustomToast({
+        //   title: "Ataque",
+        //   desc: `Você rolou ${total} (${dados.join(
+        //     ", "
+        //   )}) no dado de ataque e ${danoRoladoTotal} (${
+        //     dano.join("d")
+        //   } = ${danoRoladoDados.join(", ")}) no dado de dano`,
+        //   status: "success",
+        // });
         return danoRoladoTotal;
       },
     };
@@ -155,7 +181,7 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
                   handleChangeBonus(ataque, Number(e.target.value))
                 }
                 className="text-center rounded-md border border-red-800 w-16 mx-auto"
-                value={ataque.bonus}
+                defaultValue={ataque.bonus}
               />
               <p>{ataque.dano}</p>
               <p className="hidden desktop:block">{ataque.critico}</p>
