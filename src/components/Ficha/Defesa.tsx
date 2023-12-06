@@ -177,6 +177,7 @@ export default function Defesa({ personagem }: Props) {
                   onChange={(e) => {
                     setAtributo(Number(e.target.value));
                   }}
+                  placeholder="Nenhum"
                 >
                   {personagem.atributos.map((atributo) => (
                     <option value={atributo.valor}>
