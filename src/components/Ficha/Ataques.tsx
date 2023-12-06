@@ -80,17 +80,23 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
           if (this.bonus === undefined || isNaN(this.bonus)) {
             throw new Error("this.bonus is undefined or not a number");
           }
+          const critico = tabela.crit.split("/");
+          const ameaca = parseInt(critico[0]);
+          const multiplicador = parseInt(critico[1].split("x")[1]);
           const rolagem = RolarDado({
             qtd: 1,
             lados: 20,
             rerola: adv,
             mod: bonus,
+            ameaca: ameaca,
           });
           const total = rolagem.total;
           const dados = [...rolagem.dados];
           adv !== undefined && dados.push(...rolagem.reroll);
           const danoRolado = RolarDado({
-            qtd: parseInt(dano[0]),
+            qtd: rolagem.critou
+              ? parseInt(dano[0]) * multiplicador
+              : parseInt(dano[0]),
             lados: parseInt(dano[1]),
           });
           const danoRoladoTotal = danoRolado.total;
@@ -103,11 +109,25 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
             onCloseComplete: () => {
               showCustomToast({
                 title: "Ataque",
-                desc: `Você rolou ${total} (${dados.join(
-                  ", "
-                )}) no dado de ataque e ${danoRoladoTotal} (${dano.join(
-                  "d"
-                )} = ${danoRoladoDados.join(", ")}) no dado de dano`,
+                desc: (
+                  <p>
+                    Você rolou{" "}
+                    <b
+                      className={
+                        rolagem.critou
+                          ? "text-green-400"
+                          : rolagem.falha
+                          ? "text-red-400"
+                          : ""
+                      }
+                    >
+                      {total}
+                    </b>{" "}
+                    ({dados.join(", ")}) no dado de ataque e {danoRoladoTotal} (
+                    {dano.join("d")} ={danoRoladoDados.join(", ")}) no dado de
+                    dano
+                  </p>
+                ),
                 status: "success",
                 duration: 5000,
               });
@@ -156,7 +176,7 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
                 type="number"
                 onChange={(e) => {
                   const bonus = Number(e.target.value);
-                  const novoataque:Ataque = {
+                  const novoataque: Ataque = {
                     nome: ataque.nome,
                     bonus: bonus,
                     dano: ataque.dano,

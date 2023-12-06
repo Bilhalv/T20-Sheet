@@ -3,7 +3,7 @@ import { Dice1 } from "lucide-react";
 
 interface ToastProps {
   title: string;
-  desc: string;
+  desc: string | React.ReactNode;
   status?: "info" | "warning" | "success" | "error" | "loading";
   onCloseComplete?: () => void;
   duration?: number;

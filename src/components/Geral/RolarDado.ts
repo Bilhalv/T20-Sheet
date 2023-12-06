@@ -49,5 +49,6 @@ export function RolarDado({
     reroll: Reroll,
     total: total,
     critou: dadosNormais[0] >= (ameaca || lados),
+    falha: dadosNormais[0] <= 1,
   };
 }
