@@ -13,7 +13,7 @@ module.exports = {
       },
       backgroundImage: {
         bgT20: "url('/public/img/bgT20.jpg')",
-        d20: "url('/public/img/d20.png')",
+        d20: "url('/public/img/d20.svg')",
         arcana: "url('/public/img/magias/classificacao/arcana.png')",
         divina: "url('/public/img/magias/classificacao/divina.png')",
         universal: "url('/public/img/magias/classificacao/universal.png')",

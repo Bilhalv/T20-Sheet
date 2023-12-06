@@ -62,7 +62,7 @@ export default function Pericias({ personagem }: Props) {
                 (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
               )?.valor || 0;
             return (
-              <div className="grid grid-cols-5 hover:border-red-950 rounded hover:transform hover:scale-110 transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
+              <div className="grid grid-cols-5 hover:border-red-950 rounded transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
                 <Tooltip
                   bgColor={"red.700"}
                   label={`${
@@ -93,7 +93,7 @@ export default function Pericias({ personagem }: Props) {
                         pericia.nome
                       )
                     }
-                    className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-right "
+                    className="text-red-600 ml-auto bg-d20 w-6 bg-opacity-50 bg-cover drop-shadow-2xl hover:transform hover:scale-150 hover:z-40 transition-all text-md desktop:text-sm text-center "
                   >
                     {atributoNum + metadeNivel + treinada}
                   </button>
