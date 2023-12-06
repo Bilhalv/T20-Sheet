@@ -34,7 +34,11 @@ export default function InfoModal({ pagina }: Props) {
           aria-label="Info"
           bg={"transparent"}
           onClick={onOpen}
-          _hover={{ bg: "transparent", color: "white", transform: "scale(1.1)" }}
+          _hover={{
+            bg: "transparent",
+            color: "white",
+            transform: "scale(1.1)",
+          }}
           icon={<Info size={32} />}
         />
       </Tooltip>
@@ -189,8 +193,9 @@ export default function InfoModal({ pagina }: Props) {
                       você deve possuir todos os requerimentos mencionados. A
                       menos que especificado o contrário, você não pode escolher
                       um mesmo poder mais de uma vez. Você sempre pode
-                      substituir um poder de classe por um poder geral.
-                      Você poderá escolher seus poderes mais tarde na criação do personagem.
+                      substituir um poder de classe por um poder geral. Você
+                      poderá escolher seus poderes mais tarde na criação do
+                      personagem.
                     </p>
                   </div>
                 </div>
@@ -280,9 +285,147 @@ export default function InfoModal({ pagina }: Props) {
                   </div>
                 </div>
               </>
-            ) : pagina === "Divindade" ? (
+            ) : pagina === "Divindades" ? (
               <>
-                <p>info info</p>
+                <div className="text-center flex flex-col gap-3">
+                  <p className="italic font-serif mt-[-20px]">
+                    Em Arton, você pode trabalhar a serviço dos deuses,
+                    cumprindo seus desígnios. Um personagem que serve a uma
+                    divindade é chamado devoto e, em troca de seguir certas
+                    obrigações, recebe poderes. Ser devoto é uma escolha. Por
+                    exemplo, você pode ser um cavaleiro normal, sem obrigações,
+                    ou um cavaleiro devoto de Khalmyr, com obrigações e poderes.
+                  </p>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Símbolo Sagrado</h1>
+                    <p className="italic font-serif">
+                      O símbolo do deus, normalmente usado como um medalhão ou
+                      na roupa.
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <h1 className="font-bold">Canalizar Energia</h1>
+                    <p className="italic font-serif">
+                      O tipo de energia que a divindade canaliza. Devotos de
+                      alguns deuses podem escolher o tipo de energia (nesse
+                      caso, uma vez feita, a escolha não pode ser mudada).
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <h1 className="font-bold">Arma Preferida</h1>
+                    <p className="italic font-serif">
+                      A arma típica de devotos do deus, importante para certas
+                      habilidades e magias.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : pagina === "Equipamentos" ? (
+              <>
+                <div className="text-center flex flex-col gap-3">
+                  <p className="italic font-serif mt-[-20px]">
+                    Espadas afiadas e armaduras resplandecentes. Símbolos
+                    sagrados e tomos ancestrais. Ou simplesmente um bom prato de
+                    comida! Aventureiros precisam de diversos equipamentos em
+                    suas missões.
+                  </p>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">
+                      Equipamentos iniciais{" "}
+                    </h1>
+                    <p className="italic font-serif">
+                      No início da sua jornada, os heróis recebem
+                      equipamentos básicos, como armaduras simples, armas
+                      básicas e itens essenciais. Nesta página, você visualizará
+                      os itens iniciais e terá a oportunidade de escolher os
+                      próximos, dando forma ao destino do seu personagem em
+                      Arton.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : pagina === "Magias" ? (
+              <>
+                <div className="text-center flex flex-col gap-3">
+                  <p className="italic font-serif mt-[-20px]">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Possimus aperiam, facilis dicta velit maxime pariatur. Sequi
+                    harum beatae recusandae ab!
+                  </p>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Lorem, ipsum.</h1>
+                    <p className="italic font-serif">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Quo dolores deserunt, saepe non placeat aliquid.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : pagina === "Especificações" ? (
+              <>
+                <div className="text-center flex flex-col gap-3">
+                  <p className="italic font-serif mt-[-20px]">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Possimus aperiam, facilis dicta velit maxime pariatur. Sequi
+                    harum beatae recusandae ab!
+                  </p>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Lorem, ipsum.</h1>
+                    <p className="italic font-serif">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Quo dolores deserunt, saepe non placeat aliquid.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : pagina === "Poderes" ? (
+              <>
+                <div className="text-center flex flex-col gap-3">
+                  <p className="italic font-serif mt-[-20px]">
+                    Poderes são habilidades únicas disponíveis para todos os
+                    personagens que os deixam mais fortes.
+                  </p>
+                  <hr />
+                  <div>
+                    <h1 className="text-md font-bold">Poderes de classe</h1>
+                    <p className="italic font-serif">
+                      Cada classe possui seus próprios poderes exclusivos, e os
+                      jogadores podem escolher um deles, contanto que satisfaçam
+                      os pré-requisitos.
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <h1 className="font-bold">Poderes gerais</h1>
+                    <p className="italic font-serif">
+                      Poderes gerais são disponiveis para todos os personagens.
+                      A seleção de poderes gerais pode ocorrer em vários níveis
+                      do personagem, permitindo inclusive a substituição de um
+                      poder de classe por um poder geral. Poderes gerais são
+                      divididos em 5 categorias:
+                      <ul>
+                        <li>
+                          Combate: Poderes que melhoram características
+                          relacionadas a combate.
+                        </li>
+                        <li>
+                          Destino: Poderes que melhoram características não
+                          relacionadas a combate.
+                        </li>
+                        <li>
+                          Magia: Poderes ligados a magias e itens mágicos.
+                        </li>
+                        <li>Tormenta: Poderes ligados à tempestade rubra.</li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
               </>
             ) : (
               <>

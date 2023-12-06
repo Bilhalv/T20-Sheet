@@ -278,7 +278,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
                         isDisabled={
                           (poderesSelecionados.length -
                             JSON.parse(localStorage.getItem("poderes") ?? "[]")
-                              .length >=
+                              .length >
                             limite &&
                             !poderesSelecionados.includes(poder.nome)) ||
                           (poderesIndisponiveis.some(

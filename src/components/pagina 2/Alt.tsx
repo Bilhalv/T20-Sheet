@@ -126,20 +126,28 @@ export default function Alt({ handleChange, next }: AltProps) {
   const [indisponiveis, setIndisponiveis] = useState<Poder[]>([]);
   const { showCustomToast } = useCustomToast();
   const onSelect = () => {
-    let contador = 2;
+    let contador = 1;
     if (
-      raca.nome === "Humano" ||
-      raca.nome === "Lefou" ||
-      raca.nome === "Qareen" ||
-      raca.nome === "Golem" ||
-      raca.nome === "Kliren" ||
-      raca.nome === "Sereia/Tritão" ||
-      raca.nome === "Sílfide"
-    ) {
-      contador += 2;
-    } else if (raca.nome === "Osteon") {
+      origem.beneficios.pericias.filter(
+        (e) => !JSON.parse(localStorage.getItem("pericias") || "").includes(e)
+      ).length > 0
+    ){
+      console.log(1)
       contador++;
     }
+      if (
+        raca.nome === "Humano" ||
+        raca.nome === "Lefou" ||
+        raca.nome === "Qareen" ||
+        raca.nome === "Golem" ||
+        raca.nome === "Kliren" ||
+        raca.nome === "Sereia/Tritão" ||
+        raca.nome === "Sílfide"
+      ) {
+        contador += 2;
+      } else if (raca.nome === "Osteon") {
+        contador++;
+      }
     if (
       (classe.nome === "Cavaleiro" || classe.nome === "Paladino") &&
       Number(localStorage.getItem("lvl")) >= 5
