@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
+  Textarea,
 } from "@chakra-ui/react";
 import { Eye } from "lucide-react";
 import { EntendiOnModal } from "../Geral/Botoes";
@@ -33,25 +34,10 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
     alcance: "",
     descricao: "",
   });
-  const handleChangeBonus = (e: Ataque, bonusNovo: number) => {
-    const ataquesnovos: Ataque[] = personagem.ataques.map((ataque: Ataque) => {
-      if (ataque === e) {
-        return {
-          nome: ataque.nome,
-          alcance: ataque.alcance,
-          bonus: bonusNovo,
-          critico: ataque.critico,
-          dano: ataque.dano,
-          tipo: ataque.tipo,
-          observacao: ataque.observacao,
-          ataque: ataque.ataque,
-        };
-      } else {
-        return ataque;
-      }
-    });
-    setPersonagem({ ...personagem, ataques: ataquesnovos });
-  };
+  const [bonus, setBonus] = useState(0);
+  function handleBonusChange(event:any) {
+    setBonus(event.target.value);
+  }
   const [vantagem, setVantagem] = useState<"adv" | "des" | undefined>(
     undefined
   );
@@ -117,27 +103,19 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
           desc: `Rolando um ataque com ${arma.nome}`,
           status: "loading",
           duration: 1000,
+          onCloseComplete: () => {
+            showCustomToast({
+              title: "Ataque",
+              desc: `Você rolou ${total} (${dados.join(
+                ", "
+              )}) no dado de ataque e ${danoRoladoTotal} (${dano.join(
+                "d"
+              )} = ${danoRoladoDados.join(", ")}) no dado de dano`,
+              status: "success",
+              duration: 5000,
+            });
+          },
         });
-        setTimeout(() => {
-          showCustomToast({
-            title: "Ataque",
-            desc: `Você rolou ${total} (${dados.join(
-              ", "
-            )}) no dado de ataque e ${danoRoladoTotal} (${dano.join(
-              "d"
-            )} = ${danoRoladoDados.join(", ")}) no dado de dano`,
-            status: "success",
-          });
-        }, 1000);
-        // showCustomToast({
-        //   title: "Ataque",
-        //   desc: `Você rolou ${total} (${dados.join(
-        //     ", "
-        //   )}) no dado de ataque e ${danoRoladoTotal} (${
-        //     dano.join("d")
-        //   } = ${danoRoladoDados.join(", ")}) no dado de dano`,
-        //   status: "success",
-        // });
         return danoRoladoTotal;
       },
     };
@@ -177,9 +155,7 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
               </a>
               <input
                 type="number"
-                onChange={(e) =>
-                  handleChangeBonus(ataque, Number(e.target.value))
-                }
+                onChange={(e) => handleBonusChange(e)}
                 className="text-center rounded-md border border-red-800 w-16 mx-auto"
                 defaultValue={ataque.bonus}
               />
@@ -225,8 +201,8 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
             <div className="flex flex-col gap-2 text-center">
               <div>
                 <h1 className="text-xl">Descrição</h1>
-                <Input
-                  className="font-serif"
+                <Textarea
+                  className="font-serif text-justify"
                   contentEditable
                   onChange={(e) => {
                     const changedesc = e.target.value;
@@ -236,7 +212,7 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
                       }
                     });
                   }}
-                  placeholder={ataqueModal.descricao || "Adicione a descrição"}
+                  defaultValue={ataqueModal.descricao || "Adicione a descrição"}
                 />
               </div>
               <div>

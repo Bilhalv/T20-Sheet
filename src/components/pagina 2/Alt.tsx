@@ -164,7 +164,7 @@ export default function Alt({ handleChange, next }: AltProps) {
         desc: `Você precisa escolher mais ${
           contador - versusContador
         } especificações`,
-        status:   "error",
+        status: "error",
       });
       return;
     } else {
@@ -226,6 +226,25 @@ export default function Alt({ handleChange, next }: AltProps) {
                           }
                         />
                       ))}
+                      {origem.nome === "Amnésico" && (
+                        <div className="overflow-y-scroll max-h-[200px]">
+                          {TabelaPoderes.filter(
+                            (poder: Poder) =>
+                              !indisponiveis.some((e) => e === poder)
+                          ).map((poder) => (
+                            <BotaoLista
+                              isDisabled={
+                                (especificasOrigem.length >= 3 &&
+                                  !especificasOrigem.includes(poder.nome)) ||
+                                indisponiveis.some((e) => e === poder)
+                              }
+                              nome={poder.nome}
+                              handleMudar={handleOrigens}
+                              descricao={poder.descricao}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div>
@@ -253,6 +272,26 @@ export default function Alt({ handleChange, next }: AltProps) {
                             }
                           />
                         ))}
+                      {origem.nome === "Amnésico" && (
+                        <div className="overflow-y-scroll max-h-[200px]">
+                          {TabelaPericias.filter(
+                            (pericia) =>
+                              !JSON.parse(
+                                localStorage.getItem("pericias") || ""
+                              ).includes(pericia.nome)
+                          ).map((pericia) => (
+                            <BotaoLista
+                              isDisabled={
+                                especificasOrigem.length >= 3 &&
+                                !especificasOrigem.includes(pericia.nome)
+                              }
+                              nome={pericia.nome}
+                              handleMudar={handleOrigens}
+                              descricao={pericia.descricao}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </CheckboxGroup>

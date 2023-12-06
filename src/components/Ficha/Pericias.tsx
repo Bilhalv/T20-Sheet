@@ -1,7 +1,6 @@
 import { Tooltip } from "@chakra-ui/react";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import Ficha, { PericiasFicha } from "../../classes/Construtores/Ficha";
-import { Pericia } from "../../classes/Construtores/Pericia";
 import useCustomToast from "../Geral/Toasted";
 import { RolarDado } from "../Geral/RolarDado";
 
@@ -26,6 +25,7 @@ export default function Pericias({ personagem }: Props) {
         showCustomToast({
           title: `Rolado!`,
           desc: `${nome}: ${dado.total} (${dado.dados}+${e})`,
+          duration: 5000,
         });
       },
     });
@@ -62,7 +62,7 @@ export default function Pericias({ personagem }: Props) {
                 (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
               )?.valor || 0;
             return (
-              <div className="grid grid-cols-5 hover:border-red-950 rounded transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
+              <div className="grid grid-cols-5 hover:border-l-red-950 rounded transition-all border border-transparent hover:bg-white px-3 hover:bg-opacity-80">
                 <Tooltip
                   bgColor={"red.700"}
                   label={`${

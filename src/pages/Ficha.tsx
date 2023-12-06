@@ -92,6 +92,7 @@ const Ficha: React.FC = () => {
                   />
                 </Tab>
                 <Tab
+                  isDisabled={!personagem.classe.conjurador}
                   roundedTop={"3xl"}
                   bgColor={"red.600"}
                   border={"none"}

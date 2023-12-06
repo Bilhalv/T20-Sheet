@@ -23,6 +23,7 @@ export default function Atributos({ personagem }: Props) {
         showCustomToast({
           title: `Rolado!`,
           desc: `${nome}: ${dado.total} (${dado.dados}+${e})`,
+          duration: 5000,
         });
       },
     });

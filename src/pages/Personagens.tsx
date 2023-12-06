@@ -11,6 +11,9 @@ const Personagens: React.FC = () => {
   const [fichas, setFichas] = useState(
     Array.isArray(fichasData) ? fichasData : []
   );
+  useEffect(() => {
+    setFichas(JSON.parse(localStorage.getItem("fichas") || "[]"));
+  }, [setFichas]);
   interface mostrandoPersonagem {
     nome: string;
     raca: string;
