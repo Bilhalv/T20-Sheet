@@ -375,7 +375,7 @@ export default function Atributos({ handleChange, next }: AtributosProps) {
                       setPontos={setPontos}
                     />
                   ) : (
-                    <div className="bg-d20 flex justify-center gap-6">
+                    <div className="flex justify-center gap-6">
                       <button
                         disabled={index == 0}
                         onClick={() => handleUp(index)}
