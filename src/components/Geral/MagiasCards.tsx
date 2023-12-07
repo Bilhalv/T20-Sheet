@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { ArrayMagias } from "../pagina 2/Magias";
 import { enumTipo } from "../../classes/Construtores/Magia";
-import { XCircle } from "lucide-react";
 
 interface MagiasProps {
   magias: ArrayMagias[];
@@ -19,7 +18,6 @@ interface MagiasProps {
   selecionadas?: any;
   handleChangeCheckbox?: any;
   tipo: "criar" | "ficha";
-  removerMagia?: any;
 }
 
 export default function MagiasCards({
@@ -29,7 +27,6 @@ export default function MagiasCards({
   selecionadas,
   handleChangeCheckbox,
   tipo,
-  removerMagia,
 }: MagiasProps) {
   const imagens = magias.map(
     (magia: ArrayMagias) =>
@@ -92,9 +89,7 @@ export default function MagiasCards({
                             {magia.nome}
                           </>
                         ) : (
-                          <>
-                              {magia.nome}
-                          </>
+                          <>{magia.nome}</>
                         )}
                       </p>
                       <Tooltip

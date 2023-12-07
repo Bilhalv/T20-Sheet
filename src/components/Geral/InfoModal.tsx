@@ -338,12 +338,11 @@ export default function InfoModal({ pagina }: Props) {
                       Equipamentos iniciais{" "}
                     </h1>
                     <p className="italic font-serif">
-                      No início da sua jornada, os heróis recebem
-                      equipamentos básicos, como armaduras simples, armas
-                      básicas e itens essenciais. Nesta página, você visualizará
-                      os itens iniciais e terá a oportunidade de escolher os
-                      próximos, dando forma ao destino do seu personagem em
-                      Arton.
+                      No início da sua jornada, os heróis recebem equipamentos
+                      básicos, como armaduras simples, armas básicas e itens
+                      essenciais. Nesta página, você visualizará os itens
+                      iniciais e terá a oportunidade de escolher os próximos,
+                      dando forma ao destino do seu personagem em Arton.
                     </p>
                   </div>
                 </div>
@@ -352,36 +351,153 @@ export default function InfoModal({ pagina }: Props) {
               <>
                 <div className="text-center flex flex-col gap-3">
                   <p className="italic font-serif mt-[-20px]">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Possimus aperiam, facilis dicta velit maxime pariatur. Sequi
-                    harum beatae recusandae ab!
+                    Dádiva da deusa Wynna, a magia é a força mais poderosa de
+                    Arton, capaz de produzir efeitos diversos. Uma magia pode
+                    criar uma bola de fogo ou curar ferimentos; fazer alguém
+                    adormecer ou distorcer o próprio tempo e espaço.
                   </p>
-                  <hr />
-                  <div>
-                    <h1 className="text-md font-bold">Lorem, ipsum.</h1>
-                    <p className="italic font-serif">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Quo dolores deserunt, saepe non placeat aliquid.
-                    </p>
+                </div>
+                <hr />
+                <div>
+                  <h1 className="text-lg font-bold text-center">
+                    Classificação
+                  </h1>
+                  <p className="italic font-serif text-center">
+                    Todas as magias são classificadas em tipos (arcana, divina
+                    ou universal), círculos e escolas.
+                  </p>
+                </div>
+                <div>
+                  <h1 className="text-md font-bold text-center">Tipos</h1>
+                  <div className="italic font-serif grid grid-cols-3 w-1/2 mx-auto">
+                    {[
+                      {
+                        img: "./img/magias/classificacao/arcana.png",
+                        label: "Arcana",
+                      },
+                      {
+                        img: "./img/magias/classificacao/divina.png",
+                        label: "Divina",
+                      },
+                      {
+                        img: "./img/magias/classificacao/universal.png",
+                        label: "Universal",
+                      },
+                    ].map((item, index) => (
+                      <div key={index} className="grid gap-2">
+                        <img
+                          className="invert w-20 m-auto"
+                          src={item.img}
+                          alt={item.label}
+                        />
+                        <span className="m-auto">{item.label}</span>
+                      </div>
+                    ))}
                   </div>
+                </div>
+                <div className="my-5">
+                  <h1 className="text-md font-bold text-center">Escolas</h1>
+                  <p className="italic font-serif grid grid-cols-2 w-1/2 mx-auto">
+                    {[
+                      {
+                        image: "./img/magias/escolas/abjuracao.svg",
+                        label: "Abjuração",
+                      },
+                      {
+                        image: "./img/magias/escolas/adivinhacao.svg",
+                        label: "Adivinhação",
+                      },
+                      {
+                        image: "./img/magias/escolas/convocacao.svg",
+                        label: "Convocação",
+                      },
+                      {
+                        image: "./img/magias/escolas/encantamento.svg",
+                        label: "Encantamento",
+                      },
+                      {
+                        image: "./img/magias/escolas/evocacao.svg",
+                        label: "Evocação",
+                      },
+                      {
+                        image: "./img/magias/escolas/ilusao.svg",
+                        label: "Ilusão",
+                      },
+                      {
+                        image: "./img/magias/escolas/necromancia.svg",
+                        label: "Necromancia",
+                      },
+                      {
+                        image: "./img/magias/escolas/transmutacao.svg",
+                        label: "Transmutação",
+                      },
+                    ].map((item, index) => (
+                      <div key={index} className="flex gap-2">
+                        <img
+                          className="invert w-4"
+                          src={item.image}
+                          alt={item.label}
+                        />
+                        <span>{item.label}</span>
+                      </div>
+                    ))}
+                  </p>
+                </div>
+                <div>
+                  <h1 className="text-md font-bold text-center">
+                    Dados da magia
+                  </h1>
+                  <p className="italic font-serif flex flex-wrap justify-center gap-2">
+                    {[
+                      {
+                        image: "./img/magias/dados/execucao.svg",
+                        label: "Execução",
+                      },
+                      {
+                        image: "./img/magias/dados/alcance.svg",
+                        label: "Alcance",
+                      },
+                      {
+                        image: "./img/magias/dados/duracao.svg",
+                        label: "Duração",
+                      },
+                      {
+                        image: "./img/magias/dados/alvo.svg",
+                        label: "Alvo, área ou efeito",
+                      },
+                      {
+                        image: "./img/magias/dados/resistencia.svg",
+                        label: "Resistência",
+                      },
+                    ].map((item, index) => (
+                      <div key={index} className="flex gap-2">
+                        <img
+                          className="invert w-6 my-auto"
+                          src={item.image}
+                          alt={item.label}
+                        />
+                        <span className="my-auto">{item.label}</span>
+                      </div>
+                    ))}
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  <h1 className="text-lg font-bold text-center">Círculo</h1>
+                  <p className="italic font-serif text-center">
+                    Magias são divididas em círculos, do 1º ao 5º. Quanto mais
+                    alto o círculo da magia, mais poderosa ela é.
+                  </p>
                 </div>
               </>
             ) : pagina === "Especificações" ? (
               <>
                 <div className="text-center flex flex-col gap-3">
                   <p className="italic font-serif mt-[-20px]">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Possimus aperiam, facilis dicta velit maxime pariatur. Sequi
-                    harum beatae recusandae ab!
+                    Nessa página você escolherá poderes e/ou pericias de sua
+                    origem, raça ou classe que não poderiam ser escolhidos
+                    anteriormente.
                   </p>
-                  <hr />
-                  <div>
-                    <h1 className="text-md font-bold">Lorem, ipsum.</h1>
-                    <p className="italic font-serif">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Quo dolores deserunt, saepe non placeat aliquid.
-                    </p>
-                  </div>
                 </div>
               </>
             ) : pagina === "Poderes" ? (
