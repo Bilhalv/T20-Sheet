@@ -34,9 +34,11 @@ export default function InfoModal({ pagina }: Props) {
           aria-label="Info"
           bg={"transparent"}
           onClick={onOpen}
+          color={"white"}
+          bgColor={"red.800"}
           _hover={{
             bg: "transparent",
-            color: "white",
+            color: "red",
             transform: "scale(1.1)",
           }}
           icon={<Info size={32} />}

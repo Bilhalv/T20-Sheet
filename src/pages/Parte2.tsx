@@ -20,7 +20,13 @@ import InfoModal from "../components/Geral/InfoModal";
 import FichaModal from "../components/Geral/FichaModal";
 
 const App: React.FC = () => {
-  const paginas = ["Divindades", "Equipamentos", "Magias", "Especificações", "Poderes"];
+  const paginas = [
+    "Divindades",
+    "Equipamentos",
+    "Magias",
+    "Especificações",
+    "Poderes",
+  ];
   let pag = localStorage.getItem("pagina");
   const [pagina, setPagina] = useState(pag ?? paginas[0]);
   const handleChange = (e: string) => {
@@ -33,9 +39,11 @@ const App: React.FC = () => {
       <Navbar back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="flex flex-col mb-[-80px] items-end ">
-            <InfoModal pagina={pagina} />
-            <FichaModal pagina={2} handleChange={handleChange} />
+          <div className=" mb-[-80px] w-full">
+            <div className="flex flex-col ml-auto rounded-full p-1 w-fit">
+              <InfoModal pagina={pagina} />
+              <FichaModal pagina={2} handleChange={handleChange} />
+            </div>
           </div>
           {pagina === paginas[0] && (
             <Divindades handleChange={handleChange} next={paginas[1]} />

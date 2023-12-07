@@ -77,7 +77,7 @@ export default function FichaModal({
     "Divindades",
     "Equipamentos",
     "Magias",
-    "Alt",
+    "Especificações",
     "Poderes",
   ];
   return (
@@ -86,12 +86,14 @@ export default function FichaModal({
         <IconButton
           zIndex={2}
           borderRadius={"full"}
-          aria-label="Ficha"
+          aria-label="Info"
           bg={"transparent"}
           onClick={onOpen}
+          color={"white"}
+          bgColor={"red.800"}
           _hover={{
             bg: "transparent",
-            color: "white",
+            color: "red",
             transform: "scale(1.1)",
           }}
           icon={<BookUser size={32} />}
@@ -115,7 +117,7 @@ export default function FichaModal({
               <TabPanels>
                 <TabPanel>
                   <div className="flex flex-col flex-wrap h-[35rem] gap-5">
-                    <div className="w-1/2">
+                    <div className="w-1/2 my-auto">
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
                         <h1 className="font-bold my-auto text-xl text-center">
@@ -249,7 +251,8 @@ export default function FichaModal({
                             )}`
                           : ""}
                       </p>
-                      <hr className="my-2" />
+                    </div>
+                    <div className="w-1/2 my-auto">
                       <div className="flex justify-between">
                         <div className="w-[40px]"></div>
                         <h1 className="font-bold my-auto text-xl text-center">
@@ -264,7 +267,11 @@ export default function FichaModal({
                           bg={"transparent"}
                           isDisabled={paginas.indexOf(paginaAtual || "") < 2}
                           onClick={() => {
-                            trocarPagina("Racas");
+                            if (paginas.indexOf(paginaAtual || "") < 6) {
+                              trocarPagina("Atributos");
+                            } else {
+                              trocarPagina("Racas");
+                            }
                           }}
                           _hover={{
                             bg: "transparent",
@@ -284,46 +291,6 @@ export default function FichaModal({
                               </div>
                             ))
                           : "Atributos ainda não definidos"}
-                      </p>
-                    </div>
-                    <div className="w-1/2 my-auto">
-                      <div className="flex justify-between">
-                        <div className="w-[40px]"></div>
-                        <h1 className="font-bold my-auto text-xl text-center">
-                          Beneficios Origem
-                        </h1>
-                        <IconButton
-                          zIndex={2}
-                          borderRadius={"full"}
-                          aria-label="Ir até a pagina"
-                          bg={"transparent"}
-                          isDisabled={paginas.indexOf(paginaAtual || "") < 1}
-                          onClick={() => {
-                            trocarPagina("Origens");
-                          }}
-                          _hover={{
-                            bg: "transparent",
-                            color: "gray.200",
-                            mouse: "pointer",
-                          }}
-                        >
-                          <Pencil />
-                        </IconButton>
-                      </div>
-                      <p className="text-center flex flex-col">
-                        {beneficios
-                          ? JSON.parse(beneficios!).map((beneficio: any) => (
-                              <>
-                                <hr className="my-2 w-1/2 mx-auto" />
-                                <h1 className="font-bold my-auto text-lg">
-                                  {beneficio.tipo}
-                                </h1>
-                                {beneficio.beneficio.map((item: any) => (
-                                  <span>{item !== "" ? item : "Nenhum"}</span>
-                                ))}
-                              </>
-                            ))
-                          : "beneficios ainda não definidos"}
                       </p>
                       <hr className="my-2" />
                       <div className="flex justify-between">
@@ -358,7 +325,7 @@ export default function FichaModal({
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  <p>two!</p>
+                  /*divindades, equipamentos, magias, Especificações e poderes */
                 </TabPanel>
               </TabPanels>
             </Tabs>
