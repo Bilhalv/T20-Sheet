@@ -42,7 +42,7 @@ const App: React.FC = () => {
           <div className=" mb-[-80px] w-full">
             <div className="flex flex-col ml-auto rounded-full p-1 w-fit">
               <InfoModal pagina={pagina} />
-              <FichaModal pagina={2} handleChange={handleChange} />
+              <FichaModal paginaAtual={pagina} pagina={2} handleChange={handleChange} />
             </div>
           </div>
           {pagina === paginas[0] && (

@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 interface Props {
   handleChange: any;
   pagina: number;
-  paginaAtual?: string;
+  paginaAtual: string;
 }
 
 export default function FichaModal({
@@ -112,7 +112,7 @@ export default function FichaModal({
             <Tabs variant="enclosed">
               <TabList>
                 <Tab>Primeira pagina</Tab>
-                <Tab isDisabled={pagina == 1}>Segunda pagina</Tab>
+                <Tab isDisabled>Segunda pagina</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
@@ -325,7 +325,86 @@ export default function FichaModal({
                   </div>
                 </TabPanel>
                 <TabPanel>
-                  /*divindades, equipamentos, magias, Especificações e poderes */
+                  /*divindades, equipamentos, magias, Especificações e poderes
+                  */
+                  <div>
+                    <div className="flex justify-between">
+                      <div className="w-[40px]"></div>
+                      <h1 className="font-bold my-auto text-xl text-center">
+                        Divindades
+                      </h1>
+                      <IconButton
+                        zIndex={2}
+                        borderRadius={"full"}
+                        aria-label="Ir até a pagina"
+                        bg={"transparent"}
+                        isDisabled={paginas.indexOf(paginaAtual || "") < 4}
+                        onClick={() => {
+                          trocarPagina("Divindades");
+                        }}
+                        _hover={{
+                          bg: "transparent",
+                          color: "gray.200",
+                          mouse: "pointer",
+                        }}
+                      >
+                        <Pencil />
+                      </IconButton>
+                    </div>
+                    <p className="text-center">
+                      {localStorage.getItem("divindade") === ""
+                        ? "Nenhuma divindade"
+                        : localStorage.getItem("divindade")}
+                    </p>
+                    <hr className="my-2" />
+                    <div className="flex justify-between">
+                      <div className="w-[40px]"></div>
+                      <h1 className="font-bold my-auto text-xl text-center">
+                        Equipamentos
+                      </h1>
+                      <IconButton
+                        zIndex={2}
+                        borderRadius={"full"}
+                        aria-label="Ir até a pagina"
+                        bg={"transparent"}
+                        isDisabled={paginas.indexOf(paginaAtual || "") < 5}
+                        onClick={() => {
+                          trocarPagina("Equipamentos");
+                        }}
+                        _hover={{
+                          bg: "transparent",
+                          color: "gray.200",
+                          mouse: "pointer",
+                        }}
+                      >
+                        <Pencil />
+                      </IconButton>
+                    </div>
+                    <hr className="my-2" />
+                    <div className="flex justify-between">
+                      <div className="w-[40px]"></div>
+                      <h1 className="font-bold my-auto text-xl text-center">
+                        Magias
+                      </h1>
+                      <IconButton
+                        zIndex={2}
+                        borderRadius={"full"}
+                        aria-label="Ir até a pagina"
+                        bg={"transparent"}
+                        isDisabled={paginas.indexOf(paginaAtual || "") < 6}
+                        onClick={() => {
+                          trocarPagina("Magias");
+                        }}
+                        _hover={{
+                          bg: "transparent",
+                          color: "gray.200",
+                          mouse: "pointer",
+                        }}
+                      >
+                        <Pencil />
+                      </IconButton>
+                    </div>
+                  </div>
                 </TabPanel>
               </TabPanels>
             </Tabs>
