@@ -116,7 +116,7 @@ function HookUsage({
   });
 
   function getPointsChange(oldValue: number, newValue: number): number {
-    const pointsTable = [-1, 0, 1, 3, 6, 14];
+    const pointsTable = [-1, 0, 1, 3, 7, 14];
     if (newValue === 0 && oldValue === -1) {
       return 1;
     } else if (newValue === -1) {
