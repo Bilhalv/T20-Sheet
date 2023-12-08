@@ -18,6 +18,7 @@ import FichaConstructor, {
 } from "../classes/Construtores/Ficha";
 import useCustomToast from "../components/Geral/Toasted";
 import Magias from "../components/Ficha/Magias";
+import Poderes from "../components/Ficha/Poderes";
 
 const Ficha: React.FC = () => {
   const fichaSelecionada: FichaConstructor = JSON.parse(
@@ -127,6 +128,7 @@ const Ficha: React.FC = () => {
                   <Pericias personagem={personagem} />
                 </TabPanel>
                 <TabPanel>
+                  <Poderes personagem={personagem} />
                   <Magias personagem={personagem} />
                 </TabPanel>
               </TabPanels>

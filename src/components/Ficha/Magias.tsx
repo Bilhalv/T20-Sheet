@@ -12,7 +12,12 @@ export default function Magias({ personagem }: Props) {
   const magias: ArrayMagias[] = TabelaMagias.filter((magia: Magia) => {
     const magiaPersonagem = personagem.magias.find(
       (magiaPersonagem: string) => {
-        return magiaPersonagem === magia.nome;
+        if (magiaPersonagem.includes("(-1 PM)")) {
+          const semExtra = magiaPersonagem.replace("(-1 PM)", "");
+          return semExtra === magia.nome;
+        } else {
+          return magiaPersonagem === magia.nome;
+        }
       }
     );
     if (magiaPersonagem) {

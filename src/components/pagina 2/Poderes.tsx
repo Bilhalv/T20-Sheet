@@ -50,7 +50,7 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const nivel = Number(localStorage.getItem("lvl"));
-  const [limite, setLimite] = useState(nivel);
+  const [limite, setLimite] = useState(nivel - 2);
   const [poderesSelecionados, setPoderesSelecionados] = useState<string[]>(
     JSON.parse(localStorage.getItem("poderes") || "[]") as string[]
   );
@@ -192,129 +192,144 @@ export default function Poderes({ handleChange, next }: PoderesProps) {
       </h1>
       <div className="flex gap-5">
         <section className="bg-gray-300 p-3 rounded-lg bg-opacity-80 shadow-[7px_5px_4px_0px_rgba(0,0,0,0.25)] w-full">
-          <IconButton
-            aria-label="filter"
-            rounded={"full"}
-            colorScheme="red"
-            className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
-            position={"absolute"}
-            _hover={{
-              bg: "transparent",
-              border: "2px",
-              borderColor: "red.500",
-              color: "red.500",
-            }}
-            icon={<Filter />}
-            onClick={onOpen}
-          />
-          <div className="px-4 flex font-bold pb-1 border-x border-gray-400 border-opacity-70 py-4">
-            <h1 className="w-3/5 text-center border-r border-gray-400 border-opacity-70">
-              Poder
-            </h1>
-            <h1 className="w-1/5 text-center border-r border-gray-400 border-opacity-70">
-              Tipo
-            </h1>
-            <h1 className="w-1/5 text-center text-sm">Selecionar</h1>
-          </div>
-          <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg bg-gray-200">
-            <div className="flex flex-col px-4 pt-2">
-              {array.map((poder, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="flex border-b border-gray-300 items-center py-2 gap-2"
-                  >
-                    <div className="w-3/5 flex justify-between items-center gap-1">
-                      <div className="w-fit">
-                        <Popover>
-                          <PopoverTrigger>
-                            <IconButton
-                              icon={<Eye />}
-                              aria-label={poder.nome + "-VerMais"}
-                              rounded={"full"}
-                              colorScheme="red"
-                              className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
-                              _hover={{
-                                bg: "transparent",
-                                border: "2px",
-                                borderColor: "red.500",
-                                color: "red.500",
-                              }}
-                            />
-                          </PopoverTrigger>
-                          <PopoverContent color="red.900">
-                            <PopoverArrow />
-                            <PopoverCloseButton />
-                            <PopoverHeader textAlign={"center"}>
-                              {poder.nome}
-                            </PopoverHeader>
-                            <PopoverBody className="font-serif text-justify">
-                              <p>&nbsp;&nbsp;&nbsp;{poder.descricao}</p>
-                              {poder.requisito.length > 0 && (
-                                <i className="text-sm">
-                                  Pré-requisito: {poder.requisito.join(", ")}
-                                </i>
-                              )}
-                            </PopoverBody>
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-                      <p className="text-center w-full">{poder.nome}</p>
-                    </div>
-                    <p className="w-1/5 text-center">
-                      <Badge
-                        colorScheme={renderSwitch(poder.tipo)}
-                        variant="solid"
-                        rounded={"lg"}
-                        p={1}
-                        fontSize={"md"}
+          {nivel >= 2 ? (
+            <>
+              <IconButton
+                aria-label="filter"
+                rounded={"full"}
+                colorScheme="red"
+                className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                position={"absolute"}
+                _hover={{
+                  bg: "transparent",
+                  border: "2px",
+                  borderColor: "red.500",
+                  color: "red.500",
+                }}
+                icon={<Filter />}
+                onClick={onOpen}
+              />
+              <div className="px-4 flex font-bold pb-1 border-x border-gray-400 border-opacity-70 py-4">
+                <h1 className="w-3/5 text-center border-r border-gray-400 border-opacity-70">
+                  Poder
+                </h1>
+                <h1 className="w-1/5 text-center border-r border-gray-400 border-opacity-70">
+                  Tipo
+                </h1>
+                <h1 className="w-1/5 text-center text-sm">Selecionar</h1>
+              </div>
+              <div className="max-h-[500px] w-full overflow-y-scroll rounded-lg bg-gray-200">
+                <div className="flex flex-col px-4 pt-2">
+                  {array.map((poder, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex border-b border-gray-300 items-center py-2 gap-2"
                       >
-                        {poder.tipo}
-                      </Badge>
-                    </p>
-                    <p className="w-1/5 text-center">
-                      <Checkbox
-                        checked={poder.selecionado}
-                        isDisabled={
-                          (poderesSelecionados.length -
-                            JSON.parse(localStorage.getItem("poderes") ?? "[]")
-                              .length >
-                            limite &&
-                            !poderesSelecionados.includes(poder.nome)) ||
-                          (poderesIndisponiveis.some(
-                            (poderIndisponivel) =>
-                              poder.nome === poderIndisponivel.nome
-                          ) &&
-                            !poder.selecionado)
-                        }
-                        onChange={(e) => {
-                          const isChecked = e.target.checked;
-                          let updatedPoderesSelecionados;
+                        <div className="w-3/5 flex justify-between items-center gap-1">
+                          <div className="w-fit">
+                            <Popover>
+                              <PopoverTrigger>
+                                <IconButton
+                                  icon={<Eye />}
+                                  aria-label={poder.nome + "-VerMais"}
+                                  rounded={"full"}
+                                  colorScheme="red"
+                                  className="transition-all hover:transform hover:scale-110 border-[2px] border-white ml-3"
+                                  _hover={{
+                                    bg: "transparent",
+                                    border: "2px",
+                                    borderColor: "red.500",
+                                    color: "red.500",
+                                  }}
+                                />
+                              </PopoverTrigger>
+                              <PopoverContent color="red.900">
+                                <PopoverArrow />
+                                <PopoverCloseButton />
+                                <PopoverHeader textAlign={"center"}>
+                                  {poder.nome}
+                                </PopoverHeader>
+                                <PopoverBody className="font-serif text-justify">
+                                  <p>&nbsp;&nbsp;&nbsp;{poder.descricao}</p>
+                                  {poder.requisito.length > 0 && (
+                                    <i className="text-sm">
+                                      Pré-requisito:{" "}
+                                      {poder.requisito.join(", ")}
+                                    </i>
+                                  )}
+                                </PopoverBody>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                          <p className="text-center w-full">{poder.nome}</p>
+                        </div>
+                        <p className="w-1/5 text-center">
+                          <Badge
+                            colorScheme={renderSwitch(poder.tipo)}
+                            variant="solid"
+                            rounded={"lg"}
+                            p={1}
+                            fontSize={"md"}
+                          >
+                            {poder.tipo}
+                          </Badge>
+                        </p>
+                        <p className="w-1/5 text-center">
+                          <Checkbox
+                            checked={poder.selecionado}
+                            isDisabled={
+                              (poderesSelecionados.length -
+                                JSON.parse(
+                                  localStorage.getItem("poderes") ?? "[]"
+                                ).length >
+                                limite &&
+                                !poderesSelecionados.includes(poder.nome)) ||
+                              (poderesIndisponiveis.some(
+                                (poderIndisponivel) =>
+                                  poder.nome === poderIndisponivel.nome
+                              ) &&
+                                !poder.selecionado)
+                            }
+                            onChange={(e) => {
+                              const isChecked = e.target.checked;
+                              let updatedPoderesSelecionados;
 
-                          if (isChecked) {
-                            updatedPoderesSelecionados = [
-                              ...poderesSelecionados,
-                              poder.nome,
-                            ];
-                          } else {
-                            updatedPoderesSelecionados =
-                              poderesSelecionados.filter(
-                                (poder1) => poder1 !== poder.nome
+                              if (isChecked) {
+                                updatedPoderesSelecionados = [
+                                  ...poderesSelecionados,
+                                  poder.nome,
+                                ];
+                              } else {
+                                updatedPoderesSelecionados =
+                                  poderesSelecionados.filter(
+                                    (poder1) => poder1 !== poder.nome
+                                  );
+                              }
+
+                              setPoderesSelecionados(
+                                updatedPoderesSelecionados
                               );
-                          }
-
-                          setPoderesSelecionados(updatedPoderesSelecionados);
-                        }}
-                        defaultChecked={poder.selecionado ?? false}
-                        colorScheme="red"
-                        className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
-                      />
-                    </p>
-                  </div>
-                );
-              })}
+                            }}
+                            defaultChecked={poder.selecionado ?? false}
+                            colorScheme="red"
+                            className="border-red-500 rounded-lg transition-all hover:transform hover:scale-110"
+                          />
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col px-4 pt-2">
+              <p className="text-center text-2xl">
+                Personagens <span className="text-red-600">primeiro</span> nível
+                não recebem <span className="text-red-600">nenhum</span> poder
+              </p>
             </div>
-          </div>
+          )}
           <Confirmar onSelect={handleSelect} />
         </section>
       </div>

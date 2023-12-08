@@ -4,9 +4,6 @@ import { Armadura } from "./Armadura";
 import { Atributo } from "./Atributo";
 import { Classe } from "./Classe";
 import { Item } from "./Item";
-import { Magia } from "./Magia";
-import { Pericia } from "./Pericia";
-import { Poder } from "./Poder";
 
 export class itemFicha extends Item {
   quantidade: number = 0;
@@ -89,6 +86,7 @@ export class Ataque {
 
 export default class Ficha {
   id: number;
+  especifico?: any;
   nome: string;
   classe: Classe;
   raca: string;

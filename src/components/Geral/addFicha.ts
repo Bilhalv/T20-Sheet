@@ -1,5 +1,11 @@
+import { es } from "@faker-js/faker";
 import { Arma } from "../../classes/Construtores/Arma";
-import Ficha, { Ataque, Mochila, armaFicha } from "../../classes/Construtores/Ficha";
+import Ficha, {
+  Ataque,
+  Mochila,
+  armaFicha,
+} from "../../classes/Construtores/Ficha";
+import { Poder } from "../../classes/Construtores/Poder";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 
@@ -14,8 +20,11 @@ export default function addFichaToLocalStorage() {
     valor: number;
   }[] = JSON.parse(localStorage.getItem("atributosFinais") || "[]");
   var atributoConjurador = 0;
-  const equipamentos: Mochila = JSON.parse(localStorage.getItem("equipamentos") || "[]");
+  const equipamentos: Mochila = JSON.parse(
+    localStorage.getItem("equipamentos") || "[]"
+  );
   const ataques: Ataque[] = [];
+  const magias: string[] = JSON.parse(localStorage.getItem("magias") || "[]");
 
   const pericias = TabelaPericias
     ? TabelaPericias.map((pericia) => {
@@ -58,6 +67,119 @@ export default function addFichaToLocalStorage() {
   const pmInicial =
     (classe.manapnivel + atributoConjurador) *
     (Number(localStorage.getItem("lvl")) || 1);
+  const poderes: string[] = JSON.parse(
+    localStorage.getItem("poderes") || "[]"
+  ).map((poder: Poder) => poder.nome);
+  if (
+    localStorage.getItem("raca") === "Osteon" ||
+    localStorage.getItem("raca") === "Lefou" ||
+    localStorage.getItem("raca") === "Humano"
+  ) {
+    const especificasRaca = JSON.parse(
+      localStorage.getItem("especificasRaca") || "[]"
+    );
+    pericias.forEach((pericia) => {
+      if (especificasRaca.includes(pericia.nome)) {
+        pericia.treinada = 5;
+        especificasRaca.splice(especificasRaca.indexOf(pericia.nome), 1);
+      }
+    });
+    poderes.push(...especificasRaca);
+  }
+  var especifico = undefined;
+  if (localStorage.getItem("raca") === "Golem") {
+    let tipoGolem = [
+      {
+        nome: "Frio",
+        atributo: "agua",
+      },
+      {
+        nome: "Eletricidade",
+        atributo: "ar",
+      },
+      {
+        nome: "Fogo",
+        atributo: "fogo",
+      },
+      {
+        nome: "Ácido",
+        atributo: "terra",
+      },
+    ];
+    const especificasRaca = JSON.parse(
+      localStorage.getItem("especificasRaca") || "[]"
+    );
+    especificasRaca.forEach((especifica: string) => {
+      tipoGolem.forEach((tipo) => {
+        if (especifica === tipo.atributo) {
+          especifico = { golem: tipo.nome };
+          especificasRaca.splice(especificasRaca.indexOf(especifica), 1);
+        }
+      });
+    });
+    poderes.push(...especificasRaca);
+  }
+  if (localStorage.getItem("raca") === "Qareen") {
+    const especificasRaca = JSON.parse(
+      localStorage.getItem("especificasRaca") || "[]"
+    );
+    const tipoQareen = [
+      {
+        nome: "Frio",
+        atributo: "agua",
+      },
+      {
+        nome: "Eletricidade",
+        atributo: "ar",
+      },
+      {
+        nome: "Fogo",
+        atributo: "fogo",
+      },
+      {
+        nome: "Ácido",
+        atributo: "terra",
+      },
+      {
+        nome: "Luz",
+        atributo: "luz",
+      },
+      {
+        nome: "Trevas",
+        atributo: "trevas",
+      },
+    ];
+    especificasRaca.forEach((especifica: string) => {
+      tipoQareen.forEach((tipo) => {
+        if (especifica === tipo.atributo) {
+          especifico = { qareen: tipo.nome };
+          especificasRaca.splice(especificasRaca.indexOf(especifica), 1);
+        }
+      });
+    });
+    if (magias.includes(especificasRaca[0])) {
+      magias[magias.indexOf(especificasRaca[0])] += " (-1 PM)";
+    } else {
+      magias.push(...especificasRaca);
+    }
+  }
+  if (
+    localStorage.getItem("raca") === "Sereia/Tritão" ||
+    localStorage.getItem("raca") === "Sílfide"
+  ) {
+    const especificasRaca = JSON.parse(
+      localStorage.getItem("especificasRaca") || "[]"
+    );
+    if (magias.some(especificasRaca)) {
+      magias.forEach((magia: string) => {
+        if (especificasRaca.includes(magia)) {
+          magia += " (-1 PM)";
+        }
+      });
+    } else {
+      magias.push(...especificasRaca);
+    }
+  }
   const ficha: Ficha = {
     id: fichasArray.length,
     origem: localStorage.getItem("origem") || "",
@@ -76,9 +198,10 @@ export default function addFichaToLocalStorage() {
       valor: atributo.valor,
     })),
     pericias: pericias,
-    magias: JSON.parse(localStorage.getItem("magias") || "[]"),
-    poderes: JSON.parse(localStorage.getItem("poderes") || "[]"),
+    magias: magias,
+    poderes: poderes.map((poder: any) => poder.nome),
     mochila: equipamentos,
+    especifico: especifico,
   };
   fichasArray.push(ficha);
   localStorage.clear();

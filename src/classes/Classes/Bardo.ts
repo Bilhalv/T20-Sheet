@@ -182,5 +182,5 @@ export const bardo: Classe = {
   ],
   poderesunicos: poderesBardo,
   conjurador: true,
-  imagem: "./img/classes/bard.png",
+  imagem: "./img/classes/bardo.png",
 };
