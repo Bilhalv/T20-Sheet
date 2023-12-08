@@ -27,6 +27,7 @@ import {
 import { Poder } from "../../classes/Construtores/Poder";
 import { TabelaRacas } from "../../classes/Tabelas/Racas";
 import { infos } from "../../classes/Construtores/Infos";
+import { TabelaClasses } from "../../classes/Tabelas/Classes";
 
 interface Props {
   personagem: Ficha;
@@ -34,6 +35,26 @@ interface Props {
 
 export default function Poderes({ personagem }: Props) {
   const { showCustomToast } = useCustomToast();
+
+  const poderesRaca: infos[] = TabelaRacas.filter(
+    (raca) => raca.nome === personagem.raca
+  )[0].poderes.map((poder) => {
+    return {
+      nome: poder.nome,
+      descricao: poder.descricao + ` (${personagem.raca})`,
+    };
+  });
+
+  const poderesClasse: infos[] = TabelaClasses.filter(
+    (classe) => classe.nome === personagem.classe.nome
+  )[0].habilidades.map((poder) => {
+    return {
+      nome: poder.nome,
+      descricao: poder.descricao + ` (${personagem.classe.nome})`,
+      nivel: poder.nivel,
+    };
+  });
+
   const [tabelaTodosPoderes, setTabelaTodosPoderes] = useState<
     Poder[] | infos[]
   >([
@@ -54,11 +75,8 @@ export default function Poderes({ personagem }: Props) {
       ...poderesLadino,
       ...poderesInventor,
     ].filter((poder) => personagem.poderes.includes(poder.nome)),
-    ...TabelaRacas.filter(
-      (raca) => raca.nome === personagem.raca
-    )[0].poderes.map((poder) => {
-      return { nome: poder.nome, descricao: poder.descricao + ` (${personagem.raca})` };
-    }),
+    ...poderesClasse.filter((poder) => personagem.nivel >= (poder.nivel || 0)),
+    ...poderesRaca,
   ]);
   return (
     <>
