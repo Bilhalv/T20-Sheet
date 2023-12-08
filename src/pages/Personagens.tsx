@@ -67,18 +67,19 @@ const Personagens: React.FC = () => {
         title: "Erro",
         desc: "O nome digitado não é igual ao nome do personagem",
         status: "warning",
-        duration: 5000,
       });
       return;
     }
-    const novoMostrando = mostrandoPersonagem.filter((personagem: any) => {
+    const novoFichas: Ficha[] = fichas.filter((personagem: Ficha) => {
       return personagem.id !== id;
     });
-    setMostrandoPersonagem(novoMostrando);
-    const novaFicha: Ficha | undefined = fichas.find((personagem: Ficha) => {
-      return personagem.id !== id;
-    });
-    localStorage.setItem("fichas", JSON.stringify(novaFicha));
+    const novoMostrandoPersonagem: mostrandoPersonagem[] =
+      mostrandoPersonagem.filter((personagem: mostrandoPersonagem) => {
+        return personagem.id !== id;
+      });
+    setMostrandoPersonagem(novoMostrandoPersonagem);
+    setFichas(novoFichas);
+    localStorage.setItem("fichas", JSON.stringify(novoFichas));
     showCustomToast({
       title: "Sucesso",
       desc: `Personagem: ${nome} excluido com sucesso`,
@@ -93,11 +94,45 @@ const Personagens: React.FC = () => {
     localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));
     navigate("/ficha");
   };
+  useEffect(() => {
+    setMostrandoPersonagem(() => {
+      return fichas.map((personagem: Ficha) => {
+        const racaImg = personagem.raca
+          ? `./img/racas/perfil/${personagem.raca
+              .toLowerCase()
+              .replace(/ç/g, "c")
+              .replace(/ã/g, "a")
+              .replace(/á/g, "a")
+              .replace(/é/g, "e")}.png`
+          : "";
+
+        const classeImg =
+          personagem.classe && personagem.classe.nome
+            ? `./img/classes/${personagem.classe.nome
+                .toLowerCase()
+                .replace(/ç/g, "c")
+                .replace(/ã/g, "a")
+                .replace(/á/g, "a")
+                .replace(/é/g, "e")}.png`
+            : "";
+        return {
+          nome: personagem.nome,
+          raca: personagem.raca,
+          racaImg: racaImg,
+          classe: personagem.classe ? personagem.classe.nome : "",
+          classeImg: classeImg,
+          origem: personagem.origem,
+          nivel: personagem.nivel,
+          id: personagem.id,
+        };
+      });
+    });
+  }, [fichas, setMostrandoPersonagem]);
 
   const FichasShown: React.FC = () => {
     return (
       <>
-        {mostrandoPersonagem.map((personagem: any) => {
+        {mostrandoPersonagem.map((personagem) => {
           return (
             <article className="bg-gray-50 bg-opacity-90 w-11/12 desktop:w-[49%] mx-auto rounded-2xl border-gray-500 shadow-lg overflow-hidden">
               <div className="flex flex-col w-full justify-center">
