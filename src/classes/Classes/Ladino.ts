@@ -161,12 +161,14 @@ export const ladino: Classe = {
     {
       nome: "Evasão",
       descricao:
-        "A partir do 2º nível, quando sofre um efeito que permite um teste de Reflexos para reduzir o dano à metade, você não sofre dano algum se passar. Você ainda sofre dano normal se falhar no teste de Reflexos. Esta habilidade exige liberdade de movimentos; você não pode usá-la se estiver de armadura pesada ou na condição imóvel."
+        "A partir do 2º nível, quando sofre um efeito que permite um teste de Reflexos para reduzir o dano à metade, você não sofre dano algum se passar. Você ainda sofre dano normal se falhar no teste de Reflexos. Esta habilidade exige liberdade de movimentos; você não pode usá-la se estiver de armadura pesada ou na condição imóvel.",
+      nivel: 2,
     },
     {
       nome: "Esquiva Sobrenatural",
       descricao:
-        "A partir do 4º nível, seus instintos são tão apurados que você consegue reagir ao perigo antes que seus sentidos possam percebê-lo. Você não pode ser pego desprevenido e recebe +1 na Defesa. Esta habilidade não funciona se você estiver imóvel ou de armadura pesada."
+        "A partir do 4º nível, seus instintos são tão apurados que você consegue reagir ao perigo antes que seus sentidos possam percebê-lo. Você não pode ser pego desprevenido e recebe +1 na Defesa. Esta habilidade não funciona se você estiver imóvel ou de armadura pesada.",
+      nivel: 4,
     },
   ],
   poderesunicos: poderesLadino,

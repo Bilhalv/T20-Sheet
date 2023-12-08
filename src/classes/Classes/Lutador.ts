@@ -157,11 +157,13 @@ export const lutador: Classe = {
       nome: "Casca Grossa",
       descricao:
         "No 3º nível, você soma sua Constituição na Defesa, limitado pelo seu nível e apenas se não estiver usando armadura pesada. Além disso, no 7º nível, e a cada quatro níveis, você recebe +1 na Defesa.",
+      nivel: 3,
     },
     {
       nome: "Golpe Cruel",
       descricao:
         "No 5º nível, você acerta onde dói. Sua margem de ameaça com ataques desarmados aumenta em +1.",
+      nivel: 5,
     }
   ],
   poderesunicos: poderesLutador,
