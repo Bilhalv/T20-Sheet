@@ -43,21 +43,11 @@ export default function Equipamento({ personagem, setPersonagem }: Props) {
     nome: "",
     desc: "",
   });
-  function typeFicha(item: armaFicha | armaduraFicha | itemFicha) {
-    if ("dano" in item) {
-      return "arma";
-    } else if ("defesa" in item) {
-      return "armadura";
-    } else {
-      return "item";
-    }
-  }
-  let mochila = [
-    ...personagem.mochila.armas,
-    ...personagem.mochila.armaduras,
-    ...personagem.mochila.itens,
-  ];
-  const removeItem = (item: string) => {
+  const [mochila, setMochila] = useState<Mochila>(personagem.mochila);
+  const removeItem = (
+    item: string,
+    type: armaFicha | armaduraFicha | itemFicha
+  ) => {
     let confirmar = prompt(
       `Digite o nome do item: ${item} para confirmar exclusão.`
     );
@@ -70,27 +60,20 @@ export default function Equipamento({ personagem, setPersonagem }: Props) {
       });
       return;
     } else {
-      let index = mochila.findIndex((i) => i.nome === item);
-      if (index !== -1) {
-        mochila.splice(index, 1);
+      let mochilatemp = mochila;
+      if (type instanceof armaFicha) {
+        mochilatemp.armas = mochilatemp.armas.filter((e) => e.nome !== item);
+      } else if (type instanceof armaduraFicha) {
+        mochilatemp.armaduras = mochilatemp.armaduras.filter(
+          (e) => e.nome !== item
+        );
+      } else if (type instanceof itemFicha) {
+        mochilatemp.itens = mochilatemp.itens.filter((e) => e.nome !== item);
       }
-      const itens = mochila.filter(
-        (e): e is itemFicha => typeFicha(e) === "item"
-      );
-      const armas = mochila.filter(
-        (e): e is armaFicha => typeFicha(e) === "arma"
-      );
-      const armaduras = mochila.filter(
-        (e): e is armaduraFicha => typeFicha(e) === "armadura"
-      );
+      setMochila(mochilatemp);
       setPersonagem({
         ...personagem,
-        mochila: {
-          ...personagem.mochila,
-          armas: armas,
-          armaduras: armaduras,
-          itens: itens,
-        },
+        mochila: mochilatemp,
       });
       toast({
         title: "Item deletado.",
@@ -104,61 +87,63 @@ export default function Equipamento({ personagem, setPersonagem }: Props) {
   const pesoMax = 10 + personagem.atributos[0].valor * 2;
   useEffect(() => {
     let espacos = 0;
-    mochila.forEach((item) => {
-      espacos += item.espacos * item.quantidade;
-    });
+    [...mochila.armaduras, ...mochila.armas, ...mochila.itens].forEach(
+      (item) => {
+        espacos += item.espacos * item.quantidade;
+      }
+    );
     setTotalEspacos(espacos);
   }, [mochila]);
   const [isOpen, setIsOpen] = useState(false);
   const handleAddItem = () => {
-    if (typeFicha(itemAdd) === "arma") {
-      const newItemAdd = {
-        ...itemAdd,
-        quantidade: 1,
-      }
-      const itens = mochila.filter(
-        (e): e is itemFicha => typeFicha(e) === "arma"
-      );
-      setPersonagem({
-        ...personagem,
-        mochila: {
-          ...personagem.mochila,
-          armas: [...itens, newItemAdd],
-        },
+    if (!itemAdd) {
+      toast({
+        title: "Erro",
+        description: "Selecione um item para adicionar.",
+        status: "error",
+        isClosable: true,
       });
-    } else if (typeFicha(itemAdd) === "armadura") {
-      const newItemAdd = {
-        ...itemAdd,
-        quantidade: 1,
-      }
-      const itens = mochila.filter(
-        (e): e is itemFicha => typeFicha(e) === "armadura"
-      );
-      setPersonagem({
-        ...personagem,
-        mochila: {
-          ...personagem.mochila,
-          armaduras: [...itens, newItemAdd],
-        },
-      });
-    } else if (typeFicha(itemAdd) === "item") {
-      const newItemAdd = {
-        ...itemAdd,
-        quantidade: 1,
-      }
-      const itens = mochila.filter(
-        (e): e is itemFicha => typeFicha(e) === "item"
-      );
-      setPersonagem({
-        ...personagem,
-        mochila: {
-          ...personagem.mochila,
-          itens: [...itens, newItemAdd],
-        },
-      });
+      return;
     }
+    function addItemToCategory(category: any[]) {
+      const index = category.findIndex((e) => e === itemAdd);
+      const bolso: typeof category = [...category];
+      let itemAddTemp: (typeof category)[0] = itemAdd;
+      if (index === -1) {
+        bolso.push(itemAddTemp);
+      } else {
+        bolso[index].quantidade++;
+      }
+      return bolso;
+    }
+
+    let mochilatemp = mochila as Mochila;
+
+    if (itemAdd) {
+      if ('crit' in itemAdd) {
+        mochilatemp.armas = addItemToCategory(mochilatemp.armas);
+        console.log(itemAdd);
+      } else if ('defesa' in itemAdd) {
+        mochilatemp.armaduras = addItemToCategory(mochilatemp.armaduras);
+      } else {
+        mochilatemp.itens = addItemToCategory(mochilatemp.itens);
+      }
+    }
+    setMochila(mochilatemp);
+    let personagemTemp = personagem;
+    personagemTemp.mochila = mochilatemp;
+    setPersonagem(personagemTemp);
+    toast({
+      title: "Item adicionado.",
+      description: "O item foi adicionado com sucesso.",
+      status: "success",
+      isClosable: true,
+    });
+    setIsOpen(false);
   };
-  const [itemAdd, setItemAdd] = useState<any>();
+  const [itemAdd, setItemAdd] = useState<
+    armaFicha | armaduraFicha | itemFicha
+  >();
   return (
     <>
       <section className="w-full">
@@ -190,47 +175,52 @@ export default function Equipamento({ personagem, setPersonagem }: Props) {
                 <Edit />
               </div>
             </div>
-            {mochila.map((item: any, index: number) => (
-              <>
-                <div className="flex justify-between  my-2 w-full" key={index}>
-                  <button
-                    onClick={() => removeItem(item.nome)}
-                    className="bg-black text-white w-fit h-fit hover:bg-red-600 hover:tranform hover:scale-110 transition-all"
+            {[...mochila.armaduras, ...mochila.armas, ...mochila.itens].map(
+              (item: itemFicha | armaFicha | armaduraFicha, index: number) => (
+                <>
+                  <div
+                    className="flex justify-between  my-2 w-full"
+                    key={index}
                   >
-                    <X />
-                  </button>
-                  <div className="w-1/3">
-                    <h1>{item.nome}</h1>
+                    <button
+                      onClick={() => removeItem(item.nome, item)}
+                      className="bg-black text-white w-fit h-fit hover:bg-red-600 hover:tranform hover:scale-110 transition-all"
+                    >
+                      <X />
+                    </button>
+                    <div className="w-1/3">
+                      <h1>{item.nome}</h1>
+                    </div>
+                    <div className="w-1/3">
+                      <h1>{item.quantidade}</h1>
+                    </div>
+                    <div className="w-1/3">
+                      <h1>
+                        {todosItens.find((i) => i.nome === item.nome)
+                          ?.espacos || 0}
+                      </h1>
+                    </div>
+                    <button
+                      className="hover:text-red-600 w-fit h-fit hover:bg-opacity-60 hover:tranform hover:scale-110 transition-all"
+                      onClick={() => {
+                        const x = todosItens.find(
+                          (i) => i.nome === item.nome
+                        ) || {
+                          nome: "",
+                          descricao: "",
+                        };
+                        setItemSelecionado({
+                          nome: x.nome,
+                          desc: x.descricao,
+                        });
+                      }}
+                    >
+                      <Edit />
+                    </button>
                   </div>
-                  <div className="w-1/3">
-                    <h1>{item.quantidade}</h1>
-                  </div>
-                  <div className="w-1/3">
-                    <h1>
-                      {todosItens.find((i) => i.nome === item.nome)?.espacos ||
-                        0}
-                    </h1>
-                  </div>
-                  <button
-                    className="hover:text-red-600 w-fit h-fit hover:bg-opacity-60 hover:tranform hover:scale-110 transition-all"
-                    onClick={() => {
-                      const x = todosItens.find(
-                        (i) => i.nome === item.nome
-                      ) || {
-                        nome: "",
-                        descricao: "",
-                      };
-                      setItemSelecionado({
-                        nome: x.nome,
-                        desc: x.descricao,
-                      });
-                    }}
-                  >
-                    <Edit />
-                  </button>
-                </div>
-              </>
-            ))}
+                </>
+              )
+            )}
           </section>
           <section className="font-serif h-full px-4 py-4 w-full">
             <div className="w-full flex gap-2">
@@ -270,8 +260,14 @@ export default function Equipamento({ personagem, setPersonagem }: Props) {
             <div className="flex flex-col gap-2">
               <Select
                 placeholder="Selecione um item"
+                defaultValue={itemAdd?.nome}
                 onChange={(x) =>
-                  setItemAdd(todosItens.find((e) => e.nome === x.target.value))
+                  setItemAdd({
+                    ...(todosItens.find((e) => e.nome === x.target.value) ||
+                      todosItens[0]),
+                    quantidade: 1,
+                    descUnica: "",
+                  })
                 }
               >
                 {todosItens.map((item) => (

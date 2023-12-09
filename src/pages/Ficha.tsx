@@ -42,6 +42,25 @@ const Ficha: React.FC = () => {
     },
   });
   const classe = personagem.classe;
+  const handlePersonagem = (personagem: FichaConstructor) => {
+    setPersonagem(personagem);
+    localStorage.setItem("fichaSelecionada", JSON.stringify(personagem));
+    const fichasTemporarias: FichaConstructor[] = JSON.parse(
+      localStorage.getItem("fichas") || "[]"
+    );
+    localStorage.setItem(
+      "fichas",
+      JSON.stringify(
+        fichasTemporarias.map((fichaTemporaria) => {
+          if (fichaTemporaria.id === personagem.id) {
+            return personagem;
+          } else {
+            return fichaTemporaria;
+          }
+        })
+      )
+    );
+  };
   return (
     <>
       <Navbar back={"/"} />
@@ -93,7 +112,6 @@ const Ficha: React.FC = () => {
                   />
                 </Tab>
                 <Tab
-                  isDisabled={!personagem.classe.conjurador}
                   roundedTop={"3xl"}
                   bgColor={"red.600"}
                   border={"none"}
@@ -110,17 +128,17 @@ const Ficha: React.FC = () => {
                   <Info personagem={personagem} />
                   <Status
                     personagem={personagem}
-                    setPersonagem={setPersonagem}
+                    setPersonagem={handlePersonagem}
                   />
                   <Equipamento
                     personagem={personagem}
-                    setPersonagem={setPersonagem}
+                    setPersonagem={handlePersonagem}
                   />
                 </TabPanel>
                 <TabPanel className="flex flex-col gap-11">
                   <Ataques
                     personagem={personagem}
-                    setPersonagem={setPersonagem}
+                    setPersonagem={handlePersonagem}
                   />
                   <Defesa personagem={personagem} />
                 </TabPanel>
@@ -147,7 +165,7 @@ const Ficha: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Status
                         personagem={personagem}
-                        setPersonagem={setPersonagem}
+                        setPersonagem={handlePersonagem}
                       />
                       <div className="w-1/3">
                         <Exp personagem={personagem} />
@@ -168,18 +186,20 @@ const Ficha: React.FC = () => {
                 <div className="flex flex-col-reverse gap-6">
                   <Ataques
                     personagem={personagem}
-                    setPersonagem={setPersonagem}
+                    setPersonagem={handlePersonagem}
                   />
                   <Defesa personagem={personagem} />
                 </div>
                 <div>
                   <Equipamento
                     personagem={personagem}
-                    setPersonagem={setPersonagem}
+                    setPersonagem={handlePersonagem}
                   />
+                  <Poderes personagem={personagem} />
                 </div>
               </div>
               <div className="w-1/3">
+                <h1></h1>
                 <Pericias personagem={personagem} />
                 <Magias personagem={personagem} />
               </div>
@@ -192,3 +212,6 @@ const Ficha: React.FC = () => {
 };
 
 export default Ficha;
+function useEffect(arg0: () => () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
+}
