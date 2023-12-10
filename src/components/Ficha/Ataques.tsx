@@ -138,101 +138,104 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
   });
   return (
     <>
-      <div className="border border-black rounded-lg flex flex-col shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
-        <Select
-          className="font-serif"
-          placeholder={undefined}
-          onChange={(e) => {
-            if (e.target.value === "Normal") {
-              setVantagem(undefined);
-            } else {
-              setVantagem(e.target.value as "adv" | "des" | undefined);
-            }
-            console.log(e.target.value);
-          }}
-        >
-          <option value={undefined}>Normal</option>
-          <option value={"adv"}>Vantagem</option>
-          <option value={"des"}>Desvantagem</option>
-        </Select>
-        <div className="grid desktop:grid-cols-7 grid-cols-4 mb-4">
-          <h1 className=" text-red-900">Ataques</h1>
-          <h1 className=" ">Bônus</h1>
-          <h1 className=" ">Dano</h1>
-          <h1 className="hidden desktop:block">Crítico</h1>
-          <h1 className="hidden desktop:block">Tipo</h1>
-          <h1 className="hidden desktop:block">Alcance</h1>
-          <h1 className="">Info</h1>
-        </div>
+      <section className="border border-black rounded-lg shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
+        <h1 className="text-center font-bold text-2xl text-red-700">Ataques</h1>
         <div className="flex flex-col">
-          {ataques.map((ataque: Ataque, index) => (
-            <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b font-serif">
-              <a
-                onClick={() => ataque.ataque(ataque.bonus, vantagem)}
-                className="text-red-900 hover:no-underline underline hover:cursor-pointer"
-              >
-                {ataque.nome}
-              </a>
-              <Input
-                className="text-center"
-                type="number"
-                onChange={(e) => {
-                  const bonus = Number(e.target.value);
-                  const novoataque: Ataque = {
-                    nome: ataque.nome,
-                    bonus: bonus,
-                    dano: ataque.dano,
-                    critico: ataque.critico,
-                    tipo: ataque.tipo,
-                    alcance: ataque.alcance,
-                    observacao: ataque.observacao,
-                    ataque: ataque.ataque,
-                  };
-                  const ataquesnovos: Ataque[] = ataques.map((ataque, i) => {
-                    if (i === index) {
-                      return novoataque;
-                    }
-                    return ataque;
-                  });
-                  setAtaques(ataquesnovos);
-                }}
-                borderColor={"red.600"}
-                defaultValue={ataque.bonus}
-              />
-              <p>{ataque.dano}</p>
-              <p className="hidden desktop:block">{ataque.critico}</p>
-              <p className="hidden desktop:block text-sm">{ataque.tipo}</p>
-              <p className="hidden desktop:block">{ataque.alcance}</p>
-              <IconButton
-                onClick={() => {
-                  const novoataque = {
-                    nome: ataque.nome,
-                    bonus: ataque.bonus,
-                    dano: ataque.dano,
-                    critico: ataque.critico,
-                    tipo: ataque.tipo,
-                    alcance: ataque.alcance,
-                    descricao: ataque.observacao,
-                  };
-                  setAtaqueModal(novoataque);
-                  setIsOpen(true);
-                }}
-                icon={<Eye />}
-                aria-label={"VerMais"}
-                rounded={"full"}
-                colorScheme="red"
-                className="transition-all hover:transform hover:scale-110 border-[2px] border-white mx-auto w-fit"
-                _hover={{
-                  bg: "transparent",
-                  border: "2px",
-                  borderColor: "red.500",
-                  color: "red.500",
-                }}
-              />
-            </div>
-          ))}
+          <Select
+            className="font-serif"
+            placeholder={undefined}
+            onChange={(e) => {
+              if (e.target.value === "Normal") {
+                setVantagem(undefined);
+              } else {
+                setVantagem(e.target.value as "adv" | "des" | undefined);
+              }
+              console.log(e.target.value);
+            }}
+          >
+            <option value={undefined}>Normal</option>
+            <option value={"adv"}>Vantagem</option>
+            <option value={"des"}>Desvantagem</option>
+          </Select>
+          <div className="grid desktop:grid-cols-7 grid-cols-4 mb-4">
+            <h1 className=" text-red-900">Ataques</h1>
+            <h1 className=" ">Bônus</h1>
+            <h1 className=" ">Dano</h1>
+            <h1 className="hidden desktop:block">Crítico</h1>
+            <h1 className="hidden desktop:block">Tipo</h1>
+            <h1 className="hidden desktop:block">Alcance</h1>
+            <h1 className="">Info</h1>
+          </div>
+          <div className="flex flex-col">
+            {ataques.map((ataque: Ataque, index) => (
+              <div className="grid desktop:grid-cols-7 grid-cols-4 items-center border-b font-serif">
+                <a
+                  onClick={() => ataque.ataque(ataque.bonus, vantagem)}
+                  className="text-red-900 hover:no-underline underline hover:cursor-pointer"
+                >
+                  {ataque.nome}
+                </a>
+                <Input
+                  className="text-center"
+                  type="number"
+                  onChange={(e) => {
+                    const bonus = Number(e.target.value);
+                    const novoataque: Ataque = {
+                      nome: ataque.nome,
+                      bonus: bonus,
+                      dano: ataque.dano,
+                      critico: ataque.critico,
+                      tipo: ataque.tipo,
+                      alcance: ataque.alcance,
+                      observacao: ataque.observacao,
+                      ataque: ataque.ataque,
+                    };
+                    const ataquesnovos: Ataque[] = ataques.map((ataque, i) => {
+                      if (i === index) {
+                        return novoataque;
+                      }
+                      return ataque;
+                    });
+                    setAtaques(ataquesnovos);
+                  }}
+                  borderColor={"red.600"}
+                  defaultValue={ataque.bonus}
+                />
+                <p>{ataque.dano}</p>
+                <p className="hidden desktop:block">{ataque.critico}</p>
+                <p className="hidden desktop:block text-sm">{ataque.tipo}</p>
+                <p className="hidden desktop:block">{ataque.alcance}</p>
+                <IconButton
+                  onClick={() => {
+                    const novoataque = {
+                      nome: ataque.nome,
+                      bonus: ataque.bonus,
+                      dano: ataque.dano,
+                      critico: ataque.critico,
+                      tipo: ataque.tipo,
+                      alcance: ataque.alcance,
+                      descricao: ataque.observacao,
+                    };
+                    setAtaqueModal(novoataque);
+                    setIsOpen(true);
+                  }}
+                  icon={<Eye />}
+                  aria-label={"VerMais"}
+                  rounded={"full"}
+                  colorScheme="red"
+                  className="transition-all hover:transform hover:scale-110 border-[2px] border-white mx-auto w-fit"
+                  _hover={{
+                    bg: "transparent",
+                    border: "2px",
+                    borderColor: "red.500",
+                    color: "red.500",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
       <Modal size={"xl"} onClose={() => setIsOpen(false)} isOpen={isOpen}>
         <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent className="font-tormenta">

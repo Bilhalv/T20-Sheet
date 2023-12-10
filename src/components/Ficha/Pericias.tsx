@@ -32,13 +32,8 @@ export default function Pericias({ personagem }: Props) {
   };
   return (
     <>
-      <h1 className="text-center drop-shadow-2xl text-3xl desktop:hidden">
-        Perícias
-      </h1>
-      <div className="bg-white bg-opacity-80 rounded-md p-4 px-8 text-center text-md border-black border">
-        <h1 className="text-center text-red-900 drop-shadow-2xl text-xl hidden desktop:block">
-          Perícias
-        </h1>
+      <section className="border border-black rounded-lg shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 px-8 bg-opacity-80 text-center bg-white text-md">
+        <h1 className="text-center text-red-700 font-bold text-2xl">Perícias</h1>
         <div className="grid grid-cols-5 border-b border-b-red-500">
           <h1 className="text-red-900 drop-shadow-2xl text-xl text-left col-span-2">
             Nome
@@ -62,7 +57,7 @@ export default function Pericias({ personagem }: Props) {
                 (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
               )?.valor || 0;
             return (
-              <div className="grid grid-cols-5 hover:border-l-red-950 rounded transition-all border border-transparent hover:bg-white px-3 hover:bg-opacity-80">
+              <div className="grid grid-cols-5 hover:border-l-red-950 rounded transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
                 <Tooltip
                   bgColor={"red.700"}
                   label={`${
@@ -102,7 +97,7 @@ export default function Pericias({ personagem }: Props) {
             );
           })}
         </div>
-      </div>
+      </section>
     </>
   );
 }

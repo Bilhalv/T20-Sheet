@@ -34,3 +34,10 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+@media print {
+  /* Hide the button when printing */
+  .blacklist {
+    display: none !important;
+  }
+}

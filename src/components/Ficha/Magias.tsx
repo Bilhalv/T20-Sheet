@@ -27,7 +27,14 @@ export default function Magias({ personagem }: Props) {
 
   return (
     <>
-      <MagiasCards magias={magias} tipo="ficha" />
+      {magias.length !== 0 && (
+        <section className="border border-black rounded-lg shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
+          <h1 className="text-center font-bold text-2xl text-red-700">
+            Magias
+          </h1>
+          <MagiasCards magias={magias} tipo="ficha" />
+        </section>
+      )}
     </>
   );
 }

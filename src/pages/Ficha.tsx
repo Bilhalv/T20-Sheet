@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Geral/Navbar";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Button,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from "@chakra-ui/react";
 import Equipamento from "../components/Ficha/Equipamento";
 import Pericias from "../components/Ficha/Pericias";
 import Atributos from "../components/Ficha/Atributos";
@@ -19,6 +26,7 @@ import FichaConstructor, {
 import useCustomToast from "../components/Geral/Toasted";
 import Magias from "../components/Ficha/Magias";
 import Poderes from "../components/Ficha/Poderes";
+import generatePDF, { Options } from "react-to-pdf";
 
 const Ficha: React.FC = () => {
   const fichaSelecionada: FichaConstructor = JSON.parse(
@@ -61,10 +69,37 @@ const Ficha: React.FC = () => {
       )
     );
   };
+  const myRef = useRef(null);
+  const options: Options = {
+    filename: `Ficha de ${personagem.nome}.pdf`,
+    page: {
+      orientation: "portrait",
+      format: "a4",
+    },
+  };
+  const downloadPdf = () => {
+    generatePDF(myRef, options);
+    showCustomToast({
+      title: "Baixando PDF...",
+      desc: "Aguarde um momento",
+      status: "loading",
+      duration: 3000,
+      onCloseComplete: () => {
+        showCustomToast({
+          title: "PDF baixado com sucesso!",
+          desc: "Verifique sua pasta de downloads",
+          status: "success",
+        });
+      },
+    });
+  };
   return (
     <>
       <Navbar back={"/"} />
-      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
+      <body
+        ref={myRef}
+        className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover"
+      >
         <article className="bg-gray-50 bg-opacity-30 w-11/12 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
           <h1 className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
             {personagem.nome}
@@ -152,7 +187,7 @@ const Ficha: React.FC = () => {
               </TabPanels>
             </Tabs>
           </div>
-          <article className="flex-col justify-center mx-7 rounded-lg py-5 mt-5 gap-5 transition-all ease-in-out bg-white bg-opacity-50 px-5 desktop:px-12 hidden desktop:flex">
+          <article className="bg-gray-50 bg-opacity-30 w-11/12 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5 hidden desktop:block">
             <Info personagem={personagem} />
             <section className="flex gap-6">
               <div className="flex flex-col w-2/3 gap-2">
@@ -183,35 +218,31 @@ const Ficha: React.FC = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex flex-col-reverse gap-6">
+                <div className="flex flex-col gap-6">
+                  <Defesa personagem={personagem} />
                   <Ataques
                     personagem={personagem}
                     setPersonagem={handlePersonagem}
                   />
-                  <Defesa personagem={personagem} />
-                </div>
-                <div>
                   <Equipamento
                     personagem={personagem}
                     setPersonagem={handlePersonagem}
                   />
-                  <Poderes personagem={personagem} />
                 </div>
               </div>
-              <div className="w-1/3">
+              <div className="w-1/3 flex flex-col gap-6">
                 <h1></h1>
                 <Pericias personagem={personagem} />
+                <Poderes personagem={personagem} />
                 <Magias personagem={personagem} />
               </div>
             </section>
           </article>
         </article>
+        <Button onClick={downloadPdf}>Download PDF</Button>
       </body>
     </>
   );
 };
 
 export default Ficha;
-function useEffect(arg0: () => () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
-}

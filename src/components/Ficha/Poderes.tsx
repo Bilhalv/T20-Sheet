@@ -81,16 +81,17 @@ export default function Poderes({ personagem }: Props) {
   return (
     <>
       <Accordion
-        className="flex flex-col justify-evenly desktop:w-fit w-full gap-2 mx-auto"
+        className="border border-black rounded-lg shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white"
         allowToggle
       >
+        <h1 className="text-center font-bold text-2xl text-red-700">Poderes</h1>
         {tabelaTodosPoderes.map((poder: any) => (
-          <AccordionItem>
+          <AccordionItem borderColor={"red.400"}>
             <AccordionButton className="flex justify-between">
               <p>{poder.nome}</p>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel>
+            <AccordionPanel className="bg-white bg-opacity-40 text-justify">
               <p className="font-serif">
                 &nbsp;&nbsp;&nbsp;&nbsp;{poder.descricao}
               </p>

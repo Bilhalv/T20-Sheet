@@ -146,17 +146,17 @@ export default function Equipamento({ personagem, setPersonagem }: Props) {
   >();
   return (
     <>
-      <section className="w-full">
+      <section className="border border-black rounded-lg shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 bg-opacity-80 text-center bg-white">
         <h1
           className={
-            "text-center text-xl mb-4 text-red-900 " +
+            "text-center text-2xl mb-4 text-red-700 " +
             (totalEspacos > Number(pesoMax) ? "font-bold" : "")
           }
         >
           Equipamento {totalEspacos}/{pesoMax}
           {totalEspacos > Number(pesoMax) ? " - Excesso de peso" : ""}
         </h1>
-        <div className="bg-white bg-opacity-80 rounded-md px-4 py-2 text-center text-md border-black border flex flex-col w-full desktop:flex-row">
+        <div className="flex flex-col w-full desktop:flex-row">
           <section className="flex flex-col w-full">
             <div className="flex justify-between my-2 w-full">
               <div className="text-transparent w-fit h-fit">
