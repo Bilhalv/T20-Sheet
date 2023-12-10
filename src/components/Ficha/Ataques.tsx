@@ -37,9 +37,6 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
   const [vantagem, setVantagem] = useState<"adv" | "des" | undefined>(
     undefined
   );
-  const handleChangeVantagem = (vantagem: "adv" | "des" | undefined) => {
-    setVantagem(vantagem as "adv" | "des" | undefined);
-  };
   const { showCustomToast } = useCustomToast();
   const [ataques, setAtaques] = useState<Ataque[]>(() => {
     return personagem.mochila.armas.map((arma: armaFicha) => {
@@ -145,13 +142,18 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
         <Select
           className="font-serif"
           placeholder={undefined}
-          onChange={(e) =>
-            handleChangeVantagem(e.target.value as "adv" | "des" | undefined)
-          }
+          onChange={(e) => {
+            if (e.target.value === "Normal") {
+              setVantagem(undefined);
+            } else {
+              setVantagem(e.target.value as "adv" | "des" | undefined);
+            }
+            console.log(e.target.value);
+          }}
         >
           <option value={undefined}>Normal</option>
-          <option value="adv">Vantagem</option>
-          <option value="des">Desvantagem</option>
+          <option value={"adv"}>Vantagem</option>
+          <option value={"des"}>Desvantagem</option>
         </Select>
         <div className="grid desktop:grid-cols-7 grid-cols-4 mb-4">
           <h1 className=" text-red-900">Ataques</h1>
