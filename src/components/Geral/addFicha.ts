@@ -1,10 +1,4 @@
-import { es } from "@faker-js/faker";
-import { Arma } from "../../classes/Construtores/Arma";
-import Ficha, {
-  Ataque,
-  Mochila,
-  armaFicha,
-} from "../../classes/Construtores/Ficha";
+import Ficha, { Ataque, Mochila } from "../../classes/Construtores/Ficha";
 import { Poder } from "../../classes/Construtores/Poder";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
@@ -58,6 +52,9 @@ export default function addFichaToLocalStorage() {
     if (classe.nome === "Clérigo" || classe.nome === "Druida") {
       atributoConjurador = atributosLocais[4].valor;
     }
+  }
+  if (classe.nome === "Paladino") {
+    atributoConjurador = atributosLocais[5].valor;
   }
   const pvInicial =
     classe.vidainicial +
