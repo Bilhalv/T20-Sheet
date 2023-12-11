@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { Dado } from "../../classes/Construtores/Dado";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import useCustomToast from "./Toasted";
 
 interface NavbarProps {
   back: any;
@@ -26,6 +27,7 @@ export default function Navbar({ back, ficha }: NavbarProps) {
   const [dados, setDados] = useState<Dado[]>(
     JSON.parse(localStorage.getItem("historico") || "[]")
   );
+  const { showCustomToast } = useCustomToast();
 
   useEffect(() => {
     const dadosTemporarios: Dado[] = JSON.parse(
@@ -33,6 +35,26 @@ export default function Navbar({ back, ficha }: NavbarProps) {
     );
     setDados(dadosTemporarios);
   });
+  const limparHistorico = () => {
+    const certeza = window.confirm(
+      "Tem certeza que deseja limpar o histórico de dados?"
+    );
+    if (certeza) {
+      localStorage.removeItem("historico");
+      setDados([]);
+      showCustomToast({
+        title: "Histórico limpo!",
+        desc: "O histórico de dados foi limpo com sucesso!",
+        status: "success",
+      });
+    } else {
+      showCustomToast({
+        title: "Histórico não limpo!",
+        desc: "O histórico de dados não foi limpo!",
+        status: "error",
+      });
+    }
+  };
   return (
     <>
       <nav className="z-40 font-tormenta flex sticky top-0 justify-between bg-[#10000d] desktop:p-5 p-3 text-white shadow-lg">
@@ -110,7 +132,11 @@ export default function Navbar({ back, ficha }: NavbarProps) {
                   </DrawerBody>
 
                   <DrawerFooter>
-                    <Button variant="outline" colorScheme="red">
+                    <Button
+                      variant="outline"
+                      colorScheme="red"
+                      onClick={() => limparHistorico()}
+                    >
                       Limpar
                     </Button>
                     <Button colorScheme="red" ml={3} onClick={onClose}>
