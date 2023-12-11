@@ -121,7 +121,7 @@ export default function Navbar({ back, ficha }: NavbarProps) {
                                   </div>
                                 )}
                                 <small className="text-xs">
-                                  {moment(dado.date).format("HH:mm")}
+                                  {moment(dado.date).format("MMMM Do YYYY, h:mm a")}
                                 </small>
                               </div>
                             )}
