@@ -95,7 +95,7 @@ const Ficha: React.FC = () => {
   };
   return (
     <>
-      <Navbar back={"/"} />
+      <Navbar back={"/"} ficha={true} />
       <body
         ref={myRef}
         className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover"

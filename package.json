@@ -18,6 +18,7 @@
     "framer-motion": "^10.16.4",
     "init": "^0.1.2",
     "lucide-react": "^0.288.0",
+    "moment": "^2.29.4",
     "puppeteer": "^21.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

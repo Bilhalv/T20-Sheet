@@ -17,6 +17,8 @@ import Ficha, { Ataque, armaFicha } from "../../classes/Construtores/Ficha";
 import { TabelasArmasSimles, tabelaArmas } from "../../classes/Tabelas/Itens";
 import { RolarDado } from "../Geral/RolarDado";
 import useCustomToast from "../Geral/Toasted";
+import { Dado } from "../../classes/Construtores/Dado";
+import addHistorico from "../Geral/addHistorico";
 
 interface Props {
   personagem: Ficha;
@@ -104,6 +106,19 @@ export default function Ataques({ personagem, setPersonagem }: Props) {
             status: "loading",
             duration: 1000,
             onCloseComplete: () => {
+              addHistorico({
+                dado: {
+                  nome: this.nome,
+                  tipo: "Ataque",
+                  resultado: total,
+                  dados: dados,
+                  bonus: this.bonus,
+                  dadoDano: dano.join("d"),
+                  dadosDano: danoRoladoDados,
+                  dano: danoRoladoTotal,
+                  date: new Date(),
+                },
+              });
               showCustomToast({
                 title: "Ataque",
                 desc: (

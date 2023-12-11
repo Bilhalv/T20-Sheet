@@ -3,6 +3,7 @@ import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 import Ficha, { PericiasFicha } from "../../classes/Construtores/Ficha";
 import useCustomToast from "../Geral/Toasted";
 import { RolarDado } from "../Geral/RolarDado";
+import addHistorico from "../Geral/addHistorico";
 
 interface Props {
   personagem: Ficha;
@@ -22,6 +23,16 @@ export default function Pericias({ personagem }: Props) {
       status: "loading",
       duration: 1000,
       onCloseComplete() {
+        addHistorico({
+          dado: {
+            tipo: "Pericia",
+            nome: nome,
+            dados: dado.dados,
+            bonus: e,
+            resultado: dado.total,
+            date: new Date(),
+          },
+        });
         showCustomToast({
           title: `Rolado!`,
           desc: `${nome}: ${dado.total} (${dado.dados}+${e})`,
@@ -33,7 +44,9 @@ export default function Pericias({ personagem }: Props) {
   return (
     <>
       <section className="border border-black rounded-lg shadow-[5px_5px_0px_0px_rgba(155,0,0)] p-4 px-8 bg-opacity-80 text-center bg-white text-md">
-        <h1 className="text-center text-red-700 font-bold text-2xl">Perícias</h1>
+        <h1 className="text-center text-red-700 font-bold text-2xl">
+          Perícias
+        </h1>
         <div className="grid grid-cols-5 border-b border-b-red-500">
           <h1 className="text-red-900 drop-shadow-2xl text-xl text-left col-span-2">
             Nome

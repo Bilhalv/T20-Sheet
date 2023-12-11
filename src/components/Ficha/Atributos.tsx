@@ -1,6 +1,8 @@
+import { Dado } from "../../classes/Construtores/Dado";
 import Ficha from "../../classes/Construtores/Ficha";
 import { RolarDado } from "../Geral/RolarDado";
 import useCustomToast from "../Geral/Toasted";
+import addHistorico from "../Geral/addHistorico";
 
 interface Props {
   personagem: Ficha;
@@ -14,12 +16,23 @@ export default function Atributos({ personagem }: Props) {
       qtd: 1,
       mod: e,
     });
+    const rolagem: Dado = {
+      tipo: "Atributo",
+      nome: nome,
+      dados: dado.dados,
+      bonus: e,
+      resultado: dado.total,
+      date: new Date(),
+    };
     showCustomToast({
       title: `Rolando...`,
       desc: `${nome} = ${e}`,
       status: "loading",
       duration: 1000,
       onCloseComplete() {
+        addHistorico({
+          dado: rolagem,
+        });
         showCustomToast({
           title: `Rolado!`,
           desc: `${nome}: ${dado.total} (${dado.dados}+${e})`,
