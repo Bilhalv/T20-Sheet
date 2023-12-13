@@ -158,7 +158,7 @@ export default function Defesa({ personagem }: Props) {
                     </text>
                   </svg>
                 </div>
-                <div className="grid grid-cols-4 w-3/4 ml-auto">
+                <div className="grid grid-cols-4 text-sm desktop:text-base w-3/4 ml-auto">
                   <h1>Armadura</h1>
                   <h1>Escudo</h1>
                   <h1>Outros</h1>
@@ -186,7 +186,7 @@ export default function Defesa({ personagem }: Props) {
                   >
                     {personagem.atributos.map((atributo) => (
                       <option value={atributo.valor}>
-                        {atributo.atributo} ({atributo.valor})
+                       ({atributo.valor}) {atributo.atributo} 
                       </option>
                     ))}
                   </Select>
@@ -203,7 +203,7 @@ export default function Defesa({ personagem }: Props) {
                 <h1>Penalidade</h1>
               </div>
               {armaduras.map((armadura) => (
-                <div className="grid grid-cols-3 border-b">
+                <div className="grid grid-cols-3 border-b desktop:text-base text-sm">
                   <h1 className="flex gap-2 ml-2">
                     <Checkbox
                       isChecked={armadurasEquipadas.includes(armadura)}
