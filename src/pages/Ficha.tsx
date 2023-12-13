@@ -27,8 +27,7 @@ import FichaConstructor, {
 import useCustomToast from "../components/Geral/Toasted";
 import Magias from "../components/Ficha/Magias";
 import Poderes from "../components/Ficha/Poderes";
-import generatePDF, { Options } from "react-to-pdf";
-import { Download } from "lucide-react";
+import FichaPDF from "../components/Ficha/FichaPDF";
 
 const Ficha: React.FC = () => {
   const fichaSelecionada: FichaConstructor = JSON.parse(
@@ -71,49 +70,12 @@ const Ficha: React.FC = () => {
       )
     );
   };
-  const myRef = useRef(null);
-  const options: Options = {
-    filename: `Ficha de ${personagem.nome}.pdf`,
-    page: {
-      orientation: "portrait",
-      format: "a4",
-    },
-  };
-  const downloadPdf = () => {
-    generatePDF(myRef, options);
-    showCustomToast({
-      title: "Transformando em PDF...",
-      desc: "Aguarde um momento",
-      status: "loading",
-      duration: 3000,
-      onCloseComplete: () => {
-        showCustomToast({
-          title: "PDF baixado com sucesso!",
-          desc: "Verifique sua pasta de downloads",
-          status: "success",
-        });
-      },
-    });
-  };
   return (
     <>
       <Navbar back={"/"} ficha={true} />
-      <body
-        ref={myRef}
-        className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover"
-      >
+      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
         <article className="bg-gray-50 bg-opacity-30 w-11/12 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
-            <IconButton
-              className="hover:bg-opacity-80 hover:bg-white hover:border-red-600 hover:text-red-600 hover:transform hover:scale-125 transition-all mb-[-10px] ml-auto mr-4 z-10"
-              color={"white"}
-              bg={"red"}
-              rounded={"full"}
-              _hover={{}}
-              border={"2px solid white"}
-              aria-label="Download"
-              icon={<Download />}
-              onClick={downloadPdf}
-            />
+          <FichaPDF personagem={personagem} />
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto mt-[-20px]">
             <h1>{personagem.nome}</h1>
           </div>
