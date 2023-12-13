@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Geral/Navbar";
 import {
   Button,
+  IconButton,
   Tab,
   TabList,
   TabPanel,
@@ -27,6 +28,7 @@ import useCustomToast from "../components/Geral/Toasted";
 import Magias from "../components/Ficha/Magias";
 import Poderes from "../components/Ficha/Poderes";
 import generatePDF, { Options } from "react-to-pdf";
+import { Download } from "lucide-react";
 
 const Ficha: React.FC = () => {
   const fichaSelecionada: FichaConstructor = JSON.parse(
@@ -80,7 +82,7 @@ const Ficha: React.FC = () => {
   const downloadPdf = () => {
     generatePDF(myRef, options);
     showCustomToast({
-      title: "Baixando PDF...",
+      title: "Transformando em PDF...",
       desc: "Aguarde um momento",
       status: "loading",
       duration: 3000,
@@ -101,9 +103,20 @@ const Ficha: React.FC = () => {
         className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover"
       >
         <article className="bg-gray-50 bg-opacity-30 w-11/12 desktop:w-11/12 mx-auto py-8 px-4 rounded-lg border-gray-500 shadow-lg mt-5">
-          <h1 className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)]">
-            {personagem.nome}
-          </h1>
+            <IconButton
+              className="hover:bg-opacity-80 hover:bg-white hover:border-red-600 hover:text-red-600 hover:transform hover:scale-125 transition-all mb-[-10px] ml-auto mr-4 z-10"
+              color={"white"}
+              bg={"red"}
+              rounded={"full"}
+              _hover={{}}
+              border={"2px solid white"}
+              aria-label="Download"
+              icon={<Download />}
+              onClick={downloadPdf}
+            />
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto mt-[-20px]">
+            <h1>{personagem.nome}</h1>
+          </div>
           <div className="block desktop:hidden">
             <Atributos personagem={personagem} />
             <Tabs
@@ -239,7 +252,6 @@ const Ficha: React.FC = () => {
             </section>
           </article>
         </article>
-        <Button onClick={downloadPdf}>Download PDF</Button>
       </body>
     </>
   );
