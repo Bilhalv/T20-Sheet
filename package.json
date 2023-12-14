@@ -24,6 +24,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-html-to-pdf": "^0.12.0",
+    "react-pdf": "^7.6.0",
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "react-to-pdf": "^1.0.1",
