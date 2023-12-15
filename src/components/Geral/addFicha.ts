@@ -6,6 +6,7 @@ import Ficha, {
 import { Magia } from "../../classes/Construtores/Magia";
 import { Poder } from "../../classes/Construtores/Poder";
 import { TabelaClasses } from "../../classes/Tabelas/Classes";
+import { TabelaOrigens } from "../../classes/Tabelas/Origens";
 import { TabelaPericias } from "../../classes/Tabelas/Pericias";
 
 const LOCAL_STORAGE_KEYS = {
@@ -143,9 +144,6 @@ export default function addFichaToLocalStorage() {
   );
 
   var atributoConjurador = 0;
-  const equipamentosObj: Mochila = JSON.parse(
-    localStorage.getItem("equipamentos") || "[]"
-  );
   const ataques: Ataque[] = [];
 
   if (classe.conjurador) {
@@ -225,7 +223,7 @@ export default function addFichaToLocalStorage() {
     );
     magias = handleSereiaTritaoSilfide(especificasRaca);
   }
-  
+
   const ficha: Ficha = {
     id: fichasArray.length,
     origem,
@@ -246,7 +244,7 @@ export default function addFichaToLocalStorage() {
     pericias,
     magias,
     poderes: poderes.map((poder: any) => poder.nome),
-    mochila: equipamentosObj,
+    mochila: equipamentos as Mochila,
     especifico,
   };
 
