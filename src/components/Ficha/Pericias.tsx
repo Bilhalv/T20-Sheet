@@ -79,8 +79,23 @@ export default function Pericias({ personagem }: Props) {
                     )?.descricao
                   }`}
                 >
-                  <h1 className="text-red-900 drop-shadow-2xl text-md desktop:text-sm text-left col-span-2">
+                  <h1
+                    className={
+                      "text-red-900 drop-shadow-2xl text-md desktop:text-sm text-left col-span-2 " +
+                      (treinada >= 5 ? " font-bold" : "")
+                    }
+                  >
                     {pericia.nome}
+                    <small className="text-xs">
+                      {TabelaPericias.find((p) => p.nome === pericia.nome)
+                        ?.penalidadearmadura
+                        ? " ✳"
+                        : ""}
+                      {TabelaPericias.find((p) => p.nome === pericia.nome)
+                        ?.somentetreinada
+                        ? " ✪"
+                        : ""}
+                    </small>
                   </h1>
                 </Tooltip>
                 <h1 className="text-red-500 drop-shadow-2xl text-md desktop:text-sm text-right w-full mx-auto col-span-2">
@@ -109,6 +124,10 @@ export default function Pericias({ personagem }: Props) {
               </div>
             );
           })}
+          <small className="text-red-900 text-xs flex justify-evenly">
+            <p>✳ Penalidade de Armadura</p>
+            <p>✪ Somente treinada</p>
+          </small>
         </div>
       </section>
     </>
