@@ -5,6 +5,7 @@ import { Eye, Trash } from "lucide-react";
 import useCustomToast from "../components/Geral/Toasted";
 import { useNavigate } from "react-router-dom";
 import Ficha from "../classes/Construtores/Ficha";
+import Normalize from "../components/Geral/Normalize";
 const fichasData = JSON.parse(localStorage.getItem("fichas") || "[]");
 
 const Personagens: React.FC = () => {
@@ -32,9 +33,9 @@ const Personagens: React.FC = () => {
             .replace(/ç/g, "c")
             .replace(/ã/g, "a")
             .replace(/á/g, "a")
+            .replace(/í/g, "i")
             .replace(/é/g, "e")}.png`
         : "";
-
       const classeImg =
         personagem.classe && personagem.classe.nome
           ? `./img/classes/${personagem.classe.nome
@@ -98,22 +99,14 @@ const Personagens: React.FC = () => {
     setMostrandoPersonagem(() => {
       return fichas.map((personagem: Ficha) => {
         const racaImg = personagem.raca
-          ? `./img/racas/perfil/${personagem.raca
-              .toLowerCase()
-              .replace(/ç/g, "c")
-              .replace(/ã/g, "a")
-              .replace(/á/g, "a")
-              .replace(/é/g, "e")}.png`
+          ? `./img/racas/perfil/${Normalize(personagem.raca).toLowerCase()}.png`
           : "";
 
         const classeImg =
           personagem.classe && personagem.classe.nome
-            ? `./img/classes/${personagem.classe.nome
-                .toLowerCase()
-                .replace(/ç/g, "c")
-                .replace(/ã/g, "a")
-                .replace(/á/g, "a")
-                .replace(/é/g, "e")}.png`
+            ? `./img/classes/${Normalize(
+                personagem.classe.nome
+              ).toLowerCase()}.png`
             : "";
         return {
           nome: personagem.nome,
@@ -134,7 +127,7 @@ const Personagens: React.FC = () => {
       <>
         {mostrandoPersonagem.map((personagem) => {
           return (
-            <article className="bg-gray-50 bg-opacity-90 w-11/12 desktop:w-[49%] mx-auto rounded-2xl border-gray-500 shadow-lg overflow-hidden">
+            <article className="bg-gray-50 bg-opacity-90 w-4/5 desktop:w-1/2 mx-auto rounded-2xl border-gray-500 shadow-lg overflow-hidden">
               <div className="flex flex-col w-full justify-center">
                 <div className="flex gap-2">
                   <img
@@ -225,7 +218,7 @@ const Personagens: React.FC = () => {
     <>
       <Navbar back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full font-tormenta py-10 bg-cover">
-        <article className="bg-gray-50 bg-opacity-30 w-3/4 mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
+        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
           <h1 className="text-center text-3xl font-bold text-white drop-shadow-[0px_5px_rgba(7,7,7,7)] mb-14">
             Meus personagens
           </h1>

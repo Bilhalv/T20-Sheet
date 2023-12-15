@@ -37,6 +37,7 @@ import { TabelaClasses } from "../../classes/Tabelas/Classes";
 import { Magia } from "../../classes/Construtores/Magia";
 import { TabelaMagias } from "../../classes/Tabelas/Magias";
 import { ArrayMagias } from "../pagina 2/Magias";
+import Normalize from "../Geral/Normalize";
 
 Font.register({
   family: "Tormenta",
@@ -60,22 +61,12 @@ interface Props {
 
 export default function FichaPDF({ personagem }: Props) {
   const racaImg = personagem.raca
-    ? `./img/racas/perfil/${personagem.raca
-        .toLowerCase()
-        .replace(/ç/g, "c")
-        .replace(/ã/g, "a")
-        .replace(/á/g, "a")
-        .replace(/é/g, "e")}.png`
+    ? `./img/racas/perfil/${Normalize(personagem.raca).toLowerCase()}.png`
     : "";
 
   const classeImg =
     personagem.classe && personagem.classe.nome
-      ? `./img/classes/${personagem.classe.nome
-          .toLowerCase()
-          .replace(/ç/g, "c")
-          .replace(/ã/g, "a")
-          .replace(/á/g, "a")
-          .replace(/é/g, "e")}.png`
+      ? `./img/classes/${Normalize(personagem.classe.nome).toLowerCase()}.png`
       : "";
   const divindadeImg = tabelaDivindades.find(
     (divindade) => divindade.nome === personagem.divindade
@@ -123,7 +114,6 @@ export default function FichaPDF({ personagem }: Props) {
       return true;
     }
   });
-
   const InfoPage = () => (
     <Page style={{ fontFamily: "Tormenta", padding: "60px" }}>
       <Text style={{ fontSize: 30, textAlign: "center", marginBottom: 20 }}>
