@@ -70,7 +70,7 @@ export default function Pericias({ personagem }: Props) {
                 (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
               )?.valor || 0;
             return (
-              <div className="grid grid-cols-5 hover:border-l-red-950 rounded transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
+              <div className="grid grid-cols-5 hover:border-l-red-950 transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
                 <Tooltip
                   bgColor={"red.700"}
                   label={`${
