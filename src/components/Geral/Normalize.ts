@@ -4,7 +4,8 @@ export default function Normalize(i: string) {
         "ã": "a",
         "á": "a",
         "í": "i",
-        "é": "e"
+        "é": "e",
+        "ê": "e",
     };
 
     return i.replace(/[çãáíé]/g, match => replacements[match]);

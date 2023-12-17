@@ -4,6 +4,7 @@ import Ficha, { PericiasFicha } from "../../classes/Construtores/Ficha";
 import useCustomToast from "../Geral/Toasted";
 import { RolarDado } from "../Geral/RolarDado";
 import addHistorico from "../Geral/addHistorico";
+import Normalize from "../Geral/Normalize";
 
 interface Props {
   personagem: Ficha;
@@ -67,7 +68,9 @@ export default function Pericias({ personagem }: Props) {
             )?.atributo;
             const atributoNum =
               personagem.atributos.find(
-                (e) => e.atributo.toLowerCase() === atributo?.toLowerCase()
+                (e) =>
+                  Normalize(e.atributo.toLowerCase()) ===
+                  Normalize(atributo?.toLowerCase() || "")
               )?.valor || 0;
             return (
               <div className="grid grid-cols-5 hover:border-l-red-950 transition-all border border-transparent hover:bg-white hover:bg-opacity-80">
