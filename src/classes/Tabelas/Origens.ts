@@ -66,7 +66,7 @@ import { TabelaPoderesEnum } from "./Poderes";
     } ,
     {
       nome: 'Assistente de Laboratório',
-      descricao: 'Você atuou como ajudante para um alquimista, inventor ou mago. Costumava tomar notas, limpar o laboratório, arrumar as ferramentas, vasculhar mercados em busca de ingredientes exóticos, recapturar a aberração antinatural que fugiu da jaula... enfim, não 87 Capítulo Um era o trabalho mais fácil, limpo ou seguro do mundo. Exposição prolongada a substâncias e experimentos perigosos talvez tenham prejudicado sua saúde (ou despertado suas habilidades de classe...).',
+      descricao: 'Você atuou como ajudante para um alquimista, inventor ou mago. Costumava tomar notas, limpar o laboratório, arrumar as ferramentas, vasculhar mercados em busca de ingredientes exóticos, recapturar a aberração antinatural que fugiu da jaula... enfim, não era o trabalho mais fácil, limpo ou seguro do mundo. Exposição prolongada a substâncias e experimentos perigosos talvez tenham prejudicado sua saúde (ou despertado suas habilidades de classe...).',
       itens: ['Instrumentos de Ofício (alquimista).'],
       beneficios: {
         pericias: [TabelaPericiasEnum.Ofício ,TabelaPericiasEnum.Misticismo],
