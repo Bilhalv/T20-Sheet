@@ -157,7 +157,7 @@ const Ficha: React.FC = () => {
                 </TabPanel>
                 <TabPanel className="flex flex-col gap-6">
                   <Poderes personagem={personagem} />
-                  <Magias personagem={personagem} />
+                  <Magias personagem={personagem} setPersonagem={handlePersonagem} />
                 </TabPanel>
               </TabPanels>
             </Tabs>
@@ -209,7 +209,7 @@ const Ficha: React.FC = () => {
                 <h1></h1>
                 <Pericias personagem={personagem} />
                 <Poderes personagem={personagem} />
-                <Magias personagem={personagem} />
+                <Magias personagem={personagem} setPersonagem={handlePersonagem} />
               </div>
             </section>
           </article>
