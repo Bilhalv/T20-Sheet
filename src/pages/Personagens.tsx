@@ -28,22 +28,17 @@ const Personagens: React.FC = () => {
   const [mostrandoPersonagem, setMostrandoPersonagem] = React.useState(() => {
     return fichas.map((personagem: Ficha) => {
       const racaImg = personagem.raca
-        ? `./img/racas/perfil/${personagem.raca
-            .toLowerCase()
-            .replace(/ç/g, "c")
-            .replace(/ã/g, "a")
-            .replace(/á/g, "a")
-            .replace(/í/g, "i")
-            .replace(/é/g, "e")}.png`
+        ? `./img/racas/perfil/${
+            personagem.raca === "Sereia/Tritão"
+              ? "sereia"
+              : Normalize(personagem.raca).toLowerCase()
+          }.png`
         : "";
       const classeImg =
         personagem.classe && personagem.classe.nome
-          ? `./img/classes/${personagem.classe.nome
-              .toLowerCase()
-              .replace(/ç/g, "c")
-              .replace(/ã/g, "a")
-              .replace(/á/g, "a")
-              .replace(/é/g, "e")}.png`
+          ? `./img/classes/${Normalize(
+              personagem.classe.nome.toLowerCase()
+            )}.png`
           : "";
       return {
         nome: personagem.nome,
@@ -99,14 +94,17 @@ const Personagens: React.FC = () => {
     setMostrandoPersonagem(() => {
       return fichas.map((personagem: Ficha) => {
         const racaImg = personagem.raca
-          ? `./img/racas/perfil/${Normalize(personagem.raca).toLowerCase()}.png`
+          ? `./img/racas/perfil/${
+              personagem.raca === "Sereia/Tritão"
+                ? "sereia"
+                : Normalize(personagem.raca).toLowerCase()
+            }.png`
           : "";
-
         const classeImg =
           personagem.classe && personagem.classe.nome
             ? `./img/classes/${Normalize(
-                personagem.classe.nome
-              ).toLowerCase()}.png`
+                personagem.classe.nome.toLowerCase()
+              )}.png`
             : "";
         return {
           nome: personagem.nome,
