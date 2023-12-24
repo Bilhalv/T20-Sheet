@@ -18,7 +18,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
-import { Eraser, Plus, Trash } from "lucide-react";
+import { Check, Eraser, Plus, Trash } from "lucide-react";
 
 class NPCShown extends NPC {
   id: number = 0;
@@ -26,12 +26,13 @@ class NPCShown extends NPC {
   pmAtual?: number = 0;
 }
 
-function showNPC(
+function ShowNPC(
   npc: NPCShown,
   rolar: any,
   ataqueRoll: any,
   trash: any,
-  trashHidden: boolean
+  trashHidden: boolean,
+  willDelete?: { will: boolean; id: number }
 ) {
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
@@ -55,8 +56,16 @@ function showNPC(
                 bg: "transparent",
                 border: "2px solid",
               }}
-              icon={<Trash />}
-              onClick={() => trash(npc.id)}
+              icon={
+                willDelete && willDelete.will && willDelete.id === npc.id ? (
+                  <Check />
+                ) : (
+                  <Trash />
+                )
+              }
+              onClick={() => {
+                trash(npc.id);
+              }}
             />
           )}
           ND {npc.nd}
@@ -330,6 +339,10 @@ export default function Mestre() {
   const { showCustomToast } = useCustomToast();
 
   const trash = (id: number) => {
+    if (!willDelete.will && willDelete.id !== id) {
+      setWillDelete({ will: true, id: id });
+      return;
+    }
     const npcAtual = Npcs.find((e) => e.id === id);
     const npcsFiltrados = Npcs.filter((e) => e.id !== id);
     setNpcs(npcsFiltrados);
@@ -436,6 +449,10 @@ export default function Mestre() {
   const [isOpen, setIsOpen] = useState(false);
   const [npc, setNpc] = useState<NPCShown>();
   const [quantity, setQuantity] = useState<number>(1);
+  const [willDelete, setWillDelete] = useState({
+    will: false,
+    id: -1,
+  });
   return (
     <>
       <Navbar ficha={true} back={"/"} />
@@ -446,6 +463,8 @@ export default function Mestre() {
               icon={<Plus />}
               onClick={() => {
                 setNpc(undefined);
+                setQuantity(1);
+                setWillDelete({ will: false, id: -1 });
                 setIsOpen(true);
               }}
               aria-label="Add"
@@ -503,7 +522,7 @@ export default function Mestre() {
           <div className="flex flex-wrap gap-3 justify-evenly">
             {Npcs &&
               Npcs.map((npc: NPCShown) =>
-                showNPC(npc, rolar, ataqueRoll, trash, true)
+                ShowNPC(npc, rolar, ataqueRoll, trash, true, willDelete)
               )}
           </div>
         </article>
@@ -547,7 +566,7 @@ export default function Mestre() {
                 ))}
               </Select>
             </div>
-            {npc && showNPC(npc, rolar, ataqueRoll, null, false)}
+            {npc && ShowNPC(npc, rolar, ataqueRoll, null, false)}
           </ModalBody>
           <ModalFooter>
             <FecharOnModal onClose={() => setIsOpen(false)} />
