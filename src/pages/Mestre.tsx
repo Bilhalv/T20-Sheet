@@ -6,7 +6,7 @@ import useCustomToast from "../components/Geral/Toasted";
 import addHistorico from "../components/Geral/addHistorico";
 import { RolarDado } from "../components/Geral/RolarDado";
 import { Dado } from "../classes/Construtores/Dado";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Modal,
   ModalOverlay,
