@@ -456,9 +456,9 @@ export default function Mestre() {
   return (
     <>
       <Navbar ficha={true} back={"/"} />
-      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full py-10 bg-cover">
-        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto mt-[-20px] font-tormenta mb-4 flex justify-between align-middle">
+      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4">
+        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between align-middle">
             <IconButton
               icon={<Plus />}
               onClick={() => {
@@ -519,12 +519,13 @@ export default function Mestre() {
               }}
             />
           </div>
-          <div className="flex flex-wrap gap-3 justify-evenly">
-            {Npcs &&
-              Npcs.map((npc: NPCShown) =>
+          {Npcs && (
+            <div className="flex flex-wrap gap-3 justify-evenly mt-4">
+              {Npcs.map((npc: NPCShown) =>
                 ShowNPC(npc, rolar, ataqueRoll, trash, true, willDelete)
               )}
-          </div>
+            </div>
+          )}
         </article>
       </body>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
