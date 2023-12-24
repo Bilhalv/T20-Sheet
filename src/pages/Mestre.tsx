@@ -20,21 +20,24 @@ import {
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
 import { Plus, Trash } from "lucide-react";
 
+class NPCShown extends NPC {
+  id: number = 0;
+  pvAtual?: number = 0;
+  pmAtual?: number = 0;
+}
+
 function showNPC(
-  npc: NPC,
+  npc: NPCShown,
   rolar: any,
   ataqueRoll: any,
   trash: any,
-  trashHidden: boolean,
-  index: number = -1
+  trashHidden: boolean
 ) {
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px]">
       {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
       <div className="flex justify-between font-bold text-red-700 font-tormenta text-2xl">
-        <h2>
-          {npc.nome}
-        </h2>
+        <h2>{npc.nome}</h2>
         <h2>
           {trashHidden && (
             <IconButton
@@ -53,7 +56,7 @@ function showNPC(
                 border: "2px solid",
               }}
               icon={<Trash />}
-              onClick={() => trash(index)}
+              onClick={() => trash(npc.id)}
             />
           )}
           ND {npc.nd}
@@ -132,7 +135,21 @@ function showNPC(
           <div className="flex gap-2">
             <h1>{npc.pv}</h1>
             <h1>/</h1>
-            <input type="number" className="w-10" defaultValue={npc.pv} />
+            <input
+              type="number"
+              className="w-10"
+              defaultValue={npc.pvAtual}
+              onChange={(e) => {
+                let npcTemp = npc;
+                let npcsLocal = JSON.parse(
+                  localStorage.getItem("npcs") || "[]"
+                ) as NPCShown[];
+                npcTemp.pvAtual = Number(e.target.value);
+                npcsLocal[npcsLocal.findIndex((e) => e.id === npc.id)] =
+                  npcTemp;
+                localStorage.setItem("npcs", JSON.stringify(npcsLocal));
+              }}
+            />
           </div>
         </div>
         <h1 className="border-b-2 border-b-red-600">
@@ -144,7 +161,21 @@ function showNPC(
           <div className="flex gap-2">
             <h1>{npc.pm}</h1>
             <h1>/</h1>
-            <input type="number" className="w-10" defaultValue={npc.pm} />
+            <input
+              type="number"
+              className="w-10"
+              defaultValue={npc.pmAtual}
+              onChange={(e) => {
+                let npcTemp = npc;
+                let npcsLocal = JSON.parse(
+                  localStorage.getItem("npcs") || "[]"
+                ) as NPCShown[];
+                npcTemp.pmAtual = Number(e.target.value);
+                npcsLocal[npcsLocal.findIndex((e) => e.id === npc.id)] =
+                  npcTemp;
+                localStorage.setItem("npcs", JSON.stringify(npcsLocal));
+              }}
+            />
           </div>
         </div>
         {npc.corpoAcorpo && npc.corpoAcorpo?.length > 0 && (
@@ -287,14 +318,14 @@ function showNPC(
 export default function Mestre() {
   const { showCustomToast } = useCustomToast();
 
-  const trash = (index: number) => {
-    const npcAtual = Npcs[index];
-    const npcsFiltrados = Npcs.filter((e) => e !== npcAtual);
+  const trash = (id: number) => {
+    const npcAtual = Npcs.find((e) => e.id === id);
+    const npcsFiltrados = Npcs.filter((e) => e.id !== id);
     setNpcs(npcsFiltrados);
     localStorage.setItem("npcs", JSON.stringify(npcsFiltrados));
     showCustomToast({
       title: `NPC removido!`,
-      desc: `${npcAtual.nome}${index} foi removido da lista de NPCs!`,
+      desc: `${npcAtual?.nome} foi removido da lista de NPCs!`,
       duration: 5000,
     });
   };
@@ -386,11 +417,11 @@ export default function Mestre() {
     });
   };
 
-  const [Npcs, setNpcs] = useState<NPC[]>(
+  const [Npcs, setNpcs] = useState<NPCShown[]>(
     JSON.parse(localStorage.getItem("npcs") || "[]")
   );
   const [isOpen, setIsOpen] = useState(false);
-  const [npc, setNpc] = useState<NPC>();
+  const [npc, setNpc] = useState<NPCShown>();
   return (
     <>
       <Navbar ficha={true} back={"/"} />
@@ -401,7 +432,10 @@ export default function Mestre() {
           </div>
           <IconButton
             icon={<Plus />}
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setNpc(undefined);
+              setIsOpen(true);
+            }}
             aria-label="Add"
             rounded={"full"}
             bgColor={"red"}
@@ -418,8 +452,8 @@ export default function Mestre() {
           />
           <div className="flex flex-wrap gap-3 justify-evenly">
             {Npcs &&
-              Npcs.map((npc: NPC, index) =>
-                showNPC(npc, rolar, ataqueRoll, trash, true, index)
+              Npcs.map((npc: NPCShown) =>
+                showNPC(npc, rolar, ataqueRoll, trash, true)
               )}
           </div>
         </article>
@@ -430,9 +464,12 @@ export default function Mestre() {
           <ModalHeader>Adicionar NPC</ModalHeader>
           <ModalBody>
             <Select
-              onChange={(e) =>
-                setNpc(TabelaNPC.find((y) => y.nome === e.target.value))
-              }
+              onChange={(e) => {
+                const npcTemp =
+                  TabelaNPC.find((y) => y.nome === e.target.value) ||
+                  TabelaNPC[0];
+                setNpc({ ...npcTemp, id: Npcs.length + 1, pvAtual: npcTemp.pv, pmAtual: npcTemp.pm });
+              }}
               placeholder="Selecione o NPC"
             >
               {TabelaNPC.map((npc) => (
