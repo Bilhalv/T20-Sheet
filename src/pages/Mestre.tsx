@@ -18,7 +18,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
-import { Plus, Trash } from "lucide-react";
+import { Eraser, Plus, Trash } from "lucide-react";
 
 class NPCShown extends NPC {
   id: number = 0;
@@ -285,10 +285,10 @@ function showNPC(
           <h1 className="text-red-600 font-bold">Perícias </h1>
           <div className="flex flex-wrap gap-2">
             {npc.pericias?.map((pericia) => (
-              <a className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all"
-              onClick={
-                () => rolar(pericia.mod, pericia.nome, "Pericia")
-              }>
+              <a
+                className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all"
+                onClick={() => rolar(pericia.mod, pericia.nome, "Pericia")}
+              >
                 <h1>
                   {pericia.nome}
                   {pericia.mod > 0 ? "+" : pericia.mod < 0 ? "-" : ""}
@@ -430,34 +430,71 @@ export default function Mestre() {
   );
   const [isOpen, setIsOpen] = useState(false);
   const [npc, setNpc] = useState<NPCShown>();
+  const [quantity, setQuantity] = useState<number>(1);
   return (
     <>
       <Navbar ficha={true} back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full py-10 bg-cover">
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 mx-auto my-6 py-8 px-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto mt-[-20px] font-tormenta mb-4">
-            Gerenciador de fichas para os npcs
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto mt-[-20px] font-tormenta mb-4 flex justify-between align-middle">
+            <IconButton
+              icon={<Plus />}
+              onClick={() => {
+                setNpc(undefined);
+                setIsOpen(true);
+              }}
+              aria-label="Add"
+              rounded={"full"}
+              bgColor={"red"}
+              color={"white"}
+              size="sm"
+              _hover={{
+                color: "red",
+                transform: "scale(1.1)",
+                zIndex: 1,
+                borderColor: "red",
+                bg: "transparent",
+                border: "2px solid",
+              }}
+            />
+            <h1>Gerenciador de fichas para os npcs</h1>
+            <IconButton
+              aria-label="Clear"
+              rounded={"full"}
+              bgColor={"red"}
+              color={"white"}
+              size="sm"
+              _hover={{
+                color: "red",
+                transform: "scale(1.1)",
+                zIndex: 1,
+                borderColor: "red",
+                bg: "transparent",
+                border: "2px solid",
+              }}
+              icon={<Eraser />}
+              onClick={() => {
+                const sure = window.confirm(
+                  "Tem certeza que deseja limpar a lista de NPCs?"
+                );
+                if (!sure) {
+                  showCustomToast({
+                    status: "warning",
+                    title: `Lista de NPCs não limpa!`,
+                    desc: `A lista de NPCs não foi limpa!`,
+                  })
+                  return
+                };
+                localStorage.setItem("npcs", "[]");
+                setNpcs([]);
+                showCustomToast({
+                  status: "success",
+                  title: `Lista de NPCs limpa!`,
+                  desc: `Todos os NPCs foram removidos da lista!`,
+                });
+              }}
+            />
           </div>
-          <IconButton
-            icon={<Plus />}
-            onClick={() => {
-              setNpc(undefined);
-              setIsOpen(true);
-            }}
-            aria-label="Add"
-            rounded={"full"}
-            bgColor={"red"}
-            color={"white"}
-            size="sm"
-            _hover={{
-              color: "red",
-              transform: "scale(1.1)",
-              zIndex: 1,
-              borderColor: "red",
-              bg: "transparent",
-              border: "2px solid",
-            }}
-          />
           <div className="flex flex-wrap gap-3 justify-evenly">
             {Npcs &&
               Npcs.map((npc: NPCShown) =>
@@ -471,26 +508,40 @@ export default function Mestre() {
         <ModalContent className="font-tormenta">
           <ModalHeader>Adicionar NPC</ModalHeader>
           <ModalBody>
-            <Select
-              onChange={(e) => {
-                const npcTemp =
-                  TabelaNPC.find((y) => y.nome === e.target.value) ||
-                  TabelaNPC[0];
-                setNpc({
-                  ...npcTemp,
-                  id: Npcs.length + 1,
-                  pvAtual: npcTemp.pv,
-                  pmAtual: npcTemp.pm,
-                });
-              }}
-              placeholder="Selecione o NPC"
-            >
-              {TabelaNPC.map((npc) => (
-                <option key={npc.nome} value={npc.nome}>
-                  {npc.nome}
-                </option>
-              ))}
-            </Select>
+            <div className="flex">
+              <Select
+                w={"full"}
+                onChange={(e) => {
+                  const npcTemp =
+                    TabelaNPC.find((y) => y.nome === e.target.value) ||
+                    TabelaNPC[0];
+                  setNpc({
+                    ...npcTemp,
+                    id: Npcs.length + 1,
+                    pvAtual: npcTemp.pv,
+                    pmAtual: npcTemp.pm,
+                  });
+                }}
+                placeholder="Selecione o NPC"
+              >
+                {TabelaNPC.map((npc) => (
+                  <option key={npc.nome} value={npc.nome}>
+                    {npc.nome}
+                  </option>
+                ))}
+              </Select>
+              <Select
+                w={"25%"}
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                placeholder="qtd"
+              >
+                {[...Array(10)].map((_, idx) => (
+                  <option key={idx + 1} value={idx + 1}>
+                    {idx + 1}
+                  </option>
+                ))}
+              </Select>
+            </div>
             {npc && showNPC(npc, rolar, ataqueRoll, null, false)}
           </ModalBody>
           <ModalFooter>
@@ -498,9 +549,16 @@ export default function Mestre() {
             <ConfirmarOnModal
               onSelect={() => {
                 if (npc) {
-                  setNpcs([...Npcs, npc]);
+                  const newNpcs = Array.from({ length: quantity }, (_, i) => ({
+                    ...npc,
+                    id: Npcs.length + 1 + i,
+                  }));
+                  setNpcs([...Npcs, ...newNpcs]);
                   setIsOpen(false);
-                  localStorage.setItem("npcs", JSON.stringify([...Npcs, npc]));
+                  localStorage.setItem(
+                    "npcs",
+                    JSON.stringify([...Npcs, ...newNpcs])
+                  );
                 }
               }}
             />
