@@ -249,11 +249,12 @@ function showNPC(
           <div>
             {npc.poderes?.map((poder: poder) => (
               <div className="flex gap-2">
-                <p>
+                <p className="text-justify">
                   <b className="text-red-600">
                     {poder.nome}
-                    {poder.execucao && `(${poder.execucao})`}
+                    &nbsp;{poder.execucao && `(${poder.execucao})`}
                   </b>
+                  &nbsp;
                   {poder.descricao}
                 </p>
               </div>
@@ -284,7 +285,10 @@ function showNPC(
           <h1 className="text-red-600 font-bold">Perícias </h1>
           <div className="flex flex-wrap gap-2">
             {npc.pericias?.map((pericia) => (
-              <a className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all">
+              <a className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all"
+              onClick={
+                () => rolar(pericia.mod, pericia.nome, "Pericia")
+              }>
                 <h1>
                   {pericia.nome}
                   {pericia.mod > 0 ? "+" : pericia.mod < 0 ? "-" : ""}
@@ -307,8 +311,10 @@ function showNPC(
           </div>
         )}
         <div className="flex gap-2">
-          <h1 className="text-red-600 font-bold">Tesouro: </h1>
-          <p>{npc.tesouro}</p>
+          <p className="text-justify">
+            <b className="text-red-600">Tesouro </b>
+            {npc.tesouro}
+          </p>
         </div>
       </div>
     </div>
@@ -410,7 +416,9 @@ export default function Mestre() {
         });
         showCustomToast({
           title: `Rolado!`,
-          desc: `${nome}: ${acerto.total} (${acerto.dados[0]}+${mod}) e ${dano.total} (${dano.dados}+${modDano})`,
+          desc: `${nome}: ${acerto.total} (${acerto.dados[0]}+${mod}) e ${
+            dano.total
+          } (${dano.dados.join("+")}+${modDano})`,
           duration: 5000,
         });
       },
@@ -468,7 +476,12 @@ export default function Mestre() {
                 const npcTemp =
                   TabelaNPC.find((y) => y.nome === e.target.value) ||
                   TabelaNPC[0];
-                setNpc({ ...npcTemp, id: Npcs.length + 1, pvAtual: npcTemp.pv, pmAtual: npcTemp.pm });
+                setNpc({
+                  ...npcTemp,
+                  id: Npcs.length + 1,
+                  pvAtual: npcTemp.pv,
+                  pmAtual: npcTemp.pm,
+                });
               }}
               placeholder="Selecione o NPC"
             >

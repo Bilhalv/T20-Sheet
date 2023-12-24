@@ -57,4 +57,63 @@ export const TabelaNPC: NPC[] = [
       car: -2,
     },
   },
+  {
+    nome: "Aranha Gigante",
+    img: "https://i.imgur.com/CboTNdm.png",
+    tipo: "Solo",
+    raca: "Monstro",
+    tamanho: "Grande",
+    iniciativa: 7,
+    percepcao: 3,
+    defesa: 19,
+    fort: 8,
+    ref: 11,
+    von: 3,
+    pv: 77,
+    deslocamento: 12,
+    pm: 0,
+    corpoAcorpo: [
+      {
+        nome: "Mordida",
+        crit: "20/x2",
+        dano: "2d6",
+        mod: 12,
+        modDano: 8,
+        tipo: "Perfuração",
+      },
+    ],
+    poderes: [
+      {
+        nome: "Veneno",
+        descricao: "Condição Fraco (Fort CD 18 evita).",
+      },
+      {
+        nome: "Visão no Escuro",
+        descricao:
+          "A criatura enxerga em escuridão total em alcance curto (exceto mágica). Ela ignora camuflagem total por esse tipo de escuridão.",
+      },
+      {
+        nome: "Escalada",
+        descricao:
+          "A aranha tem velocidade de escalada igual a sua velocidade de deslocamento.",
+      }
+    ],
+    equipamentos: [],
+    nd: "2",
+    pericias: [
+      {
+        nome: "Furtividade",
+        mod: 9,
+      },
+    ],
+    tesouro: "1d4 doses de veneno de aranha gigante (CD 17 para extrair, T$ 45 cada dose).",
+    atributos: {
+      for: 5,
+      des: 4,
+      con: 1,
+      int: -5,
+      sab: 0,
+      car: -4,
+    },
+  },
 ];

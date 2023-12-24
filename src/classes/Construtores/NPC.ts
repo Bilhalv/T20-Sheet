@@ -16,6 +16,7 @@ export class ataque {
   mod: number;
   crit: string;
   modDano: number;
+  desc?: string;
   constructor(
     nome: string,
     tipo: string,
@@ -90,7 +91,7 @@ export default class NPC {
   poderes?: poder[];
   magias?: Magia[];
   pericias: pericia[];
-  tesouro: "Nenhum" | "Padrão" | "Dobro" | "Metade";
+  tesouro: "Nenhum" | "Padrão" | "Dobro" | "Metade" | string;
   equipamentos: string[];
   atributos: atributos;
   constructor(
