@@ -96,7 +96,7 @@ export const TabelaNPC: NPC[] = [
         nome: "Escalada",
         descricao:
           "A aranha tem velocidade de escalada igual a sua velocidade de deslocamento.",
-      }
+      },
     ],
     equipamentos: [],
     nd: "2",
@@ -106,7 +106,8 @@ export const TabelaNPC: NPC[] = [
         mod: 9,
       },
     ],
-    tesouro: "1d4 doses de veneno de aranha gigante (CD 17 para extrair, T$ 45 cada dose).",
+    tesouro:
+      "1d4 doses de veneno de aranha gigante (CD 17 para extrair, T$ 45 cada dose).",
     atributos: {
       for: 5,
       des: 4,
@@ -116,4 +117,122 @@ export const TabelaNPC: NPC[] = [
       car: -4,
     },
   },
+  {
+    nome: "Chefe Bandido",
+    img: "https://i.imgur.com/OqQmcQQ.png",
+    tipo: "Solo",
+    raca: "Humano",
+    tamanho: "Médio",
+    iniciativa: 4,
+    percepcao: 2,
+    defesa: 16,
+    fort: 5,
+    ref: 8,
+    von: 3,
+    pv: 30,
+    deslocamento: 9,
+    pm: 0,
+    corpoAcorpo: [
+      {
+        nome: "Espada Curta",
+        crit: "19/x2",
+        dano: "1d6",
+        mod: 9,
+        modDano: 5,
+        tipo: "Corte",
+      },
+      {
+        nome: "Adaga",
+        crit: "19/x2",
+        dano: "1d4",
+        mod: 7,
+        modDano: 3,
+        tipo: "Perfuração",
+      },
+    ],
+    poderes: [
+      {
+        nome: "Ataque Furtivo +2d6",
+        descricao:
+          "Uma vez por rodada, o chefe bandido causa +2d6 pontos de dano com ataques corpo a corpo, ou à distância em alcance curto, contra alvos desprevenidos ou que esteja flanqueando",
+      },
+    ],
+    equipamentos: ["Espada Curta", "Adaga"],
+    nd: "1",
+    pericias: [
+      {
+        nome: "Furtividade",
+        mod: 7,
+      },
+      {
+        nome: "Intimidação",
+        mod: 6,
+      },
+    ],
+    tesouro: "Padrão",
+    atributos: {
+      for: 3,
+      des: 2,
+      con: 2,
+      int: 0,
+      sab: 0,
+      car: 1,
+    },
+    distancia: [
+      {
+        nome: "Adaga",
+        crit: "19/x2",
+        dano: "1d4",
+        mod: 7,
+        modDano: 3,
+        tipo: "Perfuração",
+        alcance: "Curto",
+      },
+    ],
+  },
+  {
+    nome: "Bandido",
+    img: "https://i.imgur.com/fKCM5CE.png",
+    tipo: "Lacaio",
+    raca: "Humano",
+    tamanho: "Médio",
+    iniciativa: 4,
+    percepcao: 1,
+    defesa: 13,
+    fort: 1,
+    ref: 3,
+    von: -1,
+    pv: 6,
+    deslocamento: 9,
+    pm: 0,
+    corpoAcorpo: [
+      {
+        nome: "Clava",
+        crit: "20/x2",
+        dano: "1d6",
+        mod: 3,
+        modDano: 3,
+        tipo: "Impacto",
+
+      },
+    ],
+    atributos:{
+      for: 1,
+      des: 2,
+      con: 1,
+      int: 0,
+      sab: -1,
+      car: 0,
+    },
+    poderes: [],
+    equipamentos: ["Clava"],
+    nd: "1/4",
+    pericias: [
+      {
+        nome: "Furtividade",
+        mod: 5,
+      },
+    ],
+    tesouro: "Metade",
+  }
 ];

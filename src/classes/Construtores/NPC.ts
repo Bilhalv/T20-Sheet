@@ -17,6 +17,7 @@ export class ataque {
   crit: string;
   modDano: number;
   desc?: string;
+  alcance?: string;
   constructor(
     nome: string,
     tipo: string,

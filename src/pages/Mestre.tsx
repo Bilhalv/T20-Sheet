@@ -34,7 +34,7 @@ function showNPC(
   trashHidden: boolean
 ) {
   return (
-    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px]">
+    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
       {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
       <div className="flex justify-between font-bold text-red-700 font-tormenta text-2xl">
         <h2>{npc.nome}</h2>
@@ -73,7 +73,7 @@ function showNPC(
           >
             <h1>
               <b className="text-red-600">Iniciativa </b>
-              {npc.iniciativa > 0 ? "+" : npc.iniciativa < 0 ? "-" : ""}
+              {npc.iniciativa > 0 && "+"}
               {npc.iniciativa}
             </h1>
           </a>
@@ -83,7 +83,7 @@ function showNPC(
           >
             <h1>
               <b className="text-red-600">Percepção </b>
-              {npc.percepcao > 0 ? "+" : npc.percepcao < 0 ? "-" : ""}
+              {npc.percepcao > 0 && "+"}
               {npc.percepcao}
             </h1>
           </a>
@@ -99,7 +99,7 @@ function showNPC(
           >
             <h1>
               <b className="text-red-600">Fort </b>
-              {npc.fort > 0 ? "+" : npc.fort < 0 ? "-" : ""}
+              {npc.fort > 0 && "+"}
               {npc.fort}
             </h1>
           </a>
@@ -110,7 +110,7 @@ function showNPC(
           >
             <h1>
               <b className="text-red-600">Ref </b>
-              {npc.ref > 0 ? "+" : npc.ref < 0 ? "-" : ""}
+              {npc.ref > 0 && "+"}
               {npc.ref}
             </h1>
           </a>
@@ -121,7 +121,7 @@ function showNPC(
           >
             <h1>
               <b className="text-red-600">Von </b>
-              {npc.von > 0 ? "+" : npc.von < 0 ? "-" : ""}
+              {npc.von > 0 && "+"}
               {npc.von}
             </h1>
           </a>
@@ -156,34 +156,36 @@ function showNPC(
           <b className="text-red-600">Deslocamento </b>
           {npc.deslocamento}m ({npc.deslocamento / 1.5}▢)
         </h1>
-        <div className="flex gap-2">
-          <h1 className="text-red-600 font-bold">Pontos de Mana</h1>
+        {npc.pm > 0 && (
           <div className="flex gap-2">
-            <h1>{npc.pm}</h1>
-            <h1>/</h1>
-            <input
-              type="number"
-              className="w-10"
-              defaultValue={npc.pmAtual}
-              onChange={(e) => {
-                let npcTemp = npc;
-                let npcsLocal = JSON.parse(
-                  localStorage.getItem("npcs") || "[]"
-                ) as NPCShown[];
-                npcTemp.pmAtual = Number(e.target.value);
-                npcsLocal[npcsLocal.findIndex((e) => e.id === npc.id)] =
-                  npcTemp;
-                localStorage.setItem("npcs", JSON.stringify(npcsLocal));
-              }}
-            />
+            <h1 className="text-red-600 font-bold">Pontos de Mana</h1>
+            <div className="flex gap-2">
+              <h1>{npc.pm}</h1>
+              <h1>/</h1>
+              <input
+                type="number"
+                className="w-10"
+                defaultValue={npc.pmAtual}
+                onChange={(e) => {
+                  let npcTemp = npc;
+                  let npcsLocal = JSON.parse(
+                    localStorage.getItem("npcs") || "[]"
+                  ) as NPCShown[];
+                  npcTemp.pmAtual = Number(e.target.value);
+                  npcsLocal[npcsLocal.findIndex((e) => e.id === npc.id)] =
+                    npcTemp;
+                  localStorage.setItem("npcs", JSON.stringify(npcsLocal));
+                }}
+              />
+            </div>
           </div>
-        </div>
+        )}
         {npc.corpoAcorpo && npc.corpoAcorpo?.length > 0 && (
           <div className="flex gap-2">
-            <h1 className="text-red-600 font-bold">Corpo a Corpo </h1>
-            <div>
+            <div className="flex flex-col">
+              <h1 className="text-red-600 font-bold">Corpo a Corpo </h1>
               {npc.corpoAcorpo?.map((arma: ataque) => (
-                <div className="flex gap-2">
+                <div className="flex gap-2 ml-4">
                   <a
                     className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all text-red-700 font-bold"
                     onClick={() =>
@@ -199,7 +201,7 @@ function showNPC(
                     {arma.nome}{" "}
                   </a>
                   <p>
-                    {arma.mod > 0 ? "+" : arma.mod < 0 ? "-" : ""}
+                    {arma.mod > 0 && "+"}
                     {arma.mod}
                   </p>
                   <p>
@@ -212,15 +214,15 @@ function showNPC(
         )}
         {npc.distancia && npc.distancia?.length > 0 && (
           <div className="flex gap-2">
-            <h1 className="text-red-600 font-bold">Distância </h1>
-            <div>
+            <div className="flex flex-col">
+              <h1 className="text-red-600 font-bold">Distância </h1>
               {npc.distancia?.map((arma: ataque) => (
-                <div className="flex gap-2">
+                <div className="flex gap-2 ml-4">
                   <a className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all text-red-700 font-bold">
                     {arma.nome}{" "}
                   </a>
                   <p>
-                    {arma.mod > 0 ? "+" : arma.mod < 0 ? "-" : ""}
+                    {arma.mod > 0 && "+"}
                     {arma.mod}
                   </p>
                   <p>
@@ -277,7 +279,10 @@ function showNPC(
               <h1 className="text-red-600 font-bold">
                 {atributo.nome.substring(0, 3).toUpperCase()}
               </h1>
-              <h1>{atributo.valor}</h1>
+              <h1>
+                {atributo.valor > 0 && "+"}
+                {atributo.valor}
+              </h1>
             </a>
           ))}
         </div>
@@ -291,7 +296,7 @@ function showNPC(
               >
                 <h1>
                   {pericia.nome}
-                  {pericia.mod > 0 ? "+" : pericia.mod < 0 ? "-" : ""}
+                  {pericia.mod > 0 && "+"}
                   {pericia.mod}
                 </h1>
               </a>
@@ -482,9 +487,9 @@ export default function Mestre() {
                     status: "warning",
                     title: `Lista de NPCs não limpa!`,
                     desc: `A lista de NPCs não foi limpa!`,
-                  })
-                  return
-                };
+                  });
+                  return;
+                }
                 localStorage.setItem("npcs", "[]");
                 setNpcs([]);
                 showCustomToast({
