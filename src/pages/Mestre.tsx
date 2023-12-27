@@ -16,14 +16,17 @@ import {
   ModalFooter,
   IconButton,
   Select,
+  Tooltip,
 } from "@chakra-ui/react";
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
 import { Check, Eraser, Plus, Trash } from "lucide-react";
+import { TesouroTabela } from "../classes/Tabelas/Tesouro";
 
 class NPCShown extends NPC {
   id: number = 0;
   pvAtual?: number = 0;
   pmAtual?: number = 0;
+  tesouroFinal: string[] = [];
 }
 
 function ShowNPC(
@@ -68,7 +71,15 @@ function ShowNPC(
               }}
             />
           )}
-          ND {npc.nd}
+          <Tooltip
+            label={<p>
+              Item: {npc.tesouroFinal[0]}<br/>
+              Dinheiro: {npc.tesouroFinal[1]}
+            </p>}
+            aria-label="A tooltip"
+          >
+            <p>ND {npc.nd}</p>
+          </Tooltip>
         </h2>
       </div>
       <h1 className="italic text-sm w-full border-b-2 border-b-red-600 text-gray-600">
@@ -540,11 +551,23 @@ export default function Mestre() {
                   const npcTemp =
                     TabelaNPC.find((y) => y.nome === e.target.value) ||
                     TabelaNPC[0];
+                  const [roll1, roll2] = RolarDado({
+                    lados: 100,
+                    qtd: 2,
+                    mod: 0,
+                  }).dados;
+                  const itens =
+                    TesouroTabela.find((e) => e.nd === npcTemp.nd)
+                      ?.tabelaItem.find((e)=> e.min < roll1 && e.max > roll1)?.value || "Nenhum";
+                  const dinheiro =
+                    TesouroTabela.find((e) => e.nd === npcTemp.nd)
+                      ?.tabelaDinheiro.find((e)=> e.min < roll2 && e.max > roll2)?.value || "Nenhum";
                   setNpc({
                     ...npcTemp,
                     id: Npcs.length + 1,
                     pvAtual: npcTemp.pv,
                     pmAtual: npcTemp.pm,
+                    tesouroFinal: [itens, dinheiro],
                   });
                 }}
                 placeholder="Selecione o NPC"
