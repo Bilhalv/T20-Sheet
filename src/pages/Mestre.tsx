@@ -54,7 +54,7 @@ function ShowNPC(
   rolar: any,
   ataqueRoll: any,
   trash: any,
-  trashHidden: boolean,
+  isNotModal: boolean,
   teasureReroll: any,
   statusChange: any,
   handleMove: any,
@@ -62,57 +62,59 @@ function ShowNPC(
 ) {
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
-      <div className="flex justify-between mb-[-40px] w-full">
-        <IconButton
-          isDisabled={
-            JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
-              (e: NPCShown) => {
-                return e.id === npc.id;
-              }
-            ) === 0
-          }
-          aria-label="Up"
-          rounded={"full"}
-          bgColor={"red"}
-          color={"white"}
-          size="sm"
-          _hover={{
-            color: "red",
-            transform: "scale(1.1)",
-            zIndex: 1,
-            borderColor: "red",
-            bg: "transparent",
-            border: "2px solid",
-          }}
-          icon={<ArrowLeft />}
-          onClick={() => handleMove(npc.id, "up")}
-        />
-        <IconButton
-          isDisabled={
-            JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
-              (e: NPCShown) => {
-                return e.id === npc.id;
-              }
-            ) ===
-            JSON.parse(localStorage.getItem("npcs") || "[]").length - 1
-          }
-          aria-label="Down"
-          rounded={"full"}
-          bgColor={"red"}
-          color={"white"}
-          size="sm"
-          _hover={{
-            color: "red",
-            transform: "scale(1.1)",
-            zIndex: 1,
-            borderColor: "red",
-            bg: "transparent",
-            border: "2px solid",
-          }}
-          icon={<ArrowRight />}
-          onClick={() => handleMove(npc.id, "down")}
-        />
-      </div>
+      {isNotModal && (
+        <div className="flex justify-between mb-[-40px] w-full">
+          <IconButton
+            isDisabled={
+              JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
+                (e: NPCShown) => {
+                  return e.id === npc.id;
+                }
+              ) === 0
+            }
+            aria-label="Up"
+            rounded={"full"}
+            bgColor={"red"}
+            color={"white"}
+            size="sm"
+            _hover={{
+              color: "red",
+              transform: "scale(1.1)",
+              zIndex: 1,
+              borderColor: "red",
+              bg: "transparent",
+              border: "2px solid",
+            }}
+            icon={<ArrowLeft />}
+            onClick={() => handleMove(npc.id, "up")}
+          />
+          <IconButton
+            isDisabled={
+              JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
+                (e: NPCShown) => {
+                  return e.id === npc.id;
+                }
+              ) ===
+              JSON.parse(localStorage.getItem("npcs") || "[]").length - 1
+            }
+            aria-label="Down"
+            rounded={"full"}
+            bgColor={"red"}
+            color={"white"}
+            size="sm"
+            _hover={{
+              color: "red",
+              transform: "scale(1.1)",
+              zIndex: 1,
+              borderColor: "red",
+              bg: "transparent",
+              border: "2px solid",
+            }}
+            icon={<ArrowRight />}
+            onClick={() => handleMove(npc.id, "down")}
+          />
+        </div>
+      )}
       {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
       <div className="flex flex-col gap-2">
         <Popover>
@@ -211,7 +213,7 @@ function ShowNPC(
       <div className="flex justify-between font-bold text-red-700 font-tormenta text-2xl">
         <h2>{npc.nome}</h2>
         <h2>
-          {trashHidden && (
+          {isNotModal && (
             <IconButton
               aria-label="Trash"
               rounded={"full"}
