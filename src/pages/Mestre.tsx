@@ -6,7 +6,7 @@ import useCustomToast from "../components/Geral/Toasted";
 import addHistorico from "../components/Geral/addHistorico";
 import { RolarDado } from "../components/Geral/RolarDado";
 import { Dado } from "../classes/Construtores/Dado";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -35,6 +35,7 @@ function ShowNPC(
   ataqueRoll: any,
   trash: any,
   trashHidden: boolean,
+  teasureReroll: any,
   willDelete?: { will: boolean; id: number }
 ) {
   return (
@@ -71,20 +72,14 @@ function ShowNPC(
               }}
             />
           )}
-          <Tooltip
-            label={<p>
-              Item: {npc.tesouroFinal[0]}<br/>
-              Dinheiro: {npc.tesouroFinal[1]}
-            </p>}
-            aria-label="A tooltip"
-          >
-            <p>ND {npc.nd}</p>
-          </Tooltip>
+          ND {npc.nd}
         </h2>
       </div>
-      <h1 className="italic text-sm w-full border-b-2 border-b-red-600 text-gray-600">
-        {npc.raca} {npc.tamanho} ({npc.tipo})
-      </h1>
+      <div className="italic text-sm w-full border-b-2 border-b-red-600 text-gray-600">
+        <h1>
+          {npc.raca} {npc.tamanho} ({npc.tipo})
+        </h1>
+      </div>
       <div className="text-sm">
         <div className="flex gap-3">
           <a
@@ -337,8 +332,35 @@ function ShowNPC(
         )}
         <div className="flex gap-2">
           <p className="text-justify">
-            <b className="text-red-600">Tesouro </b>
-            {npc.tesouro}
+            {!npc.tesouroFinal.includes("") ? (
+              <>
+                <a
+                  onClick={() => teasureReroll(npc)}
+                  className="hover:bg-red-600 hover:bg-opacity-10 hover:cursor-pointer hover:select-none transition-all text-red-600 font-bold mr-1"
+                >
+                  Tesouro
+                </a>{" "}
+                {!(npc.tesouroFinal[0] === "Nenhum" &&
+                npc.tesouroFinal[1] === "Nenhum") ? (
+                  <>
+                    {npc.tesouroFinal[0] !== "Nenhum" && (
+                      <>Itens: {npc.tesouroFinal[0]}</>
+                    )}
+                    {!npc.tesouroFinal.includes("Nenhum") && " | "}
+                    {npc.tesouroFinal[1] !== "Nenhum" && (
+                      <>Dinheiro: {npc.tesouroFinal[1]}</>
+                    )}
+                  </>
+                ) : (
+                  <>Nenhum</>
+                )}
+              </>
+            ) : (
+              <>
+                <b className="text-red-600">Tesouro </b>
+                {npc.tesouro}
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -387,7 +409,6 @@ export default function Mestre() {
       title: `Rolando...`,
       desc: `${nome} = ${e}`,
       status: "loading",
-      duration: 1000,
       onCloseComplete() {
         addHistorico({
           dado: rolagem,
@@ -438,7 +459,6 @@ export default function Mestre() {
       title: `Rolando...`,
       desc: `${nome} = ${mod}`,
       status: "loading",
-      duration: 1000,
       onCloseComplete() {
         addHistorico({
           dado: rolagem,
@@ -464,6 +484,54 @@ export default function Mestre() {
     will: false,
     id: -1,
   });
+  const reRollTesouro = (npc: NPCShown) => {
+    let npcTemp = npc;
+    const [roll1, roll2] = RolarDado({
+      lados: 100,
+      qtd: 2,
+      mod: 0,
+    }).dados;
+    let itens =
+      TesouroTabela.find((e) => e.nd === npc.nd)?.tabelaItem.find(
+        (e) => e.min < roll1 && e.max > roll1
+      )?.value || "Nenhum";
+    let dinheiro =
+      TesouroTabela.find((e) => e.nd === npc.nd)?.tabelaDinheiro.find(
+        (e) => e.min < roll2 && e.max > roll2
+      )?.value || "Nenhum";
+    if (npc.tesouro === "Dobro") {
+      const [roll3, roll4] = RolarDado({
+        lados: 100,
+        qtd: 2,
+        mod: 0,
+      }).dados;
+      itens +=
+        TesouroTabela.find((e) => e.nd === npc.nd)?.tabelaItem.find(
+          (e) => e.min < roll3 && e.max > roll3
+        )?.value || "Nenhum";
+      dinheiro +=
+        TesouroTabela.find((e) => e.nd === npc.nd)?.tabelaDinheiro.find(
+          (e) => e.min < roll4 && e.max > roll4
+        )?.value || "Nenhum";
+    }
+    showCustomToast({
+      title: `Rolando...`,
+      desc: `Rerolando tesouro de ${npc.nome}(${npc.id})`,
+      status: "loading",
+      onCloseComplete() {
+        showCustomToast({
+          title: `Rolado!`,
+          desc: `Resultado: Itens: ${itens} e Dinheiro: ${dinheiro}`,
+          duration: 5000,
+        });
+      },
+    });
+    npcTemp.tesouroFinal = [itens, dinheiro];
+    const npcsLocal = JSON.parse(localStorage.getItem("npcs") || "[]");
+    npcsLocal[npcsLocal.findIndex((e:NPCShown) => e.id === npc.id)] = npcTemp;
+    localStorage.setItem("npcs", JSON.stringify(npcsLocal));
+    setNpcs(npcsLocal);
+  };
   return (
     <>
       <Navbar ficha={true} back={"/"} />
@@ -533,7 +601,15 @@ export default function Mestre() {
           {Npcs && (
             <div className="flex flex-wrap gap-3 justify-evenly mt-4">
               {Npcs.map((npc: NPCShown) =>
-                ShowNPC(npc, rolar, ataqueRoll, trash, true, willDelete)
+                ShowNPC(
+                  npc,
+                  rolar,
+                  ataqueRoll,
+                  trash,
+                  true,
+                  reRollTesouro,
+                  willDelete
+                )
               )}
             </div>
           )}
@@ -551,17 +627,59 @@ export default function Mestre() {
                   const npcTemp =
                     TabelaNPC.find((y) => y.nome === e.target.value) ||
                     TabelaNPC[0];
-                  const [roll1, roll2] = RolarDado({
-                    lados: 100,
-                    qtd: 2,
-                    mod: 0,
-                  }).dados;
-                  const itens =
-                    TesouroTabela.find((e) => e.nd === npcTemp.nd)
-                      ?.tabelaItem.find((e)=> e.min < roll1 && e.max > roll1)?.value || "Nenhum";
-                  const dinheiro =
-                    TesouroTabela.find((e) => e.nd === npcTemp.nd)
-                      ?.tabelaDinheiro.find((e)=> e.min < roll2 && e.max > roll2)?.value || "Nenhum";
+                  let itens = "";
+                  let dinheiro = "";
+                  if (
+                    npcTemp.tesouro === "Padrão" ||
+                    npcTemp.tesouro === "Metade"
+                  ) {
+                    const [roll1, roll2] = RolarDado({
+                      lados: 100,
+                      qtd: 2,
+                      mod: 0,
+                    }).dados;
+                    dinheiro =
+                      TesouroTabela.find(
+                        (e) => e.nd === npcTemp.nd
+                      )?.tabelaDinheiro.find(
+                        (e) => e.min < roll2 && e.max > roll2
+                      )?.value || "Nenhum";
+                    itens =
+                      TesouroTabela.find(
+                        (e) => e.nd === npcTemp.nd
+                      )?.tabelaItem.find((e) => e.min < roll1 && e.max > roll1)
+                        ?.value || "Nenhum";
+                  } else if (npcTemp.tesouro === "Dobro") {
+                    const [roll1, roll2, roll3, roll4] = RolarDado({
+                      lados: 100,
+                      qtd: 4,
+                      mod: 0,
+                    }).dados;
+                    dinheiro =
+                      TesouroTabela.find(
+                        (e) => e.nd === npcTemp.nd
+                      )?.tabelaDinheiro.find(
+                        (e) => e.min < roll2 && e.max > roll2
+                      )?.value || "Nenhum";
+                    itens =
+                      TesouroTabela.find(
+                        (e) => e.nd === npcTemp.nd
+                      )?.tabelaItem.find((e) => e.min < roll1 && e.max > roll1)
+                        ?.value || "Nenhum";
+                    itens += " e ";
+                    dinheiro += " e ";
+                    dinheiro +=
+                      TesouroTabela.find(
+                        (e) => e.nd === npcTemp.nd
+                      )?.tabelaDinheiro.find(
+                        (e) => e.min < roll4 && e.max > roll4
+                      )?.value || "Nenhum";
+                    itens +=
+                      TesouroTabela.find(
+                        (e) => e.nd === npcTemp.nd
+                      )?.tabelaItem.find((e) => e.min < roll3 && e.max > roll3)
+                        ?.value || "Nenhum";
+                  }
                   setNpc({
                     ...npcTemp,
                     id: Npcs.length + 1,
@@ -590,7 +708,7 @@ export default function Mestre() {
                 ))}
               </Select>
             </div>
-            {npc && ShowNPC(npc, rolar, ataqueRoll, null, false)}
+            {npc && ShowNPC(npc, rolar, ataqueRoll, null, false, reRollTesouro)}
           </ModalBody>
           <ModalFooter>
             <FecharOnModal onClose={() => setIsOpen(false)} />
