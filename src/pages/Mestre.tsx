@@ -89,6 +89,19 @@ function ShowNPC(
             onClick={() => handleMove(npc.id, "up")}
           />
           <IconButton
+            aria-label="id"
+            className="font-tormenta"
+            zIndex={10}
+            rounded={"full"}
+            bgColor={"red"}
+            color={"white"}
+            size="sm"
+            _hover={{
+              cursor: "default",
+            }}
+            icon={<p>{npc.id}</p>}
+          />
+          <IconButton
             isDisabled={
               JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
                 (e: NPCShown) => {
