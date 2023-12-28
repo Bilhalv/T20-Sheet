@@ -17,6 +17,15 @@ import {
   IconButton,
   Select,
   Tooltip,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverHeader,
+  Input,
+  Button,
 } from "@chakra-ui/react";
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
 import { Check, Eraser, Plus, Trash } from "lucide-react";
@@ -36,6 +45,7 @@ function ShowNPC(
   trash: any,
   trashHidden: boolean,
   teasureReroll: any,
+  statusChange: any,
   willDelete?: { will: boolean; id: number }
 ) {
   return (
@@ -147,24 +157,46 @@ function ShowNPC(
         </h1>
         <div className="flex gap-2">
           <h1 className="text-red-600 font-bold">Pontos de vida</h1>
-          <div className="flex gap-2">
-            <h1>{npc.pv}</h1>
-            <h1>/</h1>
-            <input
-              type="number"
-              className="w-10"
-              defaultValue={npc.pvAtual}
-              onChange={(e) => {
-                let npcTemp = npc;
-                let npcsLocal = JSON.parse(
-                  localStorage.getItem("npcs") || "[]"
-                ) as NPCShown[];
-                npcTemp.pvAtual = Number(e.target.value);
-                npcsLocal[npcsLocal.findIndex((e) => e.id === npc.id)] =
-                  npcTemp;
-                localStorage.setItem("npcs", JSON.stringify(npcsLocal));
-              }}
-            />
+          <div>
+            <Popover>
+              <PopoverTrigger>
+                <a className="italic hover:cursor-pointer hover:bg-red-600 hover:bg-opacity-10 transition-all">
+                  {npc.pv} / <b>{npc.pvAtual}</b>
+                </a>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>Alterando Vida atual</PopoverHeader>
+                <PopoverBody>
+                  <form
+                    className="flex gap-2"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const form = e.target as HTMLFormElement;
+                      const inputValue = (form.elements[0] as HTMLInputElement)
+                        .value;
+                      statusChange(npc.id, "PV", inputValue);
+                    }}
+                  >
+                    <Input
+                      className="w-full"
+                      defaultValue={npc.pvAtual}
+                      autoFocus
+                    />
+                    <Button
+                      className="w-full"
+                      type="submit"
+                      aria-label="Confirmar"
+                      bgColor={"red"}
+                      color={"white"}
+                    >
+                      Confirmar
+                    </Button>
+                  </form>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
         <h1 className="border-b-2 border-b-red-600">
@@ -174,24 +206,37 @@ function ShowNPC(
         {npc.pm > 0 && (
           <div className="flex gap-2">
             <h1 className="text-red-600 font-bold">Pontos de Mana</h1>
-            <div className="flex gap-2">
-              <h1>{npc.pm}</h1>
-              <h1>/</h1>
-              <input
-                type="number"
-                className="w-10"
-                defaultValue={npc.pmAtual}
-                onChange={(e) => {
-                  let npcTemp = npc;
-                  let npcsLocal = JSON.parse(
-                    localStorage.getItem("npcs") || "[]"
-                  ) as NPCShown[];
-                  npcTemp.pmAtual = Number(e.target.value);
-                  npcsLocal[npcsLocal.findIndex((e) => e.id === npc.id)] =
-                    npcTemp;
-                  localStorage.setItem("npcs", JSON.stringify(npcsLocal));
-                }}
-              />
+            <div>
+              <Popover>
+                <PopoverTrigger>
+                  <a className="italic hover:cursor-pointer hover:bg-red-600 hover:bg-opacity-10 transition-all">
+                    {npc.pm} / <b>{npc.pmAtual}</b>
+                  </a>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverCloseButton />
+                  <PopoverHeader>Alterando Mana atual</PopoverHeader>
+                  <PopoverBody>
+                    <form
+                      className="flex gap-2"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const form = e.target as HTMLFormElement;
+                        const inputValue = (
+                          form.elements[0] as HTMLInputElement
+                        ).value;
+                        statusChange(npc.id, "PM", inputValue);
+                      }}
+                    >
+                      <Input defaultValue={npc.pmAtual} autoFocus />
+                      <Button type="submit" aria-label="Confirmar">
+                        Confirmar
+                      </Button>
+                    </form>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
         )}
@@ -340,8 +385,10 @@ function ShowNPC(
                 >
                   Tesouro
                 </a>{" "}
-                {!(npc.tesouroFinal[0] === "Nenhum" &&
-                npc.tesouroFinal[1] === "Nenhum") ? (
+                {!(
+                  npc.tesouroFinal[0] === "Nenhum" &&
+                  npc.tesouroFinal[1] === "Nenhum"
+                ) ? (
                   <>
                     {npc.tesouroFinal[0] !== "Nenhum" && (
                       <>Itens: {npc.tesouroFinal[0]}</>
@@ -528,10 +575,37 @@ export default function Mestre() {
     });
     npcTemp.tesouroFinal = [itens, dinheiro];
     const npcsLocal = JSON.parse(localStorage.getItem("npcs") || "[]");
-    npcsLocal[npcsLocal.findIndex((e:NPCShown) => e.id === npc.id)] = npcTemp;
+    npcsLocal[npcsLocal.findIndex((e: NPCShown) => e.id === npc.id)] = npcTemp;
     localStorage.setItem("npcs", JSON.stringify(npcsLocal));
     setNpcs(npcsLocal);
   };
+
+  const alterarStatus = (id: number, status: "PV" | "PM", toChange: string) => {
+    const npcAtual = Npcs.find((e) => e.id === id) || Npcs[0];
+    let numFinal = Number(toChange);
+    if (status === "PV") {
+      if (toChange.indexOf("+") > -1) {
+        numFinal = (npcAtual.pvAtual || 0) + Number(toChange.replace("+", ""));
+      } else if (toChange.indexOf("-") > -1) {
+        numFinal = (npcAtual.pvAtual || 0) - Number(toChange.replace("-", ""));
+      }
+      npcAtual.pvAtual = numFinal;
+    } else {
+      if (toChange.indexOf("+") > -1) {
+        numFinal = (npcAtual.pmAtual || 0) + Number(toChange.replace("+", ""));
+      } else if (toChange.indexOf("-") > -1) {
+        numFinal = (npcAtual.pmAtual || 0) - Number(toChange.replace("-", ""));
+      }
+      npcAtual.pmAtual = numFinal;
+    }
+
+    const npcsLocal = JSON.parse(localStorage.getItem("npcs") || "[]");
+    npcsLocal[npcsLocal.findIndex((e: NPCShown) => e.id === npcAtual.id)] =
+      npcAtual;
+    localStorage.setItem("npcs", JSON.stringify(npcsLocal));
+    setNpcs(npcsLocal);
+  };
+
   return (
     <>
       <Navbar ficha={true} back={"/"} />
@@ -608,6 +682,7 @@ export default function Mestre() {
                   trash,
                   true,
                   reRollTesouro,
+                  alterarStatus,
                   willDelete
                 )
               )}
@@ -708,7 +783,16 @@ export default function Mestre() {
                 ))}
               </Select>
             </div>
-            {npc && ShowNPC(npc, rolar, ataqueRoll, null, false, reRollTesouro)}
+            {npc &&
+              ShowNPC(
+                npc,
+                rolar,
+                ataqueRoll,
+                null,
+                false,
+                reRollTesouro,
+                alterarStatus
+              )}
           </ModalBody>
           <ModalFooter>
             <FecharOnModal onClose={() => setIsOpen(false)} />
