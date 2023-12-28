@@ -51,6 +51,100 @@ function ShowNPC(
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
       {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
+      <div className="flex flex-col gap-2">
+        <Popover>
+          <PopoverTrigger>
+            <div className="bg-red-200 rounded-lg h-5 hover:transform hover:scale-95 hover:cursor-pointer transition-all">
+              <div
+                style={{
+                  width: `${Math.floor(((npc.pvAtual || 0) * 100) / npc.pv)}%`,
+                }}
+                className={
+                  "bg-red-600 h-5 rounded-lg transition-all text-center"
+                }
+              ></div>
+              <p className="text-center mt-[-23px] text-white font-tormenta">
+                {npc.pv} / {npc.pvAtual}
+              </p>
+            </div>
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Alterando Vida atual</PopoverHeader>
+            <PopoverBody>
+              <form
+                className="flex gap-2"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const inputValue = (form.elements[0] as HTMLInputElement)
+                    .value;
+                  statusChange(npc.id, "PV", inputValue);
+                }}
+              >
+                <Input
+                  className="w-full"
+                  defaultValue={npc.pvAtual}
+                  autoFocus
+                />
+                <Button
+                  className="w-full"
+                  type="submit"
+                  aria-label="Confirmar"
+                  bgColor={"red"}
+                  color={"white"}
+                >
+                  Confirmar
+                </Button>
+              </form>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+        {npc.pm > 0 && (
+          <Popover>
+            <PopoverTrigger>
+              <div className="bg-blue-200 rounded-lg h-5 hover:transform hover:scale-95 hover:cursor-pointer transition-all">
+                <div
+                  style={{
+                    width: `${Math.floor(
+                      ((npc.pmAtual || 0) * 100) / npc.pm
+                    )}%`,
+                  }}
+                  className={
+                    "bg-blue-600 h-5 rounded-lg transition-all text-center"
+                  }
+                ></div>
+                <p className="text-center mt-[-23px] text-white font-tormenta">
+                  {npc.pm} / {npc.pmAtual}
+                </p>
+              </div>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>Alterando Mana atual</PopoverHeader>
+              <PopoverBody>
+                <form
+                  className="flex gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const form = e.target as HTMLFormElement;
+                    const inputValue = (form.elements[0] as HTMLInputElement)
+                      .value;
+                    statusChange(npc.id, "PM", inputValue);
+                  }}
+                >
+                  <Input defaultValue={npc.pmAtual} autoFocus />
+                  <Button type="submit" aria-label="Confirmar">
+                    Confirmar
+                  </Button>
+                </form>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )}
+      </div>
       <div className="flex justify-between font-bold text-red-700 font-tormenta text-2xl">
         <h2>{npc.nome}</h2>
         <h2>
@@ -155,91 +249,10 @@ function ShowNPC(
           <b className="text-red-600">Resistências </b>
           {npc.resistencias?.join(", ") || "Nenhuma"}
         </h1>
-        <div className="flex gap-2">
-          <h1 className="text-red-600 font-bold">Pontos de vida</h1>
-          <div>
-            <Popover>
-              <PopoverTrigger>
-                <a className="italic hover:cursor-pointer hover:bg-red-600 hover:bg-opacity-10 transition-all">
-                  {npc.pv} / <b>{npc.pvAtual}</b>
-                </a>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>Alterando Vida atual</PopoverHeader>
-                <PopoverBody>
-                  <form
-                    className="flex gap-2"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const form = e.target as HTMLFormElement;
-                      const inputValue = (form.elements[0] as HTMLInputElement)
-                        .value;
-                      statusChange(npc.id, "PV", inputValue);
-                    }}
-                  >
-                    <Input
-                      className="w-full"
-                      defaultValue={npc.pvAtual}
-                      autoFocus
-                    />
-                    <Button
-                      className="w-full"
-                      type="submit"
-                      aria-label="Confirmar"
-                      bgColor={"red"}
-                      color={"white"}
-                    >
-                      Confirmar
-                    </Button>
-                  </form>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-          </div>
-        </div>
         <h1 className="border-b-2 border-b-red-600">
           <b className="text-red-600">Deslocamento </b>
           {npc.deslocamento}m ({npc.deslocamento / 1.5}▢)
         </h1>
-        {npc.pm > 0 && (
-          <div className="flex gap-2">
-            <h1 className="text-red-600 font-bold">Pontos de Mana</h1>
-            <div>
-              <Popover>
-                <PopoverTrigger>
-                  <a className="italic hover:cursor-pointer hover:bg-red-600 hover:bg-opacity-10 transition-all">
-                    {npc.pm} / <b>{npc.pmAtual}</b>
-                  </a>
-                </PopoverTrigger>
-                <PopoverContent>
-                  <PopoverArrow />
-                  <PopoverCloseButton />
-                  <PopoverHeader>Alterando Mana atual</PopoverHeader>
-                  <PopoverBody>
-                    <form
-                      className="flex gap-2"
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        const form = e.target as HTMLFormElement;
-                        const inputValue = (
-                          form.elements[0] as HTMLInputElement
-                        ).value;
-                        statusChange(npc.id, "PM", inputValue);
-                      }}
-                    >
-                      <Input defaultValue={npc.pmAtual} autoFocus />
-                      <Button type="submit" aria-label="Confirmar">
-                        Confirmar
-                      </Button>
-                    </form>
-                  </PopoverBody>
-                </PopoverContent>
-              </Popover>
-            </div>
-          </div>
-        )}
         {npc.corpoAcorpo && npc.corpoAcorpo?.length > 0 && (
           <div className="flex gap-2">
             <div className="flex flex-col">
