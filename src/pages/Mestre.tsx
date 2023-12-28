@@ -28,7 +28,18 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
-import { Check, Eraser, Plus, Trash } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Eraser,
+  MoveDownIcon,
+  MoveUpIcon,
+  Plus,
+  Trash,
+} from "lucide-react";
 import { TesouroTabela } from "../classes/Tabelas/Tesouro";
 
 class NPCShown extends NPC {
@@ -46,10 +57,62 @@ function ShowNPC(
   trashHidden: boolean,
   teasureReroll: any,
   statusChange: any,
+  handleMove: any,
   willDelete?: { will: boolean; id: number }
 ) {
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
+      <div className="flex justify-between mb-[-40px] w-full">
+        <IconButton
+          isDisabled={
+            JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
+              (e: NPCShown) => {
+                return e.id === npc.id;
+              }
+            ) === 0
+          }
+          aria-label="Up"
+          rounded={"full"}
+          bgColor={"red"}
+          color={"white"}
+          size="sm"
+          _hover={{
+            color: "red",
+            transform: "scale(1.1)",
+            zIndex: 1,
+            borderColor: "red",
+            bg: "transparent",
+            border: "2px solid",
+          }}
+          icon={<ArrowLeft />}
+          onClick={() => handleMove(npc.id, "up")}
+        />
+        <IconButton
+          isDisabled={
+            JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
+              (e: NPCShown) => {
+                return e.id === npc.id;
+              }
+            ) ===
+            JSON.parse(localStorage.getItem("npcs") || "[]").length - 1
+          }
+          aria-label="Down"
+          rounded={"full"}
+          bgColor={"red"}
+          color={"white"}
+          size="sm"
+          _hover={{
+            color: "red",
+            transform: "scale(1.1)",
+            zIndex: 1,
+            borderColor: "red",
+            bg: "transparent",
+            border: "2px solid",
+          }}
+          icon={<ArrowRight />}
+          onClick={() => handleMove(npc.id, "down")}
+        />
+      </div>
       {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
       <div className="flex flex-col gap-2">
         <Popover>
@@ -619,6 +682,18 @@ export default function Mestre() {
     setNpcs(npcsLocal);
   };
 
+  const handleMove = (id: number, direction: "up" | "down") => {
+    const npcAtual = Npcs.find((e) => e.id === id) || Npcs[0];
+    const npcsLocal = JSON.parse(localStorage.getItem("npcs") || "[]");
+    const index = npcsLocal.findIndex((e: NPCShown) => e.id === npcAtual.id);
+    const indexToMove = direction === "up" ? index - 1 : index + 1;
+    const npcToMove = npcsLocal[indexToMove];
+    npcsLocal[indexToMove] = npcAtual;
+    npcsLocal[index] = npcToMove;
+    localStorage.setItem("npcs", JSON.stringify(npcsLocal));
+    setNpcs(npcsLocal);
+  };
+
   return (
     <>
       <Navbar ficha={true} back={"/"} />
@@ -696,6 +771,7 @@ export default function Mestre() {
                   true,
                   reRollTesouro,
                   alterarStatus,
+                  handleMove,
                   willDelete
                 )
               )}
@@ -804,7 +880,8 @@ export default function Mestre() {
                 null,
                 false,
                 reRollTesouro,
-                alterarStatus
+                alterarStatus,
+                handleMove
               )}
           </ModalBody>
           <ModalFooter>
