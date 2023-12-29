@@ -810,7 +810,7 @@ export default function Mestre() {
                           />
                         </div>
                         <p className="text-justify font-serif text-sm">
-                          {condicao.descricao}
+                          &nbsp;&nbsp;{condicao.descricao}
                           <i>&nbsp;{condicao?.tipo}</i>
                         </p>
                       </div>

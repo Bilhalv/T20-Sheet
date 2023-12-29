@@ -131,4 +131,115 @@ export const TabelaCondicoes: Condicao[] = [
         img: "https://i.imgur.com/5Y8jQfU.png",
         tipo: "Mental",
     },
+    {
+        nome: "Fatigado",
+        descricao:
+        "O personagem fica fraco e vulnerável. Se ficar fatigado novamente, em vez disso fica exausto.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Cansaço",
+    },
+    {
+        nome: "Fraco",
+        descricao:
+        "O personagem sofre –2 em testes de Força, Destreza e Constituição e de perícias baseadas nesses atributos. Se ficar fraco novamente, em vez disso fica debilitado.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Mental",
+    },
+    {
+        nome: "Frustrado",
+        descricao:
+        "O personagem sofre –2 em testes de Inteligência, Sabedoria e Carisma e de perícias baseadas nesses atributos. Se ficar frustrado novamente, em vez disso fica esmorecido.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Mental",
+    },
+    {
+        nome: "Imóvel",
+        descricao:
+        "Todas as formas de deslocamento do personagem são reduzidas a 0m.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Movimento",
+    },
+    {
+        nome: "Inconsciente",
+        descricao:
+        "O personagem fica indefeso e não pode fazer ações, incluindo reações (mas ainda pode fazer testes que sejam naturalmente feitos quando se está inconsciente, como testes de Constituição para estabilizar sangramento). Balançar uma criatura para acordá-la gasta uma ação padrão.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Mental",
+    },
+    {
+        nome: "Indefeso",
+        descricao:
+        "O personagem fica desprevenido, mas sofre –10 na Defesa, falha automaticamente em testes de Reflexos e pode sofrer golpes de misericórdia.",
+        img: "",
+    },
+    {
+        nome: "Lento",
+        descricao:
+        "Todas as formas de deslocamento do personagem são reduzidas à metade (arredonde para baixo para o primeiro incremento de 1,5m) e ele não pode correr ou fazer investidas.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Movimento",
+    },
+    {
+        nome: "Ofuscado",
+        descricao:
+        "O personagem sofre –2 em testes de ataque e de Percepção.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Sentidos",
+    },
+    {
+        nome: "Paralisado",
+        descricao:
+        "Fica imóvel e indefeso e só pode realizar ações puramente mentais.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Movimento",
+    },
+    {
+        nome: "Pasmo",
+        descricao:
+        "Não pode fazer ações.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Mental",
+    },
+    {
+        nome: "Petrificado",
+        descricao:
+        "O personagem fica inconsciente e recebe redução de dano 8.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Metamorfose",
+    },
+    {
+        nome: "Sangrando",
+        descricao:
+        "No início de seu turno, o personagem deve fazer um teste de Constituição (CD 15). Se falhar, perde 1d6 pontos de vida e continua sangrando. Se passar, remove essa condição.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Metabolismo",
+    },
+    {
+        nome: "Sobrecarregado",
+        descricao:
+        "O personagem sofre penalidade de armadura –5 e seu deslocamento é reduzido –3m.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Movimento",
+    },
+    {
+        nome: "Surdo",
+        descricao:
+        "O personagem não pode fazer testes de Percepção para ouvir e sofre –5 em testes de Iniciativa. Além disso, é considerado em condição ruim para lançar magias.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Sentidos",
+    },
+    {
+        nome: "Surpreendido",
+        descricao:
+        "O personagem fica desprevenido e não pode fazer ações.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Mental",
+    },
+    {
+        nome: "Vulnerável",
+        descricao:
+        "O personagem sofre –2 na Defesa.",
+        img: "https://i.imgur.com/5Y8jQfU.png",
+        tipo: "Mental",
+    }
 ];
