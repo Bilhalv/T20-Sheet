@@ -23,6 +23,9 @@ const theme = extendTheme({
         loading: {
           bgColor: "red",
         },
+        info: {
+          bgColor: "red",
+        },
       },
     },
   },

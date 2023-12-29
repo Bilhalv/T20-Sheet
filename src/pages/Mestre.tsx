@@ -16,7 +16,6 @@ import {
   ModalFooter,
   IconButton,
   Select,
-  Tooltip,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -26,21 +25,30 @@ import {
   PopoverHeader,
   Input,
   Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  useToast,
 } from "@chakra-ui/react";
 import { FecharOnModal, ConfirmarOnModal } from "../components/Geral/Botoes";
 import {
   ArrowLeft,
   ArrowRight,
+  Brain,
   Check,
-  ChevronDown,
-  ChevronUp,
   Eraser,
-  MoveDownIcon,
-  MoveUpIcon,
+  Pin,
+  PinOff,
   Plus,
   Trash,
 } from "lucide-react";
 import { TesouroTabela } from "../classes/Tabelas/Tesouro";
+import { TabelaCondicoes } from "../classes/Tabelas/Condicoes";
+import Condicao from "../classes/Construtores/Condicao";
 
 class NPCShown extends NPC {
   id: number = 0;
@@ -58,6 +66,7 @@ function ShowNPC(
   teasureReroll: any,
   statusChange: any,
   handleMove: any,
+  setWillDelete?: any,
   willDelete?: { will: boolean; id: number }
 ) {
   return (
@@ -132,7 +141,10 @@ function ShowNPC(
       <div className="flex flex-col gap-2">
         <Popover>
           <PopoverTrigger>
-            <div className="bg-red-200 rounded-lg h-5 hover:transform hover:scale-95 hover:cursor-pointer transition-all">
+            <button
+              disabled={!isNotModal}
+              className="bg-red-200 rounded-lg h-5 hover:transform hover:scale-95 hover:cursor-pointer transition-all"
+            >
               <div
                 style={{
                   width: `${Math.floor(((npc.pvAtual || 0) * 100) / npc.pv)}%`,
@@ -144,7 +156,7 @@ function ShowNPC(
               <p className="text-center mt-[-23px] text-white font-tormenta">
                 {npc.pv} / {npc.pvAtual}
               </p>
-            </div>
+            </button>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
@@ -250,7 +262,14 @@ function ShowNPC(
                 )
               }
               onClick={() => {
-                trash(npc.id);
+                if (willDelete?.will && willDelete?.id === npc.id) {
+                  trash(npc.id);
+                  setWillDelete({ will: false, id: -1 });
+                  return;
+                } else {
+                  setWillDelete({ will: true, id: npc.id });
+                  return;
+                }
               }}
             />
           )}
@@ -709,34 +728,148 @@ export default function Mestre() {
     setNpcs(npcsLocal);
   };
 
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const toast = useToast();
+
   return (
     <>
       <Navbar ficha={true} back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4">
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between align-middle">
-            <IconButton
-              icon={<Plus />}
-              onClick={() => {
-                setNpc(undefined);
-                setQuantity(1);
-                setWillDelete({ will: false, id: -1 });
-                setIsOpen(true);
-              }}
-              aria-label="Add"
-              rounded={"full"}
-              bgColor={"red"}
-              color={"white"}
-              size="sm"
-              _hover={{
-                color: "red",
-                transform: "scale(1.1)",
-                zIndex: 1,
-                borderColor: "red",
-                bg: "transparent",
-                border: "2px solid",
-              }}
-            />
+            <div className="flex gap-2 flex-col-reverse">
+              <Drawer
+                isOpen={isOpenDrawer}
+                placement="left"
+                onClose={() => setIsOpenDrawer(false)}
+              >
+                <DrawerOverlay />
+                <DrawerContent className="font-tormenta">
+                  <DrawerCloseButton />
+                  <DrawerHeader>Condições</DrawerHeader>
+                  <DrawerBody>
+                    {TabelaCondicoes.map((condicao: Condicao) => (
+                      <div className="flex flex-col mb-2 p-2 border-red-600 rounded-xl border">
+                        <div className="flex justify-between">
+                          <h1 className="text-red-600 text-lg font-bold">
+                            {condicao.nome}
+                          </h1>
+                          <IconButton
+                            icon={<Pin size={18} />}
+                            overflow={"hidden"}
+                            onClick={() => {
+                              toast({
+                                position: "top-right",
+                                duration: null,
+                                isClosable: true,
+                                render: ({ onClose }) => (
+                                  <div className="bg-red-600 text-white p-4 rounded-xl w-1/2 ml-auto relative">
+                                    <div className="flex justify-between">
+                                      <h1 className="text-xl font-bold font-tormenta">
+                                        {condicao.nome}
+                                      </h1>
+                                      <IconButton
+                                        aria-label="Fechar"
+                                        icon={<PinOff size={18} />}
+                                        onClick={onClose}
+                                        rounded={"full"}
+                                        bgColor={"red"}
+                                        color={"white"}
+                                        size="xs"
+                                        _hover={{
+                                          color: "red",
+                                          transform: "scale(1.1)",
+                                          zIndex: 1,
+                                          borderColor: "red",
+                                          bg: "transparent",
+                                          border: "2px solid",
+                                        }}
+                                      />
+                                    </div>
+                                    <p className="text-justify text-sm">
+                                      &nbsp;&nbsp;{condicao.descricao}
+                                      <i>&nbsp;{condicao?.tipo}</i>
+                                    </p>
+                                  </div>
+                                ),
+                              });
+                            }}
+                            aria-label="Condições"
+                            rounded={"full"}
+                            bgColor={"red"}
+                            color={"white"}
+                            size="xs"
+                            _hover={{
+                              color: "red",
+                              transform: "scale(1.1)",
+                              zIndex: 1,
+                              borderColor: "red",
+                              bg: "transparent",
+                              border: "2px solid",
+                            }}
+                          />
+                        </div>
+                        <p className="text-justify font-serif text-sm">
+                          {condicao.descricao}
+                          <i>&nbsp;{condicao?.tipo}</i>
+                        </p>
+                      </div>
+                    ))}
+                  </DrawerBody>
+                  <DrawerFooter>
+                    <Button
+                      colorScheme="red"
+                      ml={3}
+                      onClick={() => setIsOpenDrawer(false)}
+                    >
+                      Fechar
+                    </Button>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
+              <IconButton
+                icon={<Brain />}
+                overflow={"hidden"}
+                onClick={() => {
+                  setIsOpenDrawer(true);
+                }}
+                aria-label="Condições"
+                rounded={"full"}
+                bgColor={"red"}
+                color={"white"}
+                size="sm"
+                _hover={{
+                  color: "red",
+                  transform: "scale(1.1)",
+                  zIndex: 1,
+                  borderColor: "red",
+                  bg: "transparent",
+                  border: "2px solid",
+                }}
+              />
+              <IconButton
+                icon={<Plus />}
+                onClick={() => {
+                  setNpc(undefined);
+                  setQuantity(1);
+                  setWillDelete({ will: false, id: -1 });
+                  setIsOpen(true);
+                }}
+                aria-label="Add"
+                rounded={"full"}
+                bgColor={"red"}
+                color={"white"}
+                size="sm"
+                _hover={{
+                  color: "red",
+                  transform: "scale(1.1)",
+                  zIndex: 1,
+                  borderColor: "red",
+                  bg: "transparent",
+                  border: "2px solid",
+                }}
+              />
+            </div>
             <h1>Gerenciador de fichas para os npcs</h1>
             <IconButton
               aria-label="Clear"
@@ -787,6 +920,7 @@ export default function Mestre() {
                   reRollTesouro,
                   alterarStatus,
                   handleMove,
+                  setWillDelete,
                   willDelete
                 )
               )}
