@@ -11,6 +11,7 @@ import { TesouroTabela } from "../classes/Tabelas/Tesouro";
 import ShowNPC from "../components/Mestre/ShowNpc";
 import Condicoes from "../components/Mestre/Condicoes";
 import AddNpc from "../components/Mestre/AddNpc";
+import Acoes from "../components/Mestre/Acoes";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -243,42 +244,45 @@ export default function Mestre() {
               />
             </div>
             <h1>Gerenciador de fichas para os npcs</h1>
-            <IconButton
-              aria-label="Clear"
-              rounded={"full"}
-              bgColor={"red"}
-              color={"white"}
-              size="sm"
-              _hover={{
-                color: "red",
-                transform: "scale(1.1)",
-                zIndex: 1,
-                borderColor: "red",
-                bg: "transparent",
-                border: "2px solid",
-              }}
-              icon={<Eraser />}
-              onClick={() => {
-                const sure = window.confirm(
-                  "Tem certeza que deseja limpar a lista de NPCs?"
-                );
-                if (!sure) {
+            <div className="flex gap-2 flex-col-reverse">
+              <Acoes />
+              <IconButton
+                aria-label="Clear"
+                rounded={"full"}
+                bgColor={"red"}
+                color={"white"}
+                size="sm"
+                _hover={{
+                  color: "red",
+                  transform: "scale(1.1)",
+                  zIndex: 1,
+                  borderColor: "red",
+                  bg: "transparent",
+                  border: "2px solid",
+                }}
+                icon={<Eraser />}
+                onClick={() => {
+                  const sure = window.confirm(
+                    "Tem certeza que deseja limpar a lista de NPCs?"
+                  );
+                  if (!sure) {
+                    showCustomToast({
+                      status: "warning",
+                      title: `Lista de NPCs não limpa!`,
+                      desc: `A lista de NPCs não foi limpa!`,
+                    });
+                    return;
+                  }
+                  localStorage.setItem("npcs", "[]");
+                  setNpcs([]);
                   showCustomToast({
-                    status: "warning",
-                    title: `Lista de NPCs não limpa!`,
-                    desc: `A lista de NPCs não foi limpa!`,
+                    status: "success",
+                    title: `Lista de NPCs limpa!`,
+                    desc: `Todos os NPCs foram removidos da lista!`,
                   });
-                  return;
-                }
-                localStorage.setItem("npcs", "[]");
-                setNpcs([]);
-                showCustomToast({
-                  status: "success",
-                  title: `Lista de NPCs limpa!`,
-                  desc: `Todos os NPCs foram removidos da lista!`,
-                });
-              }}
-            />
+                }}
+              />
+            </div>
           </div>
           {Npcs && (
             <div className="flex flex-wrap gap-3 justify-evenly mt-4">
