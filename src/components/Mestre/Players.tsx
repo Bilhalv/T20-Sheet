@@ -41,7 +41,7 @@ export default function Players({ player, setPlayersLista }: Props) {
     return width >= 0 ? width : 0;
   };
   return (
-    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[200px] h-fit">
+    <div className="bg-white bg-opacity-70 p-5 rounded-lg laptop:w-[200px] h-fit">
       <img className="w-full mx-auto" src={player.img} />
       <Popover>
         <PopoverTrigger>
