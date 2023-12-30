@@ -226,62 +226,136 @@ export default function Mestre() {
 
   return (
     <>
-      <Navbar ficha={true} back={"/"} />
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4">
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between align-middle">
-            <div className="flex gap-2 flex-col-reverse">
-              <Condicoes />
-              <AddNpc
-                Npcs={Npcs}
-                setNpcs={setNpcs}
-                alterarStatus={alterarStatus}
-                handleMove={handleMove}
-                reRollTesouro={reRollTesouro}
-                ataqueRoll={ataqueRoll}
-                resetar={resetar}
-                rolar={rolar}
-              />
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0 z-50">
+            <div className="justify-between w-5/6 desktop:flex hidden">
+              <img className="h-8 w-fit" src="./img/bannerT20.png" />
+              <h1 className="mx-auto">Gerenciador de fichas para os npcs</h1>
             </div>
-            <h1>Gerenciador de fichas para os npcs</h1>
-            <div className="flex gap-2 flex-col-reverse">
-              <Acoes />
-              <IconButton
-                aria-label="Clear"
-                rounded={"full"}
-                bgColor={"red"}
-                color={"white"}
-                size="sm"
-                _hover={{
-                  color: "red",
-                  transform: "scale(1.1)",
-                  zIndex: 1,
-                  borderColor: "red",
-                  bg: "transparent",
-                  border: "2px solid",
-                }}
-                icon={<Eraser />}
-                onClick={() => {
-                  const sure = window.confirm(
-                    "Tem certeza que deseja limpar a lista de NPCs?"
-                  );
-                  if (!sure) {
+            <div className="flex justify-evenly w-full">
+              <div className="flex flex-col">
+                <div>
+                  <Condicoes />
+                </div>
+                <p className="text-center text-sm">Condições</p>
+              </div>
+              <div>
+                <div>
+                  <AddNpc
+                    Npcs={Npcs}
+                    setNpcs={setNpcs}
+                    alterarStatus={alterarStatus}
+                    handleMove={handleMove}
+                    reRollTesouro={reRollTesouro}
+                    ataqueRoll={ataqueRoll}
+                    resetar={resetar}
+                    rolar={rolar}
+                  />
+                </div>
+                <p className="text-center text-sm">Adicionar</p>
+              </div>
+              <div>
+                <div>
+                  <Acoes />
+                </div>
+                <p className="text-center text-sm">Ações</p>
+              </div>
+              <div>
+                <div>
+                  <IconButton
+                    aria-label="Clear"
+                    rounded={"full"}
+                    bgColor={"red"}
+                    color={"white"}
+                    size="sm"
+                    _hover={{
+                      color: "red",
+                      transform: "scale(1.1)",
+                      zIndex: 1,
+                      borderColor: "red",
+                      bg: "transparent",
+                      border: "2px solid",
+                    }}
+                    icon={<Eraser />}
+                    onClick={() => {
+                      const sure = window.confirm(
+                        "Tem certeza que deseja limpar a lista de NPCs?"
+                      );
+                      if (!sure) {
+                        showCustomToast({
+                          status: "warning",
+                          title: `Lista de NPCs não limpa!`,
+                          desc: `A lista de NPCs não foi limpa!`,
+                        });
+                        return;
+                      }
+                      localStorage.setItem("npcs", "[]");
+                      setNpcs([]);
+                      showCustomToast({
+                        status: "success",
+                        title: `Lista de NPCs limpa!`,
+                        desc: `Todos os NPCs foram removidos da lista!`,
+                      });
+                    }}
+                  />
+                </div>
+                <p className="text-center text-sm">Limpar</p>
+              </div>
+            </div>
+            <div className="desktop:flex gap-2 hidden">
+              <div className="flex gap-2 flex-col-reverse">
+                <Condicoes />
+                <AddNpc
+                  Npcs={Npcs}
+                  setNpcs={setNpcs}
+                  alterarStatus={alterarStatus}
+                  handleMove={handleMove}
+                  reRollTesouro={reRollTesouro}
+                  ataqueRoll={ataqueRoll}
+                  resetar={resetar}
+                  rolar={rolar}
+                />
+              </div>
+              <div className="flex gap-2 flex-col-reverse">
+                <Acoes />
+                <IconButton
+                  aria-label="Clear"
+                  rounded={"full"}
+                  bgColor={"red"}
+                  color={"white"}
+                  size="sm"
+                  _hover={{
+                    color: "red",
+                    transform: "scale(1.1)",
+                    zIndex: 1,
+                    borderColor: "red",
+                    bg: "transparent",
+                    border: "2px solid",
+                  }}
+                  icon={<Eraser />}
+                  onClick={() => {
+                    const sure = window.confirm(
+                      "Tem certeza que deseja limpar a lista de NPCs?"
+                    );
+                    if (!sure) {
+                      showCustomToast({
+                        status: "warning",
+                        title: `Lista de NPCs não limpa!`,
+                        desc: `A lista de NPCs não foi limpa!`,
+                      });
+                      return;
+                    }
+                    localStorage.setItem("npcs", "[]");
+                    setNpcs([]);
                     showCustomToast({
-                      status: "warning",
-                      title: `Lista de NPCs não limpa!`,
-                      desc: `A lista de NPCs não foi limpa!`,
+                      status: "success",
+                      title: `Lista de NPCs limpa!`,
+                      desc: `Todos os NPCs foram removidos da lista!`,
                     });
-                    return;
-                  }
-                  localStorage.setItem("npcs", "[]");
-                  setNpcs([]);
-                  showCustomToast({
-                    status: "success",
-                    title: `Lista de NPCs limpa!`,
-                    desc: `Todos os NPCs foram removidos da lista!`,
-                  });
-                }}
-              />
+                  }}
+                />
+              </div>
             </div>
           </div>
           {Npcs && (
