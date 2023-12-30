@@ -5,9 +5,7 @@ import addHistorico from "../components/Geral/addHistorico";
 import { RolarDado } from "../components/Geral/RolarDado";
 import { Dado } from "../classes/Construtores/Dado";
 import { useState } from "react";
-import {
-  IconButton,
-} from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { Eraser } from "lucide-react";
 import { TesouroTabela } from "../classes/Tabelas/Tesouro";
 import ShowNPC from "../components/Mestre/ShowNpc";
@@ -284,7 +282,7 @@ export default function Mestre() {
           </div>
           {Npcs && (
             <div className="flex flex-wrap gap-3 justify-evenly mt-4">
-              {Npcs.map((npc: NPCShown) =>
+              {Npcs.map((npc: NPCShown) => (
                 <ShowNPC
                   npc={npc}
                   rolar={rolar}
@@ -297,7 +295,7 @@ export default function Mestre() {
                   statusChange={alterarStatus}
                   teasureReroll={reRollTesouro}
                 />
-              )}
+              ))}
             </div>
           )}
         </article>
