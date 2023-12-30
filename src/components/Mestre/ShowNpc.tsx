@@ -56,7 +56,9 @@ export default function ShowNPC({
   willDelete,
 }: Props) {
   return (
-    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
+    <div
+      className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit"
+    >
       {isNotModal && (
         <div className="flex justify-between mb-[-40px] w-full">
           {handleMove && (

@@ -14,6 +14,8 @@ import Acoes from "../components/Mestre/Acoes";
 import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
 import Players from "../components/Mestre/Players";
 import Player from "../classes/Construtores/Mestre/Player";
+import TurnOrder from "../components/Mestre/TurnOrder";
+import FlipMove from "react-flip-move";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -239,48 +241,64 @@ export default function Mestre() {
     <>
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4">
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0">
-            <img className="h-8 w-fit" src="./img/bannerT20.png" />
-            <h1 className="mx-auto desktop:block hidden">Gerenciador de fichas para os Players</h1>
-            <IconButton
-              aria-label="Clear"
-              rounded={"full"}
-              bgColor={"red"}
-              color={"white"}
-              size="sm"
-              _hover={{
-                color: "red",
-                transform: "scale(1.1)",
-                zIndex: 1,
-                borderColor: "red",
-                bg: "transparent",
-                border: "2px solid",
-              }}
-              icon={<Eraser />}
-              onClick={() => {
-                const sure = window.confirm(
-                  "Tem certeza que deseja limpar a lista de Players?"
-                );
-                if (!sure) {
-                  showCustomToast({
-                    status: "warning",
-                    title: `Lista de Players não limpa!`,
-                    desc: `A lista de Players não foi limpa!`,
-                  });
-                  return;
-                }
-                localStorage.setItem(
-                  "PlayersLista",
-                  JSON.stringify(TabelaPlayer)
-                );
-                setPlayersLista(TabelaPlayer);
-                showCustomToast({
-                  status: "success",
-                  title: `Lista de Players limpa!`,
-                  desc: `Todos os Players foram removidos da lista!`,
-                });
-              }}
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex desktop:justify-between justify-evenly items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0">
+            <img
+              className="h-8 w-fit dekstop:block hidden"
+              src="./img/bannerT20.png"
             />
+            <h1 className="mx-auto desktop:block hidden">
+              Gerenciador de fichas para os Players
+            </h1>
+            <div className="flex flex-col">
+              <div>
+                <TurnOrder />
+              </div>
+              <p className="text-center text-sm">Turnos</p>
+            </div>
+            <div className="flex flex-col">
+              <div>
+                <IconButton
+                  aria-label="Reset"
+                  rounded={"full"}
+                  bgColor={"red"}
+                  color={"white"}
+                  size="sm"
+                  _hover={{
+                    color: "red",
+                    transform: "scale(1.1)",
+                    zIndex: 1,
+                    borderColor: "red",
+                    bg: "transparent",
+                    border: "2px solid",
+                  }}
+                  icon={<Eraser />}
+                  onClick={() => {
+                    const sure = window.confirm(
+                      "Tem certeza que deseja resetar a lista de Players?"
+                    );
+                    if (!sure) {
+                      showCustomToast({
+                        status: "warning",
+                        title: `Aviso!`,
+                        desc: `A lista de Players não foi resetada!`,
+                      });
+                      return;
+                    }
+                    localStorage.setItem(
+                      "PlayersLista",
+                      JSON.stringify(TabelaPlayer)
+                    );
+                    setPlayersLista(TabelaPlayer);
+                    showCustomToast({
+                      status: "success",
+                      title: `Sucesso!`,
+                      desc: `Todos os Players foram resetados!`,
+                    });
+                  }}
+                />
+              </div>
+              <p className="text-center text-sm desktop:hidden">Resetar</p>
+            </div>
           </div>
           <div className="flex flex-wrap gap-3 justify-evenly mt-4">
             {PlayersLista.map((player) => (
@@ -420,22 +438,24 @@ export default function Mestre() {
             </div>
           </div>
           {Npcs && (
-            <div className="flex flex-wrap gap-3 justify-evenly mt-4">
+            <FlipMove className="flex flex-wrap gap-3 justify-evenly mt-4">
               {Npcs.map((npc: NPCShown) => (
-                <ShowNPC
-                  npc={npc}
-                  rolar={rolar}
-                  ataqueRoll={ataqueRoll}
-                  trash={trash}
-                  handleMove={handleMove}
-                  setWillDelete={setWillDelete}
-                  willDelete={willDelete}
-                  isNotModal={true}
-                  statusChange={alterarStatus}
-                  teasureReroll={reRollTesouro}
-                />
+                <div key={npc.id}>
+                  <ShowNPC
+                    npc={npc}
+                    rolar={rolar}
+                    ataqueRoll={ataqueRoll}
+                    trash={trash}
+                    handleMove={handleMove}
+                    setWillDelete={setWillDelete}
+                    willDelete={willDelete}
+                    isNotModal={true}
+                    statusChange={alterarStatus}
+                    teasureReroll={reRollTesouro}
+                  />
+                </div>
               ))}
-            </div>
+            </FlipMove>
           )}
         </article>
       </body>
