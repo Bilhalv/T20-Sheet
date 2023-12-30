@@ -241,7 +241,7 @@ export default function Mestre() {
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0">
             <img className="h-8 w-fit" src="./img/bannerT20.png" />
-            <h1 className="mx-auto">Gerenciador de fichas para os Players</h1>
+            <h1 className="mx-auto desktop:block hidden">Gerenciador de fichas para os Players</h1>
             <IconButton
               aria-label="Clear"
               rounded={"full"}
