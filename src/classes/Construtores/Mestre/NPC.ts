@@ -1,4 +1,4 @@
-import { Magia } from "./Magia";
+import { Magia } from "../Magia";
 
 export class pericia {
   nome: string;

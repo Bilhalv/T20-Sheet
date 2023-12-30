@@ -1,5 +1,4 @@
-import Navbar from "../components/Geral/Navbar";
-import NPC from "../classes/Construtores/NPC";
+import NPC from "../classes/Construtores/Mestre/NPC";
 import useCustomToast from "../components/Geral/Toasted";
 import addHistorico from "../components/Geral/addHistorico";
 import { RolarDado } from "../components/Geral/RolarDado";
@@ -7,11 +6,14 @@ import { Dado } from "../classes/Construtores/Dado";
 import { useState } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { Eraser } from "lucide-react";
-import { TesouroTabela } from "../classes/Tabelas/Tesouro";
+import { TesouroTabela } from "../classes/Tabelas/Mestre/Tesouro";
 import ShowNPC from "../components/Mestre/ShowNpc";
 import Condicoes from "../components/Mestre/Condicoes";
 import AddNpc from "../components/Mestre/AddNpc";
 import Acoes from "../components/Mestre/Acoes";
+import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
+import Players from "../components/Mestre/Players";
+import Player from "../classes/Construtores/Mestre/Player";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -224,11 +226,70 @@ export default function Mestre() {
     setWillDelete({ will: false, id: -1 });
   };
 
+  if (
+    localStorage.getItem("PlayersLista") === null ||
+    JSON.parse(localStorage.getItem("PlayersLista") || "[]").type !==
+      "PlayersLista"
+  )
+    localStorage.setItem("PlayersLista", JSON.stringify(TabelaPlayer));
+  const [PlayersLista, setPlayersLista] = useState<Player[]>(
+    JSON.parse(localStorage.getItem("PlayersLista") || "[]")
+  );
   return (
     <>
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4">
+        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0">
+            <img className="h-8 w-fit" src="./img/bannerT20.png" />
+            <h1 className="mx-auto">Gerenciador de fichas para os Players</h1>
+            <IconButton
+              aria-label="Clear"
+              rounded={"full"}
+              bgColor={"red"}
+              color={"white"}
+              size="sm"
+              _hover={{
+                color: "red",
+                transform: "scale(1.1)",
+                zIndex: 1,
+                borderColor: "red",
+                bg: "transparent",
+                border: "2px solid",
+              }}
+              icon={<Eraser />}
+              onClick={() => {
+                const sure = window.confirm(
+                  "Tem certeza que deseja limpar a lista de Players?"
+                );
+                if (!sure) {
+                  showCustomToast({
+                    status: "warning",
+                    title: `Lista de Players não limpa!`,
+                    desc: `A lista de Players não foi limpa!`,
+                  });
+                  return;
+                }
+                localStorage.setItem(
+                  "PlayersLista",
+                  JSON.stringify(TabelaPlayer)
+                );
+                setPlayersLista(TabelaPlayer);
+                showCustomToast({
+                  status: "success",
+                  title: `Lista de Players limpa!`,
+                  desc: `Todos os Players foram removidos da lista!`,
+                });
+              }}
+            />
+          </div>
+          <div className="flex flex-wrap gap-3 justify-evenly mt-4">
+            {PlayersLista.map((player) => (
+              <Players player={player} setPlayersLista={setPlayersLista} />
+            ))}
+          </div>
+        </article>
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0 z-50">
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0 z-20">
             <div className="justify-between w-5/6 desktop:flex hidden">
               <img className="h-8 w-fit" src="./img/bannerT20.png" />
               <h1 className="mx-auto">Gerenciador de fichas para os npcs</h1>

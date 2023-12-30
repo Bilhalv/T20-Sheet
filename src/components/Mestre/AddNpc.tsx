@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { TabelaNPC } from "../../classes/Tabelas/NPC";
-import { TesouroTabela } from "../../classes/Tabelas/Tesouro";
+import { TabelaNPC } from "../../classes/Tabelas/Mestre/NPC";
+import { TesouroTabela } from "../../classes/Tabelas/Mestre/Tesouro";
 import { FecharOnModal, ConfirmarOnModal } from "../Geral/Botoes";
 import { RolarDado } from "../Geral/RolarDado";
 import ShowNPC from "./ShowNpc";

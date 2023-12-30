@@ -1,4 +1,4 @@
-import NPC from "../Construtores/NPC";
+import NPC from "../../Construtores/Mestre/NPC";
 
 export const TabelaNPC: NPC[] = [
   {

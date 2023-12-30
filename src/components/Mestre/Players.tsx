@@ -1,5 +1,4 @@
 import {
-  IconButton,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -10,268 +9,166 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { ArrowLeft, ArrowRight, Check, Trash } from "lucide-react";
-import { Magia } from "../../classes/Construtores/Magia";
-import { ataque, poder } from "../../classes/Construtores/Mestre/NPC";
-import { NPCShown } from "../../pages/Mestre";
+import Player from "../../classes/Construtores/Mestre/Player";
 
 interface Props {
-  npc: NPCShown;
-  rolar: (
-    e: number,
-    nome: string,
-    tipo: "Atributo" | "Pericia" | "Ataque"
-  ) => void;
-  ataqueRoll: (
-    nome: string,
-    mod: number,
-    dado: string,
-    modDano: number,
-    crit: string
-  ) => void;
-  trash?: (id: number) => void;
-  isNotModal: boolean;
-  teasureReroll: (npc: NPCShown) => void;
-  statusChange: (id: number, status: "PV" | "PM", toChange: string) => void;
-  handleMove?: (id: number, direction: "up" | "down") => void;
-  setWillDelete?: React.Dispatch<
-    React.SetStateAction<{
-      will: boolean;
-      id: number;
-    }>
-  >;
-  willDelete?: { will: boolean; id: number };
+  player: Player;
+  setPlayersLista: React.Dispatch<React.SetStateAction<Player[]>>;
 }
-
-export default function ShowNPC({
-  npc,
-  rolar,
-  ataqueRoll,
-  trash,
-  isNotModal,
-  teasureReroll,
-  statusChange,
-  handleMove,
-  setWillDelete,
-  willDelete,
-}: Props) {
+export default function Players({ player, setPlayersLista }: Props) {
+  const statusChange = (
+    jogador: string,
+    status: "PV" | "PM",
+    value: string
+  ) => {
+    const players = JSON.parse(localStorage.getItem("PlayersLista") || "[]");
+    const playerIndex = players.findIndex(
+      (player: Player) => player.player === jogador
+    );
+    if (playerIndex === -1) return;
+    const player = players[playerIndex];
+    let numFinal = Number(value);
+    if (value.includes("+") || value.includes("-")) {
+      numFinal = player[status === "PV" ? "pvAtual" : "pmAtual"] + numFinal;
+    }
+    player[status === "PV" ? "pvAtual" : "pmAtual"] = numFinal;
+    players[playerIndex] = player;
+    localStorage.setItem("PlayersLista", JSON.stringify(players));
+    setPlayersLista(players);
+  };
+  const widthCalc = (min: number, max: number) => {
+    const width = Math.floor((min * 100) / max);
+    return width >= 0 ? width : 0;
+  };
   return (
-    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
-      {isNotModal && (
-        <div className="flex justify-between mb-[-40px] w-full">
-          {handleMove && (
-            <IconButton
-              isDisabled={
-                JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
-                  (e: NPCShown) => {
-                    return e.id === npc.id;
-                  }
-                ) === 0
-              }
-              aria-label="Up"
-              rounded={"full"}
-              bgColor={"red"}
-              color={"white"}
-              size="sm"
-              _hover={{
-                color: "red",
-                transform: "scale(1.1)",
-                zIndex: 1,
-                borderColor: "red",
-                bg: "transparent",
-                border: "2px solid",
+    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[200px] h-fit">
+      <img className="w-full mx-auto" src={player.img} />
+      <Popover>
+        <PopoverTrigger>
+          <button className="bg-red-200 rounded-lg h-5 w-full hover:transform hover:scale-95 hover:cursor-pointer transition-all">
+            <div
+              style={{
+                width: `${widthCalc(player.pvAtual, player.pvMax)}%`,
               }}
-              icon={<ArrowLeft />}
-              onClick={() => handleMove(npc.id, "up")}
-            />
-          )}
-          <IconButton
-            aria-label="id"
-            className="font-tormenta"
-            zIndex={10}
-            rounded={"full"}
-            bgColor={"red"}
-            color={"white"}
-            size="sm"
-            _hover={{
-              cursor: "default",
-            }}
-            icon={<p>{npc.id}</p>}
-          />
-          {handleMove && (
-            <IconButton
-              isDisabled={
-                JSON.parse(localStorage.getItem("npcs") || "[]").findIndex(
-                  (e: NPCShown) => {
-                    return e.id === npc.id;
-                  }
-                ) ===
-                JSON.parse(localStorage.getItem("npcs") || "[]").length - 1
-              }
-              aria-label="Down"
-              rounded={"full"}
-              bgColor={"red"}
-              color={"white"}
-              size="sm"
-              _hover={{
-                color: "red",
-                transform: "scale(1.1)",
-                zIndex: 1,
-                borderColor: "red",
-                bg: "transparent",
-                border: "2px solid",
+              className={"bg-red-600 h-5 rounded-lg transition-all text-center"}
+            ></div>
+            <p className="text-center mt-[-23px] text-white font-tormenta">
+              {player.pvMax} / {player.pvAtual}
+            </p>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverHeader>Alterando Vida atual</PopoverHeader>
+          <PopoverBody>
+            <form
+              className="flex gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target as HTMLFormElement;
+                const inputValue = (form.elements[0] as HTMLInputElement).value;
+                statusChange(player.player, "PV", inputValue);
               }}
-              icon={<ArrowRight />}
-              onClick={() => handleMove(npc.id, "down")}
-            />
-          )}
-        </div>
-      )}
-      {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
-      <div className="flex flex-col gap-2">
-        <Popover>
-          <PopoverTrigger>
-            <button
-              disabled={!isNotModal}
-              className="bg-red-200 rounded-lg h-5 hover:transform hover:scale-95 hover:cursor-pointer transition-all"
             >
-              <div
-                style={{
-                  width: `${Math.floor(((npc.pvAtual || 0) * 100) / npc.pv)}%`,
-                }}
-                className={
-                  "bg-red-600 h-5 rounded-lg transition-all text-center"
-                }
-              ></div>
-              <p className="text-center mt-[-23px] text-white font-tormenta">
-                {npc.pv} / {npc.pvAtual}
-              </p>
-            </button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverHeader>Alterando Vida atual</PopoverHeader>
-            <PopoverBody>
-              <form
-                className="flex gap-2"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.target as HTMLFormElement;
-                  const inputValue = (form.elements[0] as HTMLInputElement)
-                    .value;
-                  statusChange(npc.id, "PV", inputValue);
-                }}
+              <Input
+                className="w-full"
+                defaultValue={player.pvAtual}
+                autoFocus
+              />
+              <Button
+                className="w-full"
+                type="submit"
+                aria-label="Confirmar"
+                bgColor={"red"}
+                color={"white"}
               >
-                <Input
-                  className="w-full"
-                  defaultValue={npc.pvAtual}
-                  autoFocus
-                />
-                <Button
-                  className="w-full"
-                  type="submit"
-                  aria-label="Confirmar"
-                  bgColor={"red"}
-                  color={"white"}
-                >
-                  Confirmar
-                </Button>
-              </form>
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
-        {npc.pm > 0 && (
-          <Popover>
-            <PopoverTrigger>
-              <div className="bg-blue-200 rounded-lg h-5 hover:transform hover:scale-95 hover:cursor-pointer transition-all">
-                <div
-                  style={{
-                    width: `${Math.floor(
-                      ((npc.pmAtual || 0) * 100) / npc.pm
-                    )}%`,
-                  }}
-                  className={
-                    "bg-blue-600 h-5 rounded-lg transition-all text-center"
-                  }
-                ></div>
-                <p className="text-center mt-[-23px] text-white font-tormenta">
-                  {npc.pm} / {npc.pmAtual}
-                </p>
-              </div>
-            </PopoverTrigger>
-            <PopoverContent>
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader>Alterando Mana atual</PopoverHeader>
-              <PopoverBody>
-                <form
-                  className="flex gap-2"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const form = e.target as HTMLFormElement;
-                    const inputValue = (form.elements[0] as HTMLInputElement)
-                      .value;
-                    statusChange(npc.id, "PM", inputValue);
-                  }}
-                >
-                  <Input defaultValue={npc.pmAtual} autoFocus />
-                  <Button type="submit" aria-label="Confirmar">
-                    Confirmar
-                  </Button>
-                </form>
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        )}
-      </div>
-      <div className="flex justify-between font-bold text-red-700 font-tormenta text-2xl">
-        <h2>{npc.nome}</h2>
-        <h2>
-          {isNotModal && (
-            <IconButton
-              aria-label="Trash"
-              rounded={"full"}
-              bgColor={"red"}
-              color={"white"}
-              size="sm"
-              mr={2}
-              _hover={{
-                color: "red",
-                transform: "scale(1.1)",
-                zIndex: 1,
-                borderColor: "red",
-                bg: "transparent",
-                border: "2px solid",
+                Confirmar
+              </Button>
+            </form>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+      <Popover>
+        <PopoverTrigger>
+          <button className="bg-blue-200 rounded-lg h-5 w-full hover:transform hover:scale-95 hover:cursor-pointer transition-all">
+            <div
+              style={{
+                width: `${widthCalc(player.pmAtual, player.pmMax)}%`,
               }}
-              icon={
-                willDelete && willDelete.will && willDelete.id === npc.id ? (
-                  <Check />
-                ) : (
-                  <Trash />
-                )
+              className={
+                "bg-blue-600 h-5 rounded-lg transition-all text-center"
               }
-              onClick={() => {
-                if (setWillDelete === undefined || trash === undefined) return;
-                if (willDelete?.will && willDelete?.id === npc.id) {
-                  trash(npc.id);
-                  setWillDelete({ will: false, id: -1 });
-                  return;
-                } else {
-                  setWillDelete({ will: true, id: npc.id });
-                  return;
-                }
+            ></div>
+            <p className="text-center mt-[-23px] text-white font-tormenta">
+              {player.pmMax} / {player.pmAtual}
+            </p>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverHeader>Alterando Mana atual</PopoverHeader>
+          <PopoverBody>
+            <form
+              className="flex gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.target as HTMLFormElement;
+                const inputValue = (form.elements[0] as HTMLInputElement).value;
+                statusChange(player.player, "PM", inputValue);
               }}
-            />
-          )}
-          ND {npc.nd}
-        </h2>
+            >
+              <Input
+                className="w-full"
+                defaultValue={player.pmAtual}
+                autoFocus
+              />
+              <Button
+                className="w-full"
+                type="submit"
+                aria-label="Confirmar"
+                bgColor={"red"}
+                color={"white"}
+              >
+                Confirmar
+              </Button>
+            </form>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+      <div className="flex justify-between font-bold text-red-700 font-tormenta text-2xl">
+        <h1>
+          {player.nome}
+        </h1>
+        <h1>{player.nivel}</h1>
       </div>
       <div className="italic text-sm w-full border-b-2 border-b-red-600 text-gray-600">
         <h1>
-          {npc.raca} {npc.tamanho} ({npc.tipo})
+          {player.raca} {player.classe} ({player.player})
         </h1>
       </div>
+      <div className="text-sm">
+        <div className="flex gap-3">
+          <b className="text-red-600">Defesa</b> {player.defesa}
+        </div>
+      </div>
+      {player.poderes.map((poder) => (
+        <div className="flex gap-2 text-sm">
+          <p className="text-justify">
+            <b className="text-red-600">
+              {poder.nome}
+              &nbsp;{poder.execucao && `(${poder.execucao})`}
+            </b>
+            &nbsp;
+            {poder.descricao}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+/*
       <div className="text-sm">
         <div className="flex gap-3">
           <a
@@ -513,5 +410,4 @@ export default function ShowNPC({
         </div>
       </div>
     </div>
-  );
-}
+*/

@@ -1,4 +1,4 @@
-import Tesouro from "../Construtores/Tesouro"
+import Tesouro from "../../Construtores/Mestre/Tesouro"
 
 export const TesouroTabela:Tesouro[] = [
     {
