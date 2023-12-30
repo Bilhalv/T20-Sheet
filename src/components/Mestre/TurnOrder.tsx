@@ -140,7 +140,7 @@ export default function TurnOrder() {
                 {turnOrder.map((item: TurnOrderShown) => {
                   return (
                     <div
-                      className="flex justify-between text-sm"
+                      className="flex justify-between text-sm border-2 border-red-600 rounded-md p-1 items-center"
                       key={item.nome}
                     >
                       <span className="text-red-600">{item.nome}</span>
