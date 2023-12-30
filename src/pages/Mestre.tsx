@@ -294,7 +294,7 @@ export default function Mestre() {
               <img className="h-8 w-fit" src="./img/bannerT20.png" />
               <h1 className="mx-auto">Gerenciador de fichas para os npcs</h1>
             </div>
-            <div className="flex justify-evenly w-full">
+            <div className="flex desktop:hidden justify-evenly w-full">
               <div className="flex flex-col">
                 <div>
                   <Condicoes />
