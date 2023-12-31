@@ -8,9 +8,12 @@ import {
   PopoverBody,
   Input,
   Button,
-  Tooltip,
 } from "@chakra-ui/react";
 import Player from "../../classes/Construtores/Mestre/Player";
+import { enumTipo } from "../../classes/Construtores/Magia";
+import { Arma } from "../../classes/Construtores/Arma";
+import { Armadura } from "../../classes/Construtores/Armadura";
+import { Item } from "../../classes/Construtores/Item";
 
 interface Props {
   player: Player;
@@ -42,8 +45,16 @@ export default function Players({ player, setPlayersLista }: Props) {
     return width >= 0 ? width : 0;
   };
   const espacosTotal = player.mochila
-    ? player.mochila.reduce((acc, item) => acc + item.espacos, 0)
+    ? player.mochila.reduce((acc: number, item: any) => acc + item.espacos, 0)
     : 0;
+  const imagensMagias = player.magias
+    ? player.magias.map(
+        (magia) =>
+          "./img/magias/escolas/" +
+          magia.escola.toLowerCase().replace(/ç/g, "c").replace(/ã/g, "a") +
+          ".svg"
+      )
+    : [];
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg laptop:w-[200px] h-fit">
       <img className="w-full mx-auto" src={player.img} />
@@ -208,19 +219,93 @@ export default function Players({ player, setPlayersLista }: Props) {
       {player.magias && (
         <div className="flex flex-col gap-2 text-sm">
           <h1 className="text-center text-red-600 font-bold">Magias</h1>
-          {player.magias.map((magia) => (
+          {player.magias.map((magia, idx) => (
             <Popover>
               <PopoverTrigger>
                 <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
                   <p className="text-red-600">{magia.nome}</p>
-                  <p>{magia.escola}</p>
                 </div>
               </PopoverTrigger>
               <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>{magia.nome}</PopoverHeader>
-                <PopoverBody>{magia.descricao}</PopoverBody>
+                <div className="bg-bgT20">
+                  <PopoverArrow />
+                  <PopoverHeader className="text-white font-bold font-tormenta">
+                    <div className="flex justify-between items-center">
+                      <p className="flex flex-col">
+                        <p className="text-center">{magia.nome}</p>
+                        <p className="flex justify-evenly flex-wrap w-full">
+                          <p className="flex text-xs">
+                            <img
+                              src="./img/magias/dados/execucao.svg"
+                              className="w-3"
+                            />
+                            <p className="my-auto">{magia.execucao}</p>
+                          </p>
+                          <p className="flex text-xs">
+                            <img
+                              src="./img/magias/dados/alcance.svg"
+                              className="w-3"
+                            />
+                            <p className="my-auto">{magia.alcance}</p>
+                          </p>
+                          <p className="flex text-xs">
+                            <img
+                              src="./img/magias/dados/duracao.svg"
+                              className="w-3"
+                            />
+                            <p className="my-auto">{magia.duracao}</p>
+                          </p>
+                          <p className="flex text-xs">
+                            <img
+                              src="./img/magias/dados/alvo.svg"
+                              className="w-3"
+                            />
+                            <p className="my-auto">{magia.alvo}</p>
+                          </p>
+                          {magia.resistencia === "" ? null : (
+                            <p className="flex text-xs">
+                              <img
+                                src="./img/magias/dados/resistencia.svg"
+                                className="w-3"
+                              />
+                              <p className="my-auto">{magia.resistencia}</p>
+                            </p>
+                          )}
+                        </p>
+                      </p>
+                      <div
+                        className={`bg-cover flex bg-center ${
+                          magia.tipo === enumTipo.arcana
+                            ? "bg-arcana"
+                            : magia.tipo === enumTipo.divina
+                            ? "bg-divina"
+                            : "bg-universal"
+                        } p-3`}
+                      >
+                        <img
+                          src={imagensMagias[idx]}
+                          alt={magia.escola}
+                          className="w-4 h-4"
+                        />
+                        <p className="text-center text-xs">{magia.circulo}</p>
+                      </div>
+                    </div>
+                  </PopoverHeader>
+                  <PopoverBody className="m-2 bg-white bg-opacity-70 rounded-xl">
+                    {magia.descricao}
+                    {magia.aprimoramentos.map((aprimoramento) => (
+                      <div className="flex gap-2 text-sm">
+                        <p className="text-justify">
+                          <b className="text-red-600">
+                            {aprimoramento.pm_a_mais}PM:
+                          </b>
+                          &nbsp;
+                          {aprimoramento.descricao}
+                        </p>
+                      </div>
+                    ))}
+                  </PopoverBody>
+                </div>
               </PopoverContent>
             </Popover>
           ))}
@@ -231,7 +316,7 @@ export default function Players({ player, setPlayersLista }: Props) {
           Mochila ({espacosTotal}/{10 + player.atributos.for * 2})
         </h1>
         {player.mochila &&
-          player.mochila.map((item) => (
+          player.mochila.map((item: Item | Armadura | Arma) => (
             <Popover>
               <PopoverTrigger>
                 <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
@@ -243,7 +328,24 @@ export default function Players({ player, setPlayersLista }: Props) {
                 <PopoverArrow />
                 <PopoverCloseButton />
                 <PopoverHeader>{item.nome}</PopoverHeader>
-                <PopoverBody>{item.descricao}</PopoverBody>
+                <PopoverBody className="flex flex-col">
+                  <p>Preço: T$ {item.preco.toFixed(2)}</p>
+                  {"dano" in item && (
+                    <>
+                      <p>Alcance: {item.alcance}</p>
+                      <p>Dano: {item.dano}</p>
+                      <p>Crítico: {item.crit}</p>
+                    </>
+                  )}
+                  {"defesa" in item && (
+                    <>
+                      <p>Defesa: {item.defesa}</p>
+                      <p>Penalidade: {item.penalidade}</p>
+                    </>
+                  )}
+                  <p>Descrição: </p>
+                  <p>{item.descricao}</p>
+                </PopoverBody>
               </PopoverContent>
             </Popover>
           ))}
