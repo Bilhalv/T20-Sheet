@@ -1,4 +1,11 @@
+import { Arma } from "../Arma";
+import { Armadura } from "../Armadura";
+import { Item } from "../Item";
+import { Magia } from "../Magia";
+
 export default class Player {
+  magias?: Magia[];
+  mochila?: Item[] | Arma[] | Armadura[];
   img: string;
   nivel: number;
   nome: string;

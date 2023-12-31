@@ -8,6 +8,7 @@ import {
   PopoverBody,
   Input,
   Button,
+  Tooltip,
 } from "@chakra-ui/react";
 import Player from "../../classes/Construtores/Mestre/Player";
 
@@ -40,6 +41,9 @@ export default function Players({ player, setPlayersLista }: Props) {
     const width = Math.floor((min * 100) / max);
     return width >= 0 ? width : 0;
   };
+  const espacosTotal = player.mochila
+    ? player.mochila.reduce((acc, item) => acc + item.espacos, 0)
+    : 0;
   return (
     <div className="bg-white bg-opacity-70 p-5 rounded-lg laptop:w-[200px] h-fit">
       <img className="w-full mx-auto" src={player.img} />
@@ -201,6 +205,49 @@ export default function Players({ player, setPlayersLista }: Props) {
           </p>
         </div>
       ))}
+      {player.magias && (
+        <div className="flex flex-col gap-2 text-sm">
+          <h1 className="text-center text-red-600 font-bold">Magias</h1>
+          {player.magias.map((magia) => (
+            <Popover>
+              <PopoverTrigger>
+                <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
+                  <p className="text-red-600">{magia.nome}</p>
+                  <p>{magia.escola}</p>
+                </div>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>{magia.nome}</PopoverHeader>
+                <PopoverBody>{magia.descricao}</PopoverBody>
+              </PopoverContent>
+            </Popover>
+          ))}
+        </div>
+      )}
+      <div className="flex flex-col gap-2 text-sm">
+        <h1 className="text-center text-red-600 font-bold">
+          Mochila ({espacosTotal}/{10 + player.atributos.for * 2})
+        </h1>
+        {player.mochila &&
+          player.mochila.map((item) => (
+            <Popover>
+              <PopoverTrigger>
+                <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
+                  <p className="text-red-600">{item.nome}</p>
+                  <p>{item.espacos}</p>
+                </div>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>{item.nome}</PopoverHeader>
+                <PopoverBody>{item.descricao}</PopoverBody>
+              </PopoverContent>
+            </Popover>
+          ))}
+      </div>
     </div>
   );
 }
