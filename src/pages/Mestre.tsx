@@ -239,11 +239,11 @@ export default function Mestre() {
   );
   return (
     <>
-      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4">
+      <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4 flex flex-col gap-4">
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex desktop:justify-between justify-evenly items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0">
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex desktop:justify-between justify-evenly items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2">
             <img
-              className="h-8 w-fit dekstop:block hidden"
+              className="h-8 w-fit hidden desktop:block"
               src="./img/bannerT20.png"
             />
             <h1 className="mx-auto desktop:block hidden">
@@ -253,7 +253,7 @@ export default function Mestre() {
               <div>
                 <TurnOrder />
               </div>
-              <p className="text-center text-sm">Turnos</p>
+              <p className="text-center text-sm desktop:hidden">Turnos</p>
             </div>
             <div className="flex flex-col">
               <div>
@@ -307,7 +307,7 @@ export default function Mestre() {
           </div>
         </article>
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-0 z-20">
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 z-20">
             <div className="justify-between w-5/6 desktop:flex hidden">
               <img className="h-8 w-fit" src="./img/bannerT20.png" />
               <h1 className="mx-auto">Gerenciador de fichas para os npcs</h1>
