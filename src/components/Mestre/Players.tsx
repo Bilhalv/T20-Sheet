@@ -224,7 +224,7 @@ export default function Players({ player, setPlayersLista }: Props) {
                 </div>
               </PopoverTrigger>
               <PopoverContent>
-                <div className="bg-bgT20">
+                <div className="bg-bgT20 rounded-md">
                   <PopoverArrow />
                   <PopoverHeader className="text-white font-bold font-tormenta">
                     <div className="flex justify-between items-center">
@@ -312,7 +312,7 @@ export default function Players({ player, setPlayersLista }: Props) {
         <h1 className="text-center text-red-600 font-bold">
           Mochila (
           {player.mochila.reduce<number>(
-            (acc: number, item: any) => acc + item.espacos,
+            (acc: number, item: Item | Armadura | Arma) => acc + item.espacos,
             0
           )}
           /{10 + player.atributos.for * 2})
