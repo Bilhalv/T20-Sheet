@@ -100,6 +100,7 @@ export const TabelaPlayer: Player[] = [
         execucao: "Dolor",
       },
     ],
+    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
   },
   {
     img: "https://i.ibb.co/C9fwJc9/Bulan.png",
@@ -128,6 +129,7 @@ export const TabelaPlayer: Player[] = [
         execucao: "Dolor",
       },
     ],
+    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
   },
   {
     img: "https://i.ibb.co/jfYVJtg/Diggo.png",
@@ -157,6 +159,7 @@ export const TabelaPlayer: Player[] = [
       },
     ],
     magias: [FindMagia("Curar Ferimentos")],
+    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
   },
   {
     img: "https://i.ibb.co/jZHG2xx/Vic.png",
@@ -214,5 +217,6 @@ export const TabelaPlayer: Player[] = [
         execucao: "Dolor",
       },
     ],
+    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
   },
 ].sort((a, b) => a.player.localeCompare(b.player));

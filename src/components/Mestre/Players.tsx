@@ -44,9 +44,6 @@ export default function Players({ player, setPlayersLista }: Props) {
     const width = Math.floor((min * 100) / max);
     return width >= 0 ? width : 0;
   };
-  const espacosTotal = player.mochila
-    ? player.mochila.reduce((acc: number, item: any) => acc + item.espacos, 0)
-    : 0;
   const imagensMagias = player.magias
     ? player.magias.map(
         (magia) =>
@@ -313,7 +310,12 @@ export default function Players({ player, setPlayersLista }: Props) {
       )}
       <div className="flex flex-col gap-2 text-sm">
         <h1 className="text-center text-red-600 font-bold">
-          Mochila ({espacosTotal}/{10 + player.atributos.for * 2})
+          Mochila (
+          {player.mochila.reduce<number>(
+            (acc: number, item: any) => acc + item.espacos,
+            0
+          )}
+          /{10 + player.atributos.for * 2})
         </h1>
         {player.mochila &&
           player.mochila.map((item: Item | Armadura | Arma) => (
