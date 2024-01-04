@@ -229,9 +229,7 @@ export default function Mestre() {
   };
 
   if (
-    localStorage.getItem("PlayersLista") === null ||
-    JSON.parse(localStorage.getItem("PlayersLista") || "[]").type !==
-      "PlayersLista"
+    localStorage.getItem("PlayersLista") === null
   )
     localStorage.setItem("PlayersLista", JSON.stringify(TabelaPlayer));
   const [PlayersLista, setPlayersLista] = useState<Player[]>(

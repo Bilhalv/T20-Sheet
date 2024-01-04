@@ -89,10 +89,10 @@ export const TabelaPlayer: Player[] = [
       sab: 0,
       car: 0,
     },
-    pvMax: 0,
-    pvAtual: 0,
-    pmMax: 0,
-    pmAtual: 0,
+    pvMax: 10,
+    pvAtual: 10,
+    pmMax: 10,
+    pmAtual: 10,
     poderes: [
       {
         nome: "Lorem",
@@ -118,10 +118,10 @@ export const TabelaPlayer: Player[] = [
       sab: 0,
       car: 0,
     },
-    pvMax: 0,
-    pvAtual: 0,
-    pmMax: 0,
-    pmAtual: 0,
+    pvMax: 10,
+    pvAtual: 10,
+    pmMax: 10,
+    pmAtual: 10,
     poderes: [
       {
         nome: "Lorem",
@@ -147,10 +147,10 @@ export const TabelaPlayer: Player[] = [
       sab: 0,
       car: 0,
     },
-    pvMax: 0,
-    pvAtual: 0,
-    pmMax: 0,
-    pmAtual: 0,
+    pvMax: 10,
+    pvAtual: 10,
+    pmMax: 10,
+    pmAtual: 10,
     poderes: [
       {
         nome: "Lorem",
@@ -177,10 +177,10 @@ export const TabelaPlayer: Player[] = [
       sab: 0,
       car: 0,
     },
-    pvMax: 0,
-    pvAtual: 0,
-    pmMax: 0,
-    pmAtual: 0,
+    pvMax: 10,
+    pvAtual: 10,
+    pmMax: 10,
+    pmAtual: 10,
     mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
     poderes: [
       {
@@ -206,10 +206,10 @@ export const TabelaPlayer: Player[] = [
       sab: 0,
       car: 0,
     },
-    pvMax: 0,
-    pvAtual: 0,
-    pmMax: 0,
-    pmAtual: 0,
+    pvMax: 10,
+    pvAtual: 10,
+    pmMax: 10,
+    pmAtual: 10,
     poderes: [
       {
         nome: "Lorem",
