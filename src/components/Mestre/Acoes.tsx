@@ -39,7 +39,7 @@ function ConstrutorDeAccordions(acao: Acao): JSX.Element {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel className="font-serif text-sm text-justify">
-          <i>{acao.descricao}</i>
+          {acao.descricao}
         </AccordionPanel>
       </AccordionItem>
     </>
