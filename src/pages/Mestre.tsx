@@ -16,6 +16,7 @@ import Players from "../components/Mestre/Players";
 import Player from "../classes/Construtores/Mestre/Player";
 import TurnOrder from "../components/Mestre/TurnOrder";
 import FlipMove from "react-flip-move";
+import Pericias from "../components/Mestre/Pericias";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -252,6 +253,12 @@ export default function Mestre() {
                 <TurnOrder />
               </div>
               <p className="text-center text-sm desktop:hidden">Turnos</p>
+            </div>
+            <div className="flex flex-col">
+              <div>
+                <Pericias />
+              </div>
+              <p className="text-center text-sm desktop:hidden">Perícias</p>
             </div>
             <div className="flex flex-col">
               <div>
