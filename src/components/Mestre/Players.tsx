@@ -201,6 +201,12 @@ export default function Players({ player, setPlayersLista }: Props) {
           <b className="text-red-600">Defesa</b> {player.defesa}
         </div>
       </div>
+      <div className="text-sm">
+        <div className="flex gap-3">
+          <b className="text-red-600">Morte</b> -
+          {player.pvMax > 20 ? Math.floor(player.pvMax / 2) : 10}
+        </div>
+      </div>
       {player.poderes.map((poder) => (
         <div className="flex gap-2 text-sm">
           <p className="text-justify">
