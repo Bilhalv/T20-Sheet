@@ -76,6 +76,7 @@ export const TabelaPlayer: Player[] = [
   {
     img: "https://i.ibb.co/rfZHCpj/Debs.png",
     nivel: 2,
+    movimento: 9,
     nome: "Agatha",
     player: "Debs",
     classe: "Ladina",
@@ -105,6 +106,7 @@ export const TabelaPlayer: Player[] = [
   {
     img: "https://i.ibb.co/C9fwJc9/Bulan.png",
     nivel: 2,
+    movimento: 9,
     nome: "Per",
     player: "Bulan",
     classe: "Ladina",
@@ -134,6 +136,7 @@ export const TabelaPlayer: Player[] = [
   {
     img: "https://i.ibb.co/jfYVJtg/Diggo.png",
     nivel: 2,
+    movimento: 9,
     nome: "Tatum",
     player: "Diggo",
     classe: "Clérigo",
@@ -164,6 +167,7 @@ export const TabelaPlayer: Player[] = [
   {
     img: "https://i.ibb.co/jZHG2xx/Vic.png",
     nivel: 2,
+    movimento: 9,
     nome: "Akin",
     player: "Vic",
     classe: "Arcanista",
@@ -193,6 +197,7 @@ export const TabelaPlayer: Player[] = [
   {
     img: "https://i.ibb.co/42Kdr9T/Moni.png",
     nivel: 2,
+    movimento: 9,
     nome: "Layla",
     player: "Moni",
     classe: "Arcanista",

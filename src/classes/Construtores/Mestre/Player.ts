@@ -5,6 +5,7 @@ import { Magia } from "../Magia";
 
 export default class Player {
   magias?: Magia[];
+  movimento: number;
   mochila: (Item | Arma | Armadura)[];
   img: string;
   nivel: number;
@@ -32,6 +33,7 @@ export default class Player {
   }[];
   constructor(
     mochila: (Item | Arma | Armadura)[],
+    movimento: number,
     img: string,
     nivel: number,
     nome: string,
@@ -57,6 +59,7 @@ export default class Player {
       execucao?: string;
     }[]
   ) {
+    this.movimento = movimento;
     this.mochila = mochila;
     this.img = img;
     this.nivel = nivel;
