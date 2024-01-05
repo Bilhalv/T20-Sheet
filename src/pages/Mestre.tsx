@@ -26,6 +26,7 @@ import { Dado } from "../classes/Construtores/Dado";
 import Player from "../classes/Construtores/Mestre/Player";
 import { TesouroTabela } from "../classes/Tabelas/Mestre/Tesouro";
 import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
+import AddGrupo from "../components/Mestre/AddGrupo";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -255,7 +256,7 @@ export default function Mestre() {
               src="./img/bannerT20.png"
             />
             <h1 className="mx-auto desktop:block hidden">
-              Gerenciador de fichas para os Players
+              Players
             </h1>
             <TurnOrder />
             <Pericias />
@@ -314,14 +315,14 @@ export default function Mestre() {
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 z-20">
             <div className="justify-between w-5/6 desktop:flex hidden">
               <img className="h-8 w-fit" src="./img/bannerT20.png" />
-              <h1 className="mx-auto">Gerenciador de fichas para os npcs</h1>
+              <h1 className="mx-auto">Npcs</h1>
             </div>
-            <div className="flex desktop:hidden justify-evenly w-full">
+            <div className="flex gap-2 desktop:justify-normal justify-evenly desktop:w-fit w-full">
               <div className="flex flex-col">
                 <div>
                   <Condicoes />
                 </div>
-                <p className="text-center text-sm">Condições</p>
+                <p className="text-center text-sm desktop:hidden">Condições</p>
               </div>
               <div>
                 <div>
@@ -336,13 +337,28 @@ export default function Mestre() {
                     rolar={rolar}
                   />
                 </div>
-                <p className="text-center text-sm">Adicionar</p>
+                <p className="text-center text-sm desktop:hidden">Adicionar</p>
+              </div>
+              <div>
+                <div>
+                  <AddGrupo
+                    Npcs={Npcs}
+                    setNpcs={setNpcs}
+                    alterarStatus={alterarStatus}
+                    handleMove={handleMove}
+                    reRollTesouro={reRollTesouro}
+                    ataqueRoll={ataqueRoll}
+                    resetar={resetar}
+                    rolar={rolar}
+                  />
+                </div>
+                <p className="text-center text-sm desktop:hidden">Adicionar</p>
               </div>
               <div>
                 <div>
                   <Acoes />
                 </div>
-                <p className="text-center text-sm">Ações</p>
+                <p className="text-center text-sm desktop:hidden">Ações</p>
               </div>
               <div>
                 <div>
@@ -383,61 +399,7 @@ export default function Mestre() {
                     }}
                   />
                 </div>
-                <p className="text-center text-sm">Limpar</p>
-              </div>
-            </div>
-            <div className="desktop:flex gap-2 hidden">
-              <div className="flex gap-2 flex-col-reverse">
-                <Condicoes />
-                <AddNpc
-                  Npcs={Npcs}
-                  setNpcs={setNpcs}
-                  alterarStatus={alterarStatus}
-                  handleMove={handleMove}
-                  reRollTesouro={reRollTesouro}
-                  ataqueRoll={ataqueRoll}
-                  resetar={resetar}
-                  rolar={rolar}
-                />
-              </div>
-              <div className="flex gap-2 flex-col-reverse">
-                <Acoes />
-                <IconButton
-                  aria-label="Clear"
-                  rounded={"full"}
-                  bgColor={"red"}
-                  color={"white"}
-                  size="sm"
-                  _hover={{
-                    color: "red",
-                    transform: "scale(1.1)",
-                    zIndex: 1,
-                    borderColor: "red",
-                    bg: "transparent",
-                    border: "2px solid",
-                  }}
-                  icon={<Eraser />}
-                  onClick={() => {
-                    const sure = window.confirm(
-                      "Tem certeza que deseja limpar a lista de NPCs?"
-                    );
-                    if (!sure) {
-                      showCustomToast({
-                        status: "warning",
-                        title: `Lista de NPCs não limpa!`,
-                        desc: `A lista de NPCs não foi limpa!`,
-                      });
-                      return;
-                    }
-                    localStorage.setItem("npcs", "[]");
-                    setNpcs([]);
-                    showCustomToast({
-                      status: "success",
-                      title: `Lista de NPCs limpa!`,
-                      desc: `Todos os NPCs foram removidos da lista!`,
-                    });
-                  }}
-                />
+                <p className="text-center text-sm desktop:hidden">Limpar</p>
               </div>
             </div>
           </div>
