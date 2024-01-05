@@ -1,22 +1,31 @@
-import NPC from "../classes/Construtores/Mestre/NPC";
-import useCustomToast from "../components/Geral/Toasted";
-import addHistorico from "../components/Geral/addHistorico";
-import { RolarDado } from "../components/Geral/RolarDado";
-import { Dado } from "../classes/Construtores/Dado";
+// React imports
 import { useState } from "react";
+import FlipMove from "react-flip-move";
+
+// Chakra UI imports
 import { IconButton } from "@chakra-ui/react";
+
+// Lucide React imports
 import { Eraser } from "lucide-react";
-import { TesouroTabela } from "../classes/Tabelas/Mestre/Tesouro";
+
+// Component imports
+import useCustomToast from "../components/Geral/Toasted";
+import { RolarDado } from "../components/Geral/RolarDado";
+import addHistorico from "../components/Geral/addHistorico";
 import ShowNPC from "../components/Mestre/ShowNpc";
 import Condicoes from "../components/Mestre/Condicoes";
 import AddNpc from "../components/Mestre/AddNpc";
 import Acoes from "../components/Mestre/Acoes";
-import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
 import Players from "../components/Mestre/Players";
-import Player from "../classes/Construtores/Mestre/Player";
 import TurnOrder from "../components/Mestre/TurnOrder";
-import FlipMove from "react-flip-move";
 import Pericias from "../components/Mestre/Pericias";
+
+// Class imports
+import NPC from "../classes/Construtores/Mestre/NPC";
+import { Dado } from "../classes/Construtores/Dado";
+import Player from "../classes/Construtores/Mestre/Player";
+import { TesouroTabela } from "../classes/Tabelas/Mestre/Tesouro";
+import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -229,9 +238,7 @@ export default function Mestre() {
     setWillDelete({ will: false, id: -1 });
   };
 
-  if (
-    localStorage.getItem("PlayersLista") === null
-  )
+  if (localStorage.getItem("PlayersLista") === null)
     localStorage.setItem("PlayersLista", JSON.stringify(TabelaPlayer));
   const [PlayersLista, setPlayersLista] = useState<Player[]>(
     JSON.parse(localStorage.getItem("PlayersLista") || "[]")
