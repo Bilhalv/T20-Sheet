@@ -39,25 +39,30 @@ export default function TurnOrder() {
   const [drawerIsOpen, setDrawerIsOpen] = useState<boolean>(false);
   return (
     <>
-      <IconButton
-        onClick={() => {
-          setDrawerIsOpen(true);
-        }}
-        icon={<Clock />}
-        aria-label="Ordem de iniciativa"
-        rounded={"full"}
-        bgColor={"red"}
-        color={"white"}
-        size="sm"
-        _hover={{
-          color: "red",
-          transform: "scale(1.1)",
-          zIndex: 1,
-          borderColor: "red",
-          bg: "transparent",
-          border: "2px solid",
-        }}
-      />
+      <div className="flex flex-col">
+        <div>
+          <IconButton
+            onClick={() => {
+              setDrawerIsOpen(true);
+            }}
+            icon={<Clock />}
+            aria-label="Ordem de iniciativa"
+            rounded={"full"}
+            bgColor={"red"}
+            color={"white"}
+            size="sm"
+            _hover={{
+              color: "red",
+              transform: "scale(1.1)",
+              zIndex: 1,
+              borderColor: "red",
+              bg: "transparent",
+              border: "2px solid",
+            }}
+          />
+        </div>
+        <p className="text-center text-sm desktop:hidden">Turnos</p>
+      </div>
       <Drawer isOpen={drawerIsOpen} onClose={() => setDrawerIsOpen(false)}>
         <DrawerOverlay />
         <DrawerContent className="font-tormenta">

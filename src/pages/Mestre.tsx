@@ -143,10 +143,12 @@ export default function Mestre() {
   const [Npcs, setNpcs] = useState<NPCShown[]>(
     JSON.parse(localStorage.getItem("npcs") || "[]")
   );
+
   const [willDelete, setWillDelete] = useState({
     will: false,
     id: -1,
   });
+
   const reRollTesouro = (npc: NPCShown) => {
     let npcTemp = npc;
     const [roll1, roll2] = RolarDado({
@@ -255,18 +257,8 @@ export default function Mestre() {
             <h1 className="mx-auto desktop:block hidden">
               Gerenciador de fichas para os Players
             </h1>
-            <div className="flex flex-col">
-              <div>
-                <TurnOrder />
-              </div>
-              <p className="text-center text-sm desktop:hidden">Turnos</p>
-            </div>
-            <div className="flex flex-col">
-              <div>
-                <Pericias />
-              </div>
-              <p className="text-center text-sm desktop:hidden">Perícias</p>
-            </div>
+            <TurnOrder />
+            <Pericias />
             <div className="flex flex-col">
               <div>
                 <IconButton

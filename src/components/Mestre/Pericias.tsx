@@ -22,6 +22,31 @@ export default function Pericias() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   return (
     <>
+      <div className="flex flex-col">
+        <div>
+          <IconButton
+            icon={<HelpCircle />}
+            overflow={"hidden"}
+            onClick={() => {
+              setIsOpenDrawer(true);
+            }}
+            aria-label="Ações"
+            rounded={"full"}
+            bgColor={"red"}
+            color={"white"}
+            size="sm"
+            _hover={{
+              color: "red",
+              transform: "scale(1.1)",
+              zIndex: 1,
+              borderColor: "red",
+              bg: "transparent",
+              border: "2px solid",
+            }}
+          />
+        </div>
+        <p className="text-center text-sm desktop:hidden">Perícias</p>
+      </div>
       <Drawer
         isOpen={isOpenDrawer}
         onClose={() => setIsOpenDrawer(false)}
@@ -76,26 +101,6 @@ export default function Pericias() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-      <IconButton
-        icon={<HelpCircle />}
-        overflow={"hidden"}
-        onClick={() => {
-          setIsOpenDrawer(true);
-        }}
-        aria-label="Ações"
-        rounded={"full"}
-        bgColor={"red"}
-        color={"white"}
-        size="sm"
-        _hover={{
-          color: "red",
-          transform: "scale(1.1)",
-          zIndex: 1,
-          borderColor: "red",
-          bg: "transparent",
-          border: "2px solid",
-        }}
-      />
     </>
   );
 }
