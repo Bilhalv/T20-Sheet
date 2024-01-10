@@ -323,7 +323,7 @@ export const TabelaPlayer: Player[] = [
     img: "https://i.ibb.co/jZHG2xx/Vic.png",
     nivel: 2,
     movimento: 9,
-    nome: "Akin(em progresso)",
+    nome: "Akin (em progresso)",
     player: "Vic",
     classe: "Arcanista",
     raca: "Qareen",
@@ -340,6 +340,36 @@ export const TabelaPlayer: Player[] = [
     pvAtual: 10,
     pmMax: 18,
     pmAtual: 18,
+    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
+    poderes: [
+      {
+        nome: "Lorem",
+        descricao: "Ipsum",
+        execucao: "Dolor",
+      },
+    ],
+  },
+  {
+    img: "",
+    nivel: 2,
+    movimento: 9,
+    nome: "Boris (em progresso)",
+    player: "Tutu",
+    classe: "Inventor",
+    raca: "Lefou",
+    defesa: 0,
+    atributos: {
+      for: 0,
+      des: 0,
+      con: 0,
+      int: 0,
+      sab: 0,
+      car: 0,
+    },
+    pvMax: 10,
+    pvAtual: 10,
+    pmMax: 10,
+    pmAtual: 10,
     mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
     poderes: [
       {
@@ -386,4 +416,4 @@ export const TabelaPlayer: Player[] = [
     mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
     magias: [FindMagia("Adaga Mental"), FindMagia("Criar Ilusao"), FindMagia("Toque Chocante"), FindMagia("Curar Ferimentos"), FindMagia("Compreensao")],
   },
-].sort((a, b) => a.player.localeCompare(b.player));
+].sort((a, b) => a.nome.localeCompare(b.nome));
