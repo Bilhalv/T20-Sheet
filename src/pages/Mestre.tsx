@@ -27,6 +27,7 @@ import Player from "../classes/Construtores/Mestre/Player";
 import { TesouroTabela } from "../classes/Tabelas/Mestre/Tesouro";
 import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
 import AddGrupo from "../components/Mestre/AddGrupo";
+import Historico from "../components/Mestre/Histórico";
 
 export class NPCShown extends NPC {
   id: number = 0;
@@ -252,14 +253,13 @@ export default function Mestre() {
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex desktop:justify-between justify-evenly items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2">
             <img
-              className="h-8 w-fit hidden desktop:block"
+              className="h-8 hidden desktop:block"
               src="./img/bannerT20.png"
             />
-            <h1 className="mx-auto desktop:block hidden">
-              Players
-            </h1>
+            <h1 className="mx-auto desktop:block hidden w-full">Players</h1>
             <TurnOrder />
             <Pericias />
+            <Historico />
             <div className="flex flex-col">
               <div>
                 <IconButton
@@ -314,8 +314,8 @@ export default function Mestre() {
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 z-20">
             <div className="justify-between w-5/6 desktop:flex hidden">
-              <img className="h-8 w-fit" src="./img/bannerT20.png" />
-              <h1 className="mx-auto">Npcs</h1>
+              <img className="h-8" src="./img/bannerT20.png" />
+              <h1 className="mx-auto w-full">Npcs</h1>
             </div>
             <div className="flex gap-2 desktop:justify-normal justify-evenly desktop:w-fit w-full">
               <div className="flex flex-col">

@@ -8,6 +8,7 @@ import {
   PopoverBody,
   Input,
   Button,
+  Tooltip,
 } from "@chakra-ui/react";
 import Player from "../../classes/Construtores/Mestre/Player";
 import { enumTipo } from "../../classes/Construtores/Magia";
@@ -53,7 +54,7 @@ export default function Players({ player, setPlayersLista }: Props) {
       )
     : [];
   return (
-    <div className="bg-white bg-opacity-70 p-5 rounded-lg laptop:w-[200px] h-fit">
+    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-1/3 laptop:w-1/4 h-fit">
       <img className="w-full mx-auto" src={player.img} />
       <Popover>
         <PopoverTrigger>
@@ -158,7 +159,7 @@ export default function Players({ player, setPlayersLista }: Props) {
           {player.raca} {player.classe} ({player.player})
         </h1>
       </div>
-      <div className="border-y-2 border-y-red-600 flex justify-evenly text-xs">
+      <div className="border-y-2 border-y-red-600 flex flex-wrap justify-evenly text-xs gap-2">
         {[
           {
             nome: "Força",
@@ -185,7 +186,7 @@ export default function Players({ player, setPlayersLista }: Props) {
             valor: player.atributos.car,
           },
         ].map((atributo) => (
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center">
             <p className="text-red-600 font-bold">
               {atributo.nome.substring(0, 3).toUpperCase()}
             </p>
@@ -213,114 +214,31 @@ export default function Players({ player, setPlayersLista }: Props) {
           {player.movimento} ({player.movimento / 1.5}▢)
         </div>
       </div>
-      {player.poderes.map((poder) => (
-        <div className="flex gap-2 text-sm">
-          <p className="text-justify">
-            <b className="text-red-600">
-              {poder.nome}
-              &nbsp;{poder.execucao && `(${poder.execucao})`}
-            </b>
-            &nbsp;
-            {poder.descricao}
-          </p>
-        </div>
-      ))}
-      {player.magias && (
-        <div className="flex flex-col gap-2 text-sm">
-          <h1 className="text-center text-red-600 font-bold">Magias</h1>
-          {player.magias.map((magia, idx) => (
-            <Popover>
-              <PopoverTrigger>
-                <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
-                  <p className="text-red-600">{magia.nome}</p>
-                </div>
-              </PopoverTrigger>
-              <PopoverContent>
-                <div className="bg-bgT20 rounded-md">
-                  <PopoverArrow />
-                  <PopoverHeader className="text-white font-bold font-tormenta">
-                    <div className="flex justify-between items-center">
-                      <p className="flex flex-col">
-                        <p className="text-center">{magia.nome}</p>
-                        <p className="flex justify-evenly flex-wrap w-full">
-                          <p className="flex text-xs">
-                            <img
-                              src="./img/magias/dados/execucao.svg"
-                              className="w-3"
-                            />
-                            <p className="my-auto">{magia.execucao}</p>
-                          </p>
-                          <p className="flex text-xs">
-                            <img
-                              src="./img/magias/dados/alcance.svg"
-                              className="w-3"
-                            />
-                            <p className="my-auto">{magia.alcance}</p>
-                          </p>
-                          <p className="flex text-xs">
-                            <img
-                              src="./img/magias/dados/duracao.svg"
-                              className="w-3"
-                            />
-                            <p className="my-auto">{magia.duracao}</p>
-                          </p>
-                          <p className="flex text-xs">
-                            <img
-                              src="./img/magias/dados/alvo.svg"
-                              className="w-3"
-                            />
-                            <p className="my-auto">{magia.alvo}</p>
-                          </p>
-                          {magia.resistencia === "" ? null : (
-                            <p className="flex text-xs">
-                              <img
-                                src="./img/magias/dados/resistencia.svg"
-                                className="w-3"
-                              />
-                              <p className="my-auto">{magia.resistencia}</p>
-                            </p>
-                          )}
-                        </p>
-                      </p>
-                      <div
-                        className={`bg-cover flex bg-center ${
-                          magia.tipo === enumTipo.arcana
-                            ? "bg-arcana"
-                            : magia.tipo === enumTipo.divina
-                            ? "bg-divina"
-                            : "bg-universal"
-                        } p-3`}
-                      >
-                        <img
-                          src={imagensMagias[idx]}
-                          alt={magia.escola}
-                          className="w-4 h-4"
-                        />
-                        <p className="text-center text-xs">{magia.circulo}</p>
-                      </div>
-                    </div>
-                  </PopoverHeader>
-                  <PopoverBody className="m-2 bg-white bg-opacity-70 rounded-xl">
-                    {magia.descricao}
-                    {magia.aprimoramentos.map((aprimoramento) => (
-                      <div className="flex gap-2 text-sm">
-                        <p className="text-justify">
-                          <b className="text-red-600">
-                            {aprimoramento.pm_a_mais}PM:
-                          </b>
-                          &nbsp;
-                          {aprimoramento.descricao}
-                        </p>
-                      </div>
-                    ))}
-                  </PopoverBody>
-                </div>
-              </PopoverContent>
-            </Popover>
-          ))}
-        </div>
-      )}
-      <div className="flex flex-col gap-2 text-sm">
+      <div className="flex flex-col mb-2 text-sm">
+        <h1 className="text-red-600 text-sm font-bold text-center">Poderes</h1>
+        {player.poderes.map((poder) => (
+          <Tooltip
+            label={
+              <div>
+                <p>Descrição: </p>
+                <p>{poder.descricao}</p>
+              </div>
+            }
+            openDelay={800}
+            placement="right"
+            closeDelay={1000}
+            closeOnClick={true}
+            bgColor="red.600"
+          >
+            <div className="px-2 hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 select-none text-red-600 font-bold">
+              <p>
+                {poder.nome} {poder.execucao && `(${poder.execucao})`}
+              </p>
+            </div>
+          </Tooltip>
+        ))}
+      </div>
+      <div className="flex flex-col text-sm">
         <h1 className="text-center text-red-600 font-bold">
           Mochila (
           {player.mochila.reduce<number>(
@@ -331,18 +249,9 @@ export default function Players({ player, setPlayersLista }: Props) {
         </h1>
         {player.mochila &&
           player.mochila.map((item: Item | Armadura | Arma) => (
-            <Popover>
-              <PopoverTrigger>
-                <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
-                  <p className="text-red-600">{item.nome}</p>
-                  <p>{item.espacos}</p>
-                </div>
-              </PopoverTrigger>
-              <PopoverContent>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader>{item.nome}</PopoverHeader>
-                <PopoverBody className="flex flex-col">
+            <Tooltip
+              label={
+                <div>
                   <p>Preço: T$ {item.preco.toFixed(2)}</p>
                   {"dano" in item && (
                     <>
@@ -359,11 +268,206 @@ export default function Players({ player, setPlayersLista }: Props) {
                   )}
                   <p>Descrição: </p>
                   <p>{item.descricao}</p>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+                </div>
+              }
+              bgColor="red.600"
+              openDelay={800}
+              placement="right"
+              closeDelay={1000}
+              closeOnClick={true}
+            >
+              <div className="px-2 flex justify-between hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 select-none">
+                <p className="text-red-600 font-bold">{item.nome}</p>
+                <p>{item.espacos}</p>
+              </div>
+            </Tooltip>
           ))}
       </div>
+      {player.magias && (
+        <div className="flex flex-col gap-2 text-sm">
+          <h1 className="text-center text-red-600 font-bold">Magias</h1>
+          {player.magias.map((magia, idx) => (
+            <Tooltip
+              label={
+                <div className="bg-bgT20 rounded-xl p-1 w-[400px]">
+                  <div className="flex justify-between items-center">
+                    <p className="flex flex-col">
+                      <p className="text-center">{magia.nome}</p>
+                      <p className="flex justify-evenly flex-wrap w-full">
+                        <p className="flex text-xs">
+                          <img
+                            src="./img/magias/dados/execucao.svg"
+                            className="w-3"
+                          />
+                          <p className="my-auto">{magia.execucao}</p>
+                        </p>
+                        <p className="flex text-xs">
+                          <img
+                            src="./img/magias/dados/alcance.svg"
+                            className="w-3"
+                          />
+                          <p className="my-auto">{magia.alcance}</p>
+                        </p>
+                        <p className="flex text-xs">
+                          <img
+                            src="./img/magias/dados/duracao.svg"
+                            className="w-3"
+                          />
+                          <p className="my-auto">{magia.duracao}</p>
+                        </p>
+                        <p className="flex text-xs">
+                          <img
+                            src="./img/magias/dados/alvo.svg"
+                            className="w-3"
+                          />
+                          <p className="my-auto">{magia.alvo}</p>
+                        </p>
+                        {magia.resistencia === "" ? null : (
+                          <p className="flex text-xs">
+                            <img
+                              src="./img/magias/dados/resistencia.svg"
+                              className="w-3"
+                            />
+                            <p className="my-auto">{magia.resistencia}</p>
+                          </p>
+                        )}
+                      </p>
+                    </p>
+                    <div
+                      className={`bg-cover flex bg-center ${
+                        magia.tipo === enumTipo.arcana
+                          ? "bg-arcana"
+                          : magia.tipo === enumTipo.divina
+                          ? "bg-divina"
+                          : "bg-universal"
+                      } p-3`}
+                    >
+                      <img
+                        src={imagensMagias[idx]}
+                        alt={magia.escola}
+                        className="w-4 h-4"
+                      />
+                      <p className="text-center text-xs">{magia.circulo}</p>
+                    </div>
+                  </div>
+                  <div className="m-2 bg-white text-black px-3 py-1 text-justify bg-opacity-70 rounded-xl">
+                    {magia.descricao}
+                    {magia.aprimoramentos.map((aprimoramento) => (
+                      <div className="flex gap-2 text-sm mb-2">
+                        <p className="text-justify">
+                          <b className="text-red-600">
+                            {aprimoramento.pm_a_mais}PM:
+                          </b>
+                          &nbsp;
+                          {aprimoramento.descricao}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              }
+              bgColor="transparent"
+              p={0}
+              openDelay={800}
+              placement="right"
+              closeDelay={1000}
+              closeOnClick={true}
+            >
+              <div className="px-2 hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 select-none text-red-600 font-bold">
+                <p>{magia.nome}</p>
+              </div>
+            </Tooltip>
+            // <Popover>
+            //   <PopoverTrigger>
+            //     <div className="flex justify-between font-bold hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 hover:cursor-pointer">
+            //       <p className="text-red-600">{magia.nome}</p>
+            //     </div>
+            //   </PopoverTrigger>
+            //   <PopoverContent>
+            //     <div className="bg-bgT20 rounded-md">
+            //       <PopoverArrow />
+            //       <PopoverHeader className="text-white font-bold font-tormenta">
+            //         <div className="flex justify-between items-center">
+            //           <p className="flex flex-col">
+            //             <p className="text-center">{magia.nome}</p>
+            //             <p className="flex justify-evenly flex-wrap w-full">
+            //               <p className="flex text-xs">
+            //                 <img
+            //                   src="./img/magias/dados/execucao.svg"
+            //                   className="w-3"
+            //                 />
+            //                 <p className="my-auto">{magia.execucao}</p>
+            //               </p>
+            //               <p className="flex text-xs">
+            //                 <img
+            //                   src="./img/magias/dados/alcance.svg"
+            //                   className="w-3"
+            //                 />
+            //                 <p className="my-auto">{magia.alcance}</p>
+            //               </p>
+            //               <p className="flex text-xs">
+            //                 <img
+            //                   src="./img/magias/dados/duracao.svg"
+            //                   className="w-3"
+            //                 />
+            //                 <p className="my-auto">{magia.duracao}</p>
+            //               </p>
+            //               <p className="flex text-xs">
+            //                 <img
+            //                   src="./img/magias/dados/alvo.svg"
+            //                   className="w-3"
+            //                 />
+            //                 <p className="my-auto">{magia.alvo}</p>
+            //               </p>
+            //               {magia.resistencia === "" ? null : (
+            //                 <p className="flex text-xs">
+            //                   <img
+            //                     src="./img/magias/dados/resistencia.svg"
+            //                     className="w-3"
+            //                   />
+            //                   <p className="my-auto">{magia.resistencia}</p>
+            //                 </p>
+            //               )}
+            //             </p>
+            //           </p>
+            //           <div
+            //             className={`bg-cover flex bg-center ${
+            //               magia.tipo === enumTipo.arcana
+            //                 ? "bg-arcana"
+            //                 : magia.tipo === enumTipo.divina
+            //                 ? "bg-divina"
+            //                 : "bg-universal"
+            //             } p-3`}
+            //           >
+            //             <img
+            //               src={imagensMagias[idx]}
+            //               alt={magia.escola}
+            //               className="w-4 h-4"
+            //             />
+            //             <p className="text-center text-xs">{magia.circulo}</p>
+            //           </div>
+            //         </div>
+            //       </PopoverHeader>
+            //       <PopoverBody className="m-2 bg-white bg-opacity-70 rounded-xl">
+            //         {magia.descricao}
+            //         {magia.aprimoramentos.map((aprimoramento) => (
+            //           <div className="flex gap-2 text-sm">
+            //             <p className="text-justify">
+            //               <b className="text-red-600">
+            //                 {aprimoramento.pm_a_mais}PM:
+            //               </b>
+            //               &nbsp;
+            //               {aprimoramento.descricao}
+            //             </p>
+            //           </div>
+            //         ))}
+            //       </PopoverBody>
+            //     </div>
+            //   </PopoverContent>
+            // </Popover>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
