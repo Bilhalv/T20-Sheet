@@ -255,7 +255,7 @@ export default function Mestre() {
           <Acoes />
           <Pericias />
           <Condicoes />
-          <h1 className="mx-auto w-full">Ferramentas</h1>
+          <h1 className="mx-auto w-full">tools</h1>
           <TurnOrder />
           <Historico />
           <h1 className="mx-auto w-full">Players</h1>
