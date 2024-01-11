@@ -259,7 +259,7 @@ export default function Mestre() {
           <TurnOrder />
           <Historico />
           <h1 className="mx-auto w-full">Players</h1>
-          <Tooltip bgColor={"red.600"} label="Condições" aria-label="Condições">
+          <Tooltip bgColor={"red.600"} label="Limpar Players" aria-label="Limpar Players">
             <IconButton
               aria-label="Reset"
               rounded={"full"}
