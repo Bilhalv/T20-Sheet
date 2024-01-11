@@ -323,7 +323,7 @@ export const TabelaPlayer: Player[] = [
     img: "https://i.ibb.co/jZHG2xx/Vic.png",
     nivel: 2,
     movimento: 9,
-    nome: "Akin (em progresso)",
+    nome: "Akin",
     player: "Vic",
     classe: "Arcanista",
     raca: "Qareen",
@@ -340,13 +340,69 @@ export const TabelaPlayer: Player[] = [
     pvAtual: 10,
     pmMax: 18,
     pmAtual: 18,
-    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
+    mochila: [
+      FindItem("Traje de viajante"),
+      FindItem("Saco de dormir"),
+      FindArma("Adaga"),
+      {
+        nome: "Estojo de disfarce",
+        descricao:
+          "Um conjunto de cosméticos, tintas para cabelo e algumas próteses simples (como bigodes e narizes falsos). Um personagem sem este item sofre –5 em testes de Enganação para disfarce.",
+        espacos: 1,
+        preco: 50,
+        categoria: "Ferramenta",
+      } as Item,
+      {
+        nome: "Joia falsa",
+        descricao:
+          "Uma joia falsa feita de vidro, quartzo ou algum outro material barato.",
+        espacos: 0,
+        preco: 100,
+        categoria: "Item",
+      } as Item,
+    ],
     poderes: [
       {
-        nome: "Lorem",
-        descricao: "Ipsum",
-        execucao: "Dolor",
+        nome: "Desejos",
+        descricao:
+          "Se lançar uma magia que alguém tenha pedido desde seu último turno, o custo da magia diminui em –1 PM. Fazer um desejo ao qareen é uma ação livre.",
       },
+      {
+        nome: "Resistência Elemental",
+        descricao:
+          "Conforme sua ascendência, você recebe redução 10 a um tipo de dano. Do Fogo (do fogo).",
+      },
+      {
+        nome: "Feérica Básica",
+        descricao:
+          "Você se torna treinado em Enganação e aprende uma magia de 1º círculo de encantamento ou ilusão, arcana ou divina, a sua escolha.",
+      },
+      {
+        nome: "Alpinista Social",
+        descricao:
+          "Você pode substituir testes de Diplomacia por testes de Enganação.",
+      },
+      {
+        nome: "Aparência Inofensiva",
+        descricao:
+          "A primeira criatura inteligente (Int –3 ou maior) que atacar você em uma cena deve fazer um teste de Vontade (CD Car). Se falhar, perderá sua ação. Este poder só funciona uma vez por cena; independentemente de a criatura falhar ou não no teste, poderá atacá-lo nas rodadas seguintes.",
+      },
+      {
+        nome: "Golpista Divino",
+        descricao: "Você recebe +2 em Enganação, Jogatina e Ladinagem.",
+      },
+      {
+        nome: "Magia Ilimitada",
+        descricao:
+          "Você soma seu atributo-chave no limite de PM que pode gastar numa magia. Por exemplo, um arcanista de 5º nível com Int 4 e este poder pode gastar até 9 PM em cada magia.",
+      },
+    ],
+    magias: [
+      FindMagia("Explosão de Chamas"),
+      FindMagia("Seta Infalível de Talude"),
+      FindMagia("Toque Chocante"),
+      FindMagia("Disfarce Ilusório"),
+      FindMagia("Transmutar Objetos"),
     ],
   },
   {
@@ -357,26 +413,97 @@ export const TabelaPlayer: Player[] = [
     player: "Tutu",
     classe: "Inventor",
     raca: "Lefou",
-    defesa: 0,
+    defesa: 16,
     atributos: {
-      for: 0,
+      for: 2,
       des: 0,
-      con: 0,
-      int: 0,
-      sab: 0,
-      car: 0,
+      con: 3,
+      int: 4,
+      sab: -1,
+      car: -2,
     },
-    pvMax: 10,
-    pvAtual: 10,
-    pmMax: 10,
-    pmAtual: 10,
-    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
+    pvMax: 21,
+    pvAtual: 21,
+    pmMax: 8,
+    pmAtual: 8,
+    mochila: [
+      FindArma("Foice"),
+      FindArmadura("Gibão de peles"),
+      FindItem("Saco de dormir"),
+      FindItem("Traje de viajante"),
+      {
+        nome: "Kit de engenhoqueiro",
+        descricao:
+          "Um conjunto de ferramentas e peças de reposição para construir e consertar engenhocas. Sem este item, você sofre –2 em testes de Ofício (engenharia).",
+        espacos: 1,
+        preco: 50,
+        categoria: "Ferramenta",
+      } as Item,
+      {
+        nome: "Kit de armeiro",
+        descricao:
+          "Um conjunto de ferramentas e peças de reposição para construir e consertar armas de fogo. Sem este item, você sofre –2 em testes de Ofício (engenharia).",
+        espacos: 1,
+        preco: 50,
+        categoria: "Ferramenta",
+      } as Item,
+      {
+        nome: "Engenhoca de armadura arcana",
+        descricao:
+          "Apenas o fabricante de uma engenhoca pode ativá-la. Ativar uma engenhoca exige uma ação padrão (ou a execução da magia, o que for maior) e um teste de Ofício (engenhoqueiro) contra CD 15 + custo em PM da magia. Se você passar, a engenhoca gera o efeito da magia (atributo-chave Int). Se falhar, ela enguiça e não pode ser utilizada até ser consertada, o que exige uma hora de trabalho. Cada nova ativação da engenhoca no mesmo dia aumenta a CD do teste de Ofício em +5.",
+        espacos: 1,
+        preco: 0,
+        categoria: "Engenhoca",
+      } as Item,
+      {
+        nome: "Engenhoca de adaga mental",
+        descricao:
+          "Apenas o fabricante de uma engenhoca pode ativá-la. Ativar uma engenhoca exige uma ação padrão (ou a execução da magia, o que for maior) e um teste de Ofício (engenhoqueiro) contra CD 15 + custo em PM da magia. Se você passar, a engenhoca gera o efeito da magia (atributo-chave Int). Se falhar, ela enguiça e não pode ser utilizada até ser consertada, o que exige uma hora de trabalho. Cada nova ativação da engenhoca no mesmo dia aumenta a CD do teste de Ofício em +5.",
+        espacos: 1,
+        preco: 0,
+        categoria: "Engenhoca",
+      } as Item,
+    ],
     poderes: [
       {
-        nome: "Lorem",
-        descricao: "Ipsum",
-        execucao: "Dolor",
+        nome: "Cria da Tormenta",
+        descricao:
+          "Você é uma criatura do tipo monstro e recebe +5 em testes de resistência contra efeitos causados por lefeu e pela Tormenta.",
       },
+      {
+        nome: "Deformidade",
+        descricao:
+          "Todo lefou possui defeitos físicos que, embora desagradáveis, conferem certas vantagens. Você recebe +2 em duas perícias a sua escolha. Cada um desses bônus conta como um poder da Tormenta (exceto para perda de Carisma). Você pode trocar um desses bônus por um poder da Tormenta a sua escolha (ele também não conta para perda de Carisma).",
+      },
+      {
+        nome: "Engenhosidade",
+        descricao:
+          "Quando faz um teste de perícia, você pode gastar 2 PM para somar a sua Inteligência no teste. Você não pode usar esta habilidade em testes de ataque.",
+      },
+      {
+        nome: "Carapaça",
+        descricao:
+          "Sua pele é recoberta por placas quitinosas. Você recebe +1 na Defesa. Este bônus aumenta em +1 para cada dois outros poderes da Tormenta que você possui.",
+      },
+      {
+        nome: "Cuspir Enxame",
+        descricao:
+          "Você pode gastar uma ação completa e 2 PM para criar um enxame de insetos rubros em um ponto a sua escolha em alcance curto e com duração sustentada. O enxame tem tamanho Médio e pode passar pelo espaço de outras criaturas. Uma vez por rodada, você pode gastar uma ação de movimento para mover o enxame 9m. No final do seu turno, o enxame causa 2d6 pontos de dano de ácido a qualquer criatura no espaço que ele estiver ocupando. Para cada dois outros poderes da Tormenta que possui, você pode gastar +1 PM quando usa este poder para aumentar o dano do enxame em +1d6.",
+      },
+      {
+        nome: "Esse Cheiro...",
+        descricao:
+          "Você recebe +2 em Fortitude e detecta automaticamente a presença (mas não a localização ou natureza) de itens alquímicos em alcance curto.",
+      },
+      {
+        nome: "Zumbificar",
+        descricao:
+          "Você pode gastar uma ação completa e 3 PM para reanimar o cadáver de uma criatura Pequena ou Média adjacente por um dia. O cadáver funciona como um parceiro iniciante de um tipo a sua escolha entre combatente, fortão ou guardião. Além disso, quando sofre dano, você pode sacrificar esse parceiro; se fizer isso, você sofre apenas metade do dano, mas o cadáver é destruído.",
+      },
+    ],
+    magias: [
+      FindMagia("Adaga Mental"),
+      FindMagia("Armadura Arcana"),
     ],
   },
   {
@@ -414,6 +541,12 @@ export const TabelaPlayer: Player[] = [
       },
     ],
     mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
-    magias: [FindMagia("Adaga Mental"), FindMagia("Criar Ilusao"), FindMagia("Toque Chocante"), FindMagia("Curar Ferimentos"), FindMagia("Compreensao")],
+    magias: [
+      FindMagia("Adaga Mental"),
+      FindMagia("Criar Ilusao"),
+      FindMagia("Toque Chocante"),
+      FindMagia("Curar Ferimentos"),
+      FindMagia("Compreensao"),
+    ],
   },
 ].sort((a, b) => a.nome.localeCompare(b.nome));

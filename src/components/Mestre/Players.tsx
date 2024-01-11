@@ -218,12 +218,7 @@ export default function Players({ player, setPlayersLista }: Props) {
         <h1 className="text-red-600 text-sm font-bold text-center">Poderes</h1>
         {player.poderes.map((poder) => (
           <Tooltip
-            label={
-              <div>
-                <p>Descrição: </p>
-                <p>{poder.descricao}</p>
-              </div>
-            }
+            label={<p>{poder.descricao}</p>}
             openDelay={800}
             placement="right"
             closeDelay={1000}

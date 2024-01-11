@@ -250,7 +250,7 @@ export default function Mestre() {
   return (
     <>
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4 flex flex-col gap-4">
-        <aside className="right-0 bg-white w-fit flex flex-col bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2 items-center text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta">
+        <aside className="right-0 bg-white w-fit flex flex-col bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2 items-center text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta z-50">
           <h1 className="mx-auto w-full">Biblio</h1>
           <Acoes />
           <Pericias />
