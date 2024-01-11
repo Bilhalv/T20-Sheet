@@ -19,6 +19,7 @@ import {
   TabPanels,
   TabPanel,
   AccordionIcon,
+  Tooltip,
 } from "@chakra-ui/react";
 import { AlarmClock } from "lucide-react";
 import { useState } from "react";
@@ -174,26 +175,28 @@ export default function Acoes() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-      <IconButton
-        icon={<AlarmClock />}
-        overflow={"hidden"}
-        onClick={() => {
-          setIsOpenDrawer(true);
-        }}
-        aria-label="Ações"
-        rounded={"full"}
-        bgColor={"red"}
-        color={"white"}
-        size="sm"
-        _hover={{
-          color: "red",
-          transform: "scale(1.1)",
-          zIndex: 1,
-          borderColor: "red",
-          bg: "transparent",
-          border: "2px solid",
-        }}
-      />
+      <Tooltip label="Ações" bgColor="red.600">
+        <IconButton
+          icon={<AlarmClock />}
+          overflow={"hidden"}
+          onClick={() => {
+            setIsOpenDrawer(true);
+          }}
+          aria-label="Ações"
+          rounded={"full"}
+          bgColor={"red"}
+          color={"white"}
+          size="sm"
+          _hover={{
+            color: "red",
+            transform: "scale(1.1)",
+            zIndex: 1,
+            borderColor: "red",
+            bg: "transparent",
+            border: "2px solid",
+          }}
+        />
+      </Tooltip>
     </>
   );
 }

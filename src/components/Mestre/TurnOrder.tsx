@@ -7,6 +7,7 @@ import {
   DrawerOverlay,
   IconButton,
   Input,
+  Tooltip,
 } from "@chakra-ui/react";
 import { TabelaPlayer } from "../../classes/Tabelas/Mestre/Players";
 import { useState } from "react";
@@ -39,8 +40,8 @@ export default function TurnOrder() {
   const [drawerIsOpen, setDrawerIsOpen] = useState<boolean>(false);
   return (
     <>
-      <div className="flex flex-col">
-        <div>
+      
+      <Tooltip bgColor={"red.600"} label="Turnos" aria-label="Turnos">
           <IconButton
             onClick={() => {
               setDrawerIsOpen(true);
@@ -60,9 +61,7 @@ export default function TurnOrder() {
               border: "2px solid",
             }}
           />
-        </div>
-        <p className="text-center text-sm desktop:hidden">Turnos</p>
-      </div>
+        </Tooltip>
       <Drawer isOpen={drawerIsOpen} onClose={() => setDrawerIsOpen(false)}>
         <DrawerOverlay />
         <DrawerContent className="font-tormenta">

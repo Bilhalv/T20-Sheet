@@ -9,6 +9,7 @@ import {
   DrawerFooter,
   Button,
   useDisclosure,
+  Tooltip,
 } from "@chakra-ui/react";
 import { History } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -51,26 +52,23 @@ export default function Historico() {
   };
   return (
     <>
-      <div className="flex flex-col">
-        <div>
-          <IconButton
-            aria-label="Search database"
-            bgColor={"red"}
-            size={"sm"}
-            color={"white"}
-            rounded={"full"}
-            transition={"all 0.2s ease-in-out"}
-            _hover={{
-              bgColor: "transparent",
-                color: "red",
-              transform: "scale(1.1) rotate(-360deg)",
-            }}
-            onClick={onOpen}
-            icon={<History />}
-          />
-        </div>
-        <p className="text-center text-sm desktop:hidden">Histórico</p>
-      </div>
+      <Tooltip bgColor={"red.600"} label="Histórico" aria-label="Histórico">
+        <IconButton
+          aria-label="Histórico"
+          bgColor={"red"}
+          size={"sm"}
+          color={"white"}
+          rounded={"full"}
+          transition={"all 0.2s ease-in-out"}
+          _hover={{
+            bgColor: "transparent",
+            color: "red",
+            transform: "scale(1.1) rotate(-360deg)",
+          }}
+          onClick={onOpen}
+          icon={<History />}
+        />
+      </Tooltip>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent className="font-tormenta">

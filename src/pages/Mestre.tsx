@@ -3,7 +3,7 @@ import { useState } from "react";
 import FlipMove from "react-flip-move";
 
 // Chakra UI imports
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, Tooltip } from "@chakra-ui/react";
 
 // Lucide React imports
 import { Eraser } from "lucide-react";
@@ -250,60 +250,123 @@ export default function Mestre() {
   return (
     <>
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4 flex flex-col gap-4">
-        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex desktop:justify-between justify-evenly items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2">
-            <img
-              className="h-8 hidden desktop:block"
-              src="./img/bannerT20.png"
+        <aside className="right-0 bg-white w-fit flex flex-col bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2 items-center text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta">
+          <h1 className="mx-auto w-full">Biblio</h1>
+          <Acoes />
+          <Pericias />
+          <Condicoes />
+          <h1 className="mx-auto w-full">Ferramentas</h1>
+          <TurnOrder />
+          <Historico />
+          <h1 className="mx-auto w-full">Players</h1>
+          <Tooltip bgColor={"red.600"} label="Condições" aria-label="Condições">
+            <IconButton
+              aria-label="Reset"
+              rounded={"full"}
+              bgColor={"red"}
+              color={"white"}
+              size="sm"
+              _hover={{
+                color: "red",
+                transform: "scale(1.1)",
+                zIndex: 1,
+                borderColor: "red",
+                bg: "transparent",
+                border: "2px solid",
+              }}
+              icon={<Eraser />}
+              onClick={() => {
+                const sure = window.confirm(
+                  "Tem certeza que deseja resetar a lista de Players?"
+                );
+                if (!sure) {
+                  showCustomToast({
+                    status: "warning",
+                    title: `Aviso!`,
+                    desc: `A lista de Players não foi resetada!`,
+                  });
+                  return;
+                }
+                localStorage.setItem(
+                  "PlayersLista",
+                  JSON.stringify(TabelaPlayer)
+                );
+                setPlayersLista(TabelaPlayer);
+                showCustomToast({
+                  status: "success",
+                  title: `Sucesso!`,
+                  desc: `Todos os Players foram resetados!`,
+                });
+              }}
             />
-            <h1 className="mx-auto desktop:block hidden w-full">Players</h1>
-            <TurnOrder />
-            <Pericias />
-            <Historico />
-            <div className="flex flex-col">
-              <div>
-                <IconButton
-                  aria-label="Reset"
-                  rounded={"full"}
-                  bgColor={"red"}
-                  color={"white"}
-                  size="sm"
-                  _hover={{
-                    color: "red",
-                    transform: "scale(1.1)",
-                    zIndex: 1,
-                    borderColor: "red",
-                    bg: "transparent",
-                    border: "2px solid",
-                  }}
-                  icon={<Eraser />}
-                  onClick={() => {
-                    const sure = window.confirm(
-                      "Tem certeza que deseja resetar a lista de Players?"
-                    );
-                    if (!sure) {
-                      showCustomToast({
-                        status: "warning",
-                        title: `Aviso!`,
-                        desc: `A lista de Players não foi resetada!`,
-                      });
-                      return;
-                    }
-                    localStorage.setItem(
-                      "PlayersLista",
-                      JSON.stringify(TabelaPlayer)
-                    );
-                    setPlayersLista(TabelaPlayer);
-                    showCustomToast({
-                      status: "success",
-                      title: `Sucesso!`,
-                      desc: `Todos os Players foram resetados!`,
-                    });
-                  }}
-                />
-              </div>
-              <p className="text-center text-sm desktop:hidden">Resetar</p>
-            </div>
+          </Tooltip>
+          <h1 className="mx-auto w-full">NPCs</h1>
+          <AddNpc
+            Npcs={Npcs}
+            setNpcs={setNpcs}
+            alterarStatus={alterarStatus}
+            handleMove={handleMove}
+            reRollTesouro={reRollTesouro}
+            ataqueRoll={ataqueRoll}
+            resetar={resetar}
+            rolar={rolar}
+          />
+          <AddGrupo
+            Npcs={Npcs}
+            setNpcs={setNpcs}
+            alterarStatus={alterarStatus}
+            handleMove={handleMove}
+            reRollTesouro={reRollTesouro}
+            ataqueRoll={ataqueRoll}
+            resetar={resetar}
+            rolar={rolar}
+          />
+          <Tooltip
+            bgColor={"red.600"}
+            label="Limpar NPCs"
+            aria-label="Limpar NPCs"
+          >
+            <IconButton
+              aria-label="Clear"
+              rounded={"full"}
+              bgColor={"red"}
+              color={"white"}
+              size="sm"
+              _hover={{
+                color: "red",
+                transform: "scale(1.1)",
+                zIndex: 1,
+                borderColor: "red",
+                bg: "transparent",
+                border: "2px solid",
+              }}
+              icon={<Eraser />}
+              onClick={() => {
+                const sure = window.confirm(
+                  "Tem certeza que deseja limpar a lista de NPCs?"
+                );
+                if (!sure) {
+                  showCustomToast({
+                    status: "warning",
+                    title: `Lista de NPCs não limpa!`,
+                    desc: `A lista de NPCs não foi limpa!`,
+                  });
+                  return;
+                }
+                localStorage.setItem("npcs", "[]");
+                setNpcs([]);
+                showCustomToast({
+                  status: "success",
+                  title: `Lista de NPCs limpa!`,
+                  desc: `Todos os NPCs foram removidos da lista!`,
+                });
+              }}
+            />
+          </Tooltip>
+        </aside>
+        <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 w-full mt-[-500px] desktop:mx-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2">
+          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta bg-white bg-opacity-25 rounded-xl p-2 top-2 gap-2">
+            <h1 className="mx-auto w-full">Players</h1>
           </div>
           <div className="flex flex-wrap gap-3 justify-evenly mt-4">
             {PlayersLista.map((player) => (
@@ -312,96 +375,8 @@ export default function Mestre() {
           </div>
         </article>
         <article className="bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:m-auto p-4 rounded-lg border-gray-500 shadow-lg">
-          <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta flex justify-between items-center bg-white bg-opacity-25 sticky rounded-xl p-2 top-2 z-20">
-            <div className="justify-between w-5/6 desktop:flex hidden">
-              <img className="h-8" src="./img/bannerT20.png" />
-              <h1 className="mx-auto w-full">Npcs</h1>
-            </div>
-            <div className="flex gap-2 desktop:justify-normal justify-evenly desktop:w-fit w-full">
-              <div className="flex flex-col">
-                <div>
-                  <Condicoes />
-                </div>
-                <p className="text-center text-sm desktop:hidden">Condições</p>
-              </div>
-              <div>
-                <div>
-                  <AddNpc
-                    Npcs={Npcs}
-                    setNpcs={setNpcs}
-                    alterarStatus={alterarStatus}
-                    handleMove={handleMove}
-                    reRollTesouro={reRollTesouro}
-                    ataqueRoll={ataqueRoll}
-                    resetar={resetar}
-                    rolar={rolar}
-                  />
-                </div>
-                <p className="text-center text-sm desktop:hidden">Adicionar</p>
-              </div>
-              <div>
-                <div>
-                  <AddGrupo
-                    Npcs={Npcs}
-                    setNpcs={setNpcs}
-                    alterarStatus={alterarStatus}
-                    handleMove={handleMove}
-                    reRollTesouro={reRollTesouro}
-                    ataqueRoll={ataqueRoll}
-                    resetar={resetar}
-                    rolar={rolar}
-                  />
-                </div>
-                <p className="text-center text-sm desktop:hidden">Adicionar</p>
-              </div>
-              <div>
-                <div>
-                  <Acoes />
-                </div>
-                <p className="text-center text-sm desktop:hidden">Ações</p>
-              </div>
-              <div>
-                <div>
-                  <IconButton
-                    aria-label="Clear"
-                    rounded={"full"}
-                    bgColor={"red"}
-                    color={"white"}
-                    size="sm"
-                    _hover={{
-                      color: "red",
-                      transform: "scale(1.1)",
-                      zIndex: 1,
-                      borderColor: "red",
-                      bg: "transparent",
-                      border: "2px solid",
-                    }}
-                    icon={<Eraser />}
-                    onClick={() => {
-                      const sure = window.confirm(
-                        "Tem certeza que deseja limpar a lista de NPCs?"
-                      );
-                      if (!sure) {
-                        showCustomToast({
-                          status: "warning",
-                          title: `Lista de NPCs não limpa!`,
-                          desc: `A lista de NPCs não foi limpa!`,
-                        });
-                        return;
-                      }
-                      localStorage.setItem("npcs", "[]");
-                      setNpcs([]);
-                      showCustomToast({
-                        status: "success",
-                        title: `Lista de NPCs limpa!`,
-                        desc: `Todos os NPCs foram removidos da lista!`,
-                      });
-                    }}
-                  />
-                </div>
-                <p className="text-center text-sm desktop:hidden">Limpar</p>
-              </div>
-            </div>
+          <div className="text-3xl text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta text-center bg-white bg-opacity-25 rounded-xl p-2 top-2">
+            <h1 className="mx-auto w-full">Npcs</h1>
           </div>
           {Npcs && (
             <FlipMove className="flex flex-wrap gap-3 justify-evenly mt-4">

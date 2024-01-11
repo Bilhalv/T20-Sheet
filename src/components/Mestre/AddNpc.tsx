@@ -7,6 +7,7 @@ import {
   ModalBody,
   Select,
   ModalFooter,
+  Tooltip,
 } from "@chakra-ui/react";
 import { Plus } from "lucide-react";
 import { useState } from "react";
@@ -43,26 +44,28 @@ export default function AddNpc({
   const [npc, setNpc] = useState<NPCShown>();
   return (
     <>
-      <IconButton
-        icon={<Plus />}
-        onClick={() => {
-          resetar();
-          setIsOpen(true);
-        }}
-        aria-label="Add"
-        rounded={"full"}
-        bgColor={"red"}
-        color={"white"}
-        size="sm"
-        _hover={{
-          color: "red",
-          transform: "scale(1.1)",
-          zIndex: 1,
-          borderColor: "red",
-          bg: "transparent",
-          border: "2px solid",
-        }}
-      />
+      <Tooltip bgColor={"red.600"} label="AddNPC" aria-label="AddNPC">
+        <IconButton
+          icon={<Plus />}
+          onClick={() => {
+            resetar();
+            setIsOpen(true);
+          }}
+          aria-label="Add"
+          rounded={"full"}
+          bgColor={"red"}
+          color={"white"}
+          size="sm"
+          _hover={{
+            color: "red",
+            transform: "scale(1.1)",
+            zIndex: 1,
+            borderColor: "red",
+            bg: "transparent",
+            border: "2px solid",
+          }}
+        />
+      </Tooltip>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay backdropFilter="blur(5px)" />
