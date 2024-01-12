@@ -250,15 +250,14 @@ export default function Mestre() {
 
   const [isAsideVisible, setIsAsideVisible] = useState(false);
   const [tempAside, setTempAside] = useState(false);
+  const [tempHidden, setTempHidden] = useState(true);
   return (
     <>
       <body className="bg-bgT20 bg-fixed bg-center min-h-screen w-full bg-cover p-4 flex flex-col gap-4 transition-all">
         {isAsideVisible ? (
           <aside
             className={`bg-white w-fit flex flex-col bg-opacity-25 sticky rounded-xl p-2 top-2 gap-2 items-center text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta z-50 transition-transform ${
-              tempAside
-                ? "animate-fade-in-left duration-500"
-                : "animate-fade-out-left duration-500 opacity-0 translate-x-full"
+              tempAside ? "animate-fade-in-left" : "animate-fade-out-left"
             }`}
           >
             <IconButton
@@ -280,6 +279,7 @@ export default function Mestre() {
               icon={<EyeOff />}
               onClick={() => {
                 setTempAside(false);
+                setTempHidden(true);
                 setTimeout(() => {
                   setIsAsideVisible(false);
                 }, 300);
@@ -425,8 +425,11 @@ export default function Mestre() {
               setIsAsideVisible(true);
               setTempAside(true);
             }}
+            onMouseEnter={() => setTempHidden(false)}
+            onMouseLeave={() => setTempHidden(true)}
             className={
-              "fixed top-2 right-2 z-50 animate-fade-in-left active:animate-fade-out-left"
+              "fixed top-2 right-2 z-50 animate-fade-in-left active:animate-fade-out-left p-2 hover:animate-hide-out-left transition-all duration-300 ml-[-10px] " +
+              (tempHidden && "translate-x-[-20px]")
             }
           />
         )}
@@ -434,7 +437,7 @@ export default function Mestre() {
         <article
           className={
             "bg-gray-50 bg-opacity-30 desktop:w-3/4 desktop:mx-auto p-4 rounded-lg border-gray-500 shadow-lg mb-2 " +
-            (isAsideVisible ? "mt-[-550px]" : "mt-[-50px]")
+            (isAsideVisible ? "mt-[-555px]" : "mt-[-51px]")
           }
         >
           <div className="text-3xl text-center text-white drop-shadow-[_2px_2px_rgba(0,0,0,0.25)] my-auto font-tormenta bg-white bg-opacity-25 rounded-xl p-2 top-2 gap-2">

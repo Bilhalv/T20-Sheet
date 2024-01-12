@@ -29,8 +29,8 @@ module.exports = {
         },
       },
       animation: {
-        "fade-in-left": "fade-in-left 1s ease-in",
-        "fade-out-left": "fade-out-left 1s ease-out",
+        "fade-in-left": "fade-in-left 0.2s ease-in",
+        "fade-out-left": "fade-out-left 0.2s ease-out",
       },
     },
     fontFamily: {
