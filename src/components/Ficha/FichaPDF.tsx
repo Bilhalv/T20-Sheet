@@ -5,7 +5,6 @@ import {
   Page,
   Text,
   View,
-  PDFViewer,
   Image,
 } from "@react-pdf/renderer";
 import { Download } from "lucide-react";
