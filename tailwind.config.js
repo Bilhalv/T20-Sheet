@@ -9,7 +9,7 @@ module.exports = {
     },
     extend: {
       gridTemplateRows: {
-        '7': 'repeat(7, minmax(0, 1fr))',
+        7: "repeat(7, minmax(0, 1fr))",
       },
       backgroundImage: {
         bgT20: "url('/public/img/bgT20.jpg')",
@@ -18,11 +18,25 @@ module.exports = {
         divina: "url('/public/img/magias/classificacao/divina.png')",
         universal: "url('/public/img/magias/classificacao/universal.png')",
       },
+      keyframes: {
+        "fade-in-left": {
+          "0%": { opacity: "0", transform: "translateX(-100%)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "fade-out-left": {
+          "0%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(-100%)" },
+        },
+      },
+      animation: {
+        "fade-in-left": "fade-in-left 1s ease-in",
+        "fade-out-left": "fade-out-left 1s ease-out",
+      },
     },
     fontFamily: {
-      tormenta: ["tormenta","sans-serif" ],
-      serif: ['ui-serif', 'Georgia'],
-    }
+      tormenta: ["tormenta", "sans-serif"],
+      serif: ["ui-serif", "Georgia"],
+    },
   },
   plugins: [],
 };
