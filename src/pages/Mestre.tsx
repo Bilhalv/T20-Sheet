@@ -428,8 +428,8 @@ export default function Mestre() {
             onMouseEnter={() => setTempHidden(false)}
             onMouseLeave={() => setTempHidden(true)}
             className={
-              "fixed top-2 right-2 z-50 animate-fade-in-left active:animate-fade-out-left p-2 hover:animate-hide-out-left transition-all duration-300 ml-[-10px] " +
-              (tempHidden && "translate-x-[-20px]")
+              "fixed top-2 right-2 z-50 animate-fade-in-left active:animate-fade-out-left p-2 hover:animate-hide-out-left transition-all duration-300 ml-[-15px] " +
+              (tempHidden && "translate-x-[-15px]")
             }
           />
         )}
