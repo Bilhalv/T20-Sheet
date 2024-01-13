@@ -28,6 +28,7 @@ import { TesouroTabela } from "../classes/Tabelas/Mestre/Tesouro";
 import { TabelaPlayer } from "../classes/Tabelas/Mestre/Players";
 import AddGrupo from "../components/Mestre/AddGrupo";
 import Historico from "../components/Mestre/Histórico";
+import TokenPDF from "../components/Mestre/Token PDF";
 
 export class NPCShown extends NPC {
   id: number = 0;

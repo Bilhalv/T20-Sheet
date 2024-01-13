@@ -14,6 +14,7 @@ import { ArrowLeft, ArrowRight, Check, Trash } from "lucide-react";
 import { Magia } from "../../classes/Construtores/Magia";
 import { ataque, poder } from "../../classes/Construtores/Mestre/NPC";
 import { NPCShown } from "../../pages/Mestre";
+import TokenPDF from "./Token PDF";
 
 interface Props {
   npc: NPCShown;
@@ -55,10 +56,20 @@ export default function ShowNPC({
   setWillDelete,
   willDelete,
 }: Props) {
+  const tamanho = (() => {
+    switch (npc.tamanho) {
+      case "Pequeno":
+        return "Pequeno";
+      case "Medio":
+        return "Médio";
+      case "Grande":
+        return "Grande";
+      default:
+        return "Médio";
+    }
+  })();
   return (
-    <div
-      className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit"
-    >
+    <div className="bg-white bg-opacity-70 p-5 rounded-lg w-[400px] h-fit">
       {isNotModal && (
         <div className="flex justify-between mb-[-40px] w-full">
           {handleMove && (
@@ -130,6 +141,14 @@ export default function ShowNPC({
         </div>
       )}
       {npc.img && <img className="w-3/4 mx-auto" src={npc.img} />}
+      {!isNotModal && (
+        <TokenPDF
+          img={npc.img || ""}
+          size={tamanho}
+          amount={10}
+          nome={npc.nome}
+        />
+      )}
       <div className="flex flex-col gap-2">
         <Popover>
           <PopoverTrigger>
