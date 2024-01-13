@@ -4,17 +4,15 @@ import {
   View,
   Document,
   Image,
-  PDFViewer,
   StyleSheet,
   pdf,
 } from "@react-pdf/renderer";
-import { IconButton, useToast } from "@chakra-ui/react";
+import { IconButton, Input, NumberInput, useToast } from "@chakra-ui/react";
 import useCustomToast from "../Geral/Toasted";
 import { Download } from "lucide-react";
 interface Props {
   img: string;
   size: "Pequeno" | "Médio" | "Grande";
-  amount: number;
   nome: string;
 }
 
@@ -31,7 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TokenPDF({ img, size, amount, nome }: Props) {
+export default function TokenPDF({ img, size, nome }: Props) {
   const tamanho: Record<string, number> = {
     Pequeno: 1.25,
     Médio: 2.5,
@@ -77,16 +75,36 @@ export default function TokenPDF({ img, size, amount, nome }: Props) {
       },
     });
   };
+  const [amount, setAmount] = React.useState(0);
   return (
     <>
-      <IconButton
-        aria-label="Baixar PDF"
-        icon={<Download />}
-        onClick={() => downloadPdf()}
-      />
-      <PDFViewer className="w-full h-fit">
-        <MyDocument />
-      </PDFViewer>
+      <div className="flex justify-between">
+        <IconButton
+          aria-label="Baixar PDF"
+          bgColor={"red"}
+          size={"sm"}
+          color={"white"}
+          rounded={"full"}
+          transition={"all 0.2s ease-in-out"}
+          _hover={{
+            bgColor: "transparent",
+            color: "red",
+            transform: "scale(1.1)",
+            border: "2px solid red",
+          }}
+          icon={<Download />}
+          onClick={() => downloadPdf()}
+        />
+        <Input
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+          type="number"
+          className="text-center"
+          size="sm"
+          w={"50px"}
+          borderRadius={"full"}
+        />
+      </div>
     </>
   );
 }
