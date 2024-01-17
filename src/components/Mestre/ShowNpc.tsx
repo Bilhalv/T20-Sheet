@@ -145,7 +145,6 @@ export default function ShowNPC({
         <TokenPDF
           img={npc.img || ""}
           size={tamanho}
-          amount={10}
           nome={npc.nome}
         />
       )}
