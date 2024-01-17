@@ -12,9 +12,6 @@ import {
 } from "@chakra-ui/react";
 import Player from "../../classes/Construtores/Mestre/Player";
 import { enumTipo } from "../../classes/Construtores/Magia";
-import { Arma } from "../../classes/Construtores/Arma";
-import { Armadura } from "../../classes/Construtores/Armadura";
-import { Item } from "../../classes/Construtores/Item";
 
 interface Props {
   player: Player;
@@ -233,51 +230,6 @@ export default function Players({ player, setPlayersLista }: Props) {
           </Tooltip>
         ))}
       </div>
-      <div className="flex flex-col text-sm">
-        <h1 className="text-center text-red-600 font-bold">
-          Mochila (
-          {player.mochila.reduce<number>(
-            (acc: number, item: Item | Armadura | Arma) => acc + item.espacos,
-            0
-          )}
-          /{10 + player.atributos.for * 2})
-        </h1>
-        {player.mochila &&
-          player.mochila.map((item: Item | Armadura | Arma) => (
-            <Tooltip
-              label={
-                <div>
-                  <p>Preço: T$ {item.preco.toFixed(2)}</p>
-                  {"dano" in item && (
-                    <>
-                      <p>Alcance: {item.alcance}</p>
-                      <p>Dano: {item.dano}</p>
-                      <p>Crítico: {item.crit}</p>
-                    </>
-                  )}
-                  {"defesa" in item && (
-                    <>
-                      <p>Defesa: {item.defesa}</p>
-                      <p>Penalidade: {item.penalidade}</p>
-                    </>
-                  )}
-                  <p>Descrição: </p>
-                  <p>{item.descricao}</p>
-                </div>
-              }
-              bgColor="red.600"
-              openDelay={800}
-              placement="right"
-              closeDelay={1000}
-              closeOnClick={true}
-            >
-              <div className="px-2 flex justify-between hover:transform hover:scale-110 transition-all hover:bg-white hover:bg-opacity-20 select-none">
-                <p className="text-red-600 font-bold">{item.nome}</p>
-                <p>{item.espacos}</p>
-              </div>
-            </Tooltip>
-          ))}
-      </div>
       {player.magias && (
         <div className="flex flex-col gap-2 text-sm">
           <h1 className="text-center text-red-600 font-bold">Magias</h1>
@@ -463,6 +415,10 @@ export default function Players({ player, setPlayersLista }: Props) {
           ))}
         </div>
       )}
+      <h1 className="text-sm mt-3">
+        <b className="text-red-600 font-bold">Tibares</b>
+        T${player.tibares.toFixed(2)}
+      </h1>
     </div>
   );
 }

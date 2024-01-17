@@ -1,7 +1,4 @@
 import Normalize from "../../../components/Geral/Normalize";
-import { Arma } from "../../Construtores/Arma";
-import { Armadura } from "../../Construtores/Armadura";
-import { Item } from "../../Construtores/Item";
 import {
   Magia,
   enumEscolas,
@@ -9,12 +6,6 @@ import {
   enumTipo,
 } from "../../Construtores/Magia";
 import Player from "../../Construtores/Mestre/Player";
-import {
-  TabelasArmasSimles,
-  tabelaArmaduras,
-  tabelaArmas,
-  tabelaItens,
-} from "../Itens";
 import { TabelaMagias } from "../Magias";
 
 const MagiaNull: Magia = {
@@ -37,38 +28,6 @@ const MagiaNull: Magia = {
   tipo: enumTipo.universal,
 };
 
-const ArmaNull: Arma = {
-  nome: "Arma não encontrada",
-  descricao: "Arma não encontrada",
-  dano: "Arma não encontrada",
-  crit: "Arma não encontrada",
-  tipo: "Arma não encontrada",
-  alcance: "Arma não encontrada",
-  espacos: 0,
-  preco: 0,
-  categoria: "Arma não encontrada",
-  proficiencia: "Arma não encontrada",
-};
-
-const ArmaduraNull: Armadura = {
-  nome: "Armadura não encontrada",
-  descricao: "Armadura não encontrada",
-  penalidade: 0,
-  categoria: "Armadura não encontrada",
-  preco: 0,
-  defesa: 0,
-  espacos: 0,
-  tipo: "Armadura não encontrada",
-};
-
-const ItemNull: Item = {
-  nome: "Item não encontrado",
-  descricao: "Item não encontrado",
-  espacos: 0,
-  preco: 0,
-  categoria: "Item não encontrado",
-};
-
 function FindMagia(nome: string): Magia {
   return (
     TabelaMagias.find((magia) => Normalize(magia.nome) === Normalize(nome)) ||
@@ -76,33 +35,11 @@ function FindMagia(nome: string): Magia {
   );
 }
 
-function FindArma(nome: string): Arma {
-  return (
-    [...tabelaArmas, ...TabelasArmasSimles].find(
-      (arma) => Normalize(arma.nome) === Normalize(nome)
-    ) || ArmaNull
-  );
-}
-
-function FindArmadura(nome: string): Armadura {
-  return (
-    tabelaArmaduras.find(
-      (armadura) => Normalize(armadura.nome) === Normalize(nome)
-    ) || ArmaduraNull
-  );
-}
-
-function FindItem(nome: string): Item {
-  return (
-    tabelaItens.find((item) => Normalize(item.nome) === Normalize(nome)) ||
-    ItemNull
-  );
-}
-
 export const TabelaPlayer: Player[] = [
   {
     img: "https://i.ibb.co/rfZHCpj/Debs.png",
     nivel: 2,
+    tibares: 0,
     movimento: 9,
     nome: "Agatha",
     player: "Debs",
@@ -153,25 +90,11 @@ export const TabelaPlayer: Player[] = [
           "Você recebe +2 em testes de perícias baseadas em Carisma contra criaturas que possam se sentir fisicamente atraídas por você.",
       },
     ],
-    mochila: [
-      FindArmadura("Gibão de peles"),
-      FindArma("Adaga"),
-      FindArma("Arco curto"),
-      FindItem("Traje de viajante"),
-      FindItem("Saco de dormir"),
-      {
-        nome: "Estojo de disfarce",
-        descricao:
-          "Um conjunto de cosméticos, tintas para cabelo e algumas próteses simples (como bigodes e narizes falsos). Um personagem sem este item sofre –5 em testes de Enganação para disfarce.",
-        espacos: 1,
-        preco: 50,
-        categoria: "Ferramenta",
-      } as Item,
-    ],
   },
   {
     img: "https://i.ibb.co/C9fwJc9/Bulan.png",
     nivel: 2,
+    tibares: 0,
     movimento: 9,
     nome: "Per",
     player: "Bulan",
@@ -222,46 +145,11 @@ export const TabelaPlayer: Player[] = [
           "Você recebe +2 em Iniciativa e pode sacar ou guardar itens como uma ação livre (em vez de ação de movimento). Além disso, a ação que você gasta para recarregar armas de disparo diminui em uma categoria (ação completa para padrão, padrão para movimento, movimento para livre).",
       },
     ],
-    mochila: [
-      FindItem("Traje de viajante"),
-      FindItem("Saco de dormir"),
-      FindArma("Besta leve"),
-      FindArmadura("Couro batido"),
-      {
-        nome: "Kit de cozinha",
-        descricao:
-          "Um conjunto de panelas, talheres, pratos e outros utensílios necessários para preparar refeições. Sem este item, você sofre –5 em testes de Ofício (culinária).",
-        espacos: 1,
-        preco: 50,
-        categoria: "Ferramenta",
-      } as Item,
-      {
-        nome: "Avental",
-        descricao:
-          "Um avental de couro ou tecido que protege suas roupas de respingos e manchas.",
-        espacos: 0,
-        preco: 10,
-        categoria: "Vestimenta",
-      } as Item,
-      {
-        nome: "Caneca",
-        descricao: "Uma caneca de madeira, cerâmica ou metal.",
-        espacos: 0,
-        preco: 10,
-        categoria: "Ferramenta",
-      } as Item,
-      {
-        nome: "Panela",
-        descricao: "Uma panela de ferro ou barro.",
-        espacos: 0,
-        preco: 10,
-        categoria: "Ferramenta",
-      } as Item,
-    ],
   },
   {
     img: "https://i.ibb.co/jfYVJtg/Diggo.png",
     nivel: 2,
+    tibares: 0,
     movimento: 9,
     nome: "Tatum",
     player: "Diggo",
@@ -304,24 +192,11 @@ export const TabelaPlayer: Player[] = [
       FindMagia("Comando"),
       FindMagia("Consagrar"),
     ],
-    mochila: [
-      FindArma("Maça"),
-      FindArmadura("Brunea"),
-      FindItem("Mochila"),
-      FindItem("Saco de dormir"),
-      {
-        nome: "Traje de sacerdote",
-        descricao:
-          "Um conjunto de roupas finas, um cinto, um par de sapatos, um manto e um símbolo sagrado.",
-        espacos: 1,
-        preco: 50,
-        categoria: "Vestimenta",
-      } as Item,
-    ],
   },
   {
     img: "https://i.ibb.co/jZHG2xx/Vic.png",
     nivel: 2,
+    tibares: 0,
     movimento: 9,
     nome: "Akin",
     player: "Vic",
@@ -340,27 +215,6 @@ export const TabelaPlayer: Player[] = [
     pvAtual: 10,
     pmMax: 18,
     pmAtual: 18,
-    mochila: [
-      FindItem("Traje de viajante"),
-      FindItem("Saco de dormir"),
-      FindArma("Adaga"),
-      {
-        nome: "Estojo de disfarce",
-        descricao:
-          "Um conjunto de cosméticos, tintas para cabelo e algumas próteses simples (como bigodes e narizes falsos). Um personagem sem este item sofre –5 em testes de Enganação para disfarce.",
-        espacos: 1,
-        preco: 50,
-        categoria: "Ferramenta",
-      } as Item,
-      {
-        nome: "Joia falsa",
-        descricao:
-          "Uma joia falsa feita de vidro, quartzo ou algum outro material barato.",
-        espacos: 0,
-        preco: 100,
-        categoria: "Item",
-      } as Item,
-    ],
     poderes: [
       {
         nome: "Desejos",
@@ -408,6 +262,7 @@ export const TabelaPlayer: Player[] = [
   {
     img: "",
     nivel: 2,
+    tibares: 0,
     movimento: 9,
     nome: "Boris (em progresso)",
     player: "Tutu",
@@ -426,44 +281,6 @@ export const TabelaPlayer: Player[] = [
     pvAtual: 21,
     pmMax: 8,
     pmAtual: 8,
-    mochila: [
-      FindArma("Foice"),
-      FindArmadura("Gibão de peles"),
-      FindItem("Saco de dormir"),
-      FindItem("Traje de viajante"),
-      {
-        nome: "Kit de engenhoqueiro",
-        descricao:
-          "Um conjunto de ferramentas e peças de reposição para construir e consertar engenhocas. Sem este item, você sofre –2 em testes de Ofício (engenharia).",
-        espacos: 1,
-        preco: 50,
-        categoria: "Ferramenta",
-      } as Item,
-      {
-        nome: "Kit de armeiro",
-        descricao:
-          "Um conjunto de ferramentas e peças de reposição para construir e consertar armas de fogo. Sem este item, você sofre –2 em testes de Ofício (engenharia).",
-        espacos: 1,
-        preco: 50,
-        categoria: "Ferramenta",
-      } as Item,
-      {
-        nome: "Engenhoca de armadura arcana",
-        descricao:
-          "Apenas o fabricante de uma engenhoca pode ativá-la. Ativar uma engenhoca exige uma ação padrão (ou a execução da magia, o que for maior) e um teste de Ofício (engenhoqueiro) contra CD 15 + custo em PM da magia. Se você passar, a engenhoca gera o efeito da magia (atributo-chave Int). Se falhar, ela enguiça e não pode ser utilizada até ser consertada, o que exige uma hora de trabalho. Cada nova ativação da engenhoca no mesmo dia aumenta a CD do teste de Ofício em +5.",
-        espacos: 1,
-        preco: 0,
-        categoria: "Engenhoca",
-      } as Item,
-      {
-        nome: "Engenhoca de adaga mental",
-        descricao:
-          "Apenas o fabricante de uma engenhoca pode ativá-la. Ativar uma engenhoca exige uma ação padrão (ou a execução da magia, o que for maior) e um teste de Ofício (engenhoqueiro) contra CD 15 + custo em PM da magia. Se você passar, a engenhoca gera o efeito da magia (atributo-chave Int). Se falhar, ela enguiça e não pode ser utilizada até ser consertada, o que exige uma hora de trabalho. Cada nova ativação da engenhoca no mesmo dia aumenta a CD do teste de Ofício em +5.",
-        espacos: 1,
-        preco: 0,
-        categoria: "Engenhoca",
-      } as Item,
-    ],
     poderes: [
       {
         nome: "Cria da Tormenta",
@@ -501,14 +318,12 @@ export const TabelaPlayer: Player[] = [
           "Você pode gastar uma ação completa e 3 PM para reanimar o cadáver de uma criatura Pequena ou Média adjacente por um dia. O cadáver funciona como um parceiro iniciante de um tipo a sua escolha entre combatente, fortão ou guardião. Além disso, quando sofre dano, você pode sacrificar esse parceiro; se fizer isso, você sofre apenas metade do dano, mas o cadáver é destruído.",
       },
     ],
-    magias: [
-      FindMagia("Adaga Mental"),
-      FindMagia("Armadura Arcana"),
-    ],
+    magias: [FindMagia("Adaga Mental"), FindMagia("Armadura Arcana")],
   },
   {
     img: "https://i.ibb.co/42Kdr9T/Moni.png",
     nivel: 2,
+    tibares: 0,
     movimento: 12,
     nome: "Layla",
     player: "Moni",
@@ -540,7 +355,6 @@ export const TabelaPlayer: Player[] = [
         execucao: "Padrão",
       },
     ],
-    mochila: [FindArma("Adaga"), FindArmadura("Gibão de peles")],
     magias: [
       FindMagia("Adaga Mental"),
       FindMagia("Criar Ilusao"),

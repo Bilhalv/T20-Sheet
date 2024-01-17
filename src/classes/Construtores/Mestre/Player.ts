@@ -1,9 +1,5 @@
-import { Arma } from "../Arma";
-import { Armadura } from "../Armadura";
-import { Item } from "../Item";
 import { Magia } from "../Magia";
 
-type Mochila = (Item | Arma | Armadura)[];
 type Atributos = {
   for: number;
   des: number;
@@ -20,8 +16,8 @@ type Poder = {
 
 export default class Player {
   magias?: Magia[];
+  tibares: number;
   movimento: number;
-  mochila: Mochila;
   img: string;
   nivel: number;
   nome: string;
@@ -36,8 +32,8 @@ export default class Player {
   pmAtual: number;
   poderes: Poder[];
   constructor(
-    mochila: Mochila,
     movimento: number,
+    tibares: number,
     img: string,
     nivel: number,
     nome: string,
@@ -53,7 +49,7 @@ export default class Player {
     poderes: Poder[]
   ) {
     this.movimento = movimento;
-    this.mochila = mochila;
+    this.tibares = tibares;
     this.img = img;
     this.nivel = nivel;
     this.nome = nome;
